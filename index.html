@@ -362,50 +362,51 @@
   })();
 </script>
 </body><script>
-  (function () {
-    const btn   = document.getElementById('catalogBtn');
-    const panel = document.getElementById('catalogPanel');
-    if (!btn || !panel) return;
+(() => {
+  const btn   = document.getElementById('catalogBtn');
+  const panel = document.getElementById('catalogPanel');
+  if (!btn || !panel) return;
 
-    // 1) Button bei jedem Laden "random" irgendwo im Viewport positionieren
-    function placeButtonRandom() {
-      const vw = Math.max(document.documentElement.clientWidth,  window.innerWidth  || 0);
-      const vh = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-
-      // Button kurz messbar machen
-      btn.style.position = 'fixed';
-      btn.style.left = '0px';
-      btn.style.top  = '0px';
-      btn.style.zIndex = '10000';
-
-      const bw = btn.offsetWidth  || 120;
-      const bh = btn.offsetHeight || 40;
-      const margin = 16; // Sicherheitsrand
-
-      const left = Math.floor(Math.random() * Math.max(1, vw - bw - margin*2)) + margin;
-      const top  = Math.floor(Math.random() * Math.max(1, vh - bh - margin*2)) + margin;
-
-      btn.style.left = left + 'px';
-      btn.style.top  = top  + 'px';
+  // Versucht eine „graue Leiste“/Navigation zu erkennen
+  function getTopBarBottom() {
+    // passe hier gern an, falls deine Leiste eine andere Klasse hat
+    const bar = document.querySelector(
+      '.topbar, .site-topbar, header, .site-header, nav, .main-nav, .navbar'
+    );
+    if (bar) {
+      const r = bar.getBoundingClientRect();
+      return (r.bottom + window.scrollY);
     }
+    return 0; // Fallback: ganz oben
+  }
 
-    // 2) Dropdown an den Button andocken (immer darunter)
-    function placePanelBelowBtn() {
-      const r = btn.getBoundingClientRect();
-      panel.style.position = 'fixed';
-      panel.style.left = r.left + 'px';
-      panel.style.top  = (r.bottom + 8) + 'px'; // 8px Abstand
-      panel.style.zIndex = '9999';
-    }
+  function placeTopLeft() {
+    const top = getTopBarBottom() + 8; // 8px Abstand unter die Leiste
+    const left = 16;                   // 16px vom linken Rand
 
-    // Initial platzieren
-    placeButtonRandom();
-    placePanelBelowBtn();
+    // Button fixieren
+    btn.style.position = 'fixed';
+    btn.style.left = left + 'px';
+    btn.style.top  = top  + 'px';
 
-    // Bei Klick & Resize neu ausrichten (ändert NICHTs am Rest der Seite)
-    btn.addEventListener('click', placePanelBelowBtn);
-    window.addEventListener('resize', placePanelBelowBtn);
-  })();
+    // Panel fixiert direkt darunter ausrichten
+    const btnH = btn.offsetHeight || 40;
+    panel.style.position = 'fixed';
+    panel.style.left = left + 'px';
+    panel.style.top  = (top + btnH + 8) + 'px'; // 8px Abstand unter Button
+  }
+
+  // Initial & bei Fensteränderungen neu ausrichten
+  placeTopLeft();
+  window.addEventListener('resize', placeTopLeft);
+  window.addEventListener('scroll', placeTopLeft);
+
+  // Falls das Panel per Klick ein-/ausgeblendet wird, beim Öffnen sauber andocken
+  btn.addEventListener('click', () => {
+    // kleines Timeout, falls Klassen/Animationen das Panel erst später sichtbar machen
+    setTimeout(placeTopLeft, 0);
+  });
+})();
 </script>
 
 </html>
