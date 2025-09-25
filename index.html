@@ -66,10 +66,28 @@
       100%{filter:hue-rotate(20deg) blur(var(--mesh-blur)) saturate(115%)}
     }
     @media (prefers-reduced-motion: reduce){ .site-bg::before{animation:none} }
-  </style>
+  
+/* === BUNTER RAHMEN (7cm) ============================ */
+body {
+  margin: 0;
+  height: 100%;
+  background:
+    radial-gradient(circle, white 60%, transparent 100%),
+    linear-gradient(90deg, #a0dcff, #c2ffd8, #fadde5, #ffbac8, #afc8ff);
+  background-attachment: fixed;
+}
+.page-wrap {
+  padding: 7cm;
+  background: white;
+  min-height: 100%;
+  box-sizing: border-box;
+}
+
+</style>
 </head>
 
-<body class="site-bg text-stone-900">
+<body class="text-stone-900">
+  <div class="page-wrap">
 <!-- Header -->
 <header class="sticky top-0 z-40 bg-white/70 glass border-b border-stone-200">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -80,7 +98,7 @@
       </a>
 
       <!-- Reiter -->
-      <nav class="hidden md:flex items-center gap-6 text-sm font-semibold md:ml-10 lg:ml-14 xl:ml-20">
+      <nav class="hidden md:flex items-center gap-6 text-sm font-semibold">
         <a href="#services" class="hover:text-pop2">Leistungen</a>
         <a href="#repair" class="hover:text-pop2">Schuh- & Lederwarenreparatur</a>
         <a href="#bequem" class="hover:text-pop2">Bequemschuheinlagen</a>
@@ -287,6 +305,6 @@
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 </script>
+  </div>
 </body>
 </html>
-
