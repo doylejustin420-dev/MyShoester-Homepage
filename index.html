@@ -361,5 +361,51 @@
     backdrop && backdrop.addEventListener('click', () => toggle(false));
   })();
 </script>
-</body>
+</body><script>
+  (function () {
+    const btn   = document.getElementById('catalogBtn');
+    const panel = document.getElementById('catalogPanel');
+    if (!btn || !panel) return;
+
+    // 1) Button bei jedem Laden "random" irgendwo im Viewport positionieren
+    function placeButtonRandom() {
+      const vw = Math.max(document.documentElement.clientWidth,  window.innerWidth  || 0);
+      const vh = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+
+      // Button kurz messbar machen
+      btn.style.position = 'fixed';
+      btn.style.left = '0px';
+      btn.style.top  = '0px';
+      btn.style.zIndex = '10000';
+
+      const bw = btn.offsetWidth  || 120;
+      const bh = btn.offsetHeight || 40;
+      const margin = 16; // Sicherheitsrand
+
+      const left = Math.floor(Math.random() * Math.max(1, vw - bw - margin*2)) + margin;
+      const top  = Math.floor(Math.random() * Math.max(1, vh - bh - margin*2)) + margin;
+
+      btn.style.left = left + 'px';
+      btn.style.top  = top  + 'px';
+    }
+
+    // 2) Dropdown an den Button andocken (immer darunter)
+    function placePanelBelowBtn() {
+      const r = btn.getBoundingClientRect();
+      panel.style.position = 'fixed';
+      panel.style.left = r.left + 'px';
+      panel.style.top  = (r.bottom + 8) + 'px'; // 8px Abstand
+      panel.style.zIndex = '9999';
+    }
+
+    // Initial platzieren
+    placeButtonRandom();
+    placePanelBelowBtn();
+
+    // Bei Klick & Resize neu ausrichten (ändert NICHTs am Rest der Seite)
+    btn.addEventListener('click', placePanelBelowBtn);
+    window.addEventListener('resize', placePanelBelowBtn);
+  })();
+</script>
+
 </html>
