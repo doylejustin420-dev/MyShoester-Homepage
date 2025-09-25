@@ -39,12 +39,10 @@
       opacity: var(--mesh-opacity);
       filter: blur(var(--mesh-blur)) saturate(115%);
       background:
-        /* Pastell-Flecken */
         radial-gradient(42% 38% at 8% 10%,  #ff7ae6 0%, transparent 60%),
         radial-gradient(36% 44% at 85% 8%,  #7dd3fc 0%, transparent 60%),
         radial-gradient(34% 40% at 92% 84%, #fca5a5 0%, transparent 60%),
         radial-gradient(38% 42% at 6% 86%,  #bef264 0%, transparent 60%),
-        /* Farbstreifen (conic) */
         conic-gradient(from 210deg at 60% 40%,
           #a78bfa 0% 25%, #22d3ee 25% 50%, #f59e0b 50% 75%, #fb7185 75% 100%);
       animation: meshFloat 32s ease-in-out infinite alternate,
@@ -74,14 +72,24 @@
 <header class="sticky top-0 z-40 bg-white/70 glass border-b border-stone-200">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="h-16 flex items-center justify-between">
-      <a href="#start" class="flex items-center gap-3">
-        <span class="inline-flex items-center justify-center w-10 h-10 rounded-xl grad text-white font-bold">MS</span>
-        <span class="font-head text-2xl font-extrabold tracking-tight">My<span class="italic">Shoester</span></span>
-      </a>
 
-      <!-- Reiter -->
-      <nav class="hidden md:flex items-center gap-6 text-sm font-semibold md:ml-10 lg:ml-14 xl:ml-20">
+      <!-- Linke Seite: KATALOG + Logo -->
+      <div class="flex items-center gap-3">
+        <!-- Katalog-Button – jetzt LINKS -->
+        <button id="catalogBtn"
+          class="px-3 py-2 rounded-xl border bg-white/80 hover:bg-white transition shadow-sm">
+          Katalog ▾
+        </button>
 
+        <!-- Logo / Brand -->
+        <a href="#start" class="flex items-center gap-3">
+          <span class="inline-flex items-center justify-center w-10 h-10 rounded-xl grad text-white font-bold">MS</span>
+          <span class="font-head text-2xl font-extrabold tracking-tight">My<span class="italic">Shoester</span></span>
+        </a>
+      </div>
+
+      <!-- Rechte Seite: Reiter -->
+      <nav class="hidden md:flex items-center gap-6 text-sm font-semibold">
         <a href="#services" class="hover:text-pop2">Leistungen</a>
         <a href="#repair" class="hover:text-pop2">Schuh- & Lederwarenreparatur</a>
         <a href="#bequem" class="hover:text-pop2">Bequemschuheinlagen</a>
@@ -93,13 +101,6 @@
         <a href="#streetwear" class="hover:text-pop2">Streetwear</a>
         <a href="#sandblast" class="hover:text-pop2">Sandstrahlung</a>
         <a href="#contact" class="hover:text-pop2">Kontakt</a>
-      
-
-        <!-- Katalog-Button (öffnet das Register) -->
-        <button id="catalogBtn"
-          class="px-3 py-2 rounded-xl border bg-white/70 hover:bg-white transition shadow-sm">
-          Katalog ▾
-        </button>
       </nav>
     </div>
   </div>
