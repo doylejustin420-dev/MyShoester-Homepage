@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="de" class="scroll-smooth">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Kategorie – MyShoester</title>
+
+  <!-- Fonts & Tailwind -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Figtree:wght@400;600;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { head:['Playfair Display','serif'], body:['Figtree','system-ui','sans-serif'] },
+          colors:{ pop1:'#22d3ee', pop2:'#a78bfa', pop3:'#f59e0b', pop4:'#84cc16' }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    :root{
+      --mesh-blur: 60px;
+      --mesh-opacity: .95;
+      --frame: clamp(220px, 7cm, 26vmin);
+    }
+    body{font-family:var(--tw-font-body, Figtree, system-ui, sans-serif)}
+    .site-bg{ background: linear-gradient(#f8fafc, #ffffff); position:relative; min-height:100dvh; }
+    .site-bg::before{
+      content:""; position: fixed; inset:-25vh; z-index:-2; pointer-events:none;
+      opacity: var(--mesh-opacity); filter: blur(var(--mesh-blur)) saturate(115%);
+      background:
+        radial-gradient(42% 38% at 8% 10%,  #ff7ae6 0%, transparent 60%),
+        radial-gradient(36% 44% at 85% 8%,  #7dd3fc 0%, transparent 60%),
+        radial-gradient(34% 40% at 92% 84%, #fca5a5 0%, transparent 60%),
+        radial-gradient(38% 42% at 6% 86%,  #bef264 0%, transparent 60%),
+        conic-gradient(from 210deg at 60% 40%,
+          #a78bfa 0% 25%, #22d3ee 25% 50%, #f59e0b 50% 75%, #fb7185 75% 100%);
+      animation: meshFloat 32s ease-in-out infinite alternate, meshHue 60s linear infinite;
+    }
+    .site-bg::after{
+      content:""; position: fixed; inset:0; z-index:-1; pointer-events:none;
+      background:
+        radial-gradient(circle at 50% 50%,
+          rgba(255,255,255,1) 0%,
+          rgba(255,255,255,1) calc(50% - var(--frame) - 40px),
+          rgba(255,255,255,0.92) calc(50% - var(--frame) - 10px),
+          rgba(255,255,255,0) 100%);
+    }
+    @keyframes meshFloat{
+      0%{transform:translate(-3%,-2%) scale(1)}
+      50%{transform:translate(4%,1%) scale(1.05)}
+      100%{transform:translate(-2%,3%) scale(1)}
+    }
+    @keyframes meshHue{
+      0%{filter:hue-rotate(0deg) blur(var(--mesh-blur)) saturate(115%)}
+      100%{filter:hue-rotate(20deg) blur(var(--mesh-blur)) saturate(115%)}
+    }
+  </style>
+</head>
+
+<body class="site-bg text-stone-900">
+  <!-- Kopf -->
+  <header class="sticky top-0 z-40 bg-white/70 backdrop-blur border-b border-stone-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="./" class="flex items-center gap-3">
+        <span class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-pop1 via-pop2 to-pop3 text-white font-bold">MS</span>
+        <span class="font-head text-2xl font-extrabold">My<span class="italic">Shoester</span></span>
+      </a>
+      <a href="./" class="px-3 py-2 rounded-xl border bg-white hover:bg-stone-50">← Zur Startseite</a>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <h1 id="catTitle" class="font-head text-3xl sm:text-4xl font-bold"></h1>
+    <p id="catDesc" class="mt-3 text-stone-700"></p>
+
+    <div class="mt-8 rounded-3xl border bg-white shadow-sm overflow-hidden">
+      <table class="min-w-full text-sm">
+        <thead class="bg-stone-50 text-stone-600">
+          <tr>
+            <th class="text-left px-5 py-3">Leistung</th>
+            <th class="text-right px-5 py-3 w-40">Preis</th>
+            <th class="text-left px-5 py-3">Hinweis</th>
+          </tr>
+        </thead>
+        <tbody id="catTable"></tbody>
+      </table>
+      <div class="px-5 py-4 text-xs text-stone-500 border-t">
+        Alle Preise sind Ab-Preise inkl. MwSt. – abhängig von Material & Aufwand. Angebot freibleibend.
+      </div>
+    </div>
+
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a href="./kategorie.html?cat=schuh" class="px-3 py-2 rounded-xl border bg-white hover:bg-stone-50">Schuh- & Lederwaren</a>
+      <a href="./kategorie.html?cat=bequem" class="px-3 py-2 rounded-xl border bg-white hover:bg-stone-50">Bequemschuheinlagen</a>
+      <a href="./kategorie.html?cat=komfort" class="px-3 py-2 rounded-xl border bg-white hover:bg-stone-50">Komforteinlagen</a>
+      <a href="./kategorie.html?cat=alltag" class="px-3 py-2 rounded-xl border bg-white hover:bg-stone-50">Alltagseinlagen</a>
+      <a href="./kategorie.html?cat=belts" class="px-3 py-2 rounded-xl border bg-white hover:bg-stone-50">Maßgürtel</a>
+      <a href="./kategorie.html?cat=laser" class="px-3 py-2 rounded-xl border bg-white hover:bg-stone-50">Lasergravuren</a>
+      <a href="./kategorie.html?cat=cutting" class="px-3 py-2 rounded-xl border bg-white hover:bg-stone-50">Laserzuschnitte</a>
+      <a href="./kategorie.html?cat=streetwear" class="px-3 py-2 rounded-xl border bg-white hover:bg-stone-50">Streetwear</a>
+      <a href="./kategorie.html?cat=sandblast" class="px-3 py-2 rounded-xl border bg-white hover:bg-stone-50">Sandstrahlung</a>
+    </div>
+
+    <section class="mt-12 rounded-3xl border bg-white p-6">
+      <h2 class="font-head text-2xl font-bold">Anfragen & Beratung</h2>
+      <p class="mt-2 text-stone-700">Schick uns gern Fotos oder komm in der Werkstatt vorbei – wir beraten dich ehrlich und fair.</p>
+      <a href="./#contact" class="mt-4 inline-block px-5 py-3 rounded-2xl text-white bg-gradient-to-br from-pop1 via-pop2 to-pop3">Kontakt & Öffnungszeiten</a>
+    </section>
+  </main>
+
+  <script>
+    // ----- Katalog-Daten (Beispiele – bitte anpassen/erweitern) -----
+    const catalogData = {
+      schuh: {
+        title: "Schuh- & Lederwarenreparatur",
+        desc: "Sohlenwechsel, Absätze, Nähte, Kantenfinish, Färbungen – präzise Arbeit mit passenden Materialien (z. B. Vibram, Leder, Kork).",
+        items: [
+          { name:"Absätze erneuern (Paar)", price:"ab 19 €", note:"Gummi/Leder, inkl. Kantenfinish" },
+          { name:"Sohlenwechsel (Leder, Paar)", price:"ab 49 €", note:"Rahmengenäht + Aufbereitung" },
+          { name:"Teilsohle (Vibram, Paar)", price:"ab 39 €", note:"rutschfest, langlebig" },
+          { name:"Nähte reparieren", price:"ab 9 €", note:"pro Nahtstelle" },
+          { name:"Fersenfutter erneuern (Paar)", price:"ab 29 €", note:"Leder" },
+          { name:"Kantenfärben & Finish", price:"ab 9 €", note:"je Paar" }
+        ]
+      },
+      bequem: {
+        title: "Bequemschuheinlagen",
+        desc: "Komfortable, nicht-medizinische Einlagen für Alltag & Freizeit.",
+        items: [
+          { name:"Bequem-Einlagen (Alcantara)", price:"ab 29 €", note:"nach Maß zugeschnitten" },
+          { name:"Bequem-Einlagen (Leder)", price:"ab 34 €", note:"atmungsaktiv" },
+          { name:"Fersenpolster/Heel Pads", price:"ab 8 €", note:"pro Paar" }
+        ]
+      },
+      komfort: {
+        title: "Komforteinlagen",
+        desc: "Ausgeglichenes Fußgefühl mit zusätzlicher Dämpfung – angenehm im Büro & Freizeit.",
+        items: [
+          { name:"Komfort-Einlagen (EVA + Leder)", price:"ab 39 €", note:"dämpfend, leicht" },
+          { name:"Dämpfungsplus / Vorfußpolster", price:"ab 12 €", note:"pro Paar" }
+        ]
+      },
+      alltag: {
+        title: "Alltagseinlagen",
+        desc: "Leicht, robust und bequem – die unkomplizierte Lösung für jeden Tag.",
+        items: [
+          { name:"Alltags-Einlagen (Leder)", price:"ab 24 €", note:"in Standardgrößen" },
+          { name:"Alltags-Einlagen (Synthetik)", price:"ab 19 €", note:"pflegeleicht" }
+        ]
+      },
+      belts: {
+        title: "Maßgefertigte Gürtel",
+        desc: "Vollleder, handvernäht, auf Maß – Schnallen nach Wunsch (Messing, Stahl, Schwarz).",
+        items: [
+          { name:"Gürtel 30–40 mm (Vollleder)", price:"ab 59 €", note:"inkl. Standardschließe" },
+          { name:"Premium-Schließe", price:"ab 19 €", note:"Messing, satiniert/poliert" },
+          { name:"Initialen/Logo-Prägung", price:"ab 9 €", note:"einseitig" }
+        ]
+      },
+      laser: {
+        title: "Lasergravuren",
+        desc: "Präzise Gravuren auf Leder, Holz, Aluminium & mehr – ideal für Geschenke, Schilder & Werbemittel.",
+        items: [
+          { name:"Ledergravur (10×10 cm)", price:"ab 15 €", note:"einseitig" },
+          { name:"Holzgravur (A5)", price:"ab 19 €", note:"Birke/Buche" },
+          { name:"Metall/Alu Tag (klein)", price:"ab 12 €", note:"eloxiert" },
+          { name:"Seriengravur (ab 10 Stk.)", price:"auf Anfrage", note:"Mengenstaffel" }
+        ]
+      },
+      cutting: {
+        title: "Laserzuschnitte",
+        desc: "Saubere Zuschnitte für Formteile, Schablonen und Beschriftungen – wiederholgenau & effizient.",
+        items: [
+          { name:"Schablone/Template (A4)", price:"ab 19 €", note:"Material nach Wahl" },
+          { name:"Formteil Leder (klein)", price:"ab 4 €", note:"pro Teil" },
+          { name:"Buchstaben/Logos (Set)", price:"ab 15 €", note:"je nach Größe" }
+        ]
+      },
+      streetwear: {
+        title: "Streetwear – MyShoester Apparel",
+        desc: "Limitierte Drops: Hoodies, Shirts, Caps & Accessoires.",
+        items: [
+          { name:"T-Shirt", price:"ab 25 €", note:"S–XXL, verschiedene Farben" },
+          { name:"Hoodie", price:"ab 49 €", note:"S–XXL, schwerer Stoff" },
+          { name:"Cap", price:"ab 19 €", note:"Snapback oder Dad Cap" }
+        ]
+      },
+      sandblast: {
+        title: "Sandstrahlung",
+        desc: "Glas, Metall, Stein oder Holz – dauerhafte Dekore, Schriftzüge & Logos (bis 70×70 cm).",
+        items: [
+          { name:"Kleines Motiv (bis 10×10 cm)", price:"ab 15 €", note:"inkl. Maskierung" },
+          { name:"Mittel (bis A4)", price:"ab 29 €", note:"Glas/Metall" },
+          { name:"Groß (bis 50×50 cm)", price:"ab 59 €", note:"je nach Material" }
+        ]
+      }
+    };
+
+    // -------- Rendering ----------
+    function q(key){ return new URLSearchParams(location.search).get(key); }
+    const catKey = (q('cat') || 'schuh').toLowerCase();
+    const data = catalogData[catKey] || catalogData['schuh'];
+
+    document.title = `${data.title} – MyShoester`;
+    document.getElementById('catTitle').textContent = data.title;
+    document.getElementById('catDesc').textContent  = data.desc;
+
+    const tbody = document.getElementById('catTable');
+    tbody.innerHTML = data.items.map(it => `
+      <tr class="border-t">
+        <td class="px-5 py-3">${it.name}</td>
+        <td class="px-5 py-3 text-right font-semibold">${it.price}</td>
+        <td class="px-5 py-3">${it.note || ''}</td>
+      </tr>
+    `).join('');
+  </script>
+</body>
+</html>

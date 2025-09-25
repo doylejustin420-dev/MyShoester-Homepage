@@ -23,41 +23,29 @@
   </script>
 
   <style>
-    /* === BUNTER HINTERGRUND (Gradient-Mesh) ================================= */
+    /* === BUNTER HINTERGRUND + WEISSER KERN (Rahmen) ====================== */
     :root{
-      --mesh-blur: 60px;                 /* Weichheit der Farbflecken */
-      --mesh-opacity: .95;               /* Intensität 0–1 */
-      --overlay: rgba(255,255,255,.68);  /* helle Glas-Schicht (falls benötigt) */
-
-      /* ≈ 7 cm Rahmenbreite – robust auf allen Screens */
+      --mesh-blur: 60px;
+      --mesh-opacity: .95;
+      --overlay: rgba(255,255,255,.68);
+      /* ≈ 7 cm Rahmenbreite – robust für alle Screens */
       --frame: clamp(220px, 7cm, 26vmin);
     }
-
     body{font-family:var(--tw-font-body, Figtree, system-ui, sans-serif)}
-    .site-bg{
-      background: linear-gradient(#f8fafc, #ffffff); /* neutrale Basis */
-      position: relative; min-height: 100dvh;
-    }
-
-    /* Bunte Mesh-Farben (wie gehabt) */
+    .site-bg{ background: linear-gradient(#f8fafc, #ffffff); position: relative; min-height: 100dvh; }
     .site-bg::before{
       content:""; position: fixed; inset:-25vh; z-index:-2; pointer-events:none;
-      opacity: var(--mesh-opacity);
-      filter: blur(var(--mesh-blur)) saturate(115%);
+      opacity: var(--mesh-opacity); filter: blur(var(--mesh-blur)) saturate(115%);
       background:
-        /* Pastell-Flecken */
         radial-gradient(42% 38% at 8% 10%,  #ff7ae6 0%, transparent 60%),
         radial-gradient(36% 44% at 85% 8%,  #7dd3fc 0%, transparent 60%),
         radial-gradient(34% 40% at 92% 84%, #fca5a5 0%, transparent 60%),
         radial-gradient(38% 42% at 6% 86%,  #bef264 0%, transparent 60%),
-        /* Farbstreifen (conic) */
         conic-gradient(from 210deg at 60% 40%,
           #a78bfa 0% 25%, #22d3ee 25% 50%, #f59e0b 50% 75%, #fb7185 75% 100%);
-      animation: meshFloat 32s ease-in-out infinite alternate,
-                 meshHue   60s linear infinite;
+      animation: meshFloat 32s ease-in-out infinite alternate, meshHue 60s linear infinite;
     }
-
-    /* NEU: Weißer Kern + bunter Rand (weiche Überblendung) */
+    /* Weißer Kern (bunter Rand bleibt sichtbar) */
     .site-bg::after{
       content:""; position: fixed; inset:0; z-index:-1; pointer-events:none;
       background:
@@ -69,10 +57,8 @@
           rgba(255,255,255,0) 100%
         );
     }
-
     .grad{background-image:linear-gradient(135deg,#22d3ee 0%,#a78bfa 50%,#f59e0b 100%)}
     .glass{backdrop-filter:blur(10px)}
-
     @keyframes meshFloat{
       0%{transform:translate(-3%,-2%) scale(1)}
       50%{transform:translate(4%,1%) scale(1.05)}
@@ -96,7 +82,7 @@
         <span class="font-head text-2xl font-extrabold tracking-tight">My<span class="italic">Shoester</span></span>
       </a>
 
-      <!-- Reiter -->
+      <!-- Navigation + Katalog-Button -->
       <nav class="hidden md:flex items-center gap-6 text-sm font-semibold md:ml-10 lg:ml-14 xl:ml-20">
         <a href="#services" class="hover:text-pop2">Leistungen</a>
         <a href="#repair" class="hover:text-pop2">Schuh- & Lederwarenreparatur</a>
@@ -109,10 +95,60 @@
         <a href="#streetwear" class="hover:text-pop2">Streetwear</a>
         <a href="#sandblast" class="hover:text-pop2">Sandstrahlung</a>
         <a href="#contact" class="hover:text-pop2">Kontakt</a>
+
+        <!-- Katalog-Button (öffnet das aufklappbare Register) -->
+        <button id="catalogBtn"
+          class="ml-2 px-3 py-2 rounded-xl border bg-white/70 hover:bg-white transition shadow-sm">
+          Katalog ▾
+        </button>
       </nav>
     </div>
   </div>
 </header>
+
+<!-- KATALOG-PANEL (aufklappbar, rollt nach unten) -->
+<div id="catalogPanel"
+     class="fixed top-16 left-0 right-0 z-30 max-h-0 overflow-hidden transition-all duration-500">
+  <div class="mx-auto max-w-7xl px-4 pb-6">
+    <div class="rounded-3xl border bg-white/90 backdrop-blur p-4 md:p-6 shadow-xl">
+      <div class="flex items-center justify-between">
+        <h3 class="font-head text-xl md:text-2xl font-bold">Kategorien</h3>
+        <button id="catalogClose"
+                class="px-3 py-2 rounded-xl border hover:bg-white transition text-sm">Schließen ✕</button>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-4 mt-4">
+        <a class="px-4 py-3 rounded-2xl border bg-white hover:shadow-md transition text-sm font-semibold"
+           href="kategorie.html?cat=schuh">Schuh- & Lederwarenreparatur</a>
+        <a class="px-4 py-3 rounded-2xl border bg-white hover:shadow-md transition text-sm font-semibold"
+           href="kategorie.html?cat=bequem">Bequemschuheinlagen</a>
+        <a class="px-4 py-3 rounded-2xl border bg-white hover:shadow-md transition text-sm font-semibold"
+           href="kategorie.html?cat=komfort">Komforteinlagen</a>
+        <a class="px-4 py-3 rounded-2xl border bg-white hover:shadow-md transition text-sm font-semibold"
+           href="kategorie.html?cat=alltag">Alltagseinlagen</a>
+        <a class="px-4 py-3 rounded-2xl border bg-white hover:shadow-md transition text-sm font-semibold"
+           href="kategorie.html?cat=belts">Maßgürtel</a>
+        <a class="px-4 py-3 rounded-2xl border bg-white hover:shadow-md transition text-sm font-semibold"
+           href="kategorie.html?cat=laser">Lasergravuren</a>
+        <a class="px-4 py-3 rounded-2xl border bg-white hover:shadow-md transition text-sm font-semibold"
+           href="kategorie.html?cat=cutting">Laserzuschnitte</a>
+        <a class="px-4 py-3 rounded-2xl border bg-white hover:shadow-md transition text-sm font-semibold"
+           href="kategorie.html?cat=streetwear">Streetwear</a>
+        <a class="px-4 py-3 rounded-2xl border bg-white hover:shadow-md transition text-sm font-semibold"
+           href="kategorie.html?cat=sandblast">Sandstrahlung</a>
+        <a class="px-4 py-3 rounded-2xl border bg-white hover:shadow-md transition text-sm font-semibold"
+           href="#contact">Kontakt & Öffnungszeiten</a>
+      </div>
+
+      <p class="text-xs text-stone-500 mt-4">
+        Hinweis: Alle Preise sind Ab-Preise inkl. MwSt., abhängig von Material & Aufwand.
+      </p>
+    </div>
+  </div>
+</div>
+<!-- Verdunkelung hinter dem Register -->
+<div id="catalogBackdrop"
+     class="fixed inset-0 bg-black/30 opacity-0 pointer-events-none transition-opacity duration-300 z-20"></div>
 
 <!-- Hero -->
 <section id="start" class="relative">
@@ -162,7 +198,7 @@
 </section>
 
 <!-- Bequemschuheinlagen -->
-<section id="bequem" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<section id="bequem" class="max-w-7xl mx_auto px-4 sm:px-6 lg:px-8 py-12">
   <div class="grid lg:grid-cols-2 gap-10 items-center">
     <div class="rounded-3xl overflow-hidden ring-1 ring-stone-200 shadow-lg">
       <img src="https://images.unsplash.com/photo-1542216510-6bdb8c37a3aa?q=80&w=1200&auto=format&fit=crop" alt="Bequemschuheinlagen" class="w-full h-full object-cover">
@@ -301,7 +337,28 @@
   </footer>
 </section>
 
+<!-- Toggle-Script für das Katalog-Panel -->
 <script>
+  (function(){
+    const btn = document.getElementById('catalogBtn');
+    const closeBtn = document.getElementById('catalogClose');
+    const panel = document.getElementById('catalogPanel');
+    const backdrop = document.getElementById('catalogBackdrop');
+
+    let open = false;
+    function toggle(openState = !open){
+      open = openState;
+      panel.classList.toggle('max-h-0', !open);
+      panel.classList.toggle('max-h-[60vh]', open);
+      backdrop.classList.toggle('opacity-0', !open);
+      backdrop.classList.toggle('opacity-100', open);
+      backdrop.classList.toggle('pointer-events-none', !open);
+    }
+    btn?.addEventListener('click', () => toggle());
+    closeBtn?.addEventListener('click', () => toggle(false));
+    backdrop?.addEventListener('click', () => toggle(false));
+  })();
+
   document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 </body>
