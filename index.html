@@ -125,8 +125,8 @@
 
 <!-- Statische Kategorien (links, Desktop) --><!-- KATALOG-PANEL (aufklappbar) -->
 <div id="catalogPanel"
-     class="fixed top-16 left-4 md:left-8 z-30 w-full max-w-lg md:max-w-xl overflow-hidden transition-all duration-500"
-     style="max-height:0px">
+     class="fixed z-40 overflow-hidden transition-all duration-500"
+     style="max-height:0px; left: 16px; top: 84px; width: min(680px, calc(100vw - 2rem));">
   <!-- dünner Farb-Rand im MyShoester-Gradient -->
   <div class="p-[1px] rounded-3xl bg-gradient-to-br from-pop1 via-pop2 to-pop3 shadow-2xl">
     <!-- Glasiger, heller Inhalt -->
@@ -387,6 +387,56 @@
       panel.style.maxHeight = (panel.style.maxHeight && panel.style.maxHeight !== "0px") ? "0px" : mh;
     });
   })();
+</script>
+
+
+<script>
+(function(){
+  const fab = document.getElementById('catalogFab');
+  const panel = document.getElementById('catalogPanel');
+  const closeBtn = document.getElementById('catalogClose');
+  if(!fab || !panel) return;
+
+  function placePanel(){
+    const r = fab.getBoundingClientRect();
+    const left = Math.max(12, r.left + window.scrollX);
+    const top  = r.bottom + window.scrollY + 8;
+    panel.style.left = left + 'px';
+    panel.style.top  = top  + 'px';
+    panel.style.width = 'min(680px, calc(100vw - 2rem))';
+  }
+
+  function togglePanel(){
+    placePanel();
+    const open = panel.style.maxHeight && panel.style.maxHeight !== '0px';
+    panel.style.maxHeight = open ? '0px' : (panel.scrollHeight + 32) + 'px';
+  }
+
+  fab.addEventListener('click', (e)=>{
+    e.stopPropagation();
+    togglePanel();
+  });
+
+  if(closeBtn){
+    closeBtn.addEventListener('click', (e)=>{
+      e.stopPropagation();
+      panel.style.maxHeight = '0px';
+    });
+  }
+
+  document.addEventListener('click', (e)=>{
+    if(!panel.contains(e.target) && !fab.contains(e.target)){
+      panel.style.maxHeight = '0px';
+    }
+  });
+
+  window.addEventListener('resize', ()=>{
+    if(panel.style.maxHeight && panel.style.maxHeight !== '0px') placePanel();
+  });
+  window.addEventListener('scroll', ()=>{
+    if(panel.style.maxHeight && panel.style.maxHeight !== '0px') placePanel();
+  });
+})();
 </script>
 
 </body>
