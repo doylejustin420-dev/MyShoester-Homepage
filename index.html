@@ -1,15 +1,14 @@
 <!doctype html>
 <html lang="de" class="scroll-smooth">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>MyShoester – Schuh- & Lederwerkstatt</title>
-  <meta name="description" content="Reparaturen, Pflege, Bequemschuheinlagen (ohne Heilaussagen), Maßgürtel, Lasergravuren & Zuschnitte, Streetwear, Sandstrahlung bis 70×70 cm.">
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Kategorie – MyShoester</title>
 
   <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Figtree:wght@400;600;800&family=Great+Vibes&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Figtree:wght@400;600;800&display=swap" rel="stylesheet"/>
 
   <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -18,251 +17,190 @@
       theme: {
         extend: {
           fontFamily: { head:['Playfair Display','serif'], body:['Figtree','system-ui','sans-serif'] },
-          colors:{ pop1:'#22d3ee', pop2:'#a78bfa', pop3:'#f59e0b', pop4:'#84cc16' }
+          colors: { royal:'#1e3a8a' }
         }
       }
-    };
+    }
   </script>
 
   <style>
-    /* Grundschrift */
     body{font-family:var(--tw-font-body, Figtree, system-ui, sans-serif)}
-
-    /* Button "Katalog" */
-    .cat-link{display:block;padding:.625rem .75rem;border-radius:9999px;background:rgba(99,102,241,.06);color:#1e293b;font-weight:600}
-    .cat-link:hover{background:rgba(99,102,241,.14)}
-
-    /* Akzent in Königsblau (kein Verlauf) */
-    .accent{color:#1e3a8a}
-
-    /* --- Bunter Seitenrahmen mit weißer Mitte --- */
-    :root{ --frame: clamp(90px, 8vw, 140px); } /* “Stärke” der bunten Kante */
-    .edge-frame{ position:relative; min-height:100%; }
-    /* Untere bunte Fläche */
-    .edge-frame::before{
-      content:""; position:fixed; inset:0; z-index:-2;
-      background: linear-gradient(135deg,#b5e8ff 0%,#d7c6ff 45%,#ffd59e 100%);
+    .grad{background-image:linear-gradient(135deg,#22d3ee 0%,#a78bfa 50%,#f59e0b 100%)}
+    .glass{backdrop-filter:blur(10px)}
+    /* bunter Seitenrahmen wie Startseite */
+    .page-frame{position:relative}
+    .page-frame::before{
+      content:""; position:fixed; inset:0; padding:clamp(24px,7vw,140px);
+      border-radius:28px;
+      background:conic-gradient(from 210deg at 50% 40%,
+        #a5b4fc 0%, #fbcfe8 22%, #fde68a 45%, #86efac 67%, #93c5fd 84%, #a5b4fc 100%);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude;
+      pointer-events:none; opacity:.95;
     }
-    /* Weiße Mitte, die zur Kante hin ausläuft */
-    .edge-frame::after{
-      content:""; position:fixed; inset:0; z-index:-1;
-      background:
-        radial-gradient(circle at 50% 50%,
-          rgba(255,255,255,1) 0%,
-          rgba(255,255,255,1) calc(50% - var(--frame)),
-          rgba(255,255,255,0) calc(50% - var(--frame) + 1px)
-        );
-      /* sorgt dafür, dass die weiße Mitte “oben liegt” */
-      pointer-events:none;
-    }
-
-    /* Geschwungener, großer Schriftzug */
-    .badge-script{
-      font-family:'Great Vibes',cursive;
-      color:#1e3a8a;                 /* Königsblau */
-      font-weight:400;
-      font-size:clamp(56px, 8vw, 120px); /* ~3× größer als vorher */
-      line-height:1.05;
-      margin: 0 0 .5rem 0;
-      text-shadow:0 1px 0 rgba(255,255,255,.7);
-    }
-
-    /* Logo etwas präsenter */
-    .brand-big span:last-child{font-size:clamp(22px,2.2vw,32px)}
+    .price-card{border-radius:18px;border:1px solid rgb(229 231 235);background:#fff}
   </style>
 </head>
-<body class="edge-frame text-stone-900">
 
-<!-- Header -->
-<header class="sticky top-0 z-40 bg-white/70 backdrop-blur-md border-b border-stone-200">
+<body class="page-frame bg-white text-stone-900">
+
+<!-- Header kompakt -->
+<header class="sticky top-0 z-40 bg-white/70 glass border-b border-stone-200">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="h-16 flex items-center justify-between">
-      <a href="#start" class="brand-big flex items-center gap-3">
-        <span class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-sky-400 via-violet-400 to-amber-400 text-white font-bold">MS</span>
+      <a href="/" class="flex items-center gap-3">
+        <span class="inline-flex items-center justify-center w-10 h-10 rounded-xl grad text-white font-bold">MS</span>
         <span class="font-head text-2xl font-extrabold tracking-tight">My<span class="italic">Shoester</span></span>
       </a>
-
-      <!-- Katalog (Button + Dropdown) -->
-      <div id="catalogWrapper" class="relative ml-4">
-        <button id="catalogBtn" class="rounded-full border border-blue-700/40 bg-blue-700/10 px-4 py-1.5 text-[15px] font-semibold text-blue-800 hover:bg-blue-700/15 hover:border-blue-800/50 transition">
-          Katalog ▾
-        </button>
-
-        <!-- Dropdown erscheint direkt UNTER dem Button -->
-        <div id="catalogMenu" class="absolute left-0 top-full mt-2 w-[22rem] rounded-2xl bg-white/85 backdrop-blur-xl ring-1 ring-stone-200 shadow-2xl hidden z-[60]">
-          <div class="p-4">
-            <div class="grid grid-cols-1 gap-2">
-              <a class="cat-link" href="#repair">Schuh- & Lederwarenreparatur</a>
-              <a class="cat-link" href="#bequem">Bequemschuheinlagen</a>
-              <a class="cat-link" href="#komfort">Komforteinlagen</a>
-              <a class="cat-link" href="#alltag">Alltagseinlagen</a>
-              <a class="cat-link" href="#belts">Maßgürtel</a>
-              <a class="cat-link" href="#laser">Lasergravuren</a>
-              <a class="cat-link" href="#cuts">Laserzuschnitte</a>
-              <a class="cat-link" href="#streetwear">Streetwear</a>
-              <a class="cat-link" href="#sandblast">Sandstrahlung</a>
-              <a class="cat-link" href="#contact">Kontakt & Öffnungszeiten</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <nav class="hidden md:flex items-center gap-6 text-sm font-semibold">
-        <a href="#services" class="hover:text-violet-500">Leistungen</a>
-        <a href="#comfort" class="hover:text-violet-500">Bequemschuheinlagen</a>
-        <a href="#belts" class="hover:text-violet-500">Maßgürtel</a>
-        <a href="#laser" class="hover:text-violet-500">Lasergravuren</a>
-        <a href="#streetwear" class="hover:text-violet-500">Streetwear</a>
-        <a href="#sandblast" class="hover:text-violet-500">Sandstrahlung</a>
-        <a href="#shop" class="hover:text-violet-500">Zubehör-Shop</a>
-        <a href="#contact" class="hover:text-violet-500">Kontakt</a>
-      </nav>
+      <a href="/" class="text-sm font-semibold hover:text-royal">← Zur Startseite</a>
     </div>
   </div>
 </header>
 
-<!-- Hero -->
-<section id="start" class="relative">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 grid lg:grid-cols-2 gap-10 items-center">
-    <div>
-      <!-- Großer, geschwungener Schriftzug in Königsblau -->
-      <div class="badge-script">Schuh- & Lederwerkstatt</div>
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+  <h1 id="catTitle" class="font-head text-3xl sm:text-5xl font-extrabold text-royal"></h1>
+  <p id="catIntro" class="mt-3 text-stone-600"></p>
 
-      <h1 class="font-head text-4xl sm:text-5xl font-extrabold mt-4 leading-tight">
-        Reparaturen, Pflege & Maßarbeit <span class="accent">mit Liebe zum Detail</span>.
-      </h1>
-      <p class="mt-4 text-lg text-stone-700">
-        Lieblingsschuhe und Lederwaren wieder in Form bringen: Sohlenwechsel, Absätze, Nähte, Färbungen & Pflege – fair, präzise, nachhaltig.
-      </p>
-    </div>
+  <div id="priceGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-8"></div>
 
-    <div class="rounded-3xl overflow-hidden ring-1 ring-stone-200 shadow-lg">
-      <img src="https://images.unsplash.com/photo-1516826957135-700dedea698c?q=80&w=1200&auto=format&fit=crop"
-           alt="Werkstatt" class="w-full h-full object-cover">
-    </div>
+  <div class="mt-8 p-4 rounded-2xl bg-white/80 ring-1 ring-stone-200">
+    <p class="text-sm text-stone-600">
+      Hinweis: Alle Preise sind Ab-Preise inkl. MwSt., abhängig von Material & Aufwand.
+      Bei Fragen melde dich gern – wir beraten ehrlich & transparent.
+    </p>
   </div>
-</section>
+</main>
 
-<!-- Leistungen -->
-<section id="services" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-  <h2 class="font-head text-3xl sm:text-4xl font-bold mb-6">Unsere Leistungen</h2>
-  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-    <div class="p-6 rounded-2xl border bg-white shadow-sm"><div class="text-3xl">👞</div><div class="font-semibold mt-3">Sohlenwechsel & Absätze</div><p class="text-sm mt-1 text-stone-600">Vibram, Kantenfinish, Färbung.</p></div>
-    <div class="p-6 rounded-2xl border bg-white shadow-sm"><div class="text-3xl">👜</div><div class="font-semibold mt-3">Taschen & Lederwaren</div><p class="text-sm mt-1 text-stone-600">Reißverschlüsse, Henkel, Kanten.</p></div>
-    <div class="p-6 rounded-2xl border bg-white shadow-sm"><div class="text-3xl">✨</div><div class="font-semibold mt-3">Pflege & Imprägnierung</div><p class="text-sm mt-1 text-stone-600">Reinigung und Schutz.</p></div>
-  </div>
-</section>
-
-<!-- Bequemschuheinlagen -->
-<section id="comfort" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-  <div class="grid lg:grid-cols-2 gap-10 items-center">
-    <div class="rounded-3xl overflow-hidden ring-1 ring-stone-200 shadow-lg">
-      <img src="https://images.unsplash.com/photo-1542216510-6bdb8c37a3aa?q=80&w=1200&auto=format&fit=crop"
-           alt="Bequemschuheinlagen" class="w-full h-full object-cover">
-    </div>
-    <div>
-      <h2 class="font-head text-3xl sm:text-4xl font-bold">Bequemschuheinlagen</h2>
-      <p class="mt-3 text-stone-600">Komfortable, nicht-medizinische Einlagen für Alltag & Freizeit. Materialien: Alcantara, Kork, EVA, Leder.</p>
-    </div>
-  </div>
-</section>
-
-<!-- Maßgürtel -->
-<section id="belts" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-  <div class="grid lg:grid-cols-2 gap-10 items-center">
-    <div>
-      <h2 class="font-head text-3xl sm:text-4xl font-bold">Maßgefertigte Gürtel</h2>
-      <p class="mt-3 text-stone-600">Vollleder, handvernäht, auf Maß – Schnallen aus Messing, Stahl, Schwarz.</p>
-    </div>
-    <div class="rounded-3xl overflow-hidden ring-1 ring-stone-200 shadow-lg">
-      <img src="https://images.unsplash.com/photo-1594949163427-4f3c7a9c4b87?q=80&w=1200&auto=format&fit=crop"
-           alt="Maßgürtel" class="w-full h-full object-cover">
-    </div>
-  </div>
-</section>
-
-<!-- Lasergravuren & Zuschnitte -->
-<section id="laser" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-  <div class="grid lg:grid-cols-2 gap-10 items-center">
-    <div>
-      <h2 class="font-head text-3xl sm:text-4xl font-bold">Lasergravuren & Zuschnitte</h2>
-      <p class="mt-3 text-stone-600">Präzise Gravuren und Schnitte für Personalisierung, Schilder und Werbemittel.</p>
-    </div>
-    <div class="rounded-3xl overflow-hidden ring-1 ring-stone-200 shadow-lg">
-      <img src="https://images.unsplash.com/photo-1617195737497-7b8a2e9f6a42?q=80&w=1200&auto=format&fit=crop"
-           alt="Lasergravur" class="w-full h-full object-cover">
-    </div>
-  </div>
-</section>
-
-<!-- Streetwear -->
-<section id="streetwear" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-  <div class="grid lg:grid-cols-2 gap-10 items-center">
-    <div class="rounded-3xl overflow-hidden ring-1 ring-stone-200 shadow-lg">
-      <img src="https://images.unsplash.com/photo-1520975916090-3105956dac38?q=80&w=1200&auto=format&fit=crop"
-           alt="Streetwear" class="w-full h-full object-cover">
-    </div>
-    <div>
-      <h2 class="font-head text-3xl sm:text-4xl font-bold">Streetwear – MyShoester Apparel</h2>
-      <p class="mt-3 text-stone-600">Limitierte Drops: Hoodies, Shirts, Caps & Accessoires – robust, bequem, mit Liebe zum Detail.</p>
-    </div>
-  </div>
-</section>
-
-<!-- Sandstrahlung -->
-<section id="sandblast" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-  <div class="grid lg:grid-cols-2 gap-10 items-center">
-    <div>
-      <h2 class="font-head text-3xl sm:text-4xl font-bold">Sandstrahlung (bis 70×70 cm)</h2>
-      <p class="mt-3 text-stone-600">Glas, Metall, Stein oder Holz – dauerhafte Dekore, Schriftzüge und Logos.</p>
-    </div>
-    <div class="rounded-3xl overflow-hidden ring-1 ring-stone-200 shadow-lg">
-      <img src="https://images.unsplash.com/photo-1591258374311-2f5b5b4b7e7c?q=80&w=1200&auto=format&fit=crop"
-           alt="Sandstrahlung" class="w-full h-full object-cover">
-    </div>
-  </div>
-</section>
-
-<!-- Kontakt -->
-<section id="contact" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-  <div class="grid md:grid-cols-2 gap-10">
-    <div>
-      <h3 class="font-head text-2xl font-bold">Anfragen & Termine</h3>
-      <form class="mt-6 grid grid-cols-1 gap-3 max-w-lg">
-        <input class="px-4 py-3 rounded-2xl border" placeholder="Name">
-        <input class="px-4 py-3 rounded-2xl border" type="email" placeholder="E-Mail">
-        <textarea class="px-4 py-3 rounded-2xl border" rows="4" placeholder="Nachricht"></textarea>
-        <button type="button" class="bg-gradient-to-br from-sky-400 via-violet-400 to-amber-400 text-white px-5 py-3 rounded-2xl font-semibold">Senden</button>
-      </form>
-    </div>
-    <div class="rounded-3xl border p-6 bg-white">
-      <h4 class="font-head text-xl font-bold">Kontaktdaten</h4>
-      <div class="mt-3 space-y-2">
-        <p>Sandwerkstraße 2, 63636 Brachttal</p>
-        <p>werkstatt@myshoester.de</p>
-        <p><strong>Öffnungszeiten:</strong><br>
-          Mo–Di 16:30–18:00 · Do 14:00–18:00 · Fr 08:00–18:00</p>
-      </div>
-    </div>
-  </div>
-  <footer class="mt-16 pt-8 border-t text-sm flex flex-wrap items-center justify-between">
+<footer class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 mt-8">
+  <div class="pt-8 border-t text-sm flex flex-wrap items-center justify-between">
     <div>© <span id="year"></span> MyShoester</div>
-    <div class="flex gap-4"><a href="#">Datenschutz</a><a href="#">Impressum</a><a href="#">AGB</a></div>
-  </footer>
-</section>
+    <div class="flex gap-4"><a href="/">Start</a><a href="/kategorie.html?cat=kontakt">Kontakt</a></div>
+  </div>
+</footer>
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
-  (function(){
-    const btn = document.getElementById('catalogBtn');
-    const menu = document.getElementById('catalogMenu');
-    const wrap = document.getElementById('catalogWrapper');
-    if(btn && menu){
-      btn.addEventListener('click', (e)=>{ e.stopPropagation(); menu.classList.toggle('hidden'); });
-      document.addEventListener('click', (e)=>{ if(!wrap.contains(e.target)){ menu.classList.add('hidden'); }});
-    }
-  })();
-</script>
 
+  // --- Kategorie-Daten (bitte Preise nach Bedarf anpassen) ---
+  const data = {
+    schuh: {
+      title: 'Schuh- & Lederwarenreparatur',
+      intro: 'Sohlenwechsel, Absätze, Nähte, Färbungen, Pflege – fair, präzise, nachhaltig.',
+      items: [
+        {name:'Sohlenwechsel (Damen)', price:'ab 59 €'},
+        {name:'Sohlenwechsel (Herren)', price:'ab 69 €'},
+        {name:'Absätze erneuern', price:'ab 18 €'},
+        {name:'Naht/Kleben (klein)', price:'ab 12 €'},
+        {name:'Reißverschluss Tasche', price:'ab 25 €'},
+        {name:'Fersenfutter erneuern', price:'ab 29 €'},
+        {name:'Färben & Finish', price:'ab 20 €'},
+        {name:'Pflege & Imprägnierung', price:'ab 9 €'}
+      ]
+    },
+    bequem: {
+      title: 'Bequemschuheinlagen',
+      intro: 'Komfortable, nicht-medizinische Einlagen für Alltag & Freizeit (keine Heilversprechen).',
+      items: [
+        {name:'Einlagen – Standardmaterialien', price:'ab 39 €'},
+        {name:'Bezug Alcantara / Leder', price:'+ 8 €'},
+        {name:'Personalisierung / Prägung', price:'+ 6 €'}
+      ]
+    },
+    komfort: {
+      title: 'Komforteinlagen',
+      intro: 'Mehr Dämpfung & Halt für längere Tage – ohne medizinische Aussagen.',
+      items: [
+        {name:'Komforteinlagen – verstärkt', price:'ab 49 €'},
+        {name:'Fersenpolster / Vorfußpolster', price:'+ 6 €'},
+        {name:'Bezug Alcantara / Leder', price:'+ 8 €'}
+      ]
+    },
+    alltag: {
+      title: 'Alltagseinlagen',
+      intro: 'Leicht & angenehm – für tägliche Wege.',
+      items: [
+        {name:'Alltagseinlagen – leicht', price:'ab 29 €'},
+        {name:'Feinanpassung / Zuschnitt', price:'+ 5 €'}
+      ]
+    },
+    guertel: {
+      title: 'Maßgürtel',
+      intro: 'Vollleder, handvernäht – Schnallen aus Messing, Stahl, Schwarz.',
+      items: [
+        {name:'Vollledergürtel auf Maß', price:'ab 59 €'},
+        {name:'Handnaht-Option', price:'+ 15 €'},
+        {name:'Prägung / Initialen', price:'+ 12 €'}
+      ]
+    },
+    lasergravur: {
+      title: 'Lasergravuren',
+      intro: 'Feine Gravuren für Leder, Holz, Edelstahl & mehr.',
+      items: [
+        {name:'Leder-Tag / Keyfob', price:'ab 9 €'},
+        {name:'Holzbrett (mittel)', price:'ab 12 €'},
+        {name:'Edelstahlbecher', price:'ab 15 €'},
+        {name:'Layout / Datenaufbereitung', price:'ab 8 €'}
+      ]
+    },
+    laserschnitt: {
+      title: 'Laserzuschnitte',
+      intro: 'Exakte Zuschnitte für Prototypen & Kleinserien.',
+      items: [
+        {name:'Leder bis 2 mm', price:'ab 0,60 € / cm'},
+        {name:'Acryl 3 mm', price:'ab 0,80 € / cm'},
+        {name:'Sondergeometrien', price:'nach Aufwand'}
+      ]
+    },
+    streetwear: {
+      title: 'Streetwear – MyShoester Apparel',
+      intro: 'Limitierte Drops – robust, bequem & mit Liebe zum Detail.',
+      items: [
+        {name:'T-Shirt', price:'ab 29 €'},
+        {name:'Hoodie', price:'ab 59 €'},
+        {name:'Cap', price:'ab 24 €'}
+      ]
+    },
+    sandstrahlen: {
+      title: 'Sandstrahlung (bis 70×70 cm)',
+      intro: 'Glas, Metall, Stein oder Holz – dauerhafte Dekore & Schriften.',
+      items: [
+        {name:'Glas (bis A5)', price:'ab 25 €'},
+        {name:'Metall-Platte', price:'ab 35 €'},
+        {name:'Maskenfilm / Datenaufbereitung', price:'ab 12 €'}
+      ]
+    },
+    kontakt: {
+      title: 'Kontakt & Öffnungszeiten',
+      intro: 'Sandwerkstraße 2, 63636 Brachttal – wir freuen uns auf deinen Besuch!',
+      items: [
+        {name:'Montag – Dienstag', price:'16:30 – 18:00 Uhr'},
+        {name:'Donnerstag', price:'14:00 – 18:00 Uhr'},
+        {name:'Freitag', price:'08:00 – 18:00 Uhr'}
+      ]
+    }
+  };
+
+  function qs(key){
+    const url = new URL(window.location.href);
+    return url.searchParams.get(key);
+  }
+
+  const cat = (qs('cat') || 'schuh').toLowerCase();
+  const d = data[cat] || data.schuh;
+
+  document.getElementById('catTitle').textContent = d.title;
+  document.getElementById('catIntro').textContent  = d.intro;
+
+  const grid = document.getElementById('priceGrid');
+  d.items.forEach(item=>{
+    const card = document.createElement('div');
+    card.className = 'price-card p-5';
+    card.innerHTML = `
+      <div class="font-semibold">${item.name}</div>
+      <div class="text-royal font-extrabold mt-1">${item.price}</div>
+    `;
+    grid.appendChild(card);
+  });
+</script>
 </body>
 </html>
