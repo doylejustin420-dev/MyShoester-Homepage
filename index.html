@@ -4,7 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>MyShoester – Schuh- & Lederwerkstatt</title>
-  <meta name="description" content="Reparaturen, Pflege, Bequemschuheinlagen (ohne Heilaussagen), Maßgürtel, Lasergravuren & Zuschnitte, Streetwear, Sandstrahlung bis 70×70 cm.">
+  <meta name="description" content="Reparaturen, Pflege, Bequemschuheinlagen (ohne Heilaussagen), Komfort- & Alltagseinlagen, Maßgürtel, Lasergravuren & -zuschnitte, Streetwear, Sandstrahlung.">
+
+  <!-- Typo & Tailwind wie gehabt -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Figtree:wght@400;600;800&display=swap" rel="stylesheet">
@@ -19,14 +21,23 @@
       }
     };
   </script>
+
   <style>
+    /* NEU: dezenter, bunter Seitenhintergrund (Pastell, wirkt modern & erwachsen) */
     body{font-family:var(--tw-font-body, Figtree, system-ui, sans-serif)}
+    .site-bg{
+      background:
+        radial-gradient(1100px 520px at -10% -20%, rgba(34,211,238,.18), transparent 62%),
+        radial-gradient(900px 520px at 120% -10%, rgba(167,139,250,.16), transparent 62%),
+        radial-gradient(900px 520px at 80% 110%, rgba(245,158,11,.12), transparent 62%),
+        linear-gradient(#f8fafc,#ffffff);
+    }
     .grad{background-image:linear-gradient(135deg,#22d3ee 0%,#a78bfa 50%,#f59e0b 100%)}
     .glass{backdrop-filter:blur(10px)}
   </style>
 </head>
-<body class="bg-white text-stone-900">
 
+<body class="site-bg text-stone-900">
 <!-- Header -->
 <header class="sticky top-0 z-40 bg-white/70 glass border-b border-stone-200">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -35,14 +46,19 @@
         <span class="inline-flex items-center justify-center w-10 h-10 rounded-xl grad text-white font-bold">MS</span>
         <span class="font-head text-2xl font-extrabold tracking-tight">My<span class="italic">Shoester</span></span>
       </a>
+
+      <!-- NEU: Reiter ergänzt -->
       <nav class="hidden md:flex items-center gap-6 text-sm font-semibold">
         <a href="#services" class="hover:text-pop2">Leistungen</a>
+        <a href="#repair" class="hover:text-pop2">Schuh- & Lederwarenreparatur</a>
         <a href="#comfort" class="hover:text-pop2">Bequemschuheinlagen</a>
+        <a href="#komfort" class="hover:text-pop2">Komforteinlagen</a>
+        <a href="#alltag" class="hover:text-pop2">Alltagseinlagen</a>
         <a href="#belts" class="hover:text-pop2">Maßgürtel</a>
         <a href="#laser" class="hover:text-pop2">Lasergravuren</a>
+        <a href="#cutting" class="hover:text-pop2">Laserzuschnitte</a>
         <a href="#streetwear" class="hover:text-pop2">Streetwear</a>
         <a href="#sandblast" class="hover:text-pop2">Sandstrahlung</a>
-        <a href="#shop" class="hover:text-pop2">Zubehör-Shop</a>
         <a href="#contact" class="hover:text-pop2">Kontakt</a>
       </nav>
     </div>
@@ -57,7 +73,7 @@
       <h1 class="font-head text-4xl sm:text-5xl font-extrabold mt-4 leading-tight">
         Reparaturen, Pflege & Maßarbeit <span class="text-pop2">mit Liebe zum Detail</span>.
       </h1>
-      <p class="mt-4 text-lg text-stone-600">
+      <p class="mt-4 text-lg text-stone-700">
         Lieblingsschuhe und Lederwaren wieder in Form bringen: Sohlenwechsel, Absätze, Nähte, Färbungen & Pflege – fair, präzise, nachhaltig.
       </p>
     </div>
@@ -68,13 +84,27 @@
   </div>
 </section>
 
-<!-- Leistungen -->
+<!-- Leistungen (Kurzüberblick) -->
 <section id="services" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
   <h2 class="font-head text-3xl sm:text-4xl font-bold mb-6">Unsere Leistungen</h2>
   <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
     <div class="p-6 rounded-2xl border bg-white shadow-sm"><div class="text-3xl">👞</div><div class="font-semibold mt-3">Sohlenwechsel & Absätze</div><p class="text-sm mt-1 text-stone-600">Vibram, Kantenfinish, Färbung.</p></div>
     <div class="p-6 rounded-2xl border bg-white shadow-sm"><div class="text-3xl">👜</div><div class="font-semibold mt-3">Taschen & Lederwaren</div><p class="text-sm mt-1 text-stone-600">Reißverschlüsse, Henkel, Kanten.</p></div>
     <div class="p-6 rounded-2xl border bg-white shadow-sm"><div class="text-3xl">✨</div><div class="font-semibold mt-3">Pflege & Imprägnierung</div><p class="text-sm mt-1 text-stone-600">Reinigung und Schutz.</p></div>
+  </div>
+</section>
+
+<!-- NEU: Schuh- & Lederwarenreparatur -->
+<section id="repair" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+  <div class="grid lg:grid-cols-2 gap-10 items-center">
+    <div>
+      <h2 class="font-head text-3xl sm:text-4xl font-bold">Schuh- & Lederwarenreparatur</h2>
+      <p class="mt-3 text-stone-700">Absätze, Sohlen, Nähte & Kantenfinish. Wir arbeiten präzise – mit passenden Materialien (z. B. Vibram, Leder, Kork) und viel Gefühl.</p>
+    </div>
+    <div class="rounded-3xl overflow-hidden ring-1 ring-stone-200 shadow-lg">
+      <img src="https://images.unsplash.com/photo-1485955900006-10f4d324d411?q=80&w=1200&auto=format&fit=crop"
+           alt="Reparatur" class="w-full h-full object-cover">
+    </div>
   </div>
 </section>
 
@@ -87,7 +117,35 @@
     </div>
     <div>
       <h2 class="font-head text-3xl sm:text-4xl font-bold">Bequemschuheinlagen</h2>
-      <p class="mt-3 text-stone-600">Komfortable, nicht-medizinische Einlagen für Alltag & Freizeit. Materialien: Alcantara, Kork, EVA, Leder.</p>
+      <p class="mt-3 text-stone-700">Komfortable, nicht-medizinische Einlagen für Alltag & Freizeit. Materialien: Alcantara, Kork, EVA, Leder.</p>
+    </div>
+  </div>
+</section>
+
+<!-- NEU: Komforteinlagen -->
+<section id="komfort" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+  <div class="grid lg:grid-cols-2 gap-10 items-center">
+    <div>
+      <h2 class="font-head text-3xl sm:text-4xl font-bold">Komforteinlagen</h2>
+      <p class="mt-3 text-stone-700">Ausgewogenes Fußgefühl mit zusätzlicher Dämpfung – angenehm im Büro, in der Freizeit oder auf längeren Wegen.</p>
+    </div>
+    <div class="rounded-3xl overflow-hidden ring-1 ring-stone-200 shadow-lg">
+      <img src="https://images.unsplash.com/photo-1552346154-21d32810aba3?q=80&w=1200&auto=format&fit=crop"
+           alt="Komforteinlagen" class="w-full h-full object-cover">
+    </div>
+  </div>
+</section>
+
+<!-- NEU: Alltagseinlagen -->
+<section id="alltag" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+  <div class="grid lg:grid-cols-2 gap-10 items-center">
+    <div class="rounded-3xl overflow-hidden ring-1 ring-stone-200 shadow-lg">
+      <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1200&auto=format&fit=crop"
+           alt="Alltagseinlagen" class="w-full h-full object-cover">
+    </div>
+    <div>
+      <h2 class="font-head text-3xl sm:text-4xl font-bold">Alltagseinlagen</h2>
+      <p class="mt-3 text-stone-700">Leicht, robust und bequem – die unkomplizierte Lösung für jeden Tag (ohne Heilaussagen).</p>
     </div>
   </div>
 </section>
@@ -97,7 +155,7 @@
   <div class="grid lg:grid-cols-2 gap-10 items-center">
     <div>
       <h2 class="font-head text-3xl sm:text-4xl font-bold">Maßgefertigte Gürtel</h2>
-      <p class="mt-3 text-stone-600">Vollleder, handvernäht, auf Maß – Schnallen aus Messing, Stahl, Schwarz.</p>
+      <p class="mt-3 text-stone-700">Vollleder, handvernäht, auf Maß – Schnallen aus Messing, Stahl, Schwarz.</p>
     </div>
     <div class="rounded-3xl overflow-hidden ring-1 ring-stone-200 shadow-lg">
       <img src="https://images.unsplash.com/photo-1594949163427-4f3c7a9c4b87?q=80&w=1200&auto=format&fit=crop"
@@ -106,16 +164,30 @@
   </div>
 </section>
 
-<!-- Lasergravuren & Zuschnitte -->
+<!-- Lasergravuren (angepasst: nur Gravur) -->
 <section id="laser" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
   <div class="grid lg:grid-cols-2 gap-10 items-center">
     <div>
-      <h2 class="font-head text-3xl sm:text-4xl font-bold">Lasergravuren & Zuschnitte</h2>
-      <p class="mt-3 text-stone-600">Präzise Gravuren und Schnitte für Personalisierung, Schilder und Werbemittel.</p>
+      <h2 class="font-head text-3xl sm:text-4xl font-bold">Lasergravuren</h2>
+      <p class="mt-3 text-stone-700">Präzise Gravuren auf Leder, Holz, Aluminium & mehr – ideal für Geschenke, Schilder, Werbemittel.</p>
     </div>
     <div class="rounded-3xl overflow-hidden ring-1 ring-stone-200 shadow-lg">
       <img src="https://images.unsplash.com/photo-1617195737497-7b8a2e9f6a42?q=80&w=1200&auto=format&fit=crop"
            alt="Lasergravur" class="w-full h-full object-cover">
+    </div>
+  </div>
+</section>
+
+<!-- NEU: Laserzuschnitte -->
+<section id="cutting" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+  <div class="grid lg:grid-cols-2 gap-10 items-center">
+    <div class="rounded-3xl overflow-hidden ring-1 ring-stone-200 shadow-lg">
+      <img src="https://images.unsplash.com/photo-1581091870622-1e7e4f5d567c?q=80&w=1200&auto=format&fit=crop"
+           alt="Laserzuschnitte" class="w-full h-full object-cover">
+    </div>
+    <div>
+      <h2 class="font-head text-3xl sm:text-4xl font-bold">Laserzuschnitte</h2>
+      <p class="mt-3 text-stone-700">Saubere Zuschnitte für Formteile, Schablonen und Beschriftungen – wiederholgenau & effizient.</p>
     </div>
   </div>
 </section>
@@ -129,7 +201,7 @@
     </div>
     <div>
       <h2 class="font-head text-3xl sm:text-4xl font-bold">Streetwear – MyShoester Apparel</h2>
-      <p class="mt-3 text-stone-600">Limitierte Drops: Hoodies, Shirts, Caps & Accessoires – robust, bequem, mit Liebe zum Detail.</p>
+      <p class="mt-3 text-stone-700">Limitierte Drops: Hoodies, Shirts, Caps & Accessoires – robust, bequem, mit Liebe zum Detail.</p>
     </div>
   </div>
 </section>
@@ -139,7 +211,7 @@
   <div class="grid lg:grid-cols-2 gap-10 items-center">
     <div>
       <h2 class="font-head text-3xl sm:text-4xl font-bold">Sandstrahlung (bis 70×70 cm)</h2>
-      <p class="mt-3 text-stone-600">Glas, Metall, Stein oder Holz – dauerhafte Dekore, Schriftzüge und Logos.</p>
+      <p class="mt-3 text-stone-700">Glas, Metall, Stein oder Holz – dauerhafte Dekore, Schriftzüge und Logos.</p>
     </div>
     <div class="rounded-3xl overflow-hidden ring-1 ring-stone-200 shadow-lg">
       <img src="https://images.unsplash.com/photo-1591258374311-2f5b5b4b7e7c?q=80&w=1200&auto=format&fit=crop"
@@ -148,7 +220,7 @@
   </div>
 </section>
 
-<!-- Kontakt -->
+<!-- Kontakt + Öffnungszeiten (NEU) -->
 <section id="contact" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
   <div class="grid md:grid-cols-2 gap-10">
     <div>
@@ -160,15 +232,25 @@
         <button type="button" class="grad text-white px-5 py-3 rounded-2xl font-semibold">Senden</button>
       </form>
     </div>
+
+    <!-- NEU: Adresse + Öffnungszeiten laut Vorgabe -->
     <div class="rounded-3xl border p-6 bg-white">
       <h4 class="font-head text-xl font-bold">Kontaktdaten</h4>
-      <div class="mt-3 space-y-2">
-        <p>Brachttal · Hessen</p>
-        <p>werkstatt@myshoester.de</p>
-        <p>Mo–Fr 9–17 Uhr</p>
+      <div class="mt-3 space-y-2 text-stone-800">
+        <p><strong>Adresse:</strong><br>Sandwerkstrasse 2, 63636 Brachttal</p>
+        <div class="pt-3">
+          <p class="font-semibold">Öffnungszeiten</p>
+          <ul class="mt-1 list-disc ml-5 space-y-1">
+            <li>Montag – Dienstag: 16:30 – 18:00 Uhr</li>
+            <li>Donnerstag: 14:00 – 18:00 Uhr</li>
+            <li>Freitag: 08:00 – 18:00 Uhr</li>
+          </ul>
+        </div>
+        <p class="pt-3">E-Mail: <a class="underline" href="mailto:werkstatt@myshoester.de">werkstatt@myshoester.de</a></p>
       </div>
     </div>
   </div>
+
   <footer class="mt-16 pt-8 border-t text-sm flex flex-wrap items-center justify-between">
     <div>© <span id="year"></span> MyShoester</div>
     <div class="flex gap-4"><a href="#">Datenschutz</a><a href="#">Impressum</a><a href="#">AGB</a></div>
