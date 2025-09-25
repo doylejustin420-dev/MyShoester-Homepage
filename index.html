@@ -6,7 +6,6 @@
 <title>MyShoester – Schuh- & Lederwerkstatt</title>
 <meta name="description" content="Reparaturen, Pflege, Einlagen, Maßgürtel, Lasergravur & -zuschnitt, Streetwear, Sandstrahlung.">
 
-<!-- Dein Design-CSS (wie von dir geschickt) -->
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;600&display=swap');
 :root{
@@ -14,19 +13,21 @@
   --p1:#ffd6e7; --p2:#d1f3ff; --p3:#dfffe2; --p4:#fff3c7; --p5:#e7dcff; --ink:#0d0f16;
 }
 *{box-sizing:border-box}
-html,body{margin:0;padding:0;background:var(--bg);color:var(--text);
+html,body{margin:0;padding:0;color:var(--text);
   font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Inter,'Helvetica Neue',Arial,sans-serif}
 
-/* Pastell-Hintergrund (ruhiger Mesh) */
-body::before{
-  content:""; position:fixed; inset:-25vh; z-index:-2; filter:blur(55px) saturate(115%);
-  background:
-    radial-gradient(40% 35% at 12% 10%, #ff7ae6 0 60%, transparent 60%),
-    radial-gradient(35% 45% at 88% 12%, #8bd5ff 0 60%, transparent 60%),
-    radial-gradient(33% 40% at 90% 85%, #fca5a5 0 60%, transparent 60%),
-    radial-gradient(36% 42% at 8% 88%,  #bef264 0 60%, transparent 60%),
-    linear-gradient(180deg, rgba(255,255,255,.25), rgba(255,255,255,.04));
+/* >>> Altes Farbschema – weicher Verlauf (Lavendel → Babyblau → Apricot) */
+body{
+  background: linear-gradient(135deg, #e7d6ff 0%, #cfe8ff 45%, #ffd6c7 100%) fixed;
 }
+body::before{
+  content:""; position:fixed; inset:0; z-index:-1; pointer-events:none;
+  background:
+    radial-gradient(30% 25% at 12% 8%, rgba(231,214,255,.60) 0 60%, transparent 60%),
+    radial-gradient(26% 32% at 88% 12%, rgba(207,232,255,.45) 0 60%, transparent 60%),
+    radial-gradient(24% 28% at 92% 88%, rgba(255,196,176,.45) 0 60%, transparent 60%);
+}
+/* <<< Ende Farbschema */
 
 /* Navigation */
 .nav{position:sticky;top:0;z-index:50;background:rgba(21,26,44,.7);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
@@ -38,17 +39,37 @@ body::before{
 .nav-links a{color:var(--text);text-decoration:none;padding:8px 10px;border-radius:10px}
 .nav-links a:hover{background:#1a2240}
 
-/* Katalog-Button links */
-.katalog-wrap{position:absolute;left:16px;top:64px;z-index:60}
-.katalog-btn{appearance:none;border:1px solid var(--line);background:linear-gradient(135deg,var(--p2),var(--p5));color:var(--ink);
-  padding:10px 14px;border-radius:14px;font-weight:700;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.25)}
+/* Katalog-Button fix links oben unter der Leiste */
+.katalog-wrap{
+  position: fixed;
+  left: 16px;
+  top: 72px;           /* direkt unter der grauen Leiste */
+  z-index: 1001;
+}
+.katalog-btn{
+  appearance:none;border:1px solid var(--line);background:linear-gradient(135deg,var(--p2),var(--p5));color:var(--ink);
+  padding:10px 14px;border-radius:14px;font-weight:700;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.25)
+}
 .katalog-btn:hover{filter:saturate(1.05) brightness(1.02)}
 
-/* Dropdown Panel */
-.catalog{position:fixed;left:16px;top:110px;z-index:55;max-width:420px;width:calc(100vw - 32px);transform-origin:12px 0;
-  background:rgba(255,255,255,.08);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.14);
-  border-radius:18px;box-shadow:0 14px 60px rgba(0,0,0,.45);overflow:hidden;
-  opacity:0;transform:translateY(-8px) scale(.98);pointer-events:none;transition:opacity .18s ease, transform .18s ease}
+/* Dropdown fix, direkt unter dem Button */
+.catalog{
+  position: fixed;
+  left: 16px;
+  top: 120px;          /* knapp unter dem Button */
+  z-index: 1000;
+  max-width:420px;width:calc(100vw - 32px);
+  max-height: calc(100vh - 140px);
+  overflow: auto;
+
+  background:rgba(255,255,255,.10);
+  backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:18px;
+  box-shadow:0 14px 60px rgba(0,0,0,.45);
+  opacity:0;transform:translateY(-8px) scale(.98);pointer-events:none;
+  transition:opacity .18s ease, transform .18s ease;
+}
 .catalog.open{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
 .cat-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:linear-gradient(180deg,rgba(255,255,255,.1),transparent)}
 .cat-title{font-family:'Playfair Display',serif;font-size:20px}
@@ -58,13 +79,12 @@ body::before{
   color:var(--text);text-decoration:none;font-weight:600}
 .cat-link:hover{background:rgba(255,255,255,.12)}
 
-/* Hero & Layout */
+/* Layout */
 .container{max-width:1200px;margin:0 auto;padding:24px}
 .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:28px;align-items:center;padding:42px 0}
-.hero h1{font-family:'Playfair Display',serif;font-size:46px;line-height:1.15;margin:0 0 14px;
-  background:linear-gradient(90deg,#fff,var(--p5));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero h1{font-family:'Playfair Display',serif;font-size:46px;line-height:1.15;margin:0 0 14px}
 .hero p{color:var(--muted);margin:0 0 18px}
-.tag{display:inline-block;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:var(--p2);
+.tag{display:inline-block;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:#7cc3ff;
   font-size:12px;padding:6px 10px;border-radius:999px;margin-bottom:10px}
 .hero img{width:100%;height:460px;object-fit:cover;border-radius:22px;border:1px solid var(--line)}
 
@@ -78,13 +98,14 @@ body::before{
 .footer{border-top:1px solid var(--line);padding:26px 0;color:var(--muted);text-align:center}
 
 /* Responsive */
-@media (max-width:980px){ .hero{grid-template-columns:1fr} .katalog-wrap{top:66px} }
+@media (max-width:980px){
+  .hero{grid-template-columns:1fr}
+}
 </style>
 </head>
 
 <body>
 
-<!-- NAV -->
 <header class="nav">
   <div class="nav-inner">
     <div class="logo">
@@ -106,12 +127,12 @@ body::before{
   </div>
 </header>
 
-<!-- Katalog-Button (links, unter der Leiste) -->
+<!-- Katalog fixiert -->
 <div class="katalog-wrap">
   <button id="btnKatalog" class="katalog-btn">Katalog ▾</button>
 </div>
 
-<!-- Dropdown / Register -->
+<!-- Dropdown -->
 <aside id="catalog" class="catalog" aria-hidden="true">
   <div class="cat-head">
     <div class="cat-title">Kategorien</div>
@@ -130,7 +151,6 @@ body::before{
   </div>
 </aside>
 
-<!-- HERO -->
 <main class="container">
   <section class="hero" id="start">
     <div>
@@ -141,7 +161,6 @@ body::before{
     <div><img src="https://images.unsplash.com/photo-1516826957135-700dedea698c?q=80&w=1200&auto=format&fit=crop" alt="Werkstatt"></div>
   </section>
 
-  <!-- Leistungen (Teaser) -->
   <section id="leistungen" class="section">
     <h2 class="h2">Unsere Leistungen</h2>
     <div class="grid">
@@ -169,27 +188,22 @@ body::before{
     </div>
   </section>
 
-  <!-- Kontakt / Öffnungszeiten -->
   <section id="contact" class="section">
     <h2 class="h2">Kontakt & Öffnungszeiten</h2>
     <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(320px,1fr))">
-      <div class="card">
-        <div class="pad">
-          <p><strong>Adresse</strong><br>Sandwerkstrasse 2, 63636 Brachttal</p>
-          <p style="margin-top:10px"><strong>E-Mail</strong><br>
-            <a href="mailto:werkstatt@myshoester.de">werkstatt@myshoester.de</a></p>
-        </div>
-      </div>
-      <div class="card">
-        <div class="pad">
-          <p><strong>Öffnungszeiten</strong></p>
-          <ul style="margin:8px 0 0 16px; color:var(--muted)">
-            <li>Montag – Dienstag: 16:30 – 18:00 Uhr</li>
-            <li>Donnerstag: 14:00 – 18:00 Uhr</li>
-            <li>Freitag: 08:00 – 18:00 Uhr</li>
-          </ul>
-        </div>
-      </div>
+      <div class="card"><div class="pad">
+        <p><strong>Adresse</strong><br>Sandwerkstrasse 2, 63636 Brachttal</p>
+        <p style="margin-top:10px"><strong>E-Mail</strong><br>
+          <a href="mailto:werkstatt@myshoester.de">werkstatt@myshoester.de</a></p>
+      </div></div>
+      <div class="card"><div class="pad">
+        <p><strong>Öffnungszeiten</strong></p>
+        <ul style="margin:8px 0 0 16px; color:var(--muted)">
+          <li>Montag – Dienstag: 16:30 – 18:00 Uhr</li>
+          <li>Donnerstag: 14:00 – 18:00 Uhr</li>
+          <li>Freitag: 08:00 – 18:00 Uhr</li>
+        </ul>
+      </div></div>
     </div>
   </section>
 </main>
@@ -197,10 +211,8 @@ body::before{
 <footer class="footer">© <span id="year"></span> MyShoester • Alle Preise sind Ab-Preise inkl. MwSt., abhängig von Material & Aufwand.</footer>
 
 <script>
-  // Jahr
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Katalog öffnen/schließen
   const panel  = document.getElementById('catalog');
   const openBtn= document.getElementById('btnKatalog');
   const closeBtn=document.getElementById('btnClose');
