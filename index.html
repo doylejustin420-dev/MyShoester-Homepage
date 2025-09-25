@@ -1,360 +1,347 @@
 <!doctype html>
-<html lang="de" class="scroll-smooth">
+<html lang="de">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>MyShoester – Schuh- & Lederwerkstatt</title>
-  <meta name="description" content="Reparaturen, Pflege, Bequemschuheinlagen, Komfort- & Alltagseinlagen, Maßgürtel, Lasergravuren & -zuschnitte, Streetwear, Sandstrahlung.">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MyShoester – Reparaturen, Maßarbeit & Laser</title>
 
-  <!-- Fonts & Tailwind -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Figtree:wght@400;600;800&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: { head:['Playfair Display','serif'], body:['Figtree','system-ui','sans-serif'] },
-          colors:{ pop1:'#22d3ee', pop2:'#a78bfa', pop3:'#f59e0b', pop4:'#84cc16' }
-        }
-      }
-    };
-  </script>
+  <!-- Schriften -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
-    /* ==== Bunter Hintergrund (Gradient-Mesh) ==== */
     :root{
-      --mesh-blur: 60px;
-      --mesh-opacity: .95;
-      --overlay: rgba(255,255,255,.68);
+      --bg-1:#f6e7ff;
+      --bg-2:#d8eaff;
+      --bg-3:#fde2d5;
+      --brand:#1f3daa;              /* Königsblau */
+      --text:#171717;
+      --muted:#707070;
+      --panel:rgba(255,255,255,0.58);
+      --panel-border:rgba(255,255,255,0.7);
+      --shadow:0 10px 30px rgba(14, 20, 40, .18);
+      --radius:18px;
+      --radius-sm:12px;
+      --outline:#a7b8ff;            /* pastellige Button-Kontur */
+      --glass-blur:10px;
     }
-    body{font-family:var(--tw-font-body, Figtree, system-ui, sans-serif)}
-    .site-bg{
-      background: linear-gradient(#f8fafc, #ffffff);
-      min-height: 100dvh; position: relative;
-    }
-    .site-bg::before{
-      content:""; position: fixed; inset:-25vh; z-index:-2; pointer-events:none;
-      opacity: var(--mesh-opacity);
-      filter: blur(var(--mesh-blur)) saturate(115%);
+
+    * { box-sizing: border-box; }
+    html, body { height:100%; }
+    body{
+      margin:0;
+      color:var(--text);
+      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji", "Segoe UI Symbol";
+      line-height:1.5;
       background:
-        radial-gradient(42% 38% at 8% 10%,  #ff7ae6 0%, transparent 60%),
-        radial-gradient(36% 44% at 85% 8%,  #7dd3fc 0%, transparent 60%),
-        radial-gradient(34% 40% at 92% 84%, #fca5a5 0%, transparent 60%),
-        radial-gradient(38% 42% at 6% 86%,  #bef264 0%, transparent 60%),
-        conic-gradient(from 210deg at 60% 40%,
-          #a78bfa 0% 25%, #22d3ee 25% 50%, #f59e0b 50% 75%, #fb7185 75% 100%);
-      animation: meshFloat 32s ease-in-out infinite alternate,
-                 meshHue   60s linear infinite;
+        radial-gradient(1300px 1300px at 0% 0%, var(--bg-2) 0, transparent 60%),
+        radial-gradient(1300px 1300px at 100% 0%, var(--bg-1) 0, transparent 60%),
+        radial-gradient(1300px 1300px at 100% 100%, var(--bg-3) 0, transparent 60%),
+        radial-gradient(1300px 1300px at 0% 100%, #ffdfe7 0, transparent 60%),
+        #fff;
+      /* bunter Rand 7cm (~ 265px @96dpi) – und zur Mitte hin weiß */
+      background-attachment: fixed;
+      position: relative;
+      min-height:100%;
     }
-    .site-bg::after{
-      content:""; position: fixed; inset:0; z-index:-1; pointer-events:none;
-      background: linear-gradient(180deg, var(--overlay) 0%, rgba(255,255,255,.55) 30%, rgba(255,255,255,.25) 70%, transparent 100%);
+
+    /* Content-Container mit großem Weiß in der Mitte */
+    .page-wrap{
+      max-width:1400px;
+      margin:0 auto;
+      padding:24px 20px 80px;
+      background:linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,.92));
+      box-shadow: 0 10px 80px rgba(0,0,0,.06);
     }
-    .grad{background-image:linear-gradient(135deg,#22d3ee 0%,#a78bfa 50%,#f59e0b 100%)}
-    .glass{backdrop-filter:blur(10px)}
-    @keyframes meshFloat{
-      0%{transform:translate(-3%,-2%) scale(1)}
-      50%{transform:translate(4%,1%) scale(1.05)}
-      100%{transform:translate(-2%,3%) scale(1)}
+
+    /* NAVBAR ------------------------------------------------------------- */
+    .nav{
+      position: sticky;
+      top:0;
+      z-index: 50;
+      background: rgba(255,255,255,.65);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,.6);
     }
-    @keyframes meshHue{
-      0%{filter:hue-rotate(0deg) blur(var(--mesh-blur)) saturate(115%)}
-      100%{filter:hue-rotate(20deg) blur(var(--mesh-blur)) saturate(115%)}
+    .nav-inner{
+      max-width:1400px;
+      margin:0 auto;
+      padding:10px 16px;
+      display:flex;
+      align-items:center;
+      gap:16px;
     }
-    @media (prefers-reduced-motion: reduce){ .site-bg::before{animation:none} }
+
+    /* Katalog-Button (links) */
+    .catalog-btn{
+      position:relative;
+      display:inline-flex;
+      align-items:center;
+      gap:.5rem;
+      padding:.55rem .9rem;
+      font-weight:600;
+      color:var(--brand);
+      background: rgba(255,255,255,.55);
+      border:2px solid var(--outline);
+      border-radius:999px;
+      backdrop-filter: blur(var(--glass-blur));
+      box-shadow: 0 6px 18px rgba(32,55,180,.12);
+      cursor:pointer;
+      transition: all .2s ease;
+    }
+    .catalog-btn:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 10px 26px rgba(32,55,180,.16);
+      background: rgba(255,255,255,.7);
+    }
+    .catalog-btn .chev{
+      display:inline-block;
+      width:10px;height:10px;
+      border-right:2px solid var(--brand);
+      border-bottom:2px solid var(--brand);
+      transform: rotate(45deg);
+      margin-left:2px;
+      transition: transform .2s ease;
+    }
+    .catalog-btn[aria-expanded="true"] .chev{
+      transform: rotate(-135deg);
+      margin-top:2px;
+    }
+
+    /* Brand */
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:.66rem;
+      margin-left:6px; /* Platz nach Button */
+    }
+    .brand-badge{
+      width:34px;height:34px; border-radius:50%;
+      background: linear-gradient(135deg, #b5c7ff, #ffd3f4);
+      color:#1b1b1b; font-weight:800; display:grid; place-items:center;
+      box-shadow: 0 6px 16px rgba(0,0,0,.12);
+    }
+    .brand-name{
+      font-family: "Playfair Display", serif;
+      font-weight:800; letter-spacing:.2px; font-size:1.55rem;
+    }
+
+    /* MENU PANEL -------------------------------------------------------- */
+    .catalog-panel{
+      position:absolute;
+      top:100%;                /* unter dem Button */
+      left:0;                  /* wird per JS exakt ausgerichtet */
+      margin-top:10px;
+      width:min(620px, calc(100vw - 32px));
+      padding:16px 16px 18px;
+      background: var(--panel);
+      border: 1px solid var(--panel-border);
+      backdrop-filter: blur(var(--glass-blur));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      display:none;
+      z-index:999;
+    }
+    .catalog-panel.open{ display:block; }
+
+    .panel-head{
+      display:flex; align-items:center; justify-content:space-between;
+      margin-bottom:10px;
+      padding:4px 6px 10px;
+      border-bottom:1px solid rgba(255,255,255,.7);
+    }
+    .panel-title{
+      font-family: "Playfair Display", serif;
+      font-weight:800; color:var(--brand); font-size:1.2rem;
+      letter-spacing:.2px;
+    }
+    .panel-close{
+      border:none; background:transparent; color:var(--muted);
+      font-weight:700; cursor:pointer; padding:6px 8px; border-radius:10px;
+    }
+    .panel-close:hover{ background: rgba(255,255,255,.6); color:#222; }
+
+    .grid{
+      display:grid; gap:12px;
+      grid-template-columns: 1fr 1fr;
+    }
+    @media (max-width:680px){
+      .grid{ grid-template-columns: 1fr; }
+    }
+    .menu-card{
+      background: rgba(255,255,255,.85);
+      border:1px solid rgba(255,255,255,.9);
+      border-radius: var(--radius-sm);
+      padding:12px 14px;
+      text-decoration:none;
+      color:#1b1b1b;
+      display:flex; align-items:center; justify-content:space-between;
+      transition: all .18s ease;
+      box-shadow: 0 6px 14px rgba(18,18,36,.06);
+    }
+    .menu-card:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 10px 22px rgba(18,18,36,.10);
+      background: linear-gradient(120deg, rgba(255,255,255,.92), rgba(240,248,255,.92));
+    }
+    .menu-card span{
+      font-weight:600;
+    }
+    .menu-card .arrow{
+      width:8px;height:8px; border-right:2px solid var(--brand); border-bottom:2px solid var(--brand);
+      transform: rotate(-45deg); margin-left:10px;
+    }
+
+    /* HERO ------------------------------------------------------------- */
+    .hero{
+      display:grid; grid-template-columns: 1.05fr .95fr; gap:40px;
+      align-items: start; padding:42px 8px 20px;
+    }
+    @media (max-width: 980px){
+      .hero{ grid-template-columns: 1fr; }
+    }
+    .eyebrow{
+      display:inline-block; padding:6px 10px; border-radius:999px;
+      font-size:.8rem; font-weight:700; color:#fff; background: var(--brand);
+      margin-bottom:10px; opacity:.92;
+    }
+    .headline{
+      font-family:"Playfair Display", serif; font-weight:800;
+      font-size: clamp(2.1rem, 3.6vw, 3.1rem);
+      line-height:1.15; letter-spacing:.2px;
+    }
+    .headline em{ font-style:normal; color: var(--brand); }
+
+    .hero p{ color:#3f3f3f; margin-top:12px; }
+
+    .hero-img{
+      border-radius: 20px;
+      overflow:hidden;
+      box-shadow: 0 12px 38px rgba(0,0,0,.18);
+    }
+    .hero-img img{ width:100%; height:auto; display:block; }
+
+    /* Kleiner Fuß */
+    .foot{
+      margin-top:42px; color:var(--muted); font-size:.9rem;
+    }
   </style>
 </head>
+<body>
 
-<body class="site-bg text-stone-900">
-<!-- ================= Header ================= -->
-<header class="sticky top-0 z-40 bg-white/70 glass border-b border-stone-200">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="h-16 flex items-center justify-between">
-      <!-- Linke Seite: Katalog + Logo/MyShoester (größer) -->
-      <div class="flex items-center gap-4">
-        <!-- Katalog-Button links oben -->
-        <button id="catalogBtn"
-          class="px-3 py-2 rounded-xl border bg-white/80 hover:bg-white transition shadow-sm text-sm font-semibold">
-          Katalog ▾
-        </button>
+  <!-- NAVBAR -->
+  <header class="nav" role="banner">
+    <div class="nav-inner">
+      <!-- Katalog Button (links oben) -->
+      <button id="catalogBtn" class="catalog-btn" aria-expanded="false" aria-controls="catalogPanel">
+        Katalog <i class="chev" aria-hidden="true"></i>
+      </button>
 
-        <a href="#start" class="flex items-center gap-3">
-          <span class="inline-flex items-center justify-center w-11 h-11 md:w-12 md:h-12 rounded-xl grad text-white font-bold text-sm md:text-base">MS</span>
-          <span class="font-head text-2xl md:text-3xl font-extrabold tracking-tight">
-            My<span class="italic">Shoester</span>
-          </span>
-        </a>
+      <!-- Brand -->
+      <div class="brand">
+        <div class="brand-badge">MS</div>
+        <div class="brand-name">MyShoester</div>
       </div>
 
-      <!-- Reiter -->
-      <nav class="hidden md:flex items-center gap-6 text-sm font-semibold">
-        <a href="#services" class="hover:text-pop2">Leistungen</a>
-        <a href="#repair" class="hover:text-pop2">Schuh- & Lederwarenreparatur</a>
-        <a href="#bequem" class="hover:text-pop2">Bequemschuheinlagen</a>
-        <a href="#komfort" class="hover:text-pop2">Komforteinlagen</a>
-        <a href="#alltag" class="hover:text-pop2">Alltagseinlagen</a>
-        <a href="#belts" class="hover:text-pop2">Maßgürtel</a>
-        <a href="#laser" class="hover:text-pop2">Lasergravuren</a>
-        <a href="#cutting" class="hover:text-pop2">Laserzuschnitte</a>
-        <a href="#streetwear" class="hover:text-pop2">Streetwear</a>
-        <a href="#sandblast" class="hover:text-pop2">Sandstrahlung</a>
-        <a href="#contact" class="hover:text-pop2">Kontakt</a>
+      <!-- (optionale) Rest-Navigation -->
+      <nav aria-label="Hauptnavigation" style="margin-left:auto; display:flex; gap:16px; flex-wrap:wrap;">
+        <a href="#leistungen" style="text-decoration:none; color:#333;">Leistungen</a>
+        <a href="repair.html" style="text-decoration:none; color:#333;">Schuh- & Lederwarenreparatur</a>
+        <a href="insoles-soft.html" style="text-decoration:none; color:#333;">Bequemschuheinlagen</a>
+        <a href="insoles-comfort.html" style="text-decoration:none; color:#333;">Komforteinlagen</a>
+        <a href="insoles-daily.html" style="text-decoration:none; color:#333;">Alltagseinlagen</a>
+        <a href="belts-tailor.html" style="text-decoration:none; color:#333;">Maßgürtel</a>
+        <a href="laser-engraving.html" style="text-decoration:none; color:#333;">Lasergravuren</a>
+        <a href="laser-cut.html" style="text-decoration:none; color:#333;">Laserzuschnitte</a>
+        <a href="streetwear.html" style="text-decoration:none; color:#333;">Streetwear</a>
+        <a href="sandblasting.html" style="text-decoration:none; color:#333;">Sandstrahlung</a>
+        <a href="contact.html" style="text-decoration:none; color:#333;">Kontakt</a>
       </nav>
-    </div>
-  </div>
-</header>
 
-<!-- ===== KATALOG-PANEL (links unter Button, überall abgerundet) ===== -->
-<div id="catalogPanel"
-     class="fixed top-[72px] left-4 z-50 w-[88vw] max-w-md max-h-0 overflow-hidden transition-all duration-500">
-  <div class="rounded-2xl border bg-white/95 backdrop-blur p-4 shadow-xl">
-    <div class="flex items-center justify-between">
-      <h3 class="font-head text-lg md:text-xl font-bold">Kategorien</h3>
-      <button id="catalogClose"
-              class="px-3 py-1.5 rounded-xl border hover:bg-white transition text-sm">Schließen ✕</button>
-    </div>
-
-    <div class="mt-3 grid grid-cols-1 gap-2">
-      <a class="px-4 py-3 rounded-xl border bg-white hover:shadow-md transition text-sm font-semibold"
-         href="kategorie.html?cat=schuh">Schuh- &amp; Lederwarenreparatur</a>
-      <a class="px-4 py-3 rounded-xl border bg-white hover:shadow-md transition text-sm font-semibold"
-         href="kategorie.html?cat=bequem">Bequemschuheinlagen</a>
-      <a class="px-4 py-3 rounded-xl border bg-white hover:shadow-md transition text-sm font-semibold"
-         href="kategorie.html?cat=komfort">Komforteinlagen</a>
-      <a class="px-4 py-3 rounded-xl border bg-white hover:shadow-md transition text-sm font-semibold"
-         href="kategorie.html?cat=alltag">Alltagseinlagen</a>
-      <a class="px-4 py-3 rounded-xl border bg-white hover:shadow-md transition text-sm font-semibold"
-         href="kategorie.html?cat=belts">Maßgürtel</a>
-      <a class="px-4 py-3 rounded-xl border bg-white hover:shadow-md transition text-sm font-semibold"
-         href="kategorie.html?cat=laser">Lasergravuren</a>
-      <a class="px-4 py-3 rounded-xl border bg-white hover:shadow-md transition text-sm font-semibold"
-         href="kategorie.html?cat=cutting">Laserzuschnitte</a>
-      <a class="px-4 py-3 rounded-xl border bg-white hover:shadow-md transition text-sm font-semibold"
-         href="kategorie.html?cat=streetwear">Streetwear</a>
-      <a class="px-4 py-3 rounded-xl border bg-white hover:shadow-md transition text-sm font-semibold"
-         href="kategorie.html?cat=sandblast">Sandstrahlung</a>
-      <a class="px-4 py-3 rounded-xl border bg-white hover:shadow-md transition text-sm font-semibold"
-         href="#contact">Kontakt &amp; Öffnungszeiten</a>
-    </div>
-
-    <p class="text-xs text-stone-500 mt-3">
-      Hinweis: Alle Preise sind Ab-Preise inkl. MwSt., abhängig von Material &amp; Aufwand.
-    </p>
-  </div>
-</div>
-
-<!-- Verdunkelung hinter dem Register -->
-<div id="catalogBackdrop"
-     class="fixed inset-0 bg-black/30 opacity-0 pointer-events-none transition-opacity duration-300 z-20"></div>
-
-<!-- ================= Hero ================= -->
-<section id="start" class="relative">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 grid lg:grid-cols-2 gap-10 items-center">
-    <div>
-      <p class="inline-block px-3 py-1 text-xs font-bold uppercase rounded-full bg-pop2/15 text-pop2">Schuh- & Lederwerkstatt</p>
-      <h1 class="font-head text-4xl sm:text-5xl font-extrabold mt-4 leading-tight">
-        Reparaturen, Pflege & Maßarbeit <span class="text-pop2">mit Liebe zum Detail</span>.
-      </h1>
-      <p class="mt-4 text-lg text-stone-700">
-        Lieblingsschuhe und Lederwaren wieder in Form bringen: Sohlenwechsel, Absätze, Nähte, Färbungen & Pflege – fair, präzise, nachhaltig.
-      </p>
-    </div>
-    <div class="rounded-3xl overflow-hidden ring-1 ring-stone-200 shadow-lg">
-      <img src="https://images.unsplash.com/photo-1516826957135-700dedea698c?q=80&w=1200&auto=format&fit=crop" alt="Werkstatt" class="w-full h-full object-cover">
-    </div>
-  </div>
-</section>
-
-<!-- ================= Leistungen (saubere Karten) ================= -->
-<section id="services" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-  <h2 class="font-head text-3xl sm:text-4xl font-bold mb-6">Unsere Leistungen</h2>
-  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-    <a href="#repair" class="p-6 rounded-2xl border bg-white shadow-sm hover:shadow-md transition">
-      <div class="text-3xl">👞</div><div class="font-semibold mt-3">Sohlenwechsel & Absätze</div>
-      <p class="text-sm mt-1 text-stone-600">Vibram, Kantenfinish, Färbung.</p>
-    </a>
-    <a href="#bequem" class="p-6 rounded-2xl border bg-white shadow-sm hover:shadow-md transition">
-      <div class="text-3xl">🦶</div><div class="font-semibold mt-3">Bequemschuheinlagen</div>
-      <p class="text-sm mt-1 text-stone-600">Angenehm für Alltag & Freizeit.</p>
-    </a>
-    <a href="#belts" class="p-6 rounded-2xl border bg-white shadow-sm hover:shadow-md transition">
-      <div class="text-3xl">🧷</div><div class="font-semibold mt-3">Maßgefertigte Gürtel</div>
-      <p class="text-sm mt-1 text-stone-600">Vollleder, handvernäht, auf Maß.</p>
-    </a>
-  </div>
-</section>
-
-<!-- ================= Detailabschnitte (cleanes zweispaltiges Layout) ================= -->
-<section id="repair" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-  <div class="grid lg:grid-cols-2 gap-10 items-center">
-    <div>
-      <h2 class="font-head text-3xl sm:text-4xl font-bold">Schuh- & Lederwarenreparatur</h2>
-      <p class="mt-3 text-stone-700">Absätze, Sohlen, Nähte & Kantenfinish. Wir arbeiten präzise – mit passenden Materialien (z. B. Vibram, Leder, Kork) und viel Gefühl.</p>
-    </div>
-    <div class="rounded-3xl overflow-hidden ring-1 ring-stone-200 shadow-lg">
-      <img src="https://images.unsplash.com/photo-1485955900006-10f4d324d411?q=80&w=1200&auto=format&fit=crop" alt="Reparatur" class="w-full h-full object-cover">
-    </div>
-  </div>
-</section>
-
-<section id="bequem" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-  <div class="grid lg:grid-cols-2 gap-10 items-center">
-    <div class="rounded-3xl overflow-hidden ring-1 ring-stone-200 shadow-lg">
-      <img src="https://images.unsplash.com/photo-1542216510-6bdb8c37a3aa?q=80&w=1200&auto=format&fit=crop" alt="Bequemschuheinlagen" class="w-full h-full object-cover">
-    </div>
-    <div>
-      <h2 class="font-head text-3xl sm:text-4xl font-bold">Bequemschuheinlagen</h2>
-      <p class="mt-3 text-stone-700">Komfortable, nicht-medizinische Einlagen für Alltag & Freizeit. Materialien: Alcantara, Kork, EVA, Leder.</p>
-    </div>
-  </div>
-</section>
-
-<section id="komfort" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-  <div class="grid lg:grid-cols-2 gap-10 items-center">
-    <div>
-      <h2 class="font-head text-3xl sm:text-4xl font-bold">Komforteinlagen</h2>
-      <p class="mt-3 text-stone-700">Ausgeglichenes Fußgefühl mit zusätzlicher Dämpfung – angenehm im Büro, in der Freizeit oder auf längeren Wegen.</p>
-    </div>
-    <div class="rounded-3xl overflow-hidden ring-1 ring-stone-200 shadow-lg">
-      <img src="https://images.unsplash.com/photo-1552346154-21d32810aba3?q=80&w=1200&auto=format&fit=crop" alt="Komforteinlagen" class="w-full h-full object-cover">
-    </div>
-  </div>
-</section>
-
-<section id="alltag" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-  <div class="grid lg:grid-cols-2 gap-10 items-center">
-    <div class="rounded-3xl overflow-hidden ring-1 ring-stone-200 shadow-lg">
-      <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1200&auto=format&fit=crop" alt="Alltagseinlagen" class="w-full h-full object-cover">
-    </div>
-    <div>
-      <h2 class="font-head text-3xl sm:text-4xl font-bold">Alltagseinlagen</h2>
-      <p class="mt-3 text-stone-700">Leicht, robust und bequem – die unkomplizierte Lösung für jeden Tag (ohne Heilaussagen).</p>
-    </div>
-  </div>
-</section>
-
-<section id="belts" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-  <div class="grid lg:grid-cols-2 gap-10 items-center">
-    <div>
-      <h2 class="font-head text-3xl sm:text-4xl font-bold">Maßgefertigte Gürtel</h2>
-      <p class="mt-3 text-stone-700">Vollleder, handvernäht, auf Maß – Schnallen aus Messing, Stahl, Schwarz.</p>
-    </div>
-    <div class="rounded-3xl overflow-hidden ring-1 ring-stone-200 shadow-lg">
-      <img src="https://images.unsplash.com/photo-1594949163427-4f3c7a9c4b87?q=80&w=1200&auto=format&fit=crop" alt="Maßgürtel" class="w-full h-full object-cover">
-    </div>
-  </div>
-</section>
-
-<section id="laser" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-  <div class="grid lg:grid-cols-2 gap-10 items-center">
-    <div>
-      <h2 class="font-head text-3xl sm:text-4xl font-bold">Lasergravuren</h2>
-      <p class="mt-3 text-stone-700">Präzise Gravuren auf Leder, Holz, Aluminium & mehr – ideal für Geschenke, Schilder, Werbemittel.</p>
-    </div>
-    <div class="rounded-3xl overflow-hidden ring-1 ring-stone-200 shadow-lg">
-      <img src="https://images.unsplash.com/photo-1617195737497-7b8a2e9f6a42?q=80&w=1200&auto=format&fit=crop" alt="Lasergravur" class="w-full h-full object-cover">
-    </div>
-  </div>
-</section>
-
-<section id="cutting" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-  <div class="grid lg:grid-cols-2 gap-10 items-center">
-    <div class="rounded-3xl overflow-hidden ring-1 ring-stone-200 shadow-lg">
-      <img src="https://images.unsplash.com/photo-1581091870622-1e7e4f5d567c?q=80&w=1200&auto=format&fit=crop" alt="Laserzuschnitte" class="w-full h-full object-cover">
-    </div>
-    <div>
-      <h2 class="font-head text-3xl sm:text-4xl font-bold">Laserzuschnitte</h2>
-      <p class="mt-3 text-stone-700">Saubere Zuschnitte für Formteile, Schablonen und Beschriftungen – wiederholgenau & effizient.</p>
-    </div>
-  </div>
-</section>
-
-<section id="streetwear" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-  <div class="grid lg:grid-cols-2 gap-10 items-center">
-    <div class="rounded-3xl overflow-hidden ring-1 ring-stone-200 shadow-lg">
-      <img src="https://images.unsplash.com/photo-1520975916090-3105956dac38?q=80&w=1200&auto=format&fit=crop" alt="Streetwear" class="w-full h-full object-cover">
-    </div>
-    <div>
-      <h2 class="font-head text-3xl sm:text-4xl font-bold">Streetwear – MyShoester Apparel</h2>
-      <p class="mt-3 text-stone-700">Limitierte Drops: Hoodies, Shirts, Caps & Accessoires – robust, bequem, mit Liebe zum Detail.</p>
-    </div>
-  </div>
-</section>
-
-<section id="sandblast" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-  <div class="grid lg:grid-cols-2 gap-10 items-center">
-    <div>
-      <h2 class="font-head text-3xl sm:text-4xl font-bold">Sandstrahlung (bis 70×70 cm)</h2>
-      <p class="mt-3 text-stone-700">Glas, Metall, Stein oder Holz – dauerhafte Dekore, Schriftzüge und Logos.</p>
-    </div>
-    <div class="rounded-3xl overflow-hidden ring-1 ring-stone-200 shadow-lg">
-      <img src="https://images.unsplash.com/photo-1591258374311-2f5b5b4b7e7c?q=80&w=1200&auto=format&fit=crop" alt="Sandstrahlung" class="w-full h-full object-cover">
-    </div>
-  </div>
-</section>
-
-<!-- ================= Kontakt + Öffnungszeiten ================= -->
-<section id="contact" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-  <div class="grid md:grid-cols-2 gap-10">
-    <div>
-      <h3 class="font-head text-2xl font-bold">Anfragen & Termine</h3>
-      <form class="mt-6 grid grid-cols-1 gap-3 max-w-lg">
-        <input class="px-4 py-3 rounded-2xl border" placeholder="Name">
-        <input class="px-4 py-3 rounded-2xl border" type="email" placeholder="E-Mail">
-        <textarea class="px-4 py-3 rounded-2xl border" rows="4" placeholder="Nachricht"></textarea>
-        <button type="button" class="grad text-white px-5 py-3 rounded-2xl font-semibold">Senden</button>
-      </form>
-    </div>
-
-    <div class="rounded-3xl border p-6 bg-white">
-      <h4 class="font-head text-xl font-bold">Kontaktdaten</h4>
-      <div class="mt-3 space-y-2 text-stone-800">
-        <p><strong>Adresse:</strong><br>Sandwerkstrasse 2, 63636 Brachttal</p>
-        <div class="pt-3">
-          <p class="font-semibold">Öffnungszeiten</p>
-          <ul class="mt-1 list-disc ml-5 space-y-1">
-            <li>Montag – Dienstag: 16:30 – 18:00 Uhr</li>
-            <li>Donnerstag: 14:00 – 18:00 Uhr</li>
-            <li>Freitag: 08:00 – 18:00 Uhr</li>
-          </ul>
+      <!-- Dropdown Panel – wird per JS unter dem Button positioniert -->
+      <div id="catalogPanel" class="catalog-panel" role="dialog" aria-modal="false" aria-labelledby="panelTitle">
+        <div class="panel-head">
+          <div id="panelTitle" class="panel-title">Kategorien</div>
+          <button class="panel-close" id="panelClose" aria-label="Schließen">Schließen ×</button>
         </div>
-        <p class="pt-3">E-Mail: <a class="underline" href="mailto:werkstatt@myshoester.de">werkstatt@myshoester.de</a></p>
+
+        <div class="grid">
+          <!-- LINKS auf deine Detail-/Preis-Seiten anpassen -->
+          <a class="menu-card" href="repair.html"><span>Schuh- & Lederwaren­reparatur</span><i class="arrow"></i></a>
+          <a class="menu-card" href="insoles-soft.html"><span>Bequemschuheinlagen</span><i class="arrow"></i></a>
+
+          <a class="menu-card" href="insoles-comfort.html"><span>Komforteinlagen</span><i class="arrow"></i></a>
+          <a class="menu-card" href="insoles-daily.html"><span>Alltagseinlagen</span><i class="arrow"></i></a>
+
+          <a class="menu-card" href="belts-tailor.html"><span>Maßgürtel</span><i class="arrow"></i></a>
+          <a class="menu-card" href="laser-engraving.html"><span>Lasergravuren</span><i class="arrow"></i></a>
+
+          <a class="menu-card" href="laser-cut.html"><span>Laserzuschnitte</span><i class="arrow"></i></a>
+          <a class="menu-card" href="streetwear.html"><span>Streetwear</span><i class="arrow"></i></a>
+
+          <a class="menu-card" href="sandblasting.html"><span>Sandstrahlung</span><i class="arrow"></i></a>
+          <a class="menu-card" href="contact.html"><span>Kontakt & Öffnungszeiten</span><i class="arrow"></i></a>
+        </div>
+
+        <div class="foot">Hinweis: Alle Preise sind Ab-Preise inkl. MwSt., abhängig von Material & Aufwand.</div>
       </div>
     </div>
-  </div>
+  </header>
 
-  <footer class="mt-16 pt-8 border-t text-sm flex flex-wrap items-center justify-between">
-    <div>© <span id="year"></span> MyShoester</div>
-    <div class="flex gap-4"><a href="#">Datenschutz</a><a href="#">Impressum</a><a href="#">AGB</a></div>
-  </footer>
-</section>
+  <!-- CONTENT -->
+  <main class="page-wrap">
+    <section class="hero" id="leistungen">
+      <div>
+        <span class="eyebrow">Schuh- & Lederwerkstatt</span>
+        <h1 class="headline">
+          Reparaturen, Pflege & Maßarbeit <br>
+          mit <em>Liebe zum Detail</em>.
+        </h1>
+        <p>Lieblingsschuhe und Lederwaren wieder in Form bringen:
+          Sohlenwechsel, Absätze, Nähte, Färbungen & Pflege – fair, präzise, nachhaltig.</p>
+      </div>
+      <figure class="hero-img" aria-label="Werkstatt">
+        <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1400&auto=format&fit=crop" alt="In der Werkstatt" />
+      </figure>
+    </section>
+  </main>
 
-<script>
-  document.getElementById('year').textContent = new Date().getFullYear();
-</script>
-<script>
-  // Katalog-Panel Steuerung
-  (function(){
-    const btn = document.getElementById('catalogBtn');
-    const closeBtn = document.getElementById('catalogClose');
-    const panel = document.getElementById('catalogPanel');
-    const backdrop = document.getElementById('catalogBackdrop');
-    let open = false;
+  <script>
+    (function(){
+      const btn   = document.getElementById('catalogBtn');
+      const panel = document.getElementById('catalogPanel');
+      const close = document.getElementById('panelClose');
 
-    function toggle(next = !open){
-      open = next;
-      panel.classList.toggle('max-h-0', !open);
-      panel.classList.toggle('max-h-[60vh]', open);
-      backdrop.classList.toggle('opacity-0', !open);
-      backdrop.classList.toggle('opacity-100', open);
-      backdrop.classList.toggle('pointer-events-none', !open);
-    }
-    btn && btn.addEventListener('click', () => toggle());
-    closeBtn && closeBtn.addEventListener('click', () => toggle(false));
-    backdrop && backdrop.addEventListener('click', () => toggle(false));
-  })();
-</script>
+      function placePanel(){
+        // Panel links am Button ausrichten und unterhalb öffnen
+        const r = btn.getBoundingClientRect();
+        panel.style.left = r.left + 'px';
+        panel.style.top  = (r.bottom + window.scrollY + 10) + 'px';
+      }
+
+      function openPanel(){
+        placePanel();
+        panel.classList.add('open');
+        btn.setAttribute('aria-expanded','true');
+      }
+      function closePanel(){
+        panel.classList.remove('open');
+        btn.setAttribute('aria-expanded','false');
+      }
+      function togglePanel(){
+        panel.classList.contains('open') ? closePanel() : openPanel();
+      }
+
+      btn.addEventListener('click', (e)=>{ e.stopPropagation(); togglePanel(); });
+      close.addEventListener('click', (e)=>{ e.stopPropagation(); closePanel(); });
+
+      window.addEventListener('resize', ()=>{ if(panel.classList.contains('open')) placePanel(); });
+      document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closePanel(); });
+      document.addEventListener('click', (e)=>{
+        if(!panel.contains(e.target) && !btn.contains(e.target)){
+          closePanel();
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
