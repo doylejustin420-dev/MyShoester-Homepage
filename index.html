@@ -121,14 +121,13 @@
          text-[#4169E1] border-[#4169E1]/50 bg-[#4169E1]/10 hover:bg-[#4169E1]/15 transition shadow-sm">
   Katalog ▾
 </button>
-
-<!-- Statische Kategorien (links, Desktop) -->
-<aside id="catalogAside"
-  class="hidden lg:block fixed z-20 left-4 md:left-6 top-40 w-[300px]">
-  <div class="p-[1px] rounded-2xl bg-gradient-to-br from-pop1 via-pop2 to-pop3 shadow-xl">
-    <div class="rounded-2xl border border-white/50 bg-white/80 backdrop-blur p-4">
-      <h3 class="font-head text-lg font-bold mb-3">Kategorien</h3>
-      <nav class="grid gap-2 text-sm font-semibold">
+<!-- Dropdown direkt unter dem Katalog-Button -->
+<div id="catalogDropdown"
+     class="hidden fixed z-40 min-w-[260px] max-w-[320px] shadow-2xl rounded-2xl overflow-hidden"
+     style="left: 1rem; top: 6.2rem;">
+  <div class="p-[1px] bg-gradient-to-br from-pop1 via-pop2 to-pop3">
+    <div class="bg-white/90 backdrop-blur border border-white/60 rounded-2xl">
+      <nav class="p-2 grid gap-1 text-sm font-semibold">
         <a class="px-3 py-2 rounded-xl hover:bg-pop1/10" href="kategorie.html?cat=schuh">Schuh- & Lederwarenreparatur</a>
         <a class="px-3 py-2 rounded-xl hover:bg-pop1/10" href="kategorie.html?cat=bequem">Bequemschuheinlagen</a>
         <a class="px-3 py-2 rounded-xl hover:bg-pop1/10" href="kategorie.html?cat=komfort">Komforteinlagen</a>
@@ -142,10 +141,9 @@
       </nav>
     </div>
   </div>
-</aside>
+</div>
 
-
-<!-- KATALOG-PANEL (aufklappbar) -->
+<!-- Statische Kategorien (links, Desktop) --><!-- KATALOG-PANEL (aufklappbar) -->
 <div id="catalogPanel"
      class="fixed top-16 left-4 md:left-8 z-30 w-full max-w-lg md:max-w-xl overflow-hidden transition-all duration-500"
      style="max-height:0px">
@@ -410,5 +408,39 @@
   })();
 </script>
 
+<script>
+(function(){
+  const fab = document.getElementById('catalogFab');
+  const dd  = document.getElementById('catalogDropdown');
+  if(!fab || !dd) return;
+
+  function toggleDropdown() {
+    // Position directly unter dem Button
+    const r = fab.getBoundingClientRect();
+    dd.style.left = Math.max(12, r.left + window.scrollX) + 'px';
+    dd.style.top  = (r.bottom + window.scrollY + 8) + 'px';
+    dd.classList.toggle('hidden');
+  }
+
+  fab.addEventListener('click', (e)=>{
+    e.stopPropagation();
+    toggleDropdown();
+  });
+
+  document.addEventListener('click', (e)=>{
+    if(!dd.classList.contains('hidden')){
+      const inside = dd.contains(e.target) || fab.contains(e.target);
+      if(!inside) dd.classList.add('hidden');
+    }
+  });
+
+  window.addEventListener('resize', ()=>{
+    if(!dd.classList.contains('hidden')) toggleDropdown();
+  });
+  window.addEventListener('scroll', ()=>{
+    if(!dd.classList.contains('hidden')) toggleDropdown();
+  });
+})();
+</script>
 </body>
 </html>
