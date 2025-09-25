@@ -4,8 +4,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Kategorie – MyShoester</title>
-
-  <!-- Fonts & Tailwind -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Figtree:wght@400;600;800&display=swap" rel="stylesheet">
@@ -20,13 +18,8 @@
       }
     };
   </script>
-
   <style>
-    :root{
-      --mesh-blur: 60px;
-      --mesh-opacity: .95;
-      --frame: clamp(220px, 7cm, 26vmin);
-    }
+    :root{ --mesh-blur:60px; --mesh-opacity:.95; --frame: clamp(220px,7cm,26vmin); }
     body{font-family:var(--tw-font-body, Figtree, system-ui, sans-serif)}
     .site-bg{ background: linear-gradient(#f8fafc, #ffffff); position:relative; min-height:100dvh; }
     .site-bg::before{
@@ -50,20 +43,11 @@
           rgba(255,255,255,0.92) calc(50% - var(--frame) - 10px),
           rgba(255,255,255,0) 100%);
     }
-    @keyframes meshFloat{
-      0%{transform:translate(-3%,-2%) scale(1)}
-      50%{transform:translate(4%,1%) scale(1.05)}
-      100%{transform:translate(-2%,3%) scale(1)}
-    }
-    @keyframes meshHue{
-      0%{filter:hue-rotate(0deg) blur(var(--mesh-blur)) saturate(115%)}
-      100%{filter:hue-rotate(20deg) blur(var(--mesh-blur)) saturate(115%)}
-    }
+    @keyframes meshFloat{0%{transform:translate(-3%,-2%) scale(1)}50%{transform:translate(4%,1%) scale(1.05)}100%{transform:translate(-2%,3%) scale(1)}}
+    @keyframes meshHue{0%{filter:hue-rotate(0deg) blur(var(--mesh-blur)) saturate(115%)}100%{filter:hue-rotate(20deg) blur(var(--mesh-blur)) saturate(115%)}}
   </style>
 </head>
-
 <body class="site-bg text-stone-900">
-  <!-- Kopf -->
   <header class="sticky top-0 z-40 bg-white/70 backdrop-blur border-b border-stone-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
       <a href="./" class="flex items-center gap-3">
@@ -114,7 +98,6 @@
   </main>
 
   <script>
-    // ----- Katalog-Daten (Beispiele – bitte anpassen/erweitern) -----
     const catalogData = {
       schuh: {
         title: "Schuh- & Lederwarenreparatur",
@@ -201,12 +184,11 @@
       }
     };
 
-    // -------- Rendering ----------
     function q(key){ return new URLSearchParams(location.search).get(key); }
     const catKey = (q('cat') || 'schuh').toLowerCase();
     const data = catalogData[catKey] || catalogData['schuh'];
 
-    document.title = `${data.title} – MyShoester`;
+    document.title = data.title + " – MyShoester";
     document.getElementById('catTitle').textContent = data.title;
     document.getElementById('catDesc').textContent  = data.desc;
 
