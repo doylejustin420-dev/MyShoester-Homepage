@@ -5,81 +5,117 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>MyShoester – Schuh- & Lederwerkstatt</title>
   <meta name="description" content="Reparaturen, Pflege, Bequemschuheinlagen (ohne Heilaussagen), Maßgürtel, Lasergravuren & Zuschnitte, Streetwear, Sandstrahlung bis 70×70 cm.">
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Figtree:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Figtree:wght@400;600;800&family=Great+Vibes&display=swap" rel="stylesheet">
+
+  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           fontFamily: { head:['Playfair Display','serif'], body:['Figtree','system-ui','sans-serif'] },
-          colors:{ pop1:'#22d3ee', pop2:'#a78bfa', pop3:'#f59e0b', pop4:'#84cc16', leather:'#8b5e34' }
+          colors:{ pop1:'#22d3ee', pop2:'#a78bfa', pop3:'#f59e0b', pop4:'#84cc16' }
         }
       }
     };
   </script>
+
   <style>
+    /* Grundschrift */
     body{font-family:var(--tw-font-body, Figtree, system-ui, sans-serif)}
-    .grad{background-image:linear-gradient(135deg,#22d3ee 0%,#a78bfa 50%,#f59e0b 100%)}
-    .glass{backdrop-filter:blur(10px)}
+
+    /* Button "Katalog" */
+    .cat-link{display:block;padding:.625rem .75rem;border-radius:9999px;background:rgba(99,102,241,.06);color:#1e293b;font-weight:600}
+    .cat-link:hover{background:rgba(99,102,241,.14)}
+
+    /* Akzent in Königsblau (kein Verlauf) */
+    .accent{color:#1e3a8a}
+
+    /* --- Bunter Seitenrahmen mit weißer Mitte --- */
+    :root{ --frame: clamp(90px, 8vw, 140px); } /* “Stärke” der bunten Kante */
+    .edge-frame{ position:relative; min-height:100%; }
+    /* Untere bunte Fläche */
+    .edge-frame::before{
+      content:""; position:fixed; inset:0; z-index:-2;
+      background: linear-gradient(135deg,#b5e8ff 0%,#d7c6ff 45%,#ffd59e 100%);
+    }
+    /* Weiße Mitte, die zur Kante hin ausläuft */
+    .edge-frame::after{
+      content:""; position:fixed; inset:0; z-index:-1;
+      background:
+        radial-gradient(circle at 50% 50%,
+          rgba(255,255,255,1) 0%,
+          rgba(255,255,255,1) calc(50% - var(--frame)),
+          rgba(255,255,255,0) calc(50% - var(--frame) + 1px)
+        );
+      /* sorgt dafür, dass die weiße Mitte “oben liegt” */
+      pointer-events:none;
+    }
+
+    /* Geschwungener, großer Schriftzug */
+    .badge-script{
+      font-family:'Great Vibes',cursive;
+      color:#1e3a8a;                 /* Königsblau */
+      font-weight:400;
+      font-size:clamp(56px, 8vw, 120px); /* ~3× größer als vorher */
+      line-height:1.05;
+      margin: 0 0 .5rem 0;
+      text-shadow:0 1px 0 rgba(255,255,255,.7);
+    }
+
+    /* Logo etwas präsenter */
+    .brand-big span:last-child{font-size:clamp(22px,2.2vw,32px)}
   </style>
-
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
-<style>
-
-  /* === Custom adjustments === */
-  .cat-link{display:block;padding:.625rem .75rem;border-radius:9999px;background:rgba(99,102,241,.06);color:#1e293b;font-weight:600}
-  .cat-link:hover{background:rgba(99,102,241,.14)}
-  .badge-script{font-family:'Great Vibes',cursive;color:#1e3a8a;font-size:clamp(28px,4vw,56px);line-height:1.1;margin:0 0 .25rem 0}
-  header .max-w-7xl{padding-left:.5rem}
-  .brand-big span:last-child{font-size:clamp(22px,2.2vw,32px)}
-  .accent{color:#1e3a8a}
-
-</style>
 </head>
-<body class="bg-white text-stone-900">
+<body class="edge-frame text-stone-900">
 
 <!-- Header -->
-<header class="sticky top-0 z-40 bg-white/70 glass border-b border-stone-200">
+<header class="sticky top-0 z-40 bg-white/70 backdrop-blur-md border-b border-stone-200">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="h-16 flex items-center justify-between">
       <a href="#start" class="brand-big flex items-center gap-3">
-        <span class="inline-flex items-center justify-center w-10 h-10 rounded-xl grad text-white font-bold">MS</span>
+        <span class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-sky-400 via-violet-400 to-amber-400 text-white font-bold">MS</span>
         <span class="font-head text-2xl font-extrabold tracking-tight">My<span class="italic">Shoester</span></span>
       </a>
-        <!-- Katalog (button + dropdown) -->
-        <div id="catalogWrapper" class="relative ml-4">
-          <button id="catalogBtn" class="rounded-full border border-blue-700/40 bg-blue-700/10 px-4 py-1.5 text-[15px] font-semibold text-blue-800 hover:bg-blue-700/15 hover:border-blue-800/50 transition">
-            Katalog ▾
-          </button>
-          <div id="catalogMenu" class="absolute left-0 top-full mt-2 w-[22rem] rounded-2xl bg-white/80 backdrop-blur-xl ring-1 ring-stone-200 shadow-2xl hidden z-[60]">
-            <div class="p-4">
-              <div class="grid grid-cols-1 gap-2">
-                <a class="cat-link" href="#repair">Schuh- & Lederwarenreparatur</a>
-                <a class="cat-link" href="#bequem">Bequemschuheinlagen</a>
-                <a class="cat-link" href="#komfort">Komforteinlagen</a>
-                <a class="cat-link" href="#alltag">Alltagseinlagen</a>
-                <a class="cat-link" href="#belts">Maßgürtel</a>
-                <a class="cat-link" href="#laser">Lasergravuren</a>
-                <a class="cat-link" href="#cuts">Laserzuschnitte</a>
-                <a class="cat-link" href="#streetwear">Streetwear</a>
-                <a class="cat-link" href="#sandblast">Sandstrahlung</a>
-                <a class="cat-link" href="#contact">Kontakt & Öffnungszeiten</a>
-              </div>
+
+      <!-- Katalog (Button + Dropdown) -->
+      <div id="catalogWrapper" class="relative ml-4">
+        <button id="catalogBtn" class="rounded-full border border-blue-700/40 bg-blue-700/10 px-4 py-1.5 text-[15px] font-semibold text-blue-800 hover:bg-blue-700/15 hover:border-blue-800/50 transition">
+          Katalog ▾
+        </button>
+
+        <!-- Dropdown erscheint direkt UNTER dem Button -->
+        <div id="catalogMenu" class="absolute left-0 top-full mt-2 w-[22rem] rounded-2xl bg-white/85 backdrop-blur-xl ring-1 ring-stone-200 shadow-2xl hidden z-[60]">
+          <div class="p-4">
+            <div class="grid grid-cols-1 gap-2">
+              <a class="cat-link" href="#repair">Schuh- & Lederwarenreparatur</a>
+              <a class="cat-link" href="#bequem">Bequemschuheinlagen</a>
+              <a class="cat-link" href="#komfort">Komforteinlagen</a>
+              <a class="cat-link" href="#alltag">Alltagseinlagen</a>
+              <a class="cat-link" href="#belts">Maßgürtel</a>
+              <a class="cat-link" href="#laser">Lasergravuren</a>
+              <a class="cat-link" href="#cuts">Laserzuschnitte</a>
+              <a class="cat-link" href="#streetwear">Streetwear</a>
+              <a class="cat-link" href="#sandblast">Sandstrahlung</a>
+              <a class="cat-link" href="#contact">Kontakt & Öffnungszeiten</a>
             </div>
           </div>
         </div>
+      </div>
 
       <nav class="hidden md:flex items-center gap-6 text-sm font-semibold">
-        <a href="#services" class="hover:text-pop2">Leistungen</a>
-        <a href="#comfort" class="hover:text-pop2">Bequemschuheinlagen</a>
-        <a href="#belts" class="hover:text-pop2">Maßgürtel</a>
-        <a href="#laser" class="hover:text-pop2">Lasergravuren</a>
-        <a href="#streetwear" class="hover:text-pop2">Streetwear</a>
-        <a href="#sandblast" class="hover:text-pop2">Sandstrahlung</a>
-        <a href="#shop" class="hover:text-pop2">Zubehör-Shop</a>
-        <a href="#contact" class="hover:text-pop2">Kontakt</a>
+        <a href="#services" class="hover:text-violet-500">Leistungen</a>
+        <a href="#comfort" class="hover:text-violet-500">Bequemschuheinlagen</a>
+        <a href="#belts" class="hover:text-violet-500">Maßgürtel</a>
+        <a href="#laser" class="hover:text-violet-500">Lasergravuren</a>
+        <a href="#streetwear" class="hover:text-violet-500">Streetwear</a>
+        <a href="#sandblast" class="hover:text-violet-500">Sandstrahlung</a>
+        <a href="#shop" class="hover:text-violet-500">Zubehör-Shop</a>
+        <a href="#contact" class="hover:text-violet-500">Kontakt</a>
       </nav>
     </div>
   </div>
@@ -89,14 +125,17 @@
 <section id="start" class="relative">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 grid lg:grid-cols-2 gap-10 items-center">
     <div>
-      <p class="inline-block px-3 py-1 text-xs font-bold uppercase rounded-full bg-pop2/15 text-pop2">Schuh- & Lederwerkstatt</p>
+      <!-- Großer, geschwungener Schriftzug in Königsblau -->
+      <div class="badge-script">Schuh- & Lederwerkstatt</div>
+
       <h1 class="font-head text-4xl sm:text-5xl font-extrabold mt-4 leading-tight">
         Reparaturen, Pflege & Maßarbeit <span class="accent">mit Liebe zum Detail</span>.
       </h1>
-      <p class="mt-4 text-lg text-stone-600">
+      <p class="mt-4 text-lg text-stone-700">
         Lieblingsschuhe und Lederwaren wieder in Form bringen: Sohlenwechsel, Absätze, Nähte, Färbungen & Pflege – fair, präzise, nachhaltig.
       </p>
     </div>
+
     <div class="rounded-3xl overflow-hidden ring-1 ring-stone-200 shadow-lg">
       <img src="https://images.unsplash.com/photo-1516826957135-700dedea698c?q=80&w=1200&auto=format&fit=crop"
            alt="Werkstatt" class="w-full h-full object-cover">
@@ -193,15 +232,16 @@
         <input class="px-4 py-3 rounded-2xl border" placeholder="Name">
         <input class="px-4 py-3 rounded-2xl border" type="email" placeholder="E-Mail">
         <textarea class="px-4 py-3 rounded-2xl border" rows="4" placeholder="Nachricht"></textarea>
-        <button type="button" class="grad text-white px-5 py-3 rounded-2xl font-semibold">Senden</button>
+        <button type="button" class="bg-gradient-to-br from-sky-400 via-violet-400 to-amber-400 text-white px-5 py-3 rounded-2xl font-semibold">Senden</button>
       </form>
     </div>
     <div class="rounded-3xl border p-6 bg-white">
       <h4 class="font-head text-xl font-bold">Kontaktdaten</h4>
       <div class="mt-3 space-y-2">
-        <p>Brachttal · Hessen</p>
+        <p>Sandwerkstraße 2, 63636 Brachttal</p>
         <p>werkstatt@myshoester.de</p>
-        <p>Mo–Fr 9–17 Uhr</p>
+        <p><strong>Öffnungszeiten:</strong><br>
+          Mo–Di 16:30–18:00 · Do 14:00–18:00 · Fr 08:00–18:00</p>
       </div>
     </div>
   </div>
@@ -213,23 +253,16 @@
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
-</script>
-
-<script>
   (function(){
     const btn = document.getElementById('catalogBtn');
     const menu = document.getElementById('catalogMenu');
     const wrap = document.getElementById('catalogWrapper');
     if(btn && menu){
-      btn.addEventListener('click', (e)=>{
-        e.stopPropagation();
-        menu.classList.toggle('hidden');
-      });
-      document.addEventListener('click', (e)=>{
-        if(!wrap.contains(e.target)){ menu.classList.add('hidden'); }
-      });
+      btn.addEventListener('click', (e)=>{ e.stopPropagation(); menu.classList.toggle('hidden'); });
+      document.addEventListener('click', (e)=>{ if(!wrap.contains(e.target)){ menu.classList.add('hidden'); }});
     }
   })();
 </script>
+
 </body>
 </html>
