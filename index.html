@@ -73,14 +73,27 @@
 <!-- Header -->
 <header class="sticky top-0 z-40 bg-white/70 glass border-b border-stone-200">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="h-16 flex items-center justify-between">
+    <div class="h-16 flex items-center">
       <a href="#start" class="flex items-center gap-3">
         <span class="inline-flex items-center justify-center w-10 h-10 rounded-xl grad text-white font-bold">MS</span>
         <span class="font-head text-2xl font-extrabold tracking-tight">My<span class="italic">Shoester</span></span>
       </a>
 
+      <!-- Katalog-Button (links, Desktop) -->
+      <button id="catalogBtn"
+        class="hidden md:inline-flex items-center px-3 py-2 ml-3 md:ml-4 rounded-xl border text-sm font-semibold
+               text-[#4169E1] border-[#4169E1]/50 bg-[#4169E1]/10 hover:bg-[#4169E1]/15 transition shadow-sm">
+        Katalog ▾
+      </button>
+      <!-- Katalog-Button (links, Mobil) -->
+      <button id="catalogBtnMobile"
+        class="md:hidden inline-flex items-center px-3 py-2 ml-3 rounded-xl border text-sm font-semibold
+               text-[#4169E1] border-[#4169E1]/50 bg-[#4169E1]/10 hover:bg-[#4169E1]/15 transition shadow-sm">
+        Katalog ▾
+      </button>
+
       <!-- Reiter -->
-      <nav class="hidden md:flex items-center gap-6 text-sm font-semibold md:ml-10 lg:ml-14 xl:ml-20">
+      <nav class="hidden md:flex items-center gap-6 text-sm font-semibold ml-auto">
 
         <a href="#services" class="hover:text-pop2">Leistungen</a>
         <a href="#repair" class="hover:text-pop2">Schuh- & Lederwarenreparatur</a>
@@ -92,19 +105,7 @@
         <a href="#cutting" class="hover:text-pop2">Laserzuschnitte</a>
         <a href="#streetwear" class="hover:text-pop2">Streetwear</a>
         <a href="#sandblast" class="hover:text-pop2">Sandstrahlung</a>
-        <a href="#contact" class="hover:text-pop2">Kontakt</a>
-      
-
-        <!-- Katalog-Button (öffnet das Register) -->
-        <button id="catalogBtn"
-          class="px-3 py-2 rounded-xl border bg-white/70 hover:bg-white transition shadow-sm">
-          Katalog ▾
-        </button>
-      </nav>
-      <!-- Katalog-Button (mobil) -->
-      <button id="catalogBtnMobile" class="md:hidden px-3 py-2 rounded-xl border bg-white/70 hover:bg-white transition shadow-sm">Katalog ▾</button>
-
-    </div>
+        <a href="#contact" class="hover:text-pop2">Kontakt</a></nav></div>
   </div>
 </header>
 
