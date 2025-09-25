@@ -95,6 +95,7 @@ body::before{
 .card{border-radius:18px;overflow:hidden;border:1px solid var(--line);background:var(--panel);transition:transform .12s, box-shadow .12s}
 .card:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,0,0,.25)}
 .card .pad{padding:14px}
+.card a{color:inherit;text-decoration:none;display:block}
 .footer{border-top:1px solid var(--line);padding:26px 0;color:var(--muted);text-align:center}
 
 /* Responsive */
@@ -147,7 +148,7 @@ body::before{
     <a class="cat-link" href="kategorie.html?cat=laser">Lasergravuren</a>
     <a class="cat-link" href="kategorie.html?cat=cutting">Laserzuschnitte</a>
     <a class="cat-link" href="kategorie.html?cat=streetwear">Streetwear</a>
-    <a class="cat-link" href="#contact">Kontakt & Öffnungszeiten</a>
+    <a class="cat-link" href="kategorie.html?cat=sand">Sandstrahlung</a>
   </div>
 </aside>
 
@@ -161,32 +162,103 @@ body::before{
     <div><img src="https://images.unsplash.com/photo-1516826957135-700dedea698c?q=80&w=1200&auto=format&fit=crop" alt="Werkstatt"></div>
   </section>
 
+  <!-- ************  NUR DIESE SEKTION wurde um ALLE Kategorien ergänzt  ************ -->
   <section id="leistungen" class="section">
     <h2 class="h2">Unsere Leistungen</h2>
     <div class="grid">
+      <!-- Reparatur -->
       <article class="card">
-        <img src="https://images.unsplash.com/photo-1485955900006-10f4d324d411?q=80&w=1200&auto=format&fit=crop" alt="">
-        <div class="pad">
-          <strong>Sohlenwechsel & Absätze</strong>
-          <div class="tag" style="margin-top:8px">Vibram • Kantenfinish</div>
-        </div>
+        <a href="kategorie.html?cat=schuh">
+          <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1200&auto=format&fit=crop" alt="">
+          <div class="pad">
+            <strong>Schuh- & Lederwarenreparatur</strong>
+            <div class="tag" style="margin-top:8px">Sohlenwechsel • Absätze • Nähte • Färbungen</div>
+          </div>
+        </a>
       </article>
+      <!-- Bequem -->
       <article class="card">
-        <img src="https://images.unsplash.com/photo-1542216510-6bdb8c37a3aa?q=80&w=1200&auto=format&fit=crop" alt="">
-        <div class="pad">
-          <strong>Bequemschuheinlagen</strong>
-          <div class="tag" style="margin-top:8px">Alcantara • EVA • Leder</div>
-        </div>
+        <a href="kategorie.html?cat=bequem">
+          <img src="https://images.unsplash.com/photo-1542216510-6bdb8c37a3aa?q=80&w=1200&auto=format&fit=crop" alt="">
+          <div class="pad">
+            <strong>Bequemschuheinlagen</strong>
+            <div class="tag" style="margin-top:8px">Weiche Dämpfung für lange Tage</div>
+          </div>
+        </a>
       </article>
+      <!-- Komfort -->
       <article class="card">
-        <img src="https://images.unsplash.com/photo-1594949163427-4f3c7a9c4b87?q=80&w=1200&auto=format&fit=crop" alt="">
-        <div class="pad">
-          <strong>Maßgefertigte Gürtel</strong>
-          <div class="tag" style="margin-top:8px">Vollleder • Handnaht</div>
-        </div>
+        <a href="kategorie.html?cat=komfort">
+          <img src="https://images.unsplash.com/photo-1594949163427-4f3c7a9c4b87?q=80&w=1200&auto=format&fit=crop" alt="">
+          <div class="pad">
+            <strong>Komforteinlagen</strong>
+            <div class="tag" style="margin-top:8px">Gleichmäßige Druckverteilung & Halt</div>
+          </div>
+        </a>
+      </article>
+      <!-- Alltag -->
+      <article class="card">
+        <a href="kategorie.html?cat=alltag">
+          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop" alt="">
+          <div class="pad">
+            <strong>Alltagseinlagen</strong>
+            <div class="tag" style="margin-top:8px">Leicht, pflegeleicht – für jeden Tag</div>
+          </div>
+        </a>
+      </article>
+      <!-- Maßgürtel -->
+      <article class="card">
+        <a href="kategorie.html?cat=belts">
+          <img src="https://images.unsplash.com/photo-1519066629447-267fffa62d5b?q=80&w=1200&auto=format&fit=crop" alt="">
+          <div class="pad">
+            <strong>Maßgürtel</strong>
+            <div class="tag" style="margin-top:8px">Vollleder • Wunschbreite • Handnaht</div>
+          </div>
+        </a>
+      </article>
+      <!-- Lasergravuren -->
+      <article class="card">
+        <a href="kategorie.html?cat=laser">
+          <img src="https://images.unsplash.com/photo-1581091215367-59ab6d5023d8?q=80&w=1200&auto=format&fit=crop" alt="">
+          <div class="pad">
+            <strong>Lasergravuren</strong>
+            <div class="tag" style="margin-top:8px">Personalisierung auf Holz, Leder, Glas …</div>
+          </div>
+        </a>
+      </article>
+      <!-- Laserzuschnitte -->
+      <article class="card">
+        <a href="kategorie.html?cat=cutting">
+          <img src="https://images.unsplash.com/photo-1520975922203-baceb7a9342f?q=80&w=1200&auto=format&fit=crop" alt="">
+          <div class="pad">
+            <strong>Laserzuschnitte</strong>
+            <div class="tag" style="margin-top:8px">Präzise Zuschnitte für Leder & Acryl</div>
+          </div>
+        </a>
+      </article>
+      <!-- Streetwear -->
+      <article class="card">
+        <a href="kategorie.html?cat=streetwear">
+          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop" alt="">
+          <div class="pad">
+            <strong>Streetwear</strong>
+            <div class="tag" style="margin-top:8px">Caps, Shirts & Accessoires</div>
+          </div>
+        </a>
+      </article>
+      <!-- Sandstrahlung -->
+      <article class="card">
+        <a href="kategorie.html?cat=sand">
+          <img src="https://images.unsplash.com/photo-1581093588401-16f8b8b1f6d3?q=80&w=1200&auto=format&fit=crop" alt="">
+          <div class="pad">
+            <strong>Sandstrahlung</strong>
+            <div class="tag" style="margin-top:8px">Reinigung & Veredelung von Oberflächen</div>
+          </div>
+        </a>
       </article>
     </div>
   </section>
+  <!-- ************  Ende der angepassten Leistungen  ************ -->
 
   <section id="contact" class="section">
     <h2 class="h2">Kontakt & Öffnungszeiten</h2>
