@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="de" class="scroll-smooth">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>MyShoester – Schuh- & Lederwerkstatt</title>
   <meta name="description" content="Reparaturen, Pflege, Bequemschuheinlagen, Komfort- & Alltagseinlagen, Maßgürtel, Lasergravuren & -zuschnitte, Streetwear, Sandstrahlung.">
 
@@ -16,14 +16,14 @@
       theme: {
         extend: {
           fontFamily: { head:['Playfair Display','serif'], body:['Figtree','system-ui','sans-serif'] },
-          colors:{ pop1:'#22d3ee', pop2:'#1e40af', pop3:'#a78bfa', pop4:'#f59e0b' } /* pop2 ≈ Königsblau */
+          colors:{ pop1:'#22d3ee', pop2:'#a78bfa', pop3:'#f59e0b', pop4:'#84cc16' }
         }
       }
     };
   </script>
 
   <style>
-    /* === BUNTER HINTERGRUND (Gradient-Mesh) =============================== */
+    /* ==== Bunter Hintergrund (Gradient-Mesh) ==== */
     :root{
       --mesh-blur: 60px;
       --mesh-opacity: .95;
@@ -32,7 +32,7 @@
     body{font-family:var(--tw-font-body, Figtree, system-ui, sans-serif)}
     .site-bg{
       background: linear-gradient(#f8fafc, #ffffff);
-      position: relative; min-height: 100dvh;
+      min-height: 100dvh; position: relative;
     }
     .site-bg::before{
       content:""; position: fixed; inset:-25vh; z-index:-2; pointer-events:none;
@@ -54,53 +54,61 @@
     }
     .grad{background-image:linear-gradient(135deg,#22d3ee 0%,#a78bfa 50%,#f59e0b 100%)}
     .glass{backdrop-filter:blur(10px)}
-    @keyframes meshFloat{0%{transform:translate(-3%,-2%) scale(1)}50%{transform:translate(4%,1%) scale(1.05)}100%{transform:translate(-2%,3%) scale(1)}}
-    @keyframes meshHue{0%{filter:hue-rotate(0deg) blur(var(--mesh-blur)) saturate(115%)}100%{filter:hue-rotate(20deg) blur(var(--mesh-blur)) saturate(115%)}}
+    @keyframes meshFloat{
+      0%{transform:translate(-3%,-2%) scale(1)}
+      50%{transform:translate(4%,1%) scale(1.05)}
+      100%{transform:translate(-2%,3%) scale(1)}
+    }
+    @keyframes meshHue{
+      0%{filter:hue-rotate(0deg) blur(var(--mesh-blur)) saturate(115%)}
+      100%{filter:hue-rotate(20deg) blur(var(--mesh-blur)) saturate(115%)}
+    }
     @media (prefers-reduced-motion: reduce){ .site-bg::before{animation:none} }
   </style>
 </head>
 
 <body class="site-bg text-stone-900">
-<!-- Header -->
+<!-- ================= Header ================= -->
 <header class="sticky top-0 z-40 bg-white/70 glass border-b border-stone-200">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="h-16 flex items-center justify-between">
-      <!-- LINKSBLOCK: Katalog + Logo/Brand -->
+      <!-- Linke Seite: Katalog + Logo/MyShoester (größer) -->
       <div class="flex items-center gap-4">
-        <!-- Katalog-Button (transluzent königsblau, ganz links) -->
+        <!-- Katalog-Button links oben -->
         <button id="catalogBtn"
-          class="px-3 py-2 rounded-xl border border-blue-300/60 bg-blue-600/10 text-blue-800 hover:bg-blue-600/20 transition shadow-sm">
+          class="px-3 py-2 rounded-xl border bg-white/80 hover:bg-white transition shadow-sm text-sm font-semibold">
           Katalog ▾
         </button>
 
-        <!-- Brand -->
         <a href="#start" class="flex items-center gap-3">
-          <span class="inline-flex items-center justify-center w-12 h-12 rounded-xl grad text-white font-bold text-lg">MS</span>
-          <span class="font-head text-3xl font-extrabold tracking-tight">My<span class="italic">Shoester</span></span>
+          <span class="inline-flex items-center justify-center w-11 h-11 md:w-12 md:h-12 rounded-xl grad text-white font-bold text-sm md:text-base">MS</span>
+          <span class="font-head text-2xl md:text-3xl font-extrabold tracking-tight">
+            My<span class="italic">Shoester</span>
+          </span>
         </a>
       </div>
 
       <!-- Reiter -->
       <nav class="hidden md:flex items-center gap-6 text-sm font-semibold">
-        <a href="#services" class="hover:text-pop3">Leistungen</a>
-        <a href="#repair" class="hover:text-pop3">Schuh- & Lederwarenreparatur</a>
-        <a href="#bequem" class="hover:text-pop3">Bequemschuheinlagen</a>
-        <a href="#komfort" class="hover:text-pop3">Komforteinlagen</a>
-        <a href="#alltag" class="hover:text-pop3">Alltagseinlagen</a>
-        <a href="#belts" class="hover:text-pop3">Maßgürtel</a>
-        <a href="#laser" class="hover:text-pop3">Lasergravuren</a>
-        <a href="#cutting" class="hover:text-pop3">Laserzuschnitte</a>
-        <a href="#streetwear" class="hover:text-pop3">Streetwear</a>
-        <a href="#sandblast" class="hover:text-pop3">Sandstrahlung</a>
-        <a href="#contact" class="hover:text-pop3">Kontakt</a>
+        <a href="#services" class="hover:text-pop2">Leistungen</a>
+        <a href="#repair" class="hover:text-pop2">Schuh- & Lederwarenreparatur</a>
+        <a href="#bequem" class="hover:text-pop2">Bequemschuheinlagen</a>
+        <a href="#komfort" class="hover:text-pop2">Komforteinlagen</a>
+        <a href="#alltag" class="hover:text-pop2">Alltagseinlagen</a>
+        <a href="#belts" class="hover:text-pop2">Maßgürtel</a>
+        <a href="#laser" class="hover:text-pop2">Lasergravuren</a>
+        <a href="#cutting" class="hover:text-pop2">Laserzuschnitte</a>
+        <a href="#streetwear" class="hover:text-pop2">Streetwear</a>
+        <a href="#sandblast" class="hover:text-pop2">Sandstrahlung</a>
+        <a href="#contact" class="hover:text-pop2">Kontakt</a>
       </nav>
     </div>
   </div>
 </header>
 
-<!-- KATALOG-PANEL (aufklappbar – links oben, alle Ecken abgerundet) -->
+<!-- ===== KATALOG-PANEL (links unter Button, überall abgerundet) ===== -->
 <div id="catalogPanel"
-     class="fixed top-[72px] left-4 md:left-6 lg:left-8 z-50 w-[88vw] max-w-md max-h-0 overflow-hidden transition-all duration-500">
+     class="fixed top-[72px] left-4 z-50 w-[88vw] max-w-md max-h-0 overflow-hidden transition-all duration-500">
   <div class="rounded-2xl border bg-white/95 backdrop-blur p-4 shadow-xl">
     <div class="flex items-center justify-between">
       <h3 class="font-head text-lg md:text-xl font-bold">Kategorien</h3>
@@ -141,11 +149,11 @@
 <div id="catalogBackdrop"
      class="fixed inset-0 bg-black/30 opacity-0 pointer-events-none transition-opacity duration-300 z-20"></div>
 
-<!-- Hero -->
+<!-- ================= Hero ================= -->
 <section id="start" class="relative">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 grid lg:grid-cols-2 gap-10 items-center">
     <div>
-      <p class="inline-block px-3 py-1 text-xs font-bold uppercase rounded-full bg-pop2/10 text-pop2">Schuh- & Lederwerkstatt</p>
+      <p class="inline-block px-3 py-1 text-xs font-bold uppercase rounded-full bg-pop2/15 text-pop2">Schuh- & Lederwerkstatt</p>
       <h1 class="font-head text-4xl sm:text-5xl font-extrabold mt-4 leading-tight">
         Reparaturen, Pflege & Maßarbeit <span class="text-pop2">mit Liebe zum Detail</span>.
       </h1>
@@ -159,23 +167,26 @@
   </div>
 </section>
 
-<!-- Leistungen -->
+<!-- ================= Leistungen (saubere Karten) ================= -->
 <section id="services" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
   <h2 class="font-head text-3xl sm:text-4xl font-bold mb-6">Unsere Leistungen</h2>
   <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
     <a href="#repair" class="p-6 rounded-2xl border bg-white shadow-sm hover:shadow-md transition">
-      <div class="text-3xl">👞</div><div class="font-semibold mt-3">Sohlenwechsel & Absätze</div><p class="text-sm mt-1 text-stone-600">Vibram, Kantenfinish, Färbung.</p>
+      <div class="text-3xl">👞</div><div class="font-semibold mt-3">Sohlenwechsel & Absätze</div>
+      <p class="text-sm mt-1 text-stone-600">Vibram, Kantenfinish, Färbung.</p>
     </a>
     <a href="#bequem" class="p-6 rounded-2xl border bg-white shadow-sm hover:shadow-md transition">
-      <div class="text-3xl">🦶</div><div class="font-semibold mt-3">Bequemschuheinlagen</div><p class="text-sm mt-1 text-stone-600">Angenehm für Alltag & Freizeit.</p>
+      <div class="text-3xl">🦶</div><div class="font-semibold mt-3">Bequemschuheinlagen</div>
+      <p class="text-sm mt-1 text-stone-600">Angenehm für Alltag & Freizeit.</p>
     </a>
     <a href="#belts" class="p-6 rounded-2xl border bg-white shadow-sm hover:shadow-md transition">
-      <div class="text-3xl">🧷</div><div class="font-semibold mt-3">Maßgefertigte Gürtel</div><p class="text-sm mt-1 text-stone-600">Vollleder, handvernäht, auf Maß.</p>
+      <div class="text-3xl">🧷</div><div class="font-semibold mt-3">Maßgefertigte Gürtel</div>
+      <p class="text-sm mt-1 text-stone-600">Vollleder, handvernäht, auf Maß.</p>
     </a>
   </div>
 </section>
 
-<!-- Reparatur -->
+<!-- ================= Detailabschnitte (cleanes zweispaltiges Layout) ================= -->
 <section id="repair" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
   <div class="grid lg:grid-cols-2 gap-10 items-center">
     <div>
@@ -188,7 +199,6 @@
   </div>
 </section>
 
-<!-- Bequemschuheinlagen -->
 <section id="bequem" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
   <div class="grid lg:grid-cols-2 gap-10 items-center">
     <div class="rounded-3xl overflow-hidden ring-1 ring-stone-200 shadow-lg">
@@ -201,7 +211,6 @@
   </div>
 </section>
 
-<!-- Komforteinlagen -->
 <section id="komfort" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
   <div class="grid lg:grid-cols-2 gap-10 items-center">
     <div>
@@ -214,7 +223,6 @@
   </div>
 </section>
 
-<!-- Alltagseinlagen -->
 <section id="alltag" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
   <div class="grid lg:grid-cols-2 gap-10 items-center">
     <div class="rounded-3xl overflow-hidden ring-1 ring-stone-200 shadow-lg">
@@ -227,7 +235,6 @@
   </div>
 </section>
 
-<!-- Maßgürtel -->
 <section id="belts" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
   <div class="grid lg:grid-cols-2 gap-10 items-center">
     <div>
@@ -240,7 +247,6 @@
   </div>
 </section>
 
-<!-- Lasergravuren -->
 <section id="laser" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
   <div class="grid lg:grid-cols-2 gap-10 items-center">
     <div>
@@ -253,7 +259,6 @@
   </div>
 </section>
 
-<!-- Laserzuschnitte -->
 <section id="cutting" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
   <div class="grid lg:grid-cols-2 gap-10 items-center">
     <div class="rounded-3xl overflow-hidden ring-1 ring-stone-200 shadow-lg">
@@ -266,7 +271,6 @@
   </div>
 </section>
 
-<!-- Streetwear -->
 <section id="streetwear" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
   <div class="grid lg:grid-cols-2 gap-10 items-center">
     <div class="rounded-3xl overflow-hidden ring-1 ring-stone-200 shadow-lg">
@@ -279,7 +283,6 @@
   </div>
 </section>
 
-<!-- Sandstrahlung -->
 <section id="sandblast" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
   <div class="grid lg:grid-cols-2 gap-10 items-center">
     <div>
@@ -292,7 +295,7 @@
   </div>
 </section>
 
-<!-- Kontakt + Öffnungszeiten -->
+<!-- ================= Kontakt + Öffnungszeiten ================= -->
 <section id="contact" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
   <div class="grid md:grid-cols-2 gap-10">
     <div>
@@ -332,15 +335,16 @@
   document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 <script>
+  // Katalog-Panel Steuerung
   (function(){
     const btn = document.getElementById('catalogBtn');
     const closeBtn = document.getElementById('catalogClose');
     const panel = document.getElementById('catalogPanel');
     const backdrop = document.getElementById('catalogBackdrop');
-
     let open = false;
-    function toggle(openState = !open){
-      open = openState;
+
+    function toggle(next = !open){
+      open = next;
       panel.classList.toggle('max-h-0', !open);
       panel.classList.toggle('max-h-[60vh]', open);
       backdrop.classList.toggle('opacity-0', !open);
