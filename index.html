@@ -101,54 +101,47 @@
           Katalog ▾
         </button>
       </nav>
+      <!-- Katalog-Button (mobil) -->
+      <button id="catalogBtnMobile" class="md:hidden px-3 py-2 rounded-xl border bg-white/70 hover:bg-white transition shadow-sm">Katalog ▾</button>
+
     </div>
   </div>
 </header>
 
 <!-- KATALOG-PANEL (aufklappbar) -->
 <div id="catalogPanel"
-     class="fixed top-16 left-0 right-0 z-30 max-h-0 overflow-hidden transition-all duration-500">
-  <div class="mx-auto max-w-7xl px-4 pb-6">
-    <div class="rounded-3xl border bg-white/90 backdrop-blur p-4 md:p-6 shadow-xl">
+     class="fixed top-16 left-4 md:left-8 z-30 w-full max-w-lg md:max-w-xl overflow-hidden transition-all duration-500"
+     style="max-height:0px">
+  <!-- dünner Farb-Rand im MyShoester-Gradient -->
+  <div class="p-[1px] rounded-3xl bg-gradient-to-br from-pop1 via-pop2 to-pop3 shadow-2xl">
+    <!-- Glasiger, heller Inhalt -->
+    <div class="rounded-3xl border border-white/40 bg-white/80 backdrop-blur p-4 md:p-6">
       <div class="flex items-center justify-between">
         <h3 class="font-head text-xl md:text-2xl font-bold">Kategorien</h3>
         <button id="catalogClose"
-                class="px-3 py-2 rounded-xl border hover:bg-white transition text-sm">Schließen ✕</button>
+                class="px-3 py-2 rounded-xl border border-white/50 bg-white/70 hover:bg-white transition text-sm">Schließen ✕</button>
       </div>
 
-      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-4 mt-4">
-        <a class="px-4 py-3 rounded-2xl border bg-white hover:shadow-md transition text-sm font-semibold"
-           href="kategorie.html?cat=schuh">Schuh- & Lederwarenreparatur</a>
-        <a class="px-4 py-3 rounded-2xl border bg-white hover:shadow-md transition text-sm font-semibold"
-           href="kategorie.html?cat=bequem">Bequemschuheinlagen</a>
-        <a class="px-4 py-3 rounded-2xl border bg-white hover:shadow-md transition text-sm font-semibold"
-           href="kategorie.html?cat=komfort">Komforteinlagen</a>
-        <a class="px-4 py-3 rounded-2xl border bg-white hover:shadow-md transition text-sm font-semibold"
-           href="kategorie.html?cat=alltag">Alltagseinlagen</a>
-        <a class="px-4 py-3 rounded-2xl border bg-white hover:shadow-md transition text-sm font-semibold"
-           href="kategorie.html?cat=belts">Maßgürtel</a>
-        <a class="px-4 py-3 rounded-2xl border bg-white hover:shadow-md transition text-sm font-semibold"
-           href="kategorie.html?cat=laser">Lasergravuren</a>
-        <a class="px-4 py-3 rounded-2xl border bg-white hover:shadow-md transition text-sm font-semibold"
-           href="kategorie.html?cat=cutting">Laserzuschnitte</a>
-        <a class="px-4 py-3 rounded-2xl border bg-white hover:shadow-md transition text-sm font-semibold"
-           href="kategorie.html?cat=streetwear">Streetwear</a>
-        <a class="px-4 py-3 rounded-2xl border bg-white hover:shadow-md transition text-sm font-semibold"
-           href="kategorie.html?cat=sandblast">Sandstrahlung</a>
-        <a class="px-4 py-3 rounded-2xl border bg-white hover:shadow-md transition text-sm font-semibold"
-           href="#contact">Kontakt & Öffnungszeiten</a>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 mt-4">
+        <a class="px-4 py-3 rounded-2xl border border-white/50 bg-white/80 hover:shadow-md transition text-sm font-semibold" href="kategorie.html?cat=schuh">Schuh- & Lederwarenreparatur</a>
+        <a class="px-4 py-3 rounded-2xl border border-white/50 bg-white/80 hover:shadow-md transition text-sm font-semibold" href="kategorie.html?cat=bequem">Bequemschuheinlagen</a>
+        <a class="px-4 py-3 rounded-2xl border border-white/50 bg-white/80 hover:shadow-md transition text-sm font-semibold" href="kategorie.html?cat=komfort">Komforteinlagen</a>
+        <a class="px-4 py-3 rounded-2xl border border-white/50 bg-white/80 hover:shadow-md transition text-sm font-semibold" href="kategorie.html?cat=alltag">Alltagseinlagen</a>
+        <a class="px-4 py-3 rounded-2xl border border-white/50 bg-white/80 hover:shadow-md transition text-sm font-semibold" href="kategorie.html?cat=belts">Maßgürtel</a>
+        <a class="px-4 py-3 rounded-2xl border border-white/50 bg-white/80 hover:shadow-md transition text-sm font-semibold" href="kategorie.html?cat=laser">Lasergravuren</a>
+        <a class="px-4 py-3 rounded-2xl border border-white/50 bg-white/80 hover:shadow-md transition text-sm font-semibold" href="kategorie.html?cat=cutting">Laserzuschnitte</a>
+        <a class="px-4 py-3 rounded-2xl border border-white/50 bg-white/80 hover:shadow-md transition text-sm font-semibold" href="kategorie.html?cat=streetwear">Streetwear</a>
+        <a class="px-4 py-3 rounded-2xl border border-white/50 bg-white/80 hover:shadow-md transition text-sm font-semibold" href="kategorie.html?cat=sandblast">Sandstrahlung</a>
+        <a class="px-4 py-3 rounded-2xl border border-white/50 bg-white/80 hover:shadow-md transition text-sm font-semibold" href="./#contact">Kontakt & Öffnungszeiten</a>
       </div>
 
-      <p class="text-xs text-stone-500 mt-4">
-        Hinweis: Alle Preise sind Ab-Preise inkl. MwSt., abhängig von Material & Aufwand.
-      </p>
+      <p class="text-xs text-stone-600 mt-4">Hinweis: Alle Preise sind Ab-Preise inkl. MwSt., abhängig von Material & Aufwand.</p>
     </div>
   </div>
 </div>
 
 <!-- Verdunkelung hinter dem Register -->
-<div id="catalogBackdrop"
-     class="fixed inset-0 bg-black/30 opacity-0 pointer-events-none transition-opacity duration-300 z-20"></div>
+<div id="catalogBackdrop" class="fixed inset-0 bg-black/30 opacity-0 pointer-events-none transition-opacity duration-300 z-20"></div>
 
 
 <!-- Hero -->
@@ -344,22 +337,26 @@
 <script>
   (function(){
     const btn = document.getElementById('catalogBtn');
+    const btnMobile = document.getElementById('catalogBtnMobile');
     const closeBtn = document.getElementById('catalogClose');
     const panel = document.getElementById('catalogPanel');
     const backdrop = document.getElementById('catalogBackdrop');
 
     let open = false;
-    function toggle(openState = !open){
-      open = openState;
-      panel.classList.toggle('max-h-0', !open);
-      panel.classList.toggle('max-h-[60vh]', open);
+    function apply(){
+      panel.style.maxHeight = open ? '60vh' : '0px';
       backdrop.classList.toggle('opacity-0', !open);
       backdrop.classList.toggle('opacity-100', open);
       backdrop.classList.toggle('pointer-events-none', !open);
     }
+    function toggle(state){ open = (typeof state==='boolean') ? state : !open; apply(); }
+
     btn && btn.addEventListener('click', () => toggle());
+    btnMobile && btnMobile.addEventListener('click', () => toggle());
     closeBtn && closeBtn.addEventListener('click', () => toggle(false));
     backdrop && backdrop.addEventListener('click', () => toggle(false));
+
+    apply();
   })();
 </script>
 </body>
