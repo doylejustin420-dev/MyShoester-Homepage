@@ -16,7 +16,7 @@
 html,body{margin:0;padding:0;color:var(--text);
   font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Inter,'Helvetica Neue',Arial,sans-serif}
 
-/* Hintergrund (unverändert) */
+/* Hintergrund */
 body{
   background: linear-gradient(135deg, #e7d6ff 0%, #cfe8ff 45%, #ffd6c7 100%) fixed;
 }
@@ -38,7 +38,7 @@ body::before{
 .nav-links a{color:var(--text);text-decoration:none;padding:8px 10px;border-radius:10px}
 .nav-links a:hover{background:#1a2240}
 
-/* Katalog-Button + Dropdown (unverändert) */
+/* Katalog + Dropdown (unverändert) */
 .katalog-wrap{position: fixed;left: 16px;top: 72px;z-index: 1001;}
 .katalog-btn{appearance:none;border:1px solid var(--line);background:linear-gradient(135deg,var(--p2),var(--p5));color:var(--ink);
   padding:10px 14px;border-radius:14px;font-weight:700;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.25)}
@@ -56,7 +56,7 @@ body::before{
   color:var(--text);text-decoration:none;font-weight:600}
 .cat-link:hover{background:rgba(255,255,255,.12)}
 
-/* Layout allgemein */
+/* Layout */
 .container{max-width:1200px;margin:0 auto;padding:24px}
 .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:28px;align-items:center;padding:42px 0}
 .hero h1{font-family:'Playfair Display',serif;font-size:46px;line-height:1.15;margin:0 0 14px}
@@ -74,69 +74,83 @@ body::before{
 .footer{border-top:1px solid var(--line);padding:26px 0;color:var(--muted);text-align:center}
 
 /* ================================================================
-   NEU: Unsere Leistungen – vertikale Bildliste (nicht klickbar)
+   UNSERE LEISTUNGEN – vertikale Liste, abwechselnde Bildposition
    ================================================================ */
-#leistungen{ scroll-margin-top: 96px; } /* sauberes Anscrollen unter der fixen Leiste */
+#leistungen{ scroll-margin-top: 96px; }
 
-/* Liste untereinander */
 #leistungen .svc-list{
   display:flex;
   flex-direction:column;
-  gap:14px;
+  gap:16px;
 }
 
-/* Einzelzeile: kleines Bild + Text, keine „Karten“-Anmutung */
+/* Zeile: Grid mit Bild+Text */
 #leistungen .svc-row{
-  --acc:#7cc3ff;                 /* Akzent pro Zeile (per inline überschreibbar) */
+  --acc:#7cc3ff;
   position:relative;
   display:grid;
-  grid-template-columns:88px 1fr;
+  grid-template-columns:88px 1fr; /* Standard: Bild links */
   align-items:center;
   gap:14px;
   padding:6px 4px;
   border-radius:14px;
-  background:transparent;        /* kein Kasten */
-  border:none;
-  box-shadow:none;
-  cursor:default;
 }
 
-/* kleines Thumbnail links */
+/* Bildblock */
 #leistungen .svc-pic{
   width:88px; height:64px; border-radius:12px; overflow:hidden;
-  border:1px solid rgba(255,255,255,.18);
+  border:1px solid rgba(255,255,255,.22);
+  box-shadow:0 6px 14px rgba(0,0,0,.18);
 }
 #leistungen .svc-pic img{
   width:100%; height:100%; object-fit:cover; display:block;
   filter:saturate(1.05) contrast(1.02);
 }
 
-/* Text rechts */
+/* Texte – deutlicher/kontrastreicher */
 #leistungen .svc-title{
   margin:0 0 4px 0;
-  font-weight:700;
-  font-size:1rem;
+  font-weight:800;
+  font-size:1.05rem;
+  color:#ffffff;                                  /* klar weiß */
   display:inline-block;
-  padding:2px 8px 3px;
+  padding:3px 10px 4px;
   border-radius:8px;
-  background: color-mix(in srgb, var(--acc) 18%, transparent);
+  background: color-mix(in srgb, var(--acc) 32%, rgba(21,26,44,.55));
+  box-shadow:0 6px 18px rgba(0,0,0,.18);
 }
 #leistungen .svc-desc{
-  margin:0; color:var(--muted); font-size:.92rem; line-height:1.35;
+  margin:0;
+  color:#e9eeff;                                  /* heller als vorher */
+  font-size:.95rem;
+  line-height:1.4;
+  text-shadow:0 1px 0 rgba(0,0,0,.15);            /* leichte Kantenschärfe */
 }
 
-/* verspielter, aber dezenter Trenner zwischen den Zeilen */
+/* Dezente Linie zwischen den Zeilen */
 #leistungen .svc-row::after{
   content:""; position:absolute; left:88px; right:0; bottom:-7px; height:1px;
   background:linear-gradient(90deg, rgba(255,255,255,.18), rgba(255,255,255,.04));
 }
 
-/* kleine farbige „Perle“ links als Akzent */
+/* kleine farbige Perle links */
 #leistungen .svc-row::before{
   content:""; position:absolute; left:-2px; top:50%; transform:translateY(-50%);
   width:8px; height:8px; border-radius:999px; background:var(--acc);
   box-shadow:0 0 0 6px color-mix(in srgb, var(--acc) 20%, transparent);
 }
+
+/* ---------- Abwechslung: gerade Zeilen Bild rechts ---------- */
+#leistungen .svc-row:nth-child(even){
+  grid-template-columns:1fr 88px;                 /* Text links, Bild rechts */
+}
+#leistungen .svc-row:nth-child(even) .svc-text{ order:1; }
+#leistungen .svc-row:nth-child(even) .svc-pic{ order:2; justify-self:end; }
+#leistungen .svc-row:nth-child(even)::after{ left:0; right:88px; } /* Linie endet vor dem Bild */
+
+/* Mini-Spielerei: ganz leichte Versetzung der Bilder (professionell dezent) */
+#leistungen .svc-row:nth-child(odd) .svc-pic{ transform:translateY(2px); }
+#leistungen .svc-row:nth-child(even) .svc-pic{ transform:translateY(-1px); }
 
 /* Responsive Hero-Stack (unverändert) */
 @media (max-width:980px){
@@ -202,7 +216,7 @@ body::before{
     <div><img src="https://images.unsplash.com/photo-1516826957135-700dedea698c?q=80&w=1200&auto=format&fit=crop" alt="Werkstatt"></div>
   </section>
 
-  <!-- ===================== UNSERE LEISTUNGEN (vertikale Liste) ===================== -->
+  <!-- ===================== UNSERE LEISTUNGEN (vertikal, Bild links/rechts im Wechsel) ===================== -->
   <section id="leistungen" class="section">
     <h2 class="h2">Unsere Leistungen</h2>
 
@@ -218,12 +232,12 @@ body::before{
       </div>
 
       <div class="svc-row" style="--acc:#93c5fd">
-        <div class="svc-pic">
-          <img src="https://images.unsplash.com/photo-1542216510-6bdb8c37a3aa?q=80&w=600&auto=format&fit=crop" alt="Bequemschuheinlagen">
-        </div>
         <div class="svc-text">
           <div class="svc-title">Bequemschuheinlagen</div>
           <p class="svc-desc">Weiche Dämpfung für lange Tage.</p>
+        </div>
+        <div class="svc-pic">
+          <img src="https://images.unsplash.com/photo-1542216510-6bdb8c37a3aa?q=80&w=600&auto=format&fit=crop" alt="Bequemschuheinlagen">
         </div>
       </div>
 
@@ -238,12 +252,12 @@ body::before{
       </div>
 
       <div class="svc-row" style="--acc:#fcd34d">
-        <div class="svc-pic">
-          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=600&auto=format&fit=crop" alt="Alltagseinlagen">
-        </div>
         <div class="svc-text">
           <div class="svc-title">Alltagseinlagen</div>
           <p class="svc-desc">Leicht, pflegeleicht – für jeden Tag.</p>
+        </div>
+        <div class="svc-pic">
+          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=600&auto=format&fit=crop" alt="Alltagseinlagen">
         </div>
       </div>
 
@@ -258,12 +272,12 @@ body::before{
       </div>
 
       <div class="svc-row" style="--acc:#67e8f9">
-        <div class="svc-pic">
-          <img src="https://images.unsplash.com/photo-1581091215367-59ab6d5023d8?q=80&w=600&auto=format&fit=crop" alt="Lasergravuren">
-        </div>
         <div class="svc-text">
           <div class="svc-title">Lasergravuren</div>
           <p class="svc-desc">Personalisierung auf Holz, Leder, Glas u. v. m.</p>
+        </div>
+        <div class="svc-pic">
+          <img src="https://images.unsplash.com/photo-1581091215367-59ab6d5023d8?q=80&w=600&auto=format&fit=crop" alt="Lasergravuren">
         </div>
       </div>
 
@@ -278,12 +292,12 @@ body::before{
       </div>
 
       <div class="svc-row" style="--acc:#f9a8d4">
-        <div class="svc-pic">
-          <img src="https://images.unsplash.com/photo-1503342394120-2f06f8a90b6d?q=80&w=600&auto=format&fit=crop" alt="Streetwear">
-        </div>
         <div class="svc-text">
           <div class="svc-title">Streetwear</div>
           <p class="svc-desc">Caps, Shirts & Accessoires – passend zu MyShoester.</p>
+        </div>
+        <div class="svc-pic">
+          <img src="https://images.unsplash.com/photo-1503342394120-2f06f8a90b6d?q=80&w=600&auto=format&fit=crop" alt="Streetwear">
         </div>
       </div>
 
