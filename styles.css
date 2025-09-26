@@ -58,3 +58,42 @@ a:hover{opacity:.9}
 .gallery-head{display:flex;justify-content:space-between;align-items:center}
 .footer{border-top:1px solid var(--line);padding:28px 24px;color:var(--muted);text-align:center}
 @media (max-width:900px){.hero{grid-template-columns:1fr}}
+/* Nur in der Leistungen-Section: horizontal scrollende Kartenreihe */
+#leistungen .services-scroller{
+  display:flex;
+  gap:18px;
+  overflow-x:auto;
+  padding:8px 4px 12px;
+  scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;
+}
+#leistungen .services-scroller::-webkit-scrollbar{height:8px}
+#leistungen .services-scroller::-webkit-scrollbar-thumb{
+  background:rgba(255,255,255,.18);
+  border-radius:999px;
+}
+
+#leistungen .services-scroller > .card{
+  flex:0 0 clamp(260px,28vw,340px);
+  min-height:290px;
+  background:rgba(21,26,44,.75);
+  backdrop-filter:saturate(120%) blur(6px);
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:18px;
+  transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  scroll-snap-align:start;
+}
+#leistungen .services-scroller > .card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 12px 34px rgba(0,0,0,.32);
+  border-color:rgba(255,255,255,.18);
+}
+#leistungen .services-scroller > .card img{
+  height:180px;           /* einheitliche Bildhöhe */
+  object-fit:cover;
+  width:100%;
+  display:block;
+}
+
+/* Alternative ohne Scrollen: Karten umbrechen */
+ /* #leistungen .services-scroller{flex-wrap:wrap;overflow:visible;scroll-snap-type:none} */
