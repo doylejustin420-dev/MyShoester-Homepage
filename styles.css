@@ -240,3 +240,16 @@ a:hover{opacity:.9}
   text-shadow: 0 1px 0 rgba(0,0,0,.15);
 }
 
+/* Dropdown: dunkles Pastellblau für die Schrift */
+:root{
+  --dropBlue: #6d84d8; /* dunkles Pastellblau – gern anpassen */
+}
+
+.catalog .cat-title,
+.catalog .cat-link,
+.catalog .cat-close{
+  color: var(--dropBlue) !important;
+}
+
+/* Optional (wenn du die Lesbarkeit noch etwas pushen willst) */
+.catalog .cat-link{ text-shadow: 0 1px 0 rgba(0,0,0,.15); }
