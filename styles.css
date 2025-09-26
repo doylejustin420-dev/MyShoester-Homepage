@@ -97,3 +97,83 @@ a:hover{opacity:.9}
 
 /* Alternative ohne Scrollen: Karten umbrechen */
  /* #leistungen .services-scroller{flex-wrap:wrap;overflow:visible;scroll-snap-type:none} */
+/* --- Unsere Leistungen: alles auf einmal sichtbar (kein Scrollen) --- */
+#leistungen .services-scroller{
+  display:grid;                           /* statt flex */
+  grid-template-columns: repeat(4, minmax(260px, 1fr));
+  gap:18px;
+  overflow:visible;
+  scroll-snap-type:none;
+}
+
+/* Karten auf Grid anpassen (kein flex-basis mehr) */
+#leistungen .services-scroller > .card{
+  /* flex:0 0 ... entfernen/übersteuern */
+  flex:initial;
+  min-height:290px;
+}
+
+/* Einheitliche Bildhöhe behalten */
+#leistungen .services-scroller > .card img{
+  height:180px;
+  object-fit:cover;
+  width:100%;
+  display:block;
+}
+
+/* Responsive Spaltenanzahl */
+@media (max-width: 1200px){
+  #leistungen .services-scroller{
+    grid-template-columns: repeat(3, minmax(240px, 1fr));
+  }
+}
+@media (max-width: 900px){
+  #leistungen .services-scroller{
+    grid-template-columns: repeat(2, minmax(220px, 1fr));
+  }
+}
+@media (max-width: 560px){
+  #leistungen .services-scroller{
+    grid-template-columns: 1fr;
+  }
+}
+/* --- Unsere Leistungen: alles auf einmal sichtbar (kein Scrollen) --- */
+#leistungen .services-scroller{
+  display:grid;                           /* statt flex */
+  grid-template-columns: repeat(4, minmax(260px, 1fr));
+  gap:18px;
+  overflow:visible;
+  scroll-snap-type:none;
+}
+
+/* Karten auf Grid anpassen (kein flex-basis mehr) */
+#leistungen .services-scroller > .card{
+  /* flex:0 0 ... entfernen/übersteuern */
+  flex:initial;
+  min-height:290px;
+}
+
+/* Einheitliche Bildhöhe behalten */
+#leistungen .services-scroller > .card img{
+  height:180px;
+  object-fit:cover;
+  width:100%;
+  display:block;
+}
+
+/* Responsive Spaltenanzahl */
+@media (max-width: 1200px){
+  #leistungen .services-scroller{
+    grid-template-columns: repeat(3, minmax(240px, 1fr));
+  }
+}
+@media (max-width: 900px){
+  #leistungen .services-scroller{
+    grid-template-columns: repeat(2, minmax(220px, 1fr));
+  }
+}
+@media (max-width: 560px){
+  #leistungen .services-scroller{
+    grid-template-columns: 1fr;
+  }
+}
