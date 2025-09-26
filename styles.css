@@ -216,4 +216,27 @@ a:hover{opacity:.9}
   #leistungen .services-scroller{
     grid-template-columns: 1fr;
   }
+}/* Dropdown: dunkles Pastellblau für die Schrift */
+:root{
+  --dropBlue: #6d84d8; /* dunkles Pastellblau – gern anpassen */
 }
+
+/* sowohl mit #catalog (ID) als auch .catalog (Klasse) absichern */
+#catalog .cat-title,
+#catalog .cat-link,
+#catalog .cat-close,
+.catalog .cat-title,
+.catalog .cat-link,
+.catalog .cat-close{
+  color: var(--dropBlue) !important;
+  opacity: 1 !important;           /* falls irgendwo eine reduzierte Opazität gesetzt ist */
+}
+
+/* optional: leichte Hover-Hervorhebung im selben Blauton */
+#catalog .cat-link:hover,
+.catalog .cat-link:hover{
+  background: rgba(109,132,216,.12);
+  border-color: rgba(109,132,216,.25);
+  text-shadow: 0 1px 0 rgba(0,0,0,.15);
+}
+
