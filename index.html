@@ -138,6 +138,28 @@ body::before{
   content:""; position:absolute; left:0; right:0; top:-14px; height:1px;
   background:linear-gradient(90deg, rgba(255,255,255,.15), rgba(255,255,255,.04));
 }
+
+/* === Katalog-Dropdown: dunkles Pastellblau für die Schrift (eingebaut) === */
+:root{
+  --dropBlue: #6b7ed9; /* anpassbar: #5b71c7 (dunkler), #6a7bb0 (grauer) */
+}
+#catalog .cat-title,
+#catalog .cat-link,
+#catalog .cat-close,
+.catalog .cat-title,
+.catalog .cat-link,
+.catalog .cat-close{
+  color: var(--dropBlue) !important;
+  opacity: 1 !important; /* falls irgendwo eine geringere Opazität gesetzt ist */
+}
+#catalog .cat-link > *,
+.catalog .cat-link > *{ color: inherit !important; }
+#catalog .cat-link:hover,
+.catalog .cat-link:hover{
+  background: rgba(107,126,217,.14);
+  border-color: rgba(107,126,217,.28);
+  text-shadow: 0 1px 0 rgba(0,0,0,.15);
+}
 </style>
 </head>
 
