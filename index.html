@@ -73,91 +73,60 @@ body::before{
 .card a{color:inherit;text-decoration:none;display:block}
 .footer{border-top:1px solid var(--line);padding:26px 0;color:var(--muted);text-align:center}
 
-/* ===================================================================
-   NEU: Unsere Leistungen – Pro-Cards (3×3 Raster) + Thumbs & Farben
-   =================================================================== */
-#leistungen .svc-grid{
+/* ================================================================
+   NEU: Unsere Leistungen – nur kleine Bilder + Labels (nicht klickbar)
+   ================================================================ */
+#leistungen{ scroll-margin-top: 96px; } /* sauberes Anscrollen unter der fixen Leiste */
+
+#leistungen .svc-thumbs{
   display:grid;
-  grid-template-columns:repeat(3, minmax(280px, 1fr));
-  gap:20px;
+  grid-template-columns:repeat(4, minmax(160px, 1fr));
+  gap:18px;
 }
-@media (max-width:1024px){ #leistungen .svc-grid{ grid-template-columns:repeat(2, minmax(260px,1fr)); } }
-@media (max-width:620px){  #leistungen .svc-grid{ grid-template-columns:1fr; } }
+@media (max-width:1100px){ #leistungen .svc-thumbs{ grid-template-columns:repeat(3, minmax(160px,1fr)); } }
+@media (max-width:760px){  #leistungen .svc-thumbs{ grid-template-columns:repeat(2, minmax(150px,1fr)); } }
+@media (max-width:480px){  #leistungen .svc-thumbs{ grid-template-columns:1fr; } }
 
-#leistungen .svc-card{
-  /* Jede Karte bekommt per inline-style ihre Akzentfarbe --acc */
+/* Thumbnail optisch „verschmolzen“: keine Karte, nur Bild mit zarter Kontur */
+#leistungen .svc-item{
   position:relative;
-  display:block;
-  text-decoration:none;
-  color:inherit;
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.03), transparent 35%),
-    radial-gradient(120px 120px at 110% -20%, color-mix(in srgb, var(--acc) 30%, transparent), transparent 70%),
-    rgba(21,26,44,.86);
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:18px;
-  padding:18px 18px 16px;
-  min-height:180px;
-  transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
-  box-shadow:0 6px 20px rgba(0,0,0,.18);
+  border-radius:16px;
   overflow:hidden;
+  isolation:isolate;
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:0 6px 18px rgba(0,0,0,.18);
+  background:transparent;
 }
-#leistungen .svc-card:hover{
-  transform:translateY(-3px);
-  box-shadow:0 12px 34px rgba(0,0,0,.30);
-  border-color:rgba(255,255,255,.18);
+#leistungen .svc-item img{
+  width:100%; height:120px; object-fit:cover; display:block;
+  filter:saturate(1.05) contrast(1.02);
 }
-
-/* Kopf (Icon + Titel + Thumb rechts) */
-#leistungen .svc-head{
-  display:flex; align-items:center; gap:12px; margin-bottom:8px;
+/* sanfter Verlauf unten für Lesbarkeit */
+#leistungen .svc-item::after{
+  content:""; position:absolute; inset:0; z-index:1;
+  background:linear-gradient(180deg, transparent 55%, rgba(15,18,32,.35) 85%);
+  pointer-events:none;
 }
-#leistungen .svc-head .left{
-  display:flex; align-items:center; gap:12px; min-width:0;
-}
-#leistungen .svc-icon{
-  width:44px;height:44px;border-radius:999px;
-  background:
-    radial-gradient(closest-side, rgba(255,255,255,.22), rgba(255,255,255,.08)),
-    linear-gradient(135deg, var(--acc), transparent 60%);
-  border:1px solid rgba(255,255,255,.22);
-  display:grid;place-items:center;
-  font-weight:800;font-size:14px;letter-spacing:.3px;
-  color:#0b1020;
-}
-#leistungen .svc-card h3{
-  margin:0;font-size:1.05rem;letter-spacing:.2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-}
-#leistungen .svc-thumb{
-  margin-left:auto;
-  width:72px; height:54px;
-  object-fit:cover;
-  border-radius:10px;
-  border:1px solid rgba(255,255,255,.22);
-  box-shadow:0 6px 14px rgba(0,0,0,.22);
-}
-
-/* Text & Chip */
-#leistungen .svc-card p{
-  margin:6px 0 10px;color:var(--muted);font-size:.95rem;line-height:1.35
-}
-#leistungen .svc-chip{
-  display:inline-block;
-  background:color-mix(in srgb, var(--acc) 14%, rgba(255,255,255,.06));
-  border:1px solid rgba(255,255,255,.14);
-  border-radius:999px;
-  padding:6px 10px;
-  font-size:.8rem;
+/* Label-Chip */
+#leistungen .svc-label{
+  position:absolute; left:10px; bottom:10px; z-index:2;
+  font-size:.85rem; font-weight:600;
+  padding:6px 10px; border-radius:999px;
   color:var(--text);
+  background:rgba(21,26,44,.42);
+  border:1px solid rgba(255,255,255,.18);
+  -webkit-backdrop-filter:blur(4px); backdrop-filter:blur(4px);
+  box-shadow:0 4px 12px rgba(0,0,0,.25);
 }
-#leistungen .svc-arrow{
-  position:absolute; right:14px; bottom:12px;
-  font-size:18px; opacity:.65;
-  transition:transform .18s ease, opacity .18s ease;
+/* Mini-Subtext (optional) */
+#leistungen .svc-sub{
+  display:block; font-size:.72rem; font-weight:400; opacity:.85; margin-top:2px;
 }
-#leistungen .svc-card:hover .svc-arrow{ transform:translateX(3px); opacity:.9; }
 
-/* =================================================================== */
+/* leichte Hover-Reaktion – weiterhin nicht klickbar */
+#leistungen .svc-item:hover{ transform:translateY(-2px); transition:transform .18s ease; }
+
+/* ================================================================ */
 
 /* Responsive Hero-Stack (unverändert) */
 @media (max-width:980px){
@@ -223,145 +192,55 @@ body::before{
     <div><img src="https://images.unsplash.com/photo-1516826957135-700dedea698c?q=80&w=1200&auto=format&fit=crop" alt="Werkstatt"></div>
   </section>
 
-  <!-- ===================== UNSERE LEISTUNGEN ===================== -->
+  <!-- ===================== UNSERE LEISTUNGEN (nur Thumbs) ===================== -->
   <section id="leistungen" class="section">
     <h2 class="h2">Unsere Leistungen</h2>
 
-    <div class="svc-grid">
-      <!-- Reparatur -->
-      <a class="svc-card" href="kategorie.html?cat=schuh" style="--acc:#d4a373">
-        <div class="svc-head">
-          <div class="left">
-            <div class="svc-icon">RE</div>
-            <h3>Schuh- & Lederwarenreparatur</h3>
-          </div>
-          <img class="svc-thumb" alt="Absatz- & Sohlenreparatur" 
-               src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=400&auto=format&fit=crop">
-        </div>
-        <p>Von Sohlen bis Nähte – fachgerecht, langlebig, fair.</p>
-        <span class="svc-chip">Sohlen • Absätze • Nähte</span>
-        <span class="svc-arrow" aria-hidden="true">→</span>
-      </a>
+    <div class="svc-thumbs">
+      <div class="svc-item">
+        <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=600&auto=format&fit=crop" alt="Sohlen- & Absatzreparatur">
+        <div class="svc-label">Schuh- & Lederwarenreparatur<span class="svc-sub">Sohlen • Absätze • Nähte</span></div>
+      </div>
 
-      <!-- Bequem -->
-      <a class="svc-card" href="kategorie.html?cat=bequem" style="--acc:#7cc3ff">
-        <div class="svc-head">
-          <div class="left">
-            <div class="svc-icon">BE</div>
-            <h3>Bequemschuheinlagen</h3>
-          </div>
-          <img class="svc-thumb" alt="Bequeme Einlagen" 
-               src="https://images.unsplash.com/photo-1542216510-6bdb8c37a3aa?q=80&w=400&auto=format&fit=crop">
-        </div>
-        <p>Weiche Dämpfung für lange Tage – spürbar angenehm.</p>
-        <span class="svc-chip">Dämpfung & Komfort</span>
-        <span class="svc-arrow" aria-hidden="true">→</span>
-      </a>
+      <div class="svc-item">
+        <img src="https://images.unsplash.com/photo-1542216510-6bdb8c37a3aa?q=80&w=600&auto=format&fit=crop" alt="Bequemschuheinlagen">
+        <div class="svc-label">Bequemschuheinlagen<span class="svc-sub">Dämpfung & Komfort</span></div>
+      </div>
 
-      <!-- Komfort -->
-      <a class="svc-card" href="kategorie.html?cat=komfort" style="--acc:#84cc16">
-        <div class="svc-head">
-          <div class="left">
-            <div class="svc-icon">KO</div>
-            <h3>Komforteinlagen</h3>
-          </div>
-          <img class="svc-thumb" alt="Komforteinlagen" 
-               src="https://images.unsplash.com/photo-1594949163427-4f3c7a9c4b87?q=80&w=400&auto=format&fit=crop">
-        </div>
-        <p>Stabile Führung und gleichmäßige Druckverteilung.</p>
-        <span class="svc-chip">Halt & Balance</span>
-        <span class="svc-arrow" aria-hidden="true">→</span>
-      </a>
+      <div class="svc-item">
+        <img src="https://images.unsplash.com/photo-1594949163427-4f3c7a9c4b87?q=80&w=600&auto=format&fit=crop" alt="Komforteinlagen">
+        <div class="svc-label">Komforteinlagen<span class="svc-sub">Halt & Balance</span></div>
+      </div>
 
-      <!-- Alltag -->
-      <a class="svc-card" href="kategorie.html?cat=alltag" style="--acc:#e9c46a">
-        <div class="svc-head">
-          <div class="left">
-            <div class="svc-icon">AL</div>
-            <h3>Alltagseinlagen</h3>
-          </div>
-          <img class="svc-thumb" alt="Alltagseinlagen" 
-               src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=400&auto=format&fit=crop">
-        </div>
-        <p>Leicht, pflegeleicht und verlässlich für jeden Tag.</p>
-        <span class="svc-chip">Für tägliches Tragen</span>
-        <span class="svc-arrow" aria-hidden="true">→</span>
-      </a>
+      <div class="svc-item">
+        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=600&auto=format&fit=crop" alt="Alltagseinlagen">
+        <div class="svc-label">Alltagseinlagen<span class="svc-sub">Für jeden Tag</span></div>
+      </div>
 
-      <!-- Maßgürtel -->
-      <a class="svc-card" href="kategorie.html?cat=belts" style="--acc:#b08968">
-        <div class="svc-head">
-          <div class="left">
-            <div class="svc-icon">MG</div>
-            <h3>Maßgürtel</h3>
-          </div>
-          <img class="svc-thumb" alt="Leder-Maßgürtel" 
-               src="https://images.unsplash.com/photo-1519066629447-267fffa62d5b?q=80&w=400&auto=format&fit=crop">
-        </div>
-        <p>Vollleder nach Maß – Breite, Farbe & Naht nach Wunsch.</p>
-        <span class="svc-chip">Handgefertigt</span>
-        <span class="svc-arrow" aria-hidden="true">→</span>
-      </a>
+      <div class="svc-item">
+        <img src="https://images.unsplash.com/photo-1519066629447-267fffa62d5b?q=80&w=600&auto=format&fit=crop" alt="Maßgürtel aus Leder">
+        <div class="svc-label">Maßgürtel<span class="svc-sub">Vollleder nach Wunsch</span></div>
+      </div>
 
-      <!-- Lasergravuren -->
-      <a class="svc-card" href="kategorie.html?cat=laser" style="--acc:#22d3ee">
-        <div class="svc-head">
-          <div class="left">
-            <div class="svc-icon">LG</div>
-            <h3>Lasergravuren</h3>
-          </div>
-          <img class="svc-thumb" alt="Lasergravur-Beispiel" 
-               src="https://images.unsplash.com/photo-1581091215367-59ab6d5023d8?q=80&w=400&auto=format&fit=crop">
-        </div>
-        <p>Präzise Personalisierung auf Holz, Leder, Glas u. v. m.</p>
-        <span class="svc-chip">Individuelle Motive</span>
-        <span class="svc-arrow" aria-hidden="true">→</span>
-      </a>
+      <div class="svc-item">
+        <img src="https://images.unsplash.com/photo-1581091215367-59ab6d5023d8?q=80&w=600&auto=format&fit=crop" alt="Lasergravuren">
+        <div class="svc-label">Lasergravuren<span class="svc-sub">Holz • Leder • Glas</span></div>
+      </div>
 
-      <!-- Laserzuschnitte -->
-      <a class="svc-card" href="kategorie.html?cat=cutting" style="--acc:#86efac">
-        <div class="svc-head">
-          <div class="left">
-            <div class="svc-icon">LZ</div>
-            <h3>Laserzuschnitte</h3>
-          </div>
-          <img class="svc-thumb" alt="Laserschnitt-Beispiel" 
-               src="https://images.unsplash.com/photo-1520975922203-baceb7a9342f?q=80&w=400&auto=format&fit=crop">
-        </div>
-        <p>Saubere Kanten und exakte Konturen für viele Materialien.</p>
-        <span class="svc-chip">Präzision & Maß</span>
-        <span class="svc-arrow" aria-hidden="true">→</span>
-      </a>
+      <div class="svc-item">
+        <img src="https://images.unsplash.com/photo-1520975922203-baceb7a9342f?q=80&w=600&auto=format&fit=crop" alt="Laserzuschnitte">
+        <div class="svc-label">Laserzuschnitte<span class="svc-sub">Präzision & Maß</span></div>
+      </div>
 
-      <!-- Streetwear -->
-      <a class="svc-card" href="kategorie.html?cat=streetwear" style="--acc:#f472b6">
-        <div class="svc-head">
-          <div class="left">
-            <div class="svc-icon">SW</div>
-            <h3>Streetwear</h3>
-          </div>
-          <img class="svc-thumb" alt="Streetwear Beispiel" 
-               src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=400&auto=format&fit=crop">
-        </div>
-        <p>Caps, Shirts & Accessoires – passend zu MyShoester.</p>
-        <span class="svc-chip">Caps • Shirts</span>
-        <span class="svc-arrow" aria-hidden="true">→</span>
-      </a>
+      <div class="svc-item">
+        <img src="https://images.unsplash.com/photo-1503342394120-2f06f8a90b6d?q=80&w=600&auto=format&fit=crop" alt="Streetwear">
+        <div class="svc-label">Streetwear<span class="svc-sub">Caps • Shirts</span></div>
+      </div>
 
-      <!-- Sandstrahlung -->
-      <a class="svc-card" href="kategorie.html?cat=sand" style="--acc:#f59e0b">
-        <div class="svc-head">
-          <div class="left">
-            <div class="svc-icon">SS</div>
-            <h3>Sandstrahlung</h3>
-          </div>
-          <img class="svc-thumb" alt="Sandstrahl-Struktur" 
-               src="https://images.unsplash.com/photo-1581093588401-16f8b8b1f6d3?q=80&w=400&auto=format&fit=crop">
-        </div>
-        <p>Reinigung & Veredelung – die Oberfläche wird wieder fein.</p>
-        <span class="svc-chip">70×70 cm Bereich</span>
-        <span class="svc-arrow" aria-hidden="true">→</span>
-      </a>
+      <div class="svc-item">
+        <img src="https://images.unsplash.com/photo-1581093588401-16f8b8b1f6d3?q=80&w=600&auto=format&fit=crop" alt="Sandstrahlung">
+        <div class="svc-label">Sandstrahlung<span class="svc-sub">70×70 cm Bereich</span></div>
+      </div>
     </div>
   </section>
   <!-- =================== Ende: Unsere Leistungen ===================== -->
