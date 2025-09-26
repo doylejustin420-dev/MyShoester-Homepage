@@ -43,7 +43,7 @@ body::before{
 .katalog-wrap{
   position: fixed;
   left: 16px;
-  top: 72px;           /* direkt unter der grauen Leiste */
+  top: 72px;
   z-index: 1001;
 }
 .katalog-btn{
@@ -56,7 +56,7 @@ body::before{
 .catalog{
   position: fixed;
   left: 16px;
-  top: 120px;          /* knapp unter dem Button */
+  top: 120px;
   z-index: 1000;
   max-width:420px;width:calc(100vw - 32px);
   max-height: calc(100vh - 140px);
@@ -98,26 +98,25 @@ body::before{
 .card a{color:inherit;text-decoration:none;display:block}
 .footer{border-top:1px solid var(--line);padding:26px 0;color:var(--muted);text-align:center}
 
-/* >>>>>>>>>>>>>>>  NEU: Leistungen horizontal NUR in dieser Section  <<<<<<<<<<<<<<< */
+/* >>>>>>>>>>>>>>>  LEISTUNGEN: Raster-Ansicht (alle Karten sichtbar)  <<<<<<<<<<<<<<< */
 #leistungen .services-scroller{
-  display:flex;                 /* überschreibt .grid */
+  /* statt flex eine Grid-Zeile mit festen Spalten */
+  display:grid;
+  grid-template-columns: repeat(4, minmax(260px, 1fr));
   gap:18px;
-  overflow-x:auto;
-  padding:8px 4px 12px;
-  scroll-snap-type:x mandatory;
-  -webkit-overflow-scrolling:touch;
-}
-#leistungen .services-scroller::-webkit-scrollbar{height:8px}
-#leistungen .services-scroller::-webkit-scrollbar-thumb{
-  background:rgba(255,255,255,.18);
-  border-radius:999px;
+  overflow:visible;
+  scroll-snap-type:none;
+  -webkit-overflow-scrolling:auto;
 }
 
-/* Karten kompakter + konsistent – nur in der Leistungen-Section */
+/* Karten: keine Flex-Breite mehr, nur Optik beibehalten */
 #leistungen .services-scroller > .card{
-  flex:0 0 clamp(260px, 28vw, 340px);  /* Breite */
+  /* frühere flex-basis entfernen/übersteuern */
+  flex: initial;
+  width: auto;
+  min-width: 0;
+
   min-height:290px;
-  scroll-snap-align:start;
   border-radius:18px;
   background:rgba(21,26,44,.75);
   backdrop-filter:saturate(120%) blur(6px);
@@ -148,7 +147,24 @@ body::before{
 #leistungen .services-scroller > .card .tag{
   margin-top:8px;
 }
-/* <<<<<<<<<<<<<<  Ende: Leistungen horizontal  <<<<<<<<<<<<<<< */
+
+/* Responsive Spaltenanzahl */
+@media (max-width:1200px){
+  #leistungen .services-scroller{
+    grid-template-columns: repeat(3, minmax(240px, 1fr));
+  }
+}
+@media (max-width:900px){
+  #leistungen .services-scroller{
+    grid-template-columns: repeat(2, minmax(220px, 1fr));
+  }
+}
+@media (max-width:560px){
+  #leistungen .services-scroller{
+    grid-template-columns: 1fr;
+  }
+}
+/* <<<<<<<<<<<<<<  Ende: Leistungen Raster  <<<<<<<<<<<<<<< */
 
 /* Responsive */
 @media (max-width:980px){
@@ -214,7 +230,7 @@ body::before{
     <div><img src="https://images.unsplash.com/photo-1516826957135-700dedea698c?q=80&w=1200&auto=format&fit=crop" alt="Werkstatt"></div>
   </section>
 
-  <!-- ************  NUR DIESE SEKTION ist horizontal umgestellt  ************ -->
+  <!-- ************  LEISTUNGEN: Raster statt Scroll  ************ -->
   <section id="leistungen" class="section">
     <h2 class="h2">Unsere Leistungen</h2>
     <div class="grid services-scroller">
