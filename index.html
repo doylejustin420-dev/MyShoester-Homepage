@@ -9,7 +9,6 @@
 <style>
 /* Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;600&display=swap');
-/* Neu: geschwungene Schrift für den Hero-Badge */
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
 
 :root{
@@ -35,13 +34,7 @@ body::before{
 .nav-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;gap:18px;padding:12px 20px}
 .logo{display:flex;align-items:center;gap:12px}
 .logo-badge{width:36px;height:36px;border-radius:12px;background:linear-gradient(135deg,#a78bfa,#22d3ee);display:grid;place-items:center;font-weight:700}
-/* MyShoester etwas größer & eleganter */
-.logo-title{
-  font-family:'Playfair Display',serif;
-  font-weight:700;
-  font-size:26px;              /* vorher 22px */
-  letter-spacing:.35px;
-}
+.logo-title{font-family:'Playfair Display',serif;font-weight:700;font-size:26px;letter-spacing:.35px}
 .nav-links{display:flex;flex-wrap:wrap;gap:12px;margin-left:auto}
 .nav-links a{color:var(--text);text-decoration:none;padding:8px 10px;border-radius:10px}
 .nav-links a:hover{background:#1a2240}
@@ -68,30 +61,15 @@ body::before{
 .container{max-width:1280px;margin:0 auto;padding:24px}
 .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:28px;align-items:center;padding:42px 0}
 .hero h1{font-family:'Playfair Display',serif;font-size:46px;line-height:1.15;margin:0 0 14px}
-/* Badge im Hero: 2× größer, schwarz, geschwungene Schrift */
-.tag{
-  display:inline-block;
-  font-family:'Great Vibes', cursive;
-  font-size:24px;                 /* vorher 12px → doppelt */
-  line-height:1.1;
-  color:#0d0f16;                  /* schwarz/dunkel */
-  background:rgba(255,255,255,.72);
-  border:0;
-  padding:8px 12px;
-  border-radius:12px;
-  box-shadow:0 6px 14px rgba(0,0,0,.08);
-  margin-bottom:14px;
-}
+.tag{display:inline-block;font-family:'Great Vibes',cursive;font-size:24px;line-height:1.1;color:#0d0f16;background:rgba(255,255,255,.72);border:0;padding:8px 12px;border-radius:12px;box-shadow:0 6px 14px rgba(0,0,0,.08);margin-bottom:14px}
 .hero p{color:var(--muted);margin:0 0 18px}
 .hero img{width:100%;height:480px;object-fit:cover;border-radius:22px;border:1px solid var(--line)}
 .section{padding:8px 0 48px}
 .h2{font-family:'Playfair Display',serif;font-size:28px;margin:0 0 18px}
 .footer{border-top:1px solid var(--line);padding:26px 0;color:var(--muted);text-align:center}
 
-/* ================================================================
-   UNSERE LEISTUNGEN – „Feature-Strips“ (Bild/Text im Wechsel)
-   ================================================================ */
-#leistungen{ scroll-margin-top: 96px; }
+/* Leistungen – Strips */
+#leistungen{scroll-margin-top:96px}
 .services-stack{display:flex;flex-direction:column;gap:28px;max-width:1100px;margin:0 auto;padding-inline:8px}
 .service{--acc:#7cc3ff;display:grid;grid-template-columns:min(40vw,420px) 1fr;align-items:center;gap:24px;scroll-margin-top:110px}
 .service .pic{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:16/11;min-height:200px;border:1px solid rgba(255,255,255,.18);box-shadow:0 10px 26px rgba(0,0,0,.22)}
@@ -109,15 +87,15 @@ body::before{
   .service .pic{order:1}
   .service .text{order:2}
 }
-.service + .service{ position:relative }
-.service + .service::before{content:""; position:absolute; left:0; right:0; top:-14px; height:1px; background:linear-gradient(90deg, rgba(255,255,255,.15), rgba(255,255,255,.04))}
+.service + .service{position:relative}
+.service + .service::before{content:"";position:absolute;left:0;right:0;top:-14px;height:1px;background:linear-gradient(90deg, rgba(255,255,255,.15), rgba(255,255,255,.04))}
 
-/* Dropdown-Farbe (blau) */
-:root{ --dropBlue: #6b7ed9; }
+/* Dropdown-Farbe */
+:root{ --dropBlue:#6b7ed9 }
 #catalog .cat-title,#catalog .cat-link,#catalog .cat-close,
-.catalog .cat-title,.catalog .cat-link,.catalog .cat-close{ color: var(--dropBlue) !important; opacity:1 !important }
-#catalog .cat-link > *, .catalog .cat-link > *{ color: inherit !important }
-#catalog .cat-link:hover, .catalog .cat-link:hover{ background: rgba(107,126,217,.14); border-color: rgba(107,126,217,.28); text-shadow: 0 1px 0 rgba(0,0,0,.15)}
+.catalog .cat-title,.catalog .cat-link,.catalog .cat-close{color:var(--dropBlue)!important;opacity:1!important}
+#catalog .cat-link > *, .catalog .cat-link > *{color:inherit!important}
+#catalog .cat-link:hover, .catalog .cat-link:hover{background:rgba(107,126,217,.14);border-color:rgba(107,126,217,.28);text-shadow:0 1px 0 rgba(0,0,0,.15)}
 </style>
 </head>
 
@@ -174,12 +152,14 @@ body::before{
       <h1>Reparaturen, Pflege & Maßarbeit – <span style="color:#7cc3ff">mit Liebe zum Detail</span>.</h1>
       <p>Lieblingsschuhe und Lederwaren wieder in Form bringen: Sohlenwechsel, Absätze, Nähte, Färbungen & Pflege – fair, präzise, nachhaltig.</p>
     </div>
-    <!-- NEU: hyperrealistisches, schuhmacherbezogenes Hero-Bild -->
+    <!-- Bild mit Fallback -->
     <div>
       <img
-        src="https://source.unsplash.com/1600x1066/?shoemaker,leather,workshop,handcraft,stitching,macro"
+        src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=1600&q=80"
         alt="Hyperrealistischer Blick in eine Schuhmacher-Werkstatt mit Lederschuh in Bearbeitung"
-        loading="eager" referrerpolicy="no-referrer">
+        loading="eager" decoding="async"
+        data-fallback="hero"
+      >
     </div>
   </section>
 
@@ -192,9 +172,10 @@ body::before{
       <div id="repair" class="service" style="--acc:#86efac">
         <div class="pic">
           <img
-            src="https://source.unsplash.com/1200x800/?shoemaker,sole,heel,repair,leather,glue,sewing,bench,macro"
+            src="https://images.unsplash.com/photo-1543168256-418811576931?auto=format&fit=crop&w=1200&q=80"
             alt="Sohlen- und Absatzreparatur in Nahaufnahme: Nähen, Kleben und Planen am Lederschuh"
-            loading="lazy" referrerpolicy="no-referrer">
+            loading="lazy" decoding="async"
+            data-fallback="repair">
         </div>
         <div class="text">
           <h3 class="title">Schuh- & Lederwarenreparatur</h3>
@@ -212,9 +193,10 @@ body::before{
         </div>
         <div class="pic">
           <img
-            src="https://source.unsplash.com/1200x800/?orthopedic,insole,foam,foot,workshop,shoemaker,comfort,macro"
-            alt="Hyperrealistische Bequemschuheinlagen – weiche Einlagen werden am Werktisch angepasst"
-            loading="lazy" referrerpolicy="no-referrer">
+            src="https://images.unsplash.com/photo-1600180758890-6b94519a8baa?auto=format&fit=crop&w=1200&q=80"
+            alt="Bequemschuheinlagen in realistischer Werkstattszene: weiche Einlagen am Werktisch"
+            loading="lazy" decoding="async"
+            data-fallback="bequem">
         </div>
       </div>
 
@@ -222,9 +204,10 @@ body::before{
       <div id="komfort" class="service" style="--acc:#fca5a5">
         <div class="pic">
           <img
-            src="https://source.unsplash.com/1200x800/?orthotic,insole,arch-support,pressure,footprint,shoemaker,bench"
+            src="https://images.unsplash.com/photo-1582095489738-83f2a4c2f0af?auto=format&fit=crop&w=1200&q=80"
             alt="Komforteinlagen mit Gewölbeunterstützung und Druckverteilung in der Anpassung"
-            loading="lazy" referrerpolicy="no-referrer">
+            loading="lazy" decoding="async"
+            data-fallback="komfort">
         </div>
         <div class="text">
           <h3 class="title">Komforteinlagen</h3>
@@ -242,9 +225,10 @@ body::before{
         </div>
         <div class="pic">
           <img
-            src="https://source.unsplash.com/1200x800/?insole,casual,shoes,comfort,shoemaker,daily,use,workbench"
-            alt="Alltagseinlagen – leichte, pflegeleichte Einlagen neben Freizeitschuhen auf dem Werktisch"
-            loading="lazy" referrerpolicy="no-referrer">
+            src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80"
+            alt="Alltagseinlagen neben Freizeitschuhen auf dem Werktisch"
+            loading="lazy" decoding="async"
+            data-fallback="alltag">
         </div>
       </div>
 
@@ -252,9 +236,10 @@ body::before{
       <div id="belts" class="service" style="--acc:#c4b5fd">
         <div class="pic">
           <img
-            src="https://source.unsplash.com/1200x800/?leather,belt,handcrafted,shoemaker,edge-beveling,stitching,beveler,groover"
+            src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=1200&q=80"
             alt="Handgefertigter Maßgürtel – Zuschnitt, Kantenbearbeitung und Naht am Werktisch"
-            loading="lazy" referrerpolicy="no-referrer">
+            loading="lazy" decoding="async"
+            data-fallback="belts">
         </div>
         <div class="text">
           <h3 class="title">Maßgürtel</h3>
@@ -268,13 +253,14 @@ body::before{
         <div class="text">
           <h3 class="title">Lasergravuren</h3>
           <p class="desc">Präzise Personalisierung auf Holz, Leder, Glas u. v. m. Vom Monogramm bis zum Firmenlogo – sauber graviert und dauerhaft haltbar.</p>
-          <div class="chips"><span class="chip">Feine Details</span><span class="chip">Einzelstücke & Serien</span><span class="chip">Geschenke & Branding</span></div>
+        <div class="chips"><span class="chip">Feine Details</span><span class="chip">Einzelstücke & Serien</span><span class="chip">Geschenke & Branding</span></div>
         </div>
         <div class="pic">
           <img
-            src="https://source.unsplash.com/1200x800/?laser,engraving,leather,branding,shoemaker,closeup,logo"
+            src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3b?auto=format&fit=crop&w=1200&q=80"
             alt="Lasergravur auf Leder – feine, kontrastreiche Gravur in Nahaufnahme"
-            loading="lazy" referrerpolicy="no-referrer">
+            loading="lazy" decoding="async"
+            data-fallback="laser">
         </div>
       </div>
 
@@ -282,9 +268,10 @@ body::before{
       <div id="cutting" class="service" style="--acc:#a7f3d0">
         <div class="pic">
           <img
-            src="https://source.unsplash.com/1200x800/?laser,cutting,leather,pattern,shoemaker,cnc,contour"
+            src="https://images.unsplash.com/photo-1518779578993-ec3579fee39f?auto=format&fit=crop&w=1200&q=80"
             alt="Laserzuschnitt von Leder – exakte Konturen und saubere Kanten"
-            loading="lazy" referrerpolicy="no-referrer">
+            loading="lazy" decoding="async"
+            data-fallback="cutting">
         </div>
         <div class="text">
           <h3 class="title">Laserzuschnitte</h3>
@@ -302,9 +289,10 @@ body::before{
         </div>
         <div class="pic">
           <img
-            src="https://source.unsplash.com/1200x800/?streetwear,cap,leather,patch,shoemaker,branding,workshop"
+            src="https://images.unsplash.com/photo-1548883354-94bcfe3216d7?auto=format&fit=crop&w=1200&q=80"
             alt="Streetwear mit Leder-Patch – Werkstatt-inspirierte Cap / Shirt in realistischer Szene"
-            loading="lazy" referrerpolicy="no-referrer">
+            loading="lazy" decoding="async"
+            data-fallback="streetwear">
         </div>
       </div>
 
@@ -312,9 +300,10 @@ body::before{
       <div id="sand" class="service" style="--acc:#f59e0b">
         <div class="pic">
           <img
-            src="https://source.unsplash.com/1200x800/?sandblasting,metal,hardware,shoe,tools,restoration,workshop"
-            alt="Sandstrahlung von Metallbeschlägen/Hardware – gründliche Reinigung und Mattierung"
-            loading="lazy" referrerpolicy="no-referrer">
+            src="https://images.unsplash.com/photo-1581092335305-2310217a02b2?auto=format&fit=crop&w=1200&q=80"
+            alt="Sandstrahlung von Metall-Hardware – gründliche Reinigung und Mattierung"
+            loading="lazy" decoding="async"
+            data-fallback="sand">
         </div>
         <div class="text">
           <h3 class="title">Sandstrahlung</h3>
@@ -348,8 +337,10 @@ body::before{
 <footer class="footer">© <span id="year"></span> MyShoester • Alle Preise sind Ab-Preise inkl. MwSt., abhängig von Material & Aufwand.</footer>
 
 <script>
+  // Jahr
   document.getElementById('year').textContent = new Date().getFullYear();
 
+  // Katalog
   const panel  = document.getElementById('catalog');
   const openBtn= document.getElementById('btnKatalog');
   const closeBtn=document.getElementById('btnClose');
@@ -364,6 +355,111 @@ body::before{
     if(panel.classList.contains('open') && !panel.contains(e.target) && e.target!==openBtn){
       toggle(false);
     }
+  });
+
+  // Bild-Fallbacks: falls Remote-Quelle blockiert ist, zeige eingebautes SVG
+  const svgMap = {
+    hero: `
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'>
+        <defs>
+          <linearGradient id='g' x1='0' y1='0' x2='1' y2='1'>
+            <stop offset='0' stop-color='#2b2f4a'/><stop offset='1' stop-color='#515b8a'/>
+          </linearGradient>
+        </defs>
+        <rect width='1200' height='800' fill='url(#g)'/>
+        <g fill='none' stroke='white' stroke-width='6' opacity='.85'>
+          <path d='M240 560c60-180 200-260 360-300 180-46 240-20 340-20'/>
+          <path d='M300 600c80-120 200-160 420-180'/>
+          <path d='M720 540c60-40 120-120 160-200'/>
+        </g>
+        <text x='60' y='120' fill='white' font-size='52' font-family='Poppins' opacity='.9'>Schuhmacher-Werkstatt</text>
+        <text x='60' y='180' fill='white' font-size='28' font-family='Poppins' opacity='.7'>Hyperrealistisches Foto deaktiviert – Fallback aktiv</text>
+      </svg>
+    `,
+    repair: `
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'>
+        <rect width='1200' height='800' fill='#334155'/>
+        <g fill='none' stroke='#e2e8f0' stroke-width='8' opacity='.9'>
+          <path d='M200 600c120-220 380-280 780-320' />
+          <path d='M260 560l120 0 40-60 80 0 40 60 120 0' />
+        </g>
+        <text x='60' y='120' fill='white' font-size='42' font-family='Poppins'>Reparatur – Sohlen & Absätze</text>
+      </svg>
+    `,
+    bequem: `
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'>
+        <rect width='1200' height='800' fill='#1f2937'/>
+        <ellipse cx='600' cy='420' rx='420' ry='140' fill='#6b7280'/>
+        <text x='60' y='120' fill='white' font-size='42' font-family='Poppins'>Bequemschuheinlagen</text>
+      </svg>
+    `,
+    komfort: `
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'>
+        <rect width='1200' height='800' fill='#3b3b6d'/>
+        <path d='M160 520c240-220 520-220 880-140' stroke='#cbd5e1' stroke-width='10' fill='none'/>
+        <text x='60' y='120' fill='white' font-size='42' font-family='Poppins'>Komforteinlagen</text>
+      </svg>
+    `,
+    alltag: `
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'>
+        <rect width='1200' height='800' fill='#374151'/>
+        <rect x='160' y='360' width='880' height='120' rx='60' fill='#9ca3af'/>
+        <text x='60' y='120' fill='white' font-size='42' font-family='Poppins'>Alltagseinlagen</text>
+      </svg>
+    `,
+    belts: `
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'>
+        <rect width='1200' height='800' fill='#3a2f2a'/>
+        <rect x='160' y='360' width='880' height='80' fill='#6b4f3a'/>
+        <rect x='820' y='350' width='90' height='100' fill='#d1d5db'/>
+        <text x='60' y='120' fill='white' font-size='42' font-family='Poppins'>Maßgürtel</text>
+      </svg>
+    `,
+    laser: `
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'>
+        <rect width='1200' height='800' fill='#0f172a'/>
+        <line x1='200' y1='160' x2='1000' y2='520' stroke='#67e8f9' stroke-width='8'/>
+        <circle cx='1000' cy='520' r='16' fill='#67e8f9'/>
+        <text x='60' y='120' fill='white' font-size='42' font-family='Poppins'>Lasergravur</text>
+      </svg>
+    `,
+    cutting: `
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'>
+        <rect width='1200' height='800' fill='#12323a'/>
+        <path d='M240 560 L960 240' stroke='#a7f3d0' stroke-width='10'/>
+        <text x='60' y='120' fill='white' font-size='42' font-family='Poppins'>Laserzuschnitte</text>
+      </svg>
+    `,
+    streetwear: `
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'>
+        <rect width='1200' height='800' fill='#111827'/>
+        <path d='M380 260 h440 v280 h-440 z' fill='#1f2937'/>
+        <text x='60' y='120' fill='white' font-size='42' font-family='Poppins'>Streetwear</text>
+      </svg>
+    `,
+    sand: `
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'>
+        <rect width='1200' height='800' fill='#3b3b3b'/>
+        <circle cx='300' cy='420' r='160' fill='#6b7280'/>
+        <text x='60' y='120' fill='white' font-size='42' font-family='Poppins'>Sandstrahlung</text>
+      </svg>
+    `
+  };
+
+  function svgDataURI(key){
+    const svg = svgMap[key] || svgMap.hero;
+    return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+  }
+
+  // setzte Fallback auf onerror
+  document.querySelectorAll('img[data-fallback]').forEach(img=>{
+    img.addEventListener('error', ()=>{
+      const key = img.getAttribute('data-fallback');
+      if(!img.dataset.fbkApplied){
+        img.src = svgDataURI(key);
+        img.dataset.fbkApplied = '1';
+      }
+    }, { once:false });
   });
 </script>
 </body>
