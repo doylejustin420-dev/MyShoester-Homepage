@@ -98,6 +98,58 @@ body::before{
 .card a{color:inherit;text-decoration:none;display:block}
 .footer{border-top:1px solid var(--line);padding:26px 0;color:var(--muted);text-align:center}
 
+/* >>>>>>>>>>>>>>>  NEU: Leistungen horizontal NUR in dieser Section  <<<<<<<<<<<<<<< */
+#leistungen .services-scroller{
+  display:flex;                 /* überschreibt .grid */
+  gap:18px;
+  overflow-x:auto;
+  padding:8px 4px 12px;
+  scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;
+}
+#leistungen .services-scroller::-webkit-scrollbar{height:8px}
+#leistungen .services-scroller::-webkit-scrollbar-thumb{
+  background:rgba(255,255,255,.18);
+  border-radius:999px;
+}
+
+/* Karten kompakter + konsistent – nur in der Leistungen-Section */
+#leistungen .services-scroller > .card{
+  flex:0 0 clamp(260px, 28vw, 340px);  /* Breite */
+  min-height:290px;
+  scroll-snap-align:start;
+  border-radius:18px;
+  background:rgba(21,26,44,.75);
+  backdrop-filter:saturate(120%) blur(6px);
+  border:1px solid rgba(255,255,255,.10);
+  transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+#leistungen .services-scroller > .card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 12px 34px rgba(0,0,0,.32);
+  border-color:rgba(255,255,255,.18);
+}
+
+/* Einheitliche Bildhöhe in diesen Karten */
+#leistungen .services-scroller > .card img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  display:block;
+}
+
+/* Typo in diesen Karten */
+#leistungen .services-scroller > .card strong{
+  display:block;
+  font-size:1.05rem;
+  letter-spacing:.2px;
+  margin-bottom:8px;
+}
+#leistungen .services-scroller > .card .tag{
+  margin-top:8px;
+}
+/* <<<<<<<<<<<<<<  Ende: Leistungen horizontal  <<<<<<<<<<<<<<< */
+
 /* Responsive */
 @media (max-width:980px){
   .hero{grid-template-columns:1fr}
@@ -162,7 +214,7 @@ body::before{
     <div><img src="https://images.unsplash.com/photo-1516826957135-700dedea698c?q=80&w=1200&auto=format&fit=crop" alt="Werkstatt"></div>
   </section>
 
-  <!-- ************  NUR DIESE SEKTION wurde um ALLE Kategorien ergänzt  ************ -->
+  <!-- ************  NUR DIESE SEKTION ist horizontal umgestellt  ************ -->
   <section id="leistungen" class="section">
     <h2 class="h2">Unsere Leistungen</h2>
     <div class="grid services-scroller">
