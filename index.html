@@ -71,17 +71,19 @@ body::before{
 /* Badge im Hero: 2× größer, schwarz, geschwungene Schrift */
 .tag{
   display:inline-block;
-  font-family:'Great Vibes', cursive;
-  font-size:24px;                 /* vorher 12px → doppelt */
-  line-height:1.1;
-  color:#0d0f16;                  /* schwarz/dunkel */
-  background:rgba(255,255,255,.72);
+  font-family:'Dancing Script', cursive;  /* geschwungen + bold */
+  font-weight:700;
+  font-size:34px;                         /* größer */
+  line-height:1.05;
+  color:#0d0f16;                          /* schwarz/dunkel */
+  background:transparent;                 /* Kasten weg */
   border:0;
-  padding:8px 12px;
-  border-radius:12px;
-  box-shadow:0 6px 14px rgba(0,0,0,.08);
+  padding:0;
+  border-radius:0;
+  box-shadow:none;
   margin-bottom:14px;
 }
+
 .hero p{color:var(--muted);margin:0 0 18px}
 .hero img{width:100%;height:480px;object-fit:cover;border-radius:22px;border:1px solid var(--line)}
 .section{padding:8px 0 48px}
@@ -308,3 +310,4 @@ body::before{
 </script>
 </body>
 </html>
+
