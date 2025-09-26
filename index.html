@@ -15,7 +15,9 @@
 *{box-sizing:border-box}
 html,body{margin:0;padding:0;color:var(--text);
   font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Inter,'Helvetica Neue',Arial,sans-serif}
-body{background: linear-gradient(135deg, #e7d6ff 0%, #cfe8ff 45%, #ffd6c7 100%) fixed;}
+body{
+  background: linear-gradient(135deg, #e7d6ff 0%, #cfe8ff 45%, #ffd6c7 100%) fixed;
+}
 body::before{
   content:""; position:fixed; inset:0; z-index:-1; pointer-events:none;
   background:
@@ -23,15 +25,18 @@ body::before{
     radial-gradient(26% 32% at 88% 12%, rgba(207,232,255,.45) 0 60%, transparent 60%),
     radial-gradient(24% 28% at 92% 88%, rgba(255,196,176,.45) 0 60%, transparent 60%);
 }
-/* Header / Layout unverändert */
+
+/* Header (unverändert) */
 .nav{position:sticky;top:0;z-index:50;background:rgba(21,26,44,.7);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:18px;padding:12px 20px}
+.nav-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;gap:18px;padding:12px 20px}
 .logo{display:flex;align-items:center;gap:12px}
 .logo-badge{width:36px;height:36px;border-radius:12px;background:linear-gradient(135deg,#a78bfa,#22d3ee);display:grid;place-items:center;font-weight:700}
 .logo-title{font-family:'Playfair Display',serif;font-weight:700;font-size:22px;letter-spacing:.3px}
 .nav-links{display:flex;flex-wrap:wrap;gap:12px;margin-left:auto}
 .nav-links a{color:var(--text);text-decoration:none;padding:8px 10px;border-radius:10px}
 .nav-links a:hover{background:#1a2240}
+
+/* Katalog (unverändert) */
 .katalog-wrap{position: fixed;left: 16px;top: 72px;z-index: 1001;}
 .katalog-btn{appearance:none;border:1px solid var(--line);background:linear-gradient(135deg,var(--p2),var(--p5));color:var(--ink);
   padding:10px 14px;border-radius:14px;font-weight:700;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.25)}
@@ -48,115 +53,90 @@ body::before{
 .cat-link{display:block;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:12px 14px;
   color:var(--text);text-decoration:none;font-weight:600}
 .cat-link:hover{background:rgba(255,255,255,.12)}
-.container{max-width:1200px;margin:0 auto;padding:24px}
+
+/* Layout etwas breiter, damit nichts gequetscht wirkt */
+.container{max-width:1280px;margin:0 auto;padding:24px}
 .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:28px;align-items:center;padding:42px 0}
 .hero h1{font-family:'Playfair Display',serif;font-size:46px;line-height:1.15;margin:0 0 14px}
 .hero p{color:var(--muted);margin:0 0 18px}
 .tag{display:inline-block;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:#7cc3ff;
   font-size:12px;padding:6px 10px;border-radius:999px;margin-bottom:10px}
-.hero img{width:100%;height:460px;object-fit:cover;border-radius:22px;border:1px solid var(--line)}
-.section{padding:8px 0 42px}
-.h2{font-family:'Playfair Display',serif;font-size:26px;margin:0 0 14px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px}
-.card{border-radius:18px;overflow:hidden;border:1px solid var(--line);background:var(--panel);transition:transform .12s, box-shadow .12s}
-.card:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,0,0,.25)}
-.card .pad{padding:14px}
-.card a{color:inherit;text-decoration:none;display:block}
+.hero img{width:100%;height:480px;object-fit:cover;border-radius:22px;border:1px solid var(--line)}
+.section{padding:8px 0 48px}
+.h2{font-family:'Playfair Display',serif;font-size:28px;margin:0 0 18px}
 .footer{border-top:1px solid var(--line);padding:26px 0;color:var(--muted);text-align:center}
 
 /* ================================================================
-   UNSERE LEISTUNGEN – vertikale Liste (Bild links/rechts im Wechsel)
+   NEU: UNSERE LEISTUNGEN – „Feature-Strips“ (Bild/Text im Wechsel)
    ================================================================ */
 #leistungen{ scroll-margin-top: 96px; }
 
-/* Die ganze Liste auf eine angenehme Breite zentrieren,
-   damit Bilder rechts nicht "am Rand kleben". */
-#leistungen .svc-list{
+/* Stacker auf angenehme Breite und schön zentriert */
+.services-stack{
   display:flex;
   flex-direction:column;
-  gap:18px;
-  max-width: 900px;
-  margin: 0 auto;
-  padding-inline: 8px;
+  gap:28px;
+  max-width:1100px;
+  margin:0 auto;
+  padding-inline:8px;
 }
 
-/* Zeile: Grid mit Bild+Text */
-#leistungen .svc-row{
-  --acc:#7cc3ff;
-  position:relative;
+/* Einzel-Strip */
+.service{
+  --acc:#7cc3ff;                  /* wird je Strip überschrieben */
   display:grid;
-  grid-template-columns:96px 1fr; /* Standard: Bild links */
+  grid-template-columns: min(40vw, 420px) 1fr; /* Bild links, Text rechts */
   align-items:center;
-  gap:16px;
-  padding:6px 0;
-  border-radius:14px;
+  gap:24px;
+  scroll-margin-top:110px;        /* sauberes Anscrollen bei Nav-Links */
 }
 
 /* Bild */
-#leistungen .svc-pic{
-  width:96px; height:72px; border-radius:12px; overflow:hidden;
-  border:1px solid rgba(255,255,255,.22);
-  box-shadow:0 6px 14px rgba(0,0,0,.18);
+.service .pic{
+  position:relative;
+  border-radius:18px;
+  overflow:hidden;
+  aspect-ratio:16/11;
+  min-height:200px;
+  border:1px solid rgba(255,255,255,.18);
+  box-shadow:0 10px 26px rgba(0,0,0,.22);
 }
-#leistungen .svc-pic img{
-  width:100%; height:100%; object-fit:cover; display:block;
-  filter:saturate(1.06) contrast(1.03);
+.service .pic img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(1.05) contrast(1.02)}
+.service .pic::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(15,18,32,.28));}
+
+/* Texte */
+.service .title{
+  display:inline-block;margin:0 0 8px 0;font-weight:900;font-size:1.2rem;letter-spacing:.2px;color:#fff;
+  padding:4px 12px;border-radius:10px;background: color-mix(in srgb, var(--acc) 45%, rgba(21,26,44,.55));
+  box-shadow:0 8px 22px rgba(0,0,0,.22);
+}
+.service .desc{margin:0;color:#eef2ff;font-size:1rem;line-height:1.55;text-shadow:0 1px 0 rgba(0,0,0,.18)}
+.service .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.service .chip{
+  font-size:.82rem;padding:6px 10px;border-radius:999px;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18)
 }
 
-/* Texte – deutlich & professionell */
-#leistungen .svc-title{
-  margin:0 0 4px 0;
-  font-weight:900;
-  font-size:1.1rem;
-  letter-spacing:.2px;
-  color:#fff;                                /* klare Lesbarkeit */
-  display:inline-block;
-  padding:2px 10px 3px;
-  border-radius:8px;
-  background: color-mix(in srgb, var(--acc) 45%, rgba(21,26,44,.55)); /* stärkerer Kontrast */
-  box-shadow:0 6px 18px rgba(0,0,0,.18);
-}
-#leistungen .svc-desc{
-  margin:0;
-  color:#f1f4ff;                             /* heller als vorher */
-  font-size:.95rem;
-  line-height:1.45;
-  text-shadow:0 1px 0 rgba(0,0,0,.18);
-}
+/* Abwechselnd rechts/links */
+.service:nth-child(even){grid-template-columns:1fr min(40vw, 420px);}
+.service:nth-child(even) .text{order:1}
+.service:nth-child(even) .pic{order:2}
 
-/* Dezente Linie zwischen den Zeilen */
-#leistungen .svc-row::after{
-  content:""; position:absolute; left:96px; right:0; bottom:-7px; height:1px;
-  background:linear-gradient(90deg, rgba(255,255,255,.18), rgba(255,255,255,.04));
-}
-
-/* kleine farbige Perle links */
-#leistungen .svc-row::before{
-  content:""; position:absolute; left:-2px; top:50%; transform:translateY(-50%);
-  width:8px; height:8px; border-radius:999px; background:var(--acc);
-  box-shadow:0 0 0 6px color-mix(in srgb, var(--acc) 20%, transparent);
-}
-
-/* Abwechslung: gerade Zeilen Bild rechts (nah am Text, nicht am Rand) */
-#leistungen .svc-row:nth-child(even){
-  grid-template-columns:1fr 96px;        /* Text links, Bild rechts */
-}
-#leistungen .svc-row:nth-child(even) .svc-text{ order:1; }
-#leistungen .svc-row:nth-child(even) .svc-pic{ order:2; }
-
-/* Kleine, dezente Versetzung – wirkt lebendig, bleibt professionell */
-#leistungen .svc-row:nth-child(odd) .svc-pic{ transform:translateY(2px); }
-#leistungen .svc-row:nth-child(even) .svc-pic{ transform:translateY(-1px); }
-
-/* Mobile: bleibt lesbar, Bilder immer links */
-@media (max-width:640px){
-  #leistungen .svc-row,
-  #leistungen .svc-row:nth-child(even){
-    grid-template-columns:86px 1fr;
+/* Mobile: Bild über Text */
+@media (max-width:760px){
+  .service,
+  .service:nth-child(even){
+    grid-template-columns:1fr;
   }
-  #leistungen .svc-row:nth-child(even) .svc-text{ order:2; }
-  #leistungen .svc-row:nth-child(even) .svc-pic{ order:1; }
-  #leistungen .svc-row::after{ left:86px; }
+  .service .pic{order:1}
+  .service .text{order:2}
+}
+
+/* feine Trennlinie */
+.service + .service{ position:relative }
+.service + .service::before{
+  content:""; position:absolute; left:0; right:0; top:-14px; height:1px;
+  background:linear-gradient(90deg, rgba(255,255,255,.15), rgba(255,255,255,.04));
 }
 </style>
 </head>
@@ -179,17 +159,16 @@ body::before{
       <a href="#laser">Lasergravuren</a>
       <a href="#cutting">Laserzuschnitte</a>
       <a href="#streetwear">Streetwear</a>
+      <a href="#sand">Sandstrahlung</a>
       <a href="#contact">Kontakt</a>
     </nav>
   </div>
 </header>
 
-<!-- Katalog fixiert -->
+<!-- Katalog (unverändert) -->
 <div class="katalog-wrap">
   <button id="btnKatalog" class="katalog-btn">Katalog ▾</button>
 </div>
-
-<!-- Dropdown -->
 <aside id="catalog" class="catalog" aria-hidden="true">
   <div class="cat-head">
     <div class="cat-title">Kategorien</div>
@@ -222,94 +201,175 @@ body::before{
   <section id="leistungen" class="section">
     <h2 class="h2">Unsere Leistungen</h2>
 
-    <div class="svc-list">
-      <div class="svc-row" style="--acc:#86efac">
-        <div class="svc-pic">
-          <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=800&auto=format&fit=crop" alt="Sohlen- & Absatzreparatur">
+    <div class="services-stack">
+      <!-- Reparatur -->
+      <div id="repair" class="service" style="--acc:#86efac">
+        <div class="pic">
+          <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1200&auto=format&fit=crop" alt="Sohlen- & Absatzreparatur">
         </div>
-        <div class="svc-text">
-          <div class="svc-title">Schuh- & Lederwarenreparatur</div>
-          <p class="svc-desc">Sohlen • Absätze • Nähte – fachgerecht & langlebig.</p>
-        </div>
-      </div>
-
-      <div class="svc-row" style="--acc:#93c5fd">
-        <div class="svc-text">
-          <div class="svc-title">Bequemschuheinlagen</div>
-          <p class="svc-desc">Weiche Dämpfung für lange Tage.</p>
-        </div>
-        <div class="svc-pic">
-          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800&auto=format&fit=crop" alt="Bequeme Einlagen">
-        </div>
-      </div>
-
-      <div class="svc-row" style="--acc:#fca5a5">
-        <div class="svc-pic">
-          <img src="https://images.unsplash.com/photo-1594949163427-4f3c7a9c4b87?q=80&w=800&auto=format&fit=crop" alt="Komforteinlagen">
-        </div>
-        <div class="svc-text">
-          <div class="svc-title">Komforteinlagen</div>
-          <p class="svc-desc">Stabile Führung & gleichmäßige Druckverteilung.</p>
+        <div class="text">
+          <h3 class="title">Schuh- & Lederwarenreparatur</h3>
+          <p class="desc">
+            Wir bringen Lieblingsstücke zurück in Form: präziser Sohlenwechsel, neue Absätze, feste Nähte
+            und professionelle Aufarbeitung von Leder – langlebig, ressourcenschonend und fair kalkuliert.
+          </p>
+          <div class="chips">
+            <span class="chip">Sohlen & Absätze</span>
+            <span class="chip">Nähte & Färbungen</span>
+            <span class="chip">Pflege & Imprägnierung</span>
+          </div>
         </div>
       </div>
 
-      <div class="svc-row" style="--acc:#fcd34d">
-        <div class="svc-text">
-          <div class="svc-title">Alltagseinlagen</div>
-          <p class="svc-desc">Leicht, pflegeleicht – für jeden Tag.</p>
+      <!-- Bequem -->
+      <div id="bequem" class="service" style="--acc:#93c5fd">
+        <div class="text">
+          <h3 class="title">Bequemschuheinlagen</h3>
+          <p class="desc">
+            Sanfte Dämpfung für lange Tage – ideal bei viel Stehen oder Gehen. Leicht, flexibel und spürbar
+            komfortabel, damit der Fuß entspannen kann, ohne an Halt zu verlieren.
+          </p>
+          <div class="chips">
+            <span class="chip">Weiche Polsterung</span>
+            <span class="chip">Alltag & Beruf</span>
+            <span class="chip">Atmungsaktive Materialien</span>
+          </div>
         </div>
-        <div class="svc-pic">
-          <img src="https://images.unsplash.com/photo-1503342394120-2f06f8a90b6d?q=80&w=800&auto=format&fit=crop" alt="Alltagseinlagen">
-        </div>
-      </div>
-
-      <div class="svc-row" style="--acc:#c4b5fd">
-        <div class="svc-pic">
-          <img src="https://images.unsplash.com/photo-1519066629447-267fffa62d5b?q=80&w=800&auto=format&fit=crop" alt="Maßgürtel aus Leder">
-        </div>
-        <div class="svc-text">
-          <div class="svc-title">Maßgürtel</div>
-          <p class="svc-desc">Vollleder nach Wunsch – Breite, Farbe & Naht.</p>
-        </div>
-      </div>
-
-      <div class="svc-row" style="--acc:#67e8f9">
-        <div class="svc-text">
-          <div class="svc-title">Lasergravuren</div>
-          <p class="svc-desc">Personalisierung auf Holz, Leder, Glas u. v. m.</p>
-        </div>
-        <div class="svc-pic">
-          <img src="https://images.unsplash.com/photo-1581091215367-59ab6d5023d8?q=80&w=800&auto=format&fit=crop" alt="Lasergravur auf Holz">
+        <div class="pic">
+          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop" alt="Bequeme Einlagen">
         </div>
       </div>
 
-      <div class="svc-row" style="--acc:#a7f3d0">
-        <div class="svc-pic">
-          <img src="https://images.unsplash.com/photo-1520975922203-baceb7a9342f?q=80&w=800&auto=format&fit=crop" alt="Laserzuschnitte">
+      <!-- Komfort -->
+      <div id="komfort" class="service" style="--acc:#fca5a5">
+        <div class="pic">
+          <img src="https://images.unsplash.com/photo-1594949163427-4f3c7a9c4b87?q=80&w=1200&auto=format&fit=crop" alt="Komforteinlagen">
         </div>
-        <div class="svc-text">
-          <div class="svc-title">Laserzuschnitte</div>
-          <p class="svc-desc">Saubere Kanten & exakte Konturen.</p>
+        <div class="text">
+          <h3 class="title">Komforteinlagen</h3>
+          <p class="desc">
+            Für eine gleichmäßige Druckverteilung und stabile Führung. Unterstützt das Fußgewölbe,
+            entlastet empfindliche Zonen und sorgt für spürbar mehr Balance im Alltag.
+          </p>
+          <div class="chips">
+            <span class="chip">Halt & Führung</span>
+            <span class="chip">Druckentlastung</span>
+            <span class="chip">Individuelle Anpassung</span>
+          </div>
         </div>
       </div>
 
-      <div class="svc-row" style="--acc:#f9a8d4">
-        <div class="svc-text">
-          <div class="svc-title">Streetwear</div>
-          <p class="svc-desc">Caps, Shirts & Accessoires – passend zu MyShoester.</p>
+      <!-- Alltag -->
+      <div id="alltag" class="service" style="--acc:#fcd34d">
+        <div class="text">
+          <h3 class="title">Alltagseinlagen</h3>
+          <p class="desc">
+            Pflegeleichte, leichte Einlagen für jeden Tag – robust, bequem und unkompliziert.
+            Ideal als verlässliche Begleiter in Freizeit und Job.
+          </p>
+          <div class="chips">
+            <span class="chip">Leicht & pflegeleicht</span>
+            <span class="chip">Dauertragekomfort</span>
+            <span class="chip">Preis-/Leistung</span>
+          </div>
         </div>
-        <div class="svc-pic">
-          <img src="https://images.unsplash.com/photo-1542216510-6bdb8c37a3aa?q=80&w=800&auto=format&fit=crop" alt="Streetwear">
+        <div class="pic">
+          <img src="https://images.unsplash.com/photo-1503342394120-2f06f8a90b6d?q=80&w=1200&auto=format&fit=crop" alt="Alltagseinlagen">
         </div>
       </div>
 
-      <div class="svc-row" style="--acc:#f59e0b">
-        <div class="svc-pic">
-          <img src="https://images.unsplash.com/photo-1581093588401-16f8b8b1f6d3?q=80&w=800&auto=format&fit=crop" alt="Sandstrahlung">
+      <!-- Maßgürtel -->
+      <div id="belts" class="service" style="--acc:#c4b5fd">
+        <div class="pic">
+          <img src="https://images.unsplash.com/photo-1519066629447-267fffa62d5b?q=80&w=1200&auto=format&fit=crop" alt="Maßgürtel aus Leder">
         </div>
-        <div class="svc-text">
-          <div class="svc-title">Sandstrahlung</div>
-          <p class="svc-desc">Reinigung & Veredelung – 70×70 cm Bereich.</p>
+        <div class="text">
+          <h3 class="title">Maßgürtel</h3>
+          <p class="desc">
+            Vollleder nach Wunsch – Breite, Farbe, Naht und Schließe wählbar. Handgefertigt in stabiler Qualität,
+            die mit der Zeit noch schöner wird.
+          </p>
+          <div class="chips">
+            <span class="chip">Individuelle Maße</span>
+            <span class="chip">Premium-Leder</span>
+            <span class="chip">Viele Farben & Nähte</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lasergravuren -->
+      <div id="laser" class="service" style="--acc:#67e8f9">
+        <div class="text">
+          <h3 class="title">Lasergravuren</h3>
+          <p class="desc">
+            Präzise Personalisierung auf Holz, Leder, Glas u. v. m. Vom Monogramm bis zum Firmenlogo –
+            sauber graviert und dauerhaft haltbar.
+          </p>
+          <div class="chips">
+            <span class="chip">Feine Details</span>
+            <span class="chip">Einzelstücke & Serien</span>
+            <span class="chip">Geschenke & Branding</span>
+          </div>
+        </div>
+        <div class="pic">
+          <img src="https://images.unsplash.com/photo-1581091215367-59ab6d5023d8?q=80&w=1200&auto=format&fit=crop" alt="Lasergravur auf Holz">
+        </div>
+      </div>
+
+      <!-- Laserzuschnitte -->
+      <div id="cutting" class="service" style="--acc:#a7f3d0">
+        <div class="pic">
+          <img src="https://images.unsplash.com/photo-1520975922203-baceb7a9342f?q=80&w=1200&auto=format&fit=crop" alt="Laserzuschnitte">
+        </div>
+        <div class="text">
+          <h3 class="title">Laserzuschnitte</h3>
+          <p class="desc">
+            Exakte Konturen, saubere Kanten – ideal für Prototypen, Deko, Kleinserien oder Ersatzteile
+            in Leder, Holz, Acryl und mehr.
+          </p>
+          <div class="chips">
+            <span class="chip">Präzision & Maß</span>
+            <span class="chip">Vielseitige Materialien</span>
+            <span class="chip">Schnelle Umsetzung</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Streetwear -->
+      <div id="streetwear" class="service" style="--acc:#f9a8d4">
+        <div class="text">
+          <h3 class="title">Streetwear</h3>
+          <p class="desc">
+            Caps, Shirts & Accessoires – inspiriert vom Werkstatt-Look. Wertige Basics, die zu deinem
+            Alltag passen und lange Freude machen.
+          </p>
+          <div class="chips">
+            <span class="chip">Caps & Shirts</span>
+            <span class="chip">Kleine Auflagen</span>
+            <span class="chip">Stimmiges Design</span>
+          </div>
+        </div>
+        <div class="pic">
+          <img src="https://images.unsplash.com/photo-1542216510-6bdb8c37a3aa?q=80&w=1200&auto=format&fit=crop" alt="Streetwear">
+        </div>
+      </div>
+
+      <!-- Sandstrahlung -->
+      <div id="sand" class="service" style="--acc:#f59e0b">
+        <div class="pic">
+          <img src="https://images.unsplash.com/photo-1581093588401-16f8b8b1f6d3?q=80&w=1200&auto=format&fit=crop" alt="Sandstrahlung">
+        </div>
+        <div class="text">
+          <h3 class="title">Sandstrahlung</h3>
+          <p class="desc">
+            Gründliche Reinigung und Veredelung von Oberflächen. Struktur wird wieder klar,
+            haftet besser für weitere Bearbeitung – im Bereich bis ca. 70×70 cm.
+          </p>
+          <div class="chips">
+            <span class="chip">Reinigung & Mattierung</span>
+            <span class="chip">Vorbereitung für Finish</span>
+            <span class="chip">Feine Strukturen</span>
+          </div>
         </div>
       </div>
     </div>
@@ -341,6 +401,7 @@ body::before{
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 
+  // Katalog-Panel
   const panel  = document.getElementById('catalog');
   const openBtn= document.getElementById('btnKatalog');
   const closeBtn=document.getElementById('btnClose');
