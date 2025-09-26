@@ -16,7 +16,7 @@
 html,body{margin:0;padding:0;color:var(--text);
   font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Inter,'Helvetica Neue',Arial,sans-serif}
 
-/* >>> Altes Farbschema – weicher Verlauf (Lavendel → Babyblau → Apricot) */
+/* Hintergrund (wie gehabt) */
 body{
   background: linear-gradient(135deg, #e7d6ff 0%, #cfe8ff 45%, #ffd6c7 100%) fixed;
 }
@@ -27,7 +27,6 @@ body::before{
     radial-gradient(26% 32% at 88% 12%, rgba(207,232,255,.45) 0 60%, transparent 60%),
     radial-gradient(24% 28% at 92% 88%, rgba(255,196,176,.45) 0 60%, transparent 60%);
 }
-/* <<< Ende Farbschema */
 
 /* Navigation */
 .nav{position:sticky;top:0;z-index:50;background:rgba(21,26,44,.7);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
@@ -39,37 +38,15 @@ body::before{
 .nav-links a{color:var(--text);text-decoration:none;padding:8px 10px;border-radius:10px}
 .nav-links a:hover{background:#1a2240}
 
-/* Katalog-Button fix links oben unter der Leiste */
-.katalog-wrap{
-  position: fixed;
-  left: 16px;
-  top: 72px;
-  z-index: 1001;
-}
-.katalog-btn{
-  appearance:none;border:1px solid var(--line);background:linear-gradient(135deg,var(--p2),var(--p5));color:var(--ink);
-  padding:10px 14px;border-radius:14px;font-weight:700;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.25)
-}
+/* Katalog-Button + Dropdown (unverändert) */
+.katalog-wrap{position: fixed;left: 16px;top: 72px;z-index: 1001;}
+.katalog-btn{appearance:none;border:1px solid var(--line);background:linear-gradient(135deg,var(--p2),var(--p5));color:var(--ink);
+  padding:10px 14px;border-radius:14px;font-weight:700;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.25)}
 .katalog-btn:hover{filter:saturate(1.05) brightness(1.02)}
-
-/* Dropdown fix, direkt unter dem Button */
-.catalog{
-  position: fixed;
-  left: 16px;
-  top: 120px;
-  z-index: 1000;
-  max-width:420px;width:calc(100vw - 32px);
-  max-height: calc(100vh - 140px);
-  overflow: auto;
-
-  background:rgba(255,255,255,.10);
-  backdrop-filter:blur(10px);
-  border:1px solid rgba(255,255,255,.14);
-  border-radius:18px;
-  box-shadow:0 14px 60px rgba(0,0,0,.45);
-  opacity:0;transform:translateY(-8px) scale(.98);pointer-events:none;
-  transition:opacity .18s ease, transform .18s ease;
-}
+.catalog{position: fixed;left: 16px;top: 120px;z-index: 1000;max-width:420px;width:calc(100vw - 32px);
+  max-height: calc(100vh - 140px);overflow: auto;background:rgba(255,255,255,.10);backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,.14);border-radius:18px;box-shadow:0 14px 60px rgba(0,0,0,.45);
+  opacity:0;transform:translateY(-8px) scale(.98);pointer-events:none;transition:opacity .18s ease, transform .18s ease;}
 .catalog.open{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
 .cat-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:linear-gradient(180deg,rgba(255,255,255,.1),transparent)}
 .cat-title{font-family:'Playfair Display',serif;font-size:20px}
@@ -79,7 +56,7 @@ body::before{
   color:var(--text);text-decoration:none;font-weight:600}
 .cat-link:hover{background:rgba(255,255,255,.12)}
 
-/* Layout */
+/* Layout allgemein */
 .container{max-width:1200px;margin:0 auto;padding:24px}
 .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:28px;align-items:center;padding:42px 0}
 .hero h1{font-family:'Playfair Display',serif;font-size:46px;line-height:1.15;margin:0 0 14px}
@@ -87,8 +64,6 @@ body::before{
 .tag{display:inline-block;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:#7cc3ff;
   font-size:12px;padding:6px 10px;border-radius:999px;margin-bottom:10px}
 .hero img{width:100%;height:460px;object-fit:cover;border-radius:22px;border:1px solid var(--line)}
-
-/* Sektionen */
 .section{padding:8px 0 42px}
 .h2{font-family:'Playfair Display',serif;font-size:26px;margin:0 0 14px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px}
@@ -98,75 +73,83 @@ body::before{
 .card a{color:inherit;text-decoration:none;display:block}
 .footer{border-top:1px solid var(--line);padding:26px 0;color:var(--muted);text-align:center}
 
-/* >>>>>>>>>>>>>>>  LEISTUNGEN: Raster-Ansicht (alle Karten sichtbar)  <<<<<<<<<<<<<<< */
-#leistungen .services-scroller{
-  /* statt flex eine Grid-Zeile mit festen Spalten */
+/* ===================================================================
+   NEU: Unsere Leistungen – Pro-Cards (3×3 Raster, ohne Fotos)
+   =================================================================== */
+#leistungen .svc-grid{
   display:grid;
-  grid-template-columns: repeat(4, minmax(260px, 1fr));
-  gap:18px;
-  overflow:visible;
-  scroll-snap-type:none;
-  -webkit-overflow-scrolling:auto;
+  grid-template-columns:repeat(3, minmax(280px, 1fr));
+  gap:20px;
 }
+@media (max-width:1024px){ #leistungen .svc-grid{ grid-template-columns:repeat(2, minmax(260px,1fr)); } }
+@media (max-width:620px){  #leistungen .svc-grid{ grid-template-columns:1fr; } }
 
-/* Karten: keine Flex-Breite mehr, nur Optik beibehalten */
-#leistungen .services-scroller > .card{
-  /* frühere flex-basis entfernen/übersteuern */
-  flex: initial;
-  width: auto;
-  min-width: 0;
-
-  min-height:290px;
+#leistungen .svc-card{
+  --acc:#8bd9ff;                 /* Akzentfarbe pro Karte (wird pro-Item überschrieben) */
+  position:relative;
+  display:block;
+  text-decoration:none;
+  color:inherit;
+  background:
+    radial-gradient(120px 120px at 110% -20%, color-mix(in srgb, var(--acc) 30%, transparent), transparent 70%),
+    rgba(21,26,44,.82);
+  border:1px solid rgba(255,255,255,.12);
   border-radius:18px;
-  background:rgba(21,26,44,.75);
-  backdrop-filter:saturate(120%) blur(6px);
-  border:1px solid rgba(255,255,255,.10);
-  transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  padding:18px 18px 16px;
+  min-height:180px;
+  transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  box-shadow:0 6px 20px rgba(0,0,0,.18);
+  overflow:hidden;
 }
-#leistungen .services-scroller > .card:hover{
-  transform:translateY(-4px);
-  box-shadow:0 12px 34px rgba(0,0,0,.32);
+@supports not (color: color-mix(in srgb, white, black)){
+  /* Fallback falls color-mix nicht unterstützt */
+  #leistungen .svc-card{ background:
+    radial-gradient(120px 120px at 110% -20%, rgba(139,217,255,.28), transparent 70%),
+    rgba(21,26,44,.82); }
+}
+#leistungen .svc-card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 12px 34px rgba(0,0,0,.30);
   border-color:rgba(255,255,255,.18);
 }
 
-/* Einheitliche Bildhöhe in diesen Karten */
-#leistungen .services-scroller > .card img{
-  width:100%;
-  height:180px;
-  object-fit:cover;
-  display:block;
+/* Kopf (Icon + Titel) */
+#leistungen .svc-head{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+#leistungen .svc-icon{
+  width:44px;height:44px;border-radius:999px;
+  background:
+    radial-gradient(closest-side, rgba(255,255,255,.22), rgba(255,255,255,.08)),
+    linear-gradient(135deg, var(--acc), transparent 60%);
+  border:1px solid rgba(255,255,255,.22);
+  display:grid;place-items:center;
+  font-weight:800;font-size:14px;letter-spacing:.3px;
+  color:#0b1020;
 }
+#leistungen .svc-card h3{
+  margin:0;font-size:1.05rem;letter-spacing:.2px
+}
+#leistungen .svc-card p{
+  margin:6px 0 10px;color:var(--muted);font-size:.95rem;line-height:1.35
+}
+#leistungen .svc-chip{
+  display:inline-block;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:999px;
+  padding:6px 10px;
+  font-size:.8rem;
+  color:var(--text);
+}
+#leistungen .svc-arrow{
+  position:absolute; right:14px; bottom:12px;
+  font-size:18px; opacity:.65;
+  transition:transform .18s ease, opacity .18s ease;
+}
+#leistungen .svc-card:hover .svc-arrow{ transform:translateX(3px); opacity:.9; }
 
-/* Typo in diesen Karten */
-#leistungen .services-scroller > .card strong{
-  display:block;
-  font-size:1.05rem;
-  letter-spacing:.2px;
-  margin-bottom:8px;
-}
-#leistungen .services-scroller > .card .tag{
-  margin-top:8px;
-}
+/* =================================================================== */
 
-/* Responsive Spaltenanzahl */
-@media (max-width:1200px){
-  #leistungen .services-scroller{
-    grid-template-columns: repeat(3, minmax(240px, 1fr));
-  }
-}
-@media (max-width:900px){
-  #leistungen .services-scroller{
-    grid-template-columns: repeat(2, minmax(220px, 1fr));
-  }
-}
-@media (max-width:560px){
-  #leistungen .services-scroller{
-    grid-template-columns: 1fr;
-  }
-}
-/* <<<<<<<<<<<<<<  Ende: Leistungen Raster  <<<<<<<<<<<<<<< */
-
-/* Responsive */
+/* Responsive Hero-Stack (wie gehabt) */
 @media (max-width:980px){
   .hero{grid-template-columns:1fr}
 }
@@ -230,103 +213,103 @@ body::before{
     <div><img src="https://images.unsplash.com/photo-1516826957135-700dedea698c?q=80&w=1200&auto=format&fit=crop" alt="Werkstatt"></div>
   </section>
 
-  <!-- ************  LEISTUNGEN: Raster statt Scroll  ************ -->
+  <!-- ===================== NEU: UNSERE LEISTUNGEN ===================== -->
   <section id="leistungen" class="section">
     <h2 class="h2">Unsere Leistungen</h2>
-    <div class="grid services-scroller">
-      <!-- Reparatur -->
-      <article class="card">
-        <a href="kategorie.html?cat=schuh">
-          <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1200&auto=format&fit=crop" alt="">
-          <div class="pad">
-            <strong>Schuh- & Lederwarenreparatur</strong>
-            <div class="tag" style="margin-top:8px">Sohlenwechsel • Absätze • Nähte • Färbungen</div>
-          </div>
-        </a>
-      </article>
-      <!-- Bequem -->
-      <article class="card">
-        <a href="kategorie.html?cat=bequem">
-          <img src="https://images.unsplash.com/photo-1542216510-6bdb8c37a3aa?q=80&w=1200&auto=format&fit=crop" alt="">
-          <div class="pad">
-            <strong>Bequemschuheinlagen</strong>
-            <div class="tag" style="margin-top:8px">Weiche Dämpfung für lange Tage</div>
-          </div>
-        </a>
-      </article>
-      <!-- Komfort -->
-      <article class="card">
-        <a href="kategorie.html?cat=komfort">
-          <img src="https://images.unsplash.com/photo-1594949163427-4f3c7a9c4b87?q=80&w=1200&auto=format&fit=crop" alt="">
-          <div class="pad">
-            <strong>Komforteinlagen</strong>
-            <div class="tag" style="margin-top:8px">Gleichmäßige Druckverteilung & Halt</div>
-          </div>
-        </a>
-      </article>
-      <!-- Alltag -->
-      <article class="card">
-        <a href="kategorie.html?cat=alltag">
-          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop" alt="">
-          <div class="pad">
-            <strong>Alltagseinlagen</strong>
-            <div class="tag" style="margin-top:8px">Leicht, pflegeleicht – für jeden Tag</div>
-          </div>
-        </a>
-      </article>
-      <!-- Maßgürtel -->
-      <article class="card">
-        <a href="kategorie.html?cat=belts">
-          <img src="https://images.unsplash.com/photo-1519066629447-267fffa62d5b?q=80&w=1200&auto=format&fit=crop" alt="">
-          <div class="pad">
-            <strong>Maßgürtel</strong>
-            <div class="tag" style="margin-top:8px">Vollleder • Wunschbreite • Handnaht</div>
-          </div>
-        </a>
-      </article>
-      <!-- Lasergravuren -->
-      <article class="card">
-        <a href="kategorie.html?cat=laser">
-          <img src="https://images.unsplash.com/photo-1581091215367-59ab6d5023d8?q=80&w=1200&auto=format&fit=crop" alt="">
-          <div class="pad">
-            <strong>Lasergravuren</strong>
-            <div class="tag" style="margin-top:8px">Personalisierung auf Holz, Leder, Glas …</div>
-          </div>
-        </a>
-      </article>
-      <!-- Laserzuschnitte -->
-      <article class="card">
-        <a href="kategorie.html?cat=cutting">
-          <img src="https://images.unsplash.com/photo-1520975922203-baceb7a9342f?q=80&w=1200&auto=format&fit=crop" alt="">
-          <div class="pad">
-            <strong>Laserzuschnitte</strong>
-            <div class="tag" style="margin-top:8px">Präzise Zuschnitte für Leder & Acryl</div>
-          </div>
-        </a>
-      </article>
-      <!-- Streetwear -->
-      <article class="card">
-        <a href="kategorie.html?cat=streetwear">
-          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop" alt="">
-          <div class="pad">
-            <strong>Streetwear</strong>
-            <div class="tag" style="margin-top:8px">Caps, Shirts & Accessoires</div>
-          </div>
-        </a>
-      </article>
-      <!-- Sandstrahlung -->
-      <article class="card">
-        <a href="kategorie.html?cat=sand">
-          <img src="https://images.unsplash.com/photo-1581093588401-16f8b8b1f6d3?q=80&w=1200&auto=format&fit=crop" alt="">
-          <div class="pad">
-            <strong>Sandstrahlung</strong>
-            <div class="tag" style="margin-top:8px">Reinigung & Veredelung von Oberflächen</div>
-          </div>
-        </a>
-      </article>
+
+    <div class="svc-grid">
+      <a class="svc-card" href="kategorie.html?cat=schuh" style="--acc:#86efac">
+        <div class="svc-head">
+          <div class="svc-icon">RE</div>
+          <h3>Schuh- & Lederwarenreparatur</h3>
+        </div>
+        <p>Von Sohlen bis Nähte – fachgerecht, langlebig, fair.</p>
+        <span class="svc-chip">Sohlen • Absätze • Nähte</span>
+        <span class="svc-arrow" aria-hidden="true">→</span>
+      </a>
+
+      <a class="svc-card" href="kategorie.html?cat=bequem" style="--acc:#93c5fd">
+        <div class="svc-head">
+          <div class="svc-icon">BE</div>
+          <h3>Bequemschuheinlagen</h3>
+        </div>
+        <p>Weiche Dämpfung für lange Tage – spürbar angenehm.</p>
+        <span class="svc-chip">Dämpfung & Komfort</span>
+        <span class="svc-arrow" aria-hidden="true">→</span>
+      </a>
+
+      <a class="svc-card" href="kategorie.html?cat=komfort" style="--acc:#fca5a5">
+        <div class="svc-head">
+          <div class="svc-icon">KO</div>
+          <h3>Komforteinlagen</h3>
+        </div>
+        <p>Stabile Führung und gleichmäßige Druckverteilung.</p>
+        <span class="svc-chip">Halt & Balance</span>
+        <span class="svc-arrow" aria-hidden="true">→</span>
+      </a>
+
+      <a class="svc-card" href="kategorie.html?cat=alltag" style="--acc:#fcd34d">
+        <div class="svc-head">
+          <div class="svc-icon">AL</div>
+          <h3>Alltagseinlagen</h3>
+        </div>
+        <p>Leicht, pflegeleicht und verlässlich für jeden Tag.</p>
+        <span class="svc-chip">Für tägliches Tragen</span>
+        <span class="svc-arrow" aria-hidden="true">→</span>
+      </a>
+
+      <a class="svc-card" href="kategorie.html?cat=belts" style="--acc:#c4b5fd">
+        <div class="svc-head">
+          <div class="svc-icon">MG</div>
+          <h3>Maßgürtel</h3>
+        </div>
+        <p>Vollleder nach Maß – Breite, Farbe & Naht nach Wunsch.</p>
+        <span class="svc-chip">Handgefertigt</span>
+        <span class="svc-arrow" aria-hidden="true">→</span>
+      </a>
+
+      <a class="svc-card" href="kategorie.html?cat=laser" style="--acc:#67e8f9">
+        <div class="svc-head">
+          <div class="svc-icon">LG</div>
+          <h3>Lasergravuren</h3>
+        </div>
+        <p>Präzise Personalisierung auf Holz, Leder, Glas u. v. m.</p>
+        <span class="svc-chip">Individuelle Motive</span>
+        <span class="svc-arrow" aria-hidden="true">→</span>
+      </a>
+
+      <a class="svc-card" href="kategorie.html?cat=cutting" style="--acc:#a7f3d0">
+        <div class="svc-head">
+          <div class="svc-icon">LZ</div>
+          <h3>Laserzuschnitte</h3>
+        </div>
+        <p>Saubere Kanten und exakte Konturen für viele Materialien.</p>
+        <span class="svc-chip">Präzision & Maß</span>
+        <span class="svc-arrow" aria-hidden="true">→</span>
+      </a>
+
+      <a class="svc-card" href="kategorie.html?cat=streetwear" style="--acc:#f9a8d4">
+        <div class="svc-head">
+          <div class="svc-icon">SW</div>
+          <h3>Streetwear</h3>
+        </div>
+        <p>Caps, Shirts & Accessoires – passend zu MyShoester.</p>
+        <span class="svc-chip">Caps • Shirts</span>
+        <span class="svc-arrow" aria-hidden="true">→</span>
+      </a>
+
+      <a class="svc-card" href="kategorie.html?cat=sand" style="--acc:#fda4af">
+        <div class="svc-head">
+          <div class="svc-icon">SS</div>
+          <h3>Sandstrahlung</h3>
+        </div>
+        <p>Reinigung & Veredelung – die Oberfläche wird wieder fein.</p>
+        <span class="svc-chip">70×70 cm Bereich</span>
+        <span class="svc-arrow" aria-hidden="true">→</span>
+      </a>
     </div>
   </section>
-  <!-- ************  Ende der angepassten Leistungen  ************ -->
+  <!-- =================== Ende: Unsere Leistungen ===================== -->
 
   <section id="contact" class="section">
     <h2 class="h2">Kontakt & Öffnungszeiten</h2>
