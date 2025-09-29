@@ -240,7 +240,7 @@ header.nav, .container, footer.footer, .katalog-wrap{ position:relative; z-index
 @media (max-width:640px){.paylogo-svg{width:120px;height:28px}}
 
 
-/* === Official Wordmarks (modern cards) === */
+/* === Brand Cards (local SVGs) === */
 .brandlogos{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:12px 0 18px}
 .brandcard{position:relative;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.10);
   border-radius:16px;min-height:72px;display:flex;align-items:center;justify-content:center;
@@ -248,11 +248,8 @@ header.nav, .container, footer.footer, .katalog-wrap{ position:relative; z-index
 .brandcard::after{content:"";position:absolute;inset:-1px;border-radius:16px;
   background:linear-gradient(145deg,rgba(255,255,255,.12),rgba(255,255,255,.04));opacity:.0;transition:opacity .25s ease}
 .brandcard:hover::after{opacity:.3}
-.paylogo{max-height:34px;max-width:140px;object-fit:contain;display:block;filter: drop-shadow(0 0 1px rgba(0,0,0,.35))}
-.fallback{display:none;color:#cfd6e4;font-weight:800;font-family:var(--font-head, Inter, Arial);text-transform:uppercase;letter-spacing:.3px}
-.brandcard.is-fallback .fallback{display:block}
-.brandcard.is-fallback img{display:none}
-@media (max-width:640px){.paylogo{max-height:28px}}
+.brandcard img{height:34px;max-width:140px;object-fit:contain;display:block;filter: drop-shadow(0 0 1px rgba(0,0,0,.35))}
+@media (max-width:640px){.brandcard img{height:28px}}
 
 </style>
 </head>
@@ -436,33 +433,15 @@ header.nav, .container, footer.footer, .katalog-wrap{ position:relative; z-index
   
   
   
-  <div class="brandlogos" aria-label="Akzeptierte Zahlungsarten – offizielle Wordmarks">
-    
-    <div class="brandcard" data-brand="PayPal">
-      <img class="paylogo" src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal_Logo2014.svg" alt="PayPal" loading="lazy" />
-      <span class="fallback">PayPal</span>
-    </div>
-    
-    <div class="brandcard" data-brand="Visa">
-      <img class="paylogo" src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Inc._logo.svg" alt="Visa" loading="lazy" />
-      <span class="fallback">Visa</span>
-    </div>
-    
-    <div class="brandcard" data-brand="Mastercard">
-      <img class="paylogo" src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard_2019_logo.svg" alt="Mastercard" loading="lazy" />
-      <span class="fallback">Mastercard</span>
-    </div>
-    
-    <div class="brandcard" data-brand="girocard">
-      <img class="paylogo" src="https://upload.wikimedia.org/wikipedia/commons/5/5b/Girocard_logo.svg" alt="girocard" loading="lazy" />
-      <span class="fallback">girocard</span>
-    </div>
-    
-    <div class="brandcard" data-brand="SumUp">
-      <img class="paylogo" src="https://upload.wikimedia.org/wikipedia/commons/4/46/Sumup_logo.svg" alt="SumUp" loading="lazy" />
-      <span class="fallback">SumUp</span>
-    </div>
-    
+  
+  <div class="brandlogos" aria-label="Akzeptierte Zahlungsarten – lokale SVGs">
+    <div class="brandcard"><img src="img/brands/paypal.svg" alt="PayPal"></div>
+    <div class="brandcard"><img src="img/brands/visa.svg" alt="Visa"></div>
+    <div class="brandcard"><img src="img/brands/mastercard.svg" alt="Mastercard"></div>
+    <div class="brandcard"><img src="img/brands/girocard.svg" alt="girocard"></div>
+    <div class="brandcard"><img src="img/brands/sumup.svg" alt="SumUp"></div>
+  </div>
+
   </div>
 
   </div>
@@ -613,15 +592,5 @@ header.nav, .container, footer.footer, .katalog-wrap{ position:relative; z-index
     if(el) setLocalImage(el, bases);
   });
 </script>
-
-<script>
-// Fallback if external SVGs are blocked (local preview/CSP): show label instead
-document.querySelectorAll('.brandcard img').forEach(function(img){
-  img.addEventListener('error', function(){
-    var card = img.closest('.brandcard'); if(card){ card.classList.add('is-fallback'); }
-  });
-});
-</script>
-
 </body>
 </html>
