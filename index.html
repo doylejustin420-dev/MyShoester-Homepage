@@ -398,6 +398,38 @@ header.nav, .container, footer.footer, .katalog-wrap{ position:relative; z-index
     </div>
   </section>
 
+  
+<!-- Zahlung & Versand -->
+<section id="zahlungversand" class="section">
+  <h2 class="h2">Zahlung & Versand</h2>
+  <p style="color:var(--muted)">Vor Ort & online akzeptieren wir die folgenden Zahlarten. Versand ist möglich – Details siehe unten.</p>
+  <div class="paygrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin:12px 0 18px">
+    <div class="paycard" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.10);border-radius:14px;padding:12px;display:flex;align-items:center;gap:10px">
+      <div style="width:28px;height:28px;border-radius:6px;background:#002e85"></div><strong>PayPal</strong>
+    </div>
+    <div class="paycard" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.10);border-radius:14px;padding:12px;display:flex;align-items:center;gap:10px">
+      <div style="width:28px;height:28px;border-radius:6px;background:#0b68ff"></div><strong>VISA</strong>
+    </div>
+    <div class="paycard" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.10);border-radius:14px;padding:12px;display:flex;align-items:center;gap:10px">
+      <div style="width:28px;height:28px;border-radius:6px;background:#e01b24"></div><strong>Mastercard</strong>
+    </div>
+    <div class="paycard" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.10);border-radius:14px;padding:12px;display:flex;align-items:center;gap:10px">
+      <div style="width:28px;height:28px;border-radius:6px;background:#0065a1"></div><strong>girocard/EC</strong>
+    </div>
+    <div class="paycard" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.10);border-radius:14px;padding:12px;display:flex;align-items:center;gap:10px">
+      <div style="width:28px;height:28px;border-radius:6px;background:#111"></div><strong>SumUp (Karte & kontaktlos)</strong>
+    </div>
+  </div>
+  <div class="card"><div class="pad">
+    <p><strong>Versand</strong></p>
+    <ul style="margin:8px 0 0 16px; color:var(--muted)">
+      <li>Deutschlandweit per versichertem Paket (z. B. DHL) – Versandkosten je nach Gewicht/Größe.</li>
+      <li>Rückversand von Reparaturen möglich.</li>
+      <li>Bitte <a href="#contact">Kontakt</a> aufnehmen für Kostenvoranschlag & Abwicklung.</li>
+    </ul>
+  </div></div>
+</section>
+
   <section id="contact" class="section">
     <h2 class="h2">Kontakt & Öffnungszeiten</h2>
     <div class="grid">
@@ -418,7 +450,19 @@ header.nav, .container, footer.footer, .katalog-wrap{ position:relative; z-index
   </section>
 </main>
 
-<footer class="footer">© <span id="year"></span> MyShoester • Alle Preise sind Ab-Preise inkl. MwSt., abhängig von Material & Aufwand.</footer>
+
+<footer class="footer">© <span id="year"></span> MyShoester • Alle Preise sind Ab-Preise inkl. MwSt., abhängig von Material & Aufwand.
+  <br>
+  <a href="impressum.html">Impressum</a> ·
+  <a href="datenschutz.html">Datenschutz</a> ·
+  <a href="agb.html">AGB</a> ·
+  <a href="widerruf.html">Widerruf</a> ·
+  <a href="versand-zahlung.html">Versand & Zahlung</a> ·
+  <a href="unbedenklichkeit.html">Unbedenklichkeit</a> ·
+  <a href="konformitaet.html">Konformität</a> ·
+  <a href="#" onclick="alert('Bitte Ihren Cookie-Dialog/CMP integrieren.');return false;">Cookie-Einstellungen</a>
+</footer>
+
 
 <script>
   // Jahr
