@@ -149,7 +149,7 @@ body::before{
 </aside>
 
 <main class="container">
-  <!-- Hero -->
+  <!-- Hero (optional – blendet sich aus, wenn Datei fehlt) -->
   <section class="hero" id="start">
     <div>
       <span class="tag">Schuh- & Lederwerkstatt</span>
@@ -157,9 +157,11 @@ body::before{
       <p>Lieblingsschuhe und Lederwaren wieder in Form bringen: Sohlenwechsel, Absätze, Nähte, Färbungen & Pflege – fair, präzise, nachhaltig.</p>
     </div>
     <div>
-      <img id="heroImg" data-name="hero-werkstatt"
-           src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'><defs><linearGradient id='g' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='%23d9e6ff'/><stop offset='100%' stop-color='%23ffd9cc'/></linearGradient></defs><rect width='1200' height='800' fill='url(%23g)'/><text x='60' y='120' fill='%230d0f16' font-family='Poppins' font-size='44' font-weight='700'>Hero-Platzhalter</text><text x='60' y='172' fill='%23334155' font-family='Poppins' font-size='22'>Datei in /img/hero-werkstatt.(webp|jpg|jpeg|png)</text></svg>"
-           alt="Schuhmacher-Werkstatt – Blick in die Werkbank">
+      <img id="heroImg"
+           src="img/hero-werkstatt.webp"
+           alt="Schuhmacher-Werkstatt – Blick in die Werkbank"
+           loading="lazy" decoding="async"
+           onerror="this.style.display='none'">
     </div>
   </section>
 
@@ -171,9 +173,16 @@ body::before{
       <!-- Reparatur -->
       <div id="repair" class="service" style="--acc:#86efac">
         <div class="pic">
-          <img id="img-repair" data-name="repair-werkstatt-skizze"
-               src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'><defs><linearGradient id='g' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='%23d9e6ff'/><stop offset='100%' stop-color='%23ffd9cc'/></linearGradient></defs><rect width='1200' height='800' fill='url(%23g)'/><text x='60' y='120' fill='%230d0f16' font-family='Poppins' font-size='36' font-weight='700'>Reparatur – Platzhalter</text><text x='60' y='168' fill='%23334155' font-family='Poppins' font-size='20'>/img/repair-werkstatt-skizze.(webp|jpg|jpeg|png)</text></svg>"
-               alt="Werkstatt mit Schuhreparatur; Schuhmacher grob in Bleistift skizziert">
+          <!-- Feste lokale Datei; falls .webp fehlt, probiere .jpg → .png -->
+          <img
+            id="repairImg"
+            src="img/repair-werkstatt-skizze.webp"
+            alt="Werkstatt mit Schuhreparatur; Schuhmacher grob in Bleistift skizziert"
+            loading="lazy" decoding="async"
+            onerror="this.onerror=null;
+                     this.src='img/repair-werkstatt-skizze.jpg';
+                     this.onerror=function(){ this.src='img/repair-werkstatt-skizze.png'; };"
+          >
         </div>
         <div class="text">
           <h3 class="title">Schuh- & Lederwarenreparatur</h3>
@@ -190,18 +199,28 @@ body::before{
           <div class="chips"><span class="chip">Weiche Polsterung</span><span class="chip">Alltag & Beruf</span><span class="chip">Atmungsaktive Materialien</span></div>
         </div>
         <div class="pic">
-          <img id="img-bequem" data-name="bequem-einlagen"
-               src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'><rect width='1200' height='800' fill='%23e6ecff'/><text x='60' y='120' fill='%230d0f16' font-family='Poppins' font-size='30' font-weight='700'>Bequem – Platzhalter</text><text x='60' y='162' fill='%23334155' font-family='Poppins' font-size='18'>/img/bequem-einlagen.(webp|jpg|jpeg|png)</text></svg>"
-               alt="Weiche Einlagen – Zuschnitt und Schliff am Werktisch">
+          <img
+            src="img/bequem-einlagen.webp"
+            alt="Bequemschuheinlagen – weiche Einlagen am Werktisch"
+            loading="lazy" decoding="async"
+            onerror="this.onerror=null;
+                     this.src='img/bequem-einlagen.jpg';
+                     this.onerror=function(){ this.src='img/bequem-einlagen.png'; };"
+          >
         </div>
       </div>
 
       <!-- Komfort -->
       <div id="komfort" class="service" style="--acc:#fca5a5">
         <div class="pic">
-          <img id="img-komfort" data-name="komfort-einlagen"
-               src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'><rect width='1200' height='800' fill='%23ffe6e6'/><text x='60' y='120' fill='%230d0f16' font-family='Poppins' font-size='30' font-weight='700'>Komfort – Platzhalter</text><text x='60' y='162' fill='%23334155' font-family='Poppins' font-size='18'>/img/komfort-einlagen.(webp|jpg|jpeg|png)</text></svg>"
-               alt="Komforteinlagen – Gewölbeunterstützung & Druckverteilung">
+          <img
+            src="img/komfort-einlagen.webp"
+            alt="Komforteinlagen – Gewölbeunterstützung & Druckverteilung"
+            loading="lazy" decoding="async"
+            onerror="this.onerror=null;
+                     this.src='img/komfort-einlagen.jpg';
+                     this.onerror=function(){ this.src='img/komfort-einlagen.png'; };"
+          >
         </div>
         <div class="text">
           <h3 class="title">Komforteinlagen</h3>
@@ -218,18 +237,28 @@ body::before{
           <div class="chips"><span class="chip">Leicht & pflegeleicht</span><span class="chip">Dauertragekomfort</span><span class="chip">Preis-/Leistung</span></div>
         </div>
         <div class="pic">
-          <img id="img-alltag" data-name="alltag-einlagen"
-               src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'><rect width='1200' height='800' fill='%23fff1cc'/><text x='60' y='120' fill='%230d0f16' font-family='Poppins' font-size='30' font-weight='700'>Alltag – Platzhalter</text><text x='60' y='162' fill='%23334155' font-family='Poppins' font-size='18'>/img/alltag-einlagen.(webp|jpg|jpeg|png)</text></svg>"
-               alt="Alltagseinlagen neben Freizeitschuhen">
+          <img
+            src="img/alltag-einlagen.webp"
+            alt="Alltagseinlagen neben Freizeitschuhen"
+            loading="lazy" decoding="async"
+            onerror="this.onerror=null;
+                     this.src='img/alltag-einlagen.jpg';
+                     this.onerror=function(){ this.src='img/alltag-einlagen.png'; };"
+          >
         </div>
       </div>
 
       <!-- Maßgürtel -->
       <div id="belts" class="service" style="--acc:#c4b5fd">
         <div class="pic">
-          <img id="img-belts" data-name="massguertel-leder"
-               src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'><rect width='1200' height='800' fill='%23efe6ff'/><text x='60' y='120' fill='%230d0f16' font-family='Poppins' font-size='30' font-weight='700'>Ma%25C3%259Fg%25C3%25BCrtel – Platzhalter</text><text x='60' y='162' fill='%23334155' font-family='Poppins' font-size='18'>/img/massguertel-leder.(webp|jpg|jpeg|png)</text></svg>"
-               alt="Maßgürtel aus Vollleder – Zuschnitt und Kantenbearbeitung">
+          <img
+            src="img/massguertel-leder.webp"
+            alt="Maßgürtel aus Vollleder – Zuschnitt und Kantenbearbeitung"
+            loading="lazy" decoding="async"
+            onerror="this.onerror=null;
+                     this.src='img/massguertel-leder.jpg';
+                     this.onerror=function(){ this.src='img/massguertel-leder.png'; };"
+          >
         </div>
         <div class="text">
           <h3 class="title">Maßgürtel</h3>
@@ -246,18 +275,28 @@ body::before{
           <div class="chips"><span class="chip">Feine Details</span><span class="chip">Einzelstücke & Serien</span><span class="chip">Geschenke & Branding</span></div>
         </div>
         <div class="pic">
-          <img id="img-laser" data-name="laser-gravur-leder"
-               src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'><rect width='1200' height='800' fill='%23e5fbff'/><text x='60' y='120' fill='%230d0f16' font-family='Poppins' font-size='30' font-weight='700'>Lasergravur – Platzhalter</text><text x='60' y='162' fill='%23334155' font-family='Poppins' font-size='18'>/img/laser-gravur-leder.(webp|jpg|jpeg|png)</text></svg>"
-               alt="Lasergravur auf Leder-Patch in Nahaufnahme">
+          <img
+            src="img/laser-gravur-leder.webp"
+            alt="Lasergravur auf Leder – feine Details"
+            loading="lazy" decoding="async"
+            onerror="this.onerror=null;
+                     this.src='img/laser-gravur-leder.jpg';
+                     this.onerror=function(){ this.src='img/laser-gravur-leder.png'; };"
+          >
         </div>
       </div>
 
-      <!-- Zuschnitte -->
+      <!-- Laserzuschnitte -->
       <div id="cutting" class="service" style="--acc:#a7f3d0">
         <div class="pic">
-          <img id="img-cutting" data-name="laser-zuschnitte-leder"
-               src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'><rect width='1200' height='800' fill='%23e6fff6'/><text x='60' y='120' fill='%230d0f16' font-family='Poppins' font-size='30' font-weight='700'>Laserzuschnitt – Platzhalter</text><text x='60' y='162' fill='%23334155' font-family='Poppins' font-size='18'>/img/laser-zuschnitte-leder.(webp|jpg|jpeg|png)</text></svg>"
-               alt="Laserzuschnitt von Leder-Schablonen">
+          <img
+            src="img/laser-zuschnitte-leder.webp"
+            alt="Laserzuschnitt – konturgenaue Teile aus Leder"
+            loading="lazy" decoding="async"
+            onerror="this.onerror=null;
+                     this.src='img/laser-zuschnitte-leder.jpg';
+                     this.onerror=function(){ this.src='img/laser-zuschnitte-leder.png'; };"
+          >
         </div>
         <div class="text">
           <h3 class="title">Laserzuschnitte</h3>
@@ -274,18 +313,28 @@ body::before{
           <div class="chips"><span class="chip">Caps & Shirts</span><span class="chip">Kleine Auflagen</span><span class="chip">Stimmiges Design</span></div>
         </div>
         <div class="pic">
-          <img id="img-streetwear" data-name="streetwear-lederpatch"
-               src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'><rect width='1200' height='800' fill='%23ffe6f3'/><text x='60' y='120' fill='%230d0f16' font-family='Poppins' font-size='30' font-weight='700'>Streetwear – Platzhalter</text><text x='60' y='162' fill='%23334155' font-family='Poppins' font-size='18'>/img/streetwear-lederpatch.(webp|jpg|jpeg|png)</text></svg>"
-               alt="Streetwear-Cap/Shirt mit gelasertem Leder-Patch">
+          <img
+            src="img/streetwear-lederpatch.webp"
+            alt="Streetwear mit gelasertem Leder-Patch"
+            loading="lazy" decoding="async"
+            onerror="this.onerror=null;
+                     this.src='img/streetwear-lederpatch.jpg';
+                     this.onerror=function(){ this.src='img/streetwear-lederpatch.png'; };"
+          >
         </div>
       </div>
 
       <!-- Sandstrahlung -->
       <div id="sand" class="service" style="--acc:#f59e0b">
         <div class="pic">
-          <img id="img-sand" data-name="sandstrahlung-beschlaege"
-               src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'><rect width='1200' height='800' fill='%23fff2db'/><text x='60' y='120' fill='%230d0f16' font-family='Poppins' font-size='30' font-weight='700'>Sandstrahlung – Platzhalter</text><text x='60' y='162' fill='%23334155' font-family='Poppins' font-size='18'>/img/sandstrahlung-beschlaege.(webp|jpg|jpeg|png)</text></svg>"
-               alt="Sandstrahlung von Metallschnallen und Beschlägen">
+          <img
+            src="img/sandstrahlung-beschlaege.webp"
+            alt="Sandstrahlung – Beschläge & Schnallen"
+            loading="lazy" decoding="async"
+            onerror="this.onerror=null;
+                     this.src='img/sandstrahlung-beschlaege.jpg';
+                     this.onerror=function(){ this.src='img/sandstrahlung-beschlaege.png'; };"
+          >
         </div>
         <div class="text">
           <h3 class="title">Sandstrahlung</h3>
@@ -329,27 +378,10 @@ body::before{
   openBtn.addEventListener('click', () => toggle(!panel.classList.contains('open')));
   closeBtn.addEventListener('click', () => toggle(false));
   document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') toggle(false); });
-  document.addEventListener('click',(e)=>{ if(panel.classList.contains('open') && !panel.contains(e.target) && e.target!==openBtn){ toggle(false);} });
-
-  // ---------- Lokale Bildsuche: findet .webp/.jpg/.jpeg/.png, mit/ohne "-1200" ----------
-  const exts = ['webp','jpg','jpeg','png'];
-  function tryLoad(img, base){
-    let i=0, withSize=true;
-    function next(){
-      if(i>=exts.length){
-        if(withSize){ withSize=false; i=0; next(); return; }
-        return; // bleibt Platzhalter
-      }
-      const url = `img/${base}${withSize?'-1200':''}.${exts[i]}?v=${Date.now()}`;
-      const t = new Image();
-      t.onload = ()=> img.src = url.split('?')[0];
-      t.onerror = ()=>{ i++; next(); };
-      t.src = url;
+  document.addEventListener('click',(e)=>{
+    if(panel.classList.contains('open') && !panel.contains(e.target) && e.target!==openBtn){
+      toggle(false);
     }
-    next();
-  }
-  document.querySelectorAll('img[data-name]').forEach(img=>{
-    tryLoad(img, img.dataset.name);
   });
 </script>
 </body>
