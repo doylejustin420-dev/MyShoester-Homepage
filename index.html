@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- wichtig für Mobile -->
 <title>MyShoester – Schuh- & Lederwerkstatt</title>
 <meta name="description" content="Reparaturen, Pflege, Einlagen, Maßgürtel, Lasergravur & -zuschnitt, Streetwear, Sandstrahlung.">
 
@@ -14,7 +14,6 @@
 :root{
   --bg:#0f1220; --text:#f5f7fb; --muted:#a8b0c2; --panel:#151a2c; --line:#232a48;
   --p1:#ffd6e7; --p2:#d1f3ff; --p3:#dfffe2; --p4:#fff3c7; --p5:#e7dcff; --ink:#0d0f16;
-  --dropBlue:#6b7ed9;
 }
 *{box-sizing:border-box}
 html,body{margin:0;padding:0;color:var(--text);
@@ -35,7 +34,12 @@ body::before{
 .nav-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;gap:18px;padding:12px 20px}
 .logo{display:flex;align-items:center;gap:12px}
 .logo-badge{width:36px;height:36px;border-radius:12px;background:linear-gradient(135deg,#a78bfa,#22d3ee);display:grid;place-items:center;font-weight:700}
-.logo-title{font-family:'Playfair Display',serif;font-weight:700;font-size:26px;letter-spacing:.35px}
+.logo-title{
+  font-family:'Playfair Display',serif;
+  font-weight:700;
+  font-size:26px;
+  letter-spacing:.35px;
+}
 .nav-links{display:flex;flex-wrap:wrap;gap:12px;margin-left:auto}
 .nav-links a{color:var(--text);text-decoration:none;padding:8px 10px;border-radius:10px}
 .nav-links a:hover{background:#1a2240}
@@ -54,16 +58,31 @@ body::before{
 .cat-title{font-family:'Playfair Display',serif;font-size:20px}
 .cat-close{background:transparent;border:1px solid var(--line);color:var(--text);padding:8px 12px;border-radius:12px;cursor:pointer}
 .cat-list{padding:12px 12px 16px;display:grid;gap:10px}
-.cat-link{display:block;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:12px 14px;color:var(--text);text-decoration:none;font-weight:600}
+.cat-link{display:block;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:12px 14px;
+  color:var(--text);text-decoration:none;font-weight:600}
 .cat-link:hover{background:rgba(255,255,255,.12)}
 
 /* Layout */
 .container{max-width:1280px;margin:0 auto;padding:24px}
 .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:28px;align-items:center;padding:42px 0}
-.hero h1{font-family:'Playfair Display',serif;font-size:46px;line-height:1.15;margin:0 0 14px}
+.hero h1{
+  font-family:'Playfair Display',serif;
+  font-size:46px; /* Desktop */
+  line-height:1.15;margin:0 0 14px
+}
+/* Badge im Hero */
 .tag{
-  display:inline-block;font-family:'Great Vibes', cursive;font-size:24px;line-height:1.1;color:#0d0f16;
-  background:rgba(255,255,255,.72);border:0;padding:8px 12px;border-radius:12px;box-shadow:0 6px 14px rgba(0,0,0,.08);margin-bottom:14px
+  display:inline-block;
+  font-family:'Great Vibes', cursive;
+  font-size:24px;
+  line-height:1.1;
+  color:#0d0f16;
+  background:rgba(255,255,255,.72);
+  border:0;
+  padding:8px 12px;
+  border-radius:12px;
+  box-shadow:0 6px 14px rgba(0,0,0,.08);
+  margin-bottom:14px;
 }
 .hero p{color:var(--muted);margin:0 0 18px}
 .hero img{width:100%;height:480px;object-fit:cover;border-radius:22px;border:1px solid var(--line)}
@@ -89,26 +108,42 @@ body::before{
 .service + .service::before{content:""; position:absolute; left:0; right:0; top:-14px; height:1px; background:linear-gradient(90deg, rgba(255,255,255,.15), rgba(255,255,255,.04))}
 
 /* Dropdown-Farbe */
+:root{ --dropBlue:#6b7ed9 }
 #catalog .cat-title,#catalog .cat-link,#catalog .cat-close,
 .catalog .cat-title,.catalog .cat-link,.catalog .cat-close{ color: var(--dropBlue) !important; opacity:1 !important }
 #catalog .cat-link > *, .catalog .cat-link > *{ color: inherit !important }
 #catalog .cat-link:hover, .catalog .cat-link:hover{ background: rgba(107,126,217,.14); border-color: rgba(107,126,217,.28); text-shadow: 0 1px 0 rgba(0,0,0,.15)}
 
-/* MOBILE OPTIMIERUNGEN */
-.nav-links{ overflow-x:auto; white-space:nowrap; -webkit-overflow-scrolling:touch; }
+/* ------------------------------ */
+/*      MOBILE OPTIMIERUNGEN      */
+/* ------------------------------ */
+
+/* 1) Navigation wischbar, Touch-Ziele größer */
+.nav-links{
+  overflow-x:auto;
+  white-space:nowrap;
+  -webkit-overflow-scrolling:touch;
+}
 .nav-links a, .katalog-btn, .chip { min-height:44px; line-height:1.2; }
+
+/* 2) Flexible Schriftgrößen für kleine Screens */
 @media (max-width: 820px){
   .container{ padding:16px; }
   .hero{ grid-template-columns:1fr; gap:16px; padding:24px 0; }
   .hero h1{ font-size: clamp(28px, 7vw, 46px); }
   .hero p, .service .desc { font-size: clamp(14px, 2.8vw, 16px); }
   .hero img{ height:auto; max-height:52vh; }
+
   .services-stack{ gap:22px; }
   .service, .service:nth-child(even){ grid-template-columns:1fr; }
   .service .pic{ min-height:180px; }
+
+  /* Katalog-Button & Panel besser positionieren */
   .katalog-wrap{ left:auto; right:16px; top:72px; }
   .catalog{ left:auto; right:16px; width:calc(100vw - 32px); max-height:calc(100vh - 140px); }
 }
+
+/* 3) Etwas kompaktere Nav-Pills auf Mobile */
 @media (max-width: 480px){
   .nav-links{ gap:8px; }
   .nav-links a{ padding:8px 8px; }
@@ -170,11 +205,14 @@ body::before{
       <p>Lieblingsschuhe und Lederwaren wieder in Form bringen: Sohlenwechsel, Absätze, Nähte, Färbungen & Pflege – fair, präzise, nachhaltig.</p>
     </div>
     <div>
-      <!-- Hero: eingebettetes Leder-/Schuhmacher-SVG + externer Remote-Foto-Fallback -->
       <img
-        src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'><rect width='1200' height='800' fill='%23312620'/><rect x='0' y='560' width='1200' height='260' fill='%2342332b'/><path d='M120 520c160-140 440-180 700-160 70 4 160 18 180 44' fill='none' stroke='%23e8ddd0' stroke-width='10' stroke-linecap='round'/><path d='M360 520c60-40 140-60 220-66' fill='none' stroke='%23d7c8b8' stroke-width='8' stroke-linecap='round'/><text x='60' y='120' fill='%23f5f5f5' font-family='Poppins' font-size='44'>Schuhmacher-Werkstatt</text><text x='60' y='172' fill='%23e2e2e2' font-family='Poppins' font-size='24' opacity='0.8'>Lederzuschnitt & Naht</text></svg>"
-        data-remote="https://images.unsplash.com/photo-1556741533-f6acd6476a07?auto=format&fit=crop&w=1600&q=80"
-        alt="Schuhmacher bei der Arbeit: Lederschuh, Messer, Ahle, Naht"
+        src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=1600&q=80"
+        srcset="
+          https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=640&q=70 640w,
+          https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=960&q=75 960w,
+          https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=1600&q=80 1600w"
+        sizes="(max-width: 820px) 100vw, 50vw"
+        alt="Schuhmacher-Werkstatt – Detailarbeit am Lederschuh"
         loading="eager" decoding="async">
     </div>
   </section>
@@ -185,12 +223,25 @@ body::before{
 
     <div class="services-stack">
       <!-- Reparatur -->
-      <div id="repair" class="service" style="--acc:#86efac">
+      <img
+  src="img/repair-werkstatt-skizze-1200.webp"
+  srcset="
+    img/repair-werkstatt-skizze-640.webp 640w,
+    img/repair-werkstatt-skizze-960.webp 960w,
+    img/repair-werkstatt-skizze-1200.webp 1200w"
+  sizes="(max-width: 820px) 100vw, min(40vw,420px)"
+  alt="Werkstatt mit Schuhreparatur; Schuhmacher grob in Bleistift skizziert"
+  loading="lazy" decoding="async">
+ style="--acc:#86efac">
         <div class="pic">
           <img
-            src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'><rect width='1200' height='800' fill='%2332261f'/><path d='M160 540c140-180 460-220 880-240' stroke='%23f0e6d8' stroke-width='10' fill='none' stroke-linecap='round'/><path d='M240 560h180l30-50h140l30 50h180' stroke='%23eaddcc' stroke-width='8' fill='none'/><text x='60' y='120' fill='%23fff' font-family='Poppins' font-size='36'>Sohlen- & Absatzreparatur</text></svg>"
-            data-remote="https://images.unsplash.com/photo-1600962815703-3d9ad6d0f7d1?auto=format&fit=crop&w=1200&q=80"
-            alt="Sohlen- und Absatzreparatur – Naht, Aufbau, Kleben"
+            src="https://images.unsplash.com/photo-1543168256-418811576931?auto=format&fit=crop&w=1200&q=80"
+            srcset="
+              https://images.unsplash.com/photo-1543168256-418811576931?auto=format&fit=crop&w=640&q=70 640w,
+              https://images.unsplash.com/photo-1543168256-418811576931?auto=format&fit=crop&w=960&q=75 960w,
+              https://images.unsplash.com/photo-1543168256-418811576931?auto=format&fit=crop&w=1200&q=80 1200w"
+            sizes="(max-width: 820px) 100vw, min(40vw,420px)"
+            alt="Sohlen- und Absatzreparatur – Nähen, Kleben und Planen am Lederschuh"
             loading="lazy" decoding="async">
         </div>
         <div class="text">
@@ -209,9 +260,13 @@ body::before{
         </div>
         <div class="pic">
           <img
-            src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'><rect width='1200' height='800' fill='%232a2f3a'/><ellipse cx='600' cy='470' rx='460' ry='150' fill='%236b7280'/><text x='60' y='120' fill='%23fff' font-family='Poppins' font-size='36'>Bequemschuheinlagen</text></svg>"
-            data-remote="https://images.unsplash.com/photo-1617957743103-6c48a4d1f3a7?auto=format&fit=crop&w=1200&q=80"
-            alt="Weiche Einlagen – Zuschnitt und Schliff an der Werkbank"
+            src="https://images.unsplash.com/photo-1600180758890-6b94519a8baa?auto=format&fit=crop&w=1200&q=80"
+            srcset="
+              https://images.unsplash.com/photo-1600180758890-6b94519a8baa?auto=format&fit=crop&w=640&q=70 640w,
+              https://images.unsplash.com/photo-1600180758890-6b94519a8baa?auto=format&fit=crop&w=960&q=75 960w,
+              https://images.unsplash.com/photo-1600180758890-6b94519a8baa?auto=format&fit=crop&w=1200&q=80 1200w"
+            sizes="(max-width: 820px) 100vw, min(40vw,420px)"
+            alt="Bequemschuheinlagen – weiche Einlagen am Werktisch"
             loading="lazy" decoding="async">
         </div>
       </div>
@@ -220,9 +275,13 @@ body::before{
       <div id="komfort" class="service" style="--acc:#fca5a5">
         <div class="pic">
           <img
-            src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'><rect width='1200' height='800' fill='%2332365a'/><path d='M160 520c240-220 520-220 880-140' stroke='%23cbd5e1' stroke-width='10' fill='none'/><text x='60' y='120' fill='%23fff' font-family='Poppins' font-size='36'>Komforteinlagen</text></svg>"
-            data-remote="https://images.unsplash.com/photo-1602741299960-0f0c9b1d6db5?auto=format&fit=crop&w=1200&q=80"
-            alt="Komforteinlagen mit Gewölbestütze"
+            src="https://images.unsplash.com/photo-1582095489738-83f2a4c2f0af?auto=format&fit=crop&w=1200&q=80"
+            srcset="
+              https://images.unsplash.com/photo-1582095489738-83f2a4c2f0af?auto=format&fit=crop&w=640&q=70 640w,
+              https://images.unsplash.com/photo-1582095489738-83f2a4c2f0af?auto=format&fit=crop&w=960&q=75 960w,
+              https://images.unsplash.com/photo-1582095489738-83f2a4c2f0af?auto=format&fit=crop&w=1200&q=80 1200w"
+            sizes="(max-width: 820px) 100vw, min(40vw,420px)"
+            alt="Komforteinlagen – Gewölbeunterstützung & Druckverteilung"
             loading="lazy" decoding="async">
         </div>
         <div class="text">
@@ -241,9 +300,13 @@ body::before{
         </div>
         <div class="pic">
           <img
-            src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'><rect width='1200' height='800' fill='%23374151'/><rect x='160' y='360' width='880' height='120' rx='60' fill='%239ca3af'/><text x='60' y='120' fill='%23fff' font-family='Poppins' font-size='36'>Alltagseinlagen</text></svg>"
-            data-remote="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80"
-            alt="Alltagseinlagen neben Freizeitschuhen"
+            src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80"
+            srcset="
+              https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=640&q=70 640w,
+              https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=960&q=75 960w,
+              https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80 1200w"
+            sizes="(max-width: 820px) 100vw, min(40vw,420px)"
+            alt="Alltagseinlagen – leichte, pflegeleichte Einlagen neben Freizeitschuhen"
             loading="lazy" decoding="async">
         </div>
       </div>
@@ -252,9 +315,13 @@ body::before{
       <div id="belts" class="service" style="--acc:#c4b5fd">
         <div class="pic">
           <img
-            src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'><rect width='1200' height='800' fill='%233a2f2a'/><rect x='160' y='360' width='880' height='80' fill='%236b4f3a'/><rect x='820' y='350' width='90' height='100' fill='%23d1d5db'/><text x='60' y='120' fill='%23fff' font-family='Poppins' font-size='36'>Ma%25g%25C3%25BCrtel</text></svg>"
-            data-remote="https://images.unsplash.com/photo-1603064752734-4b3c0e54796a?auto=format&fit=crop&w=1200&q=80"
-            alt="Maßgürtel aus Vollleder – Zuschnitt und Kantenbearbeitung"
+            src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=1200&q=80"
+            srcset="
+              https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=640&q=70 640w,
+              https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=960&q=75 960w,
+              https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=1200&q=80 1200w"
+            sizes="(max-width: 820px) 100vw, min(40vw,420px)"
+            alt="Maßgürtel – Zuschnitt, Kantenbearbeitung und Naht"
             loading="lazy" decoding="async">
         </div>
         <div class="text">
@@ -273,9 +340,13 @@ body::before{
         </div>
         <div class="pic">
           <img
-            src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'><rect width='1200' height='800' fill='%230f172a'/><line x1='200' y1='160' x2='1000' y2='520' stroke='%2367e8f9' stroke-width='8'/><circle cx='1000' cy='520' r='16' fill='%2367e8f9'/><text x='60' y='120' fill='%23fff' font-family='Poppins' font-size='36'>Lasergravur auf Leder</text></svg>"
-            data-remote="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3b?auto=format&fit=crop&w=1200&q=80"
-            alt="Lasergravur auf Leder-Patch in Nahaufnahme"
+            src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3b?auto=format&fit=crop&w=1200&q=80"
+            srcset="
+              https://images.unsplash.com/photo-1573497019940-1c28c88b4f3b?auto=format&fit=crop&w=640&q=70 640w,
+              https://images.unsplash.com/photo-1573497019940-1c28c88b4f3b?auto=format&fit=crop&w=960&q=75 960w,
+              https://images.unsplash.com/photo-1573497019940-1c28c88b4f3b?auto=format&fit=crop&w=1200&q=80 1200w"
+            sizes="(max-width: 820px) 100vw, min(40vw,420px)"
+            alt="Lasergravur auf Leder – feine, kontrastreiche Gravur"
             loading="lazy" decoding="async">
         </div>
       </div>
@@ -284,9 +355,13 @@ body::before{
       <div id="cutting" class="service" style="--acc:#a7f3d0">
         <div class="pic">
           <img
-            src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'><rect width='1200' height='800' fill='%2312323a'/><path d='M240 560 L960 240' stroke='%23a7f3d0' stroke-width='10'/><text x='60' y='120' fill='%23fff' font-family='Poppins' font-size='36'>Laserzuschnitte</text></svg>"
-            data-remote="https://images.unsplash.com/photo-1518779578993-ec3579fee39f?auto=format&fit=crop&w=1200&q=80"
-            alt="Laserzuschnitt von Leder-Schablonen"
+            src="https://images.unsplash.com/photo-1518779578993-ec3579fee39f?auto=format&fit=crop&w=1200&q=80"
+            srcset="
+              https://images.unsplash.com/photo-1518779578993-ec3579fee39f?auto=format&fit=crop&w=640&q=70 640w,
+              https://images.unsplash.com/photo-1518779578993-ec3579fee39f?auto=format&fit=crop&w=960&q=75 960w,
+              https://images.unsplash.com/photo-1518779578993-ec3579fee39f?auto=format&fit=crop&w=1200&q=80 1200w"
+            sizes="(max-width: 820px) 100vw, min(40vw,420px)"
+            alt="Laserzuschnitt – exakte Konturen in Leder, Holz oder Acryl"
             loading="lazy" decoding="async">
         </div>
         <div class="text">
@@ -305,9 +380,13 @@ body::before{
         </div>
         <div class="pic">
           <img
-            src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'><rect width='1200' height='800' fill='%23111827'/><path d='M380 260 h440 v280 h-440 z' fill='%231f2937'/><text x='60' y='120' fill='%23fff' font-family='Poppins' font-size='36'>Streetwear mit Leder-Patch</text></svg>"
-            data-remote="https://images.unsplash.com/photo-1548883354-94bcfe3216d7?auto=format&fit=crop&w=1200&q=80"
-            alt="Streetwear-Cap/Shirt mit gelasertem Leder-Patch"
+            src="https://images.unsplash.com/photo-1548883354-94bcfe3216d7?auto=format&fit=crop&w=1200&q=80"
+            srcset="
+              https://images.unsplash.com/photo-1548883354-94bcfe3216d7?auto=format&fit=crop&w=640&q=70 640w,
+              https://images.unsplash.com/photo-1548883354-94bcfe3216d7?auto=format&fit=crop&w=960&q=75 960w,
+              https://images.unsplash.com/photo-1548883354-94bcfe3216d7?auto=format&fit=crop&w=1200&q=80 1200w"
+            sizes="(max-width: 820px) 100vw, min(40vw,420px)"
+            alt="Streetwear mit Leder-Patch – Werkstatt-inspirierte Cap/Shirt"
             loading="lazy" decoding="async">
         </div>
       </div>
@@ -316,9 +395,13 @@ body::before{
       <div id="sand" class="service" style="--acc:#f59e0b">
         <div class="pic">
           <img
-            src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'><rect width='1200' height='800' fill='%233b3b3b'/><circle cx='300' cy='420' r='160' fill='%236b7280'/><text x='60' y='120' fill='%23fff' font-family='Poppins' font-size='36'>Sandstrahlung von Beschl%25C3%25A4gen</text></svg>"
-            data-remote="https://images.unsplash.com/photo-1581092335305-2310217a02b2?auto=format&fit=crop&w=1200&q=80"
-            alt="Sandstrahlung von Metallschnallen und Beschlägen"
+            src="https://images.unsplash.com/photo-1581092335305-2310217a02b2?auto=format&fit=crop&w=1200&q=80"
+            srcset="
+              https://images.unsplash.com/photo-1581092335305-2310217a02b2?auto=format&fit=crop&w=640&q=70 640w,
+              https://images.unsplash.com/photo-1581092335305-2310217a02b2?auto=format&fit=crop&w=960&q=75 960w,
+              https://images.unsplash.com/photo-1581092335305-2310217a02b2?auto=format&fit=crop&w=1200&q=80 1200w"
+            sizes="(max-width: 820px) 100vw, min(40vw,420px)"
+            alt="Sandstrahlung – Reinigung und Mattierung von Oberflächen"
             loading="lazy" decoding="async">
         </div>
         <div class="text">
@@ -353,10 +436,8 @@ body::before{
 <footer class="footer">© <span id="year"></span> MyShoester • Alle Preise sind Ab-Preise inkl. MwSt., abhängig von Material & Aufwand.</footer>
 
 <script>
-  // Jahr
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Katalog
   const panel  = document.getElementById('catalog');
   const openBtn= document.getElementById('btnKatalog');
   const closeBtn=document.getElementById('btnClose');
@@ -372,18 +453,6 @@ body::before{
       toggle(false);
     }
   });
-
-  // *** Foto-Upgrade: Wenn Remote-Foto erreichbar ist, ersetze das SVG automatisch ***
-  (function upgradeImages(){
-    document.querySelectorAll('img[data-remote]').forEach(function(img){
-      const url = img.getAttribute('data-remote');
-      if(!url) return;
-      const test = new Image();
-      test.referrerPolicy = 'no-referrer';
-      test.onload = function(){ img.src = url; };
-      test.src = url;
-    });
-  })();
 </script>
 </body>
 </html>
