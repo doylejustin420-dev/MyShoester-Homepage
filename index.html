@@ -240,33 +240,19 @@ header.nav, .container, footer.footer, .katalog-wrap{ position:relative; z-index
 @media (max-width:640px){.paylogo-svg{width:120px;height:28px}}
 
 
-/* === Brand Chips (modern alternative) === */
-.brandchips{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:12px 0 18px}
-.brandchip{
-  --ring: rgba(255,255,255,.10);
-  --bg: rgba(255,255,255,.04);
-  --fg: #cfd6e4;
-  appearance:none;border:1px solid var(--ring);background:var(--bg);color:var(--fg);
-  border-radius:16px;padding:12px 14px;font:800 14px/1.2 var(--font-head);
-  letter-spacing:.3px;text-transform:uppercase;display:flex;align-items:center;justify-content:center;gap:10px;
-  box-shadow:0 8px 20px rgba(0,0,0,.35) inset, 0 8px 26px rgba(0,0,0,.35);
-  position:relative; overflow:hidden;
-}
-.brandchip::after{
-  content:""; position:absolute; inset:-1px;
-  background: var(--grad, linear-gradient(90deg, rgba(255,255,255,.12), rgba(255,255,255,.06)));
-  opacity:0; transition: opacity .25s ease; border-radius:16px; z-index:0;
-}
-.brandchip:hover,.brandchip:focus-visible{ border-color: rgba(255,255,255,.22) }
-.brandchip:hover::after,.brandchip:focus-visible::after{ opacity:.35 }
-.brandchip span{ position:relative; z-index:1 }
-/* Tiny glyph (stylized, not official logos) */
-.brandchip .dot{ width:10px; height:10px; border-radius:999px; background:currentColor; opacity:.85 }
-.brand-pp{ --grad: linear-gradient(90deg,#003087,#009cde); }
-.brand-visa{ --grad: linear-gradient(90deg,#1A1F71,#2f3aa4); }
-.brand-mc{ --grad: linear-gradient(90deg,#EB001B,#F79E1B); }
-.brand-giro{ --grad: linear-gradient(90deg,#0a56a3,#3b82f6); }
-.brand-sumup{ --grad: linear-gradient(90deg,#000,#333); }
+/* === Official Wordmarks (modern cards) === */
+.brandlogos{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:12px 0 18px}
+.brandcard{position:relative;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.10);
+  border-radius:16px;min-height:72px;display:flex;align-items:center;justify-content:center;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 8px 26px rgba(0,0,0,.35)}
+.brandcard::after{content:"";position:absolute;inset:-1px;border-radius:16px;
+  background:linear-gradient(145deg,rgba(255,255,255,.12),rgba(255,255,255,.04));opacity:.0;transition:opacity .25s ease}
+.brandcard:hover::after{opacity:.3}
+.paylogo{max-height:34px;max-width:140px;object-fit:contain;display:block;filter: drop-shadow(0 0 1px rgba(0,0,0,.35))}
+.fallback{display:none;color:#cfd6e4;font-weight:800;font-family:var(--font-head, Inter, Arial);text-transform:uppercase;letter-spacing:.3px}
+.brandcard.is-fallback .fallback{display:block}
+.brandcard.is-fallback img{display:none}
+@media (max-width:640px){.paylogo{max-height:28px}}
 
 </style>
 </head>
@@ -450,12 +436,33 @@ header.nav, .container, footer.footer, .katalog-wrap{ position:relative; z-index
   
   
   
-  <div class="brandchips" aria-label="Akzeptierte Zahlungsarten (modern)">
-    <div class="brandchip brand-pp"><span class="dot"></span><span>PayPal</span></div>
-    <div class="brandchip brand-visa"><span class="dot"></span><span>Visa</span></div>
-    <div class="brandchip brand-mc"><span class="dot"></span><span>Mastercard</span></div>
-    <div class="brandchip brand-giro"><span class="dot"></span><span>girocard</span></div>
-    <div class="brandchip brand-sumup"><span class="dot"></span><span>SumUp</span></div>
+  <div class="brandlogos" aria-label="Akzeptierte Zahlungsarten – offizielle Wordmarks">
+    
+    <div class="brandcard" data-brand="PayPal">
+      <img class="paylogo" src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal_Logo2014.svg" alt="PayPal" loading="lazy" />
+      <span class="fallback">PayPal</span>
+    </div>
+    
+    <div class="brandcard" data-brand="Visa">
+      <img class="paylogo" src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Inc._logo.svg" alt="Visa" loading="lazy" />
+      <span class="fallback">Visa</span>
+    </div>
+    
+    <div class="brandcard" data-brand="Mastercard">
+      <img class="paylogo" src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard_2019_logo.svg" alt="Mastercard" loading="lazy" />
+      <span class="fallback">Mastercard</span>
+    </div>
+    
+    <div class="brandcard" data-brand="girocard">
+      <img class="paylogo" src="https://upload.wikimedia.org/wikipedia/commons/5/5b/Girocard_logo.svg" alt="girocard" loading="lazy" />
+      <span class="fallback">girocard</span>
+    </div>
+    
+    <div class="brandcard" data-brand="SumUp">
+      <img class="paylogo" src="https://upload.wikimedia.org/wikipedia/commons/4/46/Sumup_logo.svg" alt="SumUp" loading="lazy" />
+      <span class="fallback">SumUp</span>
+    </div>
+    
   </div>
 
   </div>
@@ -606,5 +613,15 @@ header.nav, .container, footer.footer, .katalog-wrap{ position:relative; z-index
     if(el) setLocalImage(el, bases);
   });
 </script>
+
+<script>
+// Fallback if external SVGs are blocked (local preview/CSP): show label instead
+document.querySelectorAll('.brandcard img').forEach(function(img){
+  img.addEventListener('error', function(){
+    var card = img.closest('.brandcard'); if(card){ card.classList.add('is-fallback'); }
+  });
+});
+</script>
+
 </body>
 </html>
