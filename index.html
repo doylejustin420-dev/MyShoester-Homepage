@@ -7,93 +7,253 @@
 <meta name="description" content="Reparaturen, Pflege, Einlagen, Maßgürtel, Lasergravur & -zuschnitt, Streetwear, Sandstrahlung.">
 
 <style>
-/* Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+/* =========================
+   ROCK THEME – MyShoester
+   ========================= */
+
+/* Fonts: elegante Script + moderne Sans */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&family=Kaushan+Script&family=Great+Vibes&display=swap');
 
 :root{
-  --bg:#0f1220; --text:#f5f7fb; --muted:#a8b0c2; --panel:#151a2c; --line:#232a48;
-  --p1:#ffd6e7; --p2:#d1f3ff; --p3:#dfffe2; --p4:#fff3c7; --p5:#e7dcff; --ink:#0d0f16;
-  --dropBlue:#6b7ed9;
+  /* Core */
+  --bg0:#0a0b10;
+  --bg1:#0f1118;
+  --panel:#121623;
+  --line:#2a2f45;
+  --text:#eef2ff;
+  --muted:#a8b0c2;
+  --ink:#07080d;
+
+  /* Neon Accents */
+  --neon-pink:#ff3d81;
+  --neon-cyan:#22d3ee;
+  --neon-violet:#a78bfa;
+
+  /* Chips/Badges */
+  --chip-bg: rgba(255,255,255,.06);
+  --chip-bd: rgba(255,255,255,.18);
 }
+
+/* Reset / Base */
 *{box-sizing:border-box}
-html,body{margin:0;padding:0;color:var(--text);font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Inter,'Helvetica Neue',Arial,sans-serif}
-body{background: linear-gradient(135deg, #e7d6ff 0%, #cfe8ff 45%, #ffd6c7 100%) fixed}
-body::before{
-  content:""; position:fixed; inset:0; z-index:-1; pointer-events:none;
+html,body{margin:0;padding:0}
+body{
+  color:var(--text);
+  font-family:Montserrat,system-ui,-apple-system,Segoe UI,Roboto,Inter,"Helvetica Neue",Arial,sans-serif;
   background:
-    radial-gradient(30% 25% at 12% 8%, rgba(231,214,255,.60) 0 60%, transparent 60%),
-    radial-gradient(26% 32% at 88% 12%, rgba(207,232,255,.45) 0 60%, transparent 60%),
-    radial-gradient(24% 28% at 92% 88%, rgba(255,196,176,.45) 0 60%, transparent 60%);
+    radial-gradient(1200px 800px at 10% 10%, #14182a 0%, transparent 60%),
+    radial-gradient(900px 700px at 90% 15%, #1a0f23 0%, transparent 55%),
+    radial-gradient(1200px 800px at 90% 85%, #0f1b2a 0%, transparent 60%),
+    linear-gradient(180deg, var(--bg1), var(--bg0));
+  min-height:100%;
+  overflow-x:hidden;
+}
+/* Subtiles Film-Grain */
+body::after{
+  content:"";
+  position:fixed; inset:0; pointer-events:none; z-index:-1;
+  opacity:.20;
+  background-image:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2240%22 height=%2240%22 viewBox=%220 0 40 40%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence baseFrequency=%220.9%22 numOctaves=%222%22 seed=%222%22 type=%22fractalNoise%22/%3E%3CfeColorMatrix type=%22saturate%22 values=%220%22/%3E%3CfeComponentTransfer%3E%3CfeFuncA type=%22linear%22 slope=%220.12%22/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width=%2240%22 height=%2240%22 filter=%22url(%23n)%22/%3E%3C/svg%3E');
+  mix-blend-mode:overlay;
 }
 
-/* Header */
-.nav{position:sticky;top:0;z-index:50;background:rgba(21,26,44,.7);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-.nav-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;gap:18px;padding:12px 20px}
+/* Links */
+a{color:var(--text)}
+
+/* =========================
+   NAVBAR
+   ========================= */
+.nav{
+  position:sticky; top:0; z-index:50;
+  background:linear-gradient(180deg, rgba(18,22,35,.85), rgba(18,22,35,.62));
+  backdrop-filter: blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{
+  max-width:1280px; margin:0 auto;
+  display:flex; align-items:center; gap:18px;
+  padding:12px 20px;
+}
 .logo{display:flex;align-items:center;gap:12px}
-.logo-badge{width:36px;height:36px;border-radius:12px;background:linear-gradient(135deg,#a78bfa,#22d3ee);display:grid;place-items:center;font-weight:700}
-.logo-title{font-family:'Playfair Display',serif;font-weight:700;font-size:26px;letter-spacing:.35px}
-.nav-links{display:flex;flex-wrap:wrap;gap:12px;margin-left:auto}
-.nav-links a{color:var(--text);text-decoration:none;padding:8px 10px;border-radius:10px}
-.nav-links a:hover{background:#1a2240}
 
-/* Katalog */
+/* Guitar-Pick Badge */
+.logo-badge{
+  width:38px;height:38px; border-radius:50%;
+  background: conic-gradient(from 210deg, var(--neon-violet), var(--neon-cyan), var(--neon-pink), var(--neon-violet));
+  display:grid; place-items:center; font-weight:800; color:#0f1118;
+  box-shadow: 0 8px 24px rgba(167,139,250,.35), inset 0 1px 0 rgba(255,255,255,.35);
+  clip-path: path("M19 2 C29 2,36 10,35 19 C34 31,24 38,19 38 C14 38,5 31,3 19 C1 10,9 2,19 2 Z");
+}
+.logo-title{
+  font-family:"Kaushan Script", cursive;
+  font-size:28px; letter-spacing:.3px;
+  text-shadow: 0 1px 0 #000, 0 0 22px rgba(255,61,129,.25);
+}
+
+.nav-links{
+  display:flex;flex-wrap:wrap;gap:10px;margin-left:auto; overflow-x:auto; white-space:nowrap; -webkit-overflow-scrolling:touch;
+}
+.nav-links a{
+  text-decoration:none;
+  padding:8px 12px; border-radius:12px;
+  font-weight:700; letter-spacing:.4px; text-transform:uppercase;
+  border:1px solid transparent;
+  background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+}
+.nav-links a:hover{
+  border-color: rgba(255,255,255,.18);
+  box-shadow: 0 0 0 2px rgba(167,139,250,.18) inset, 0 6px 18px rgba(0,0,0,.4);
+}
+
+/* =========================
+   KATALOG (Dropdown)
+   ========================= */
 .katalog-wrap{position: fixed;left: 16px;top: 72px;z-index: 1001;}
-.katalog-btn{appearance:none;border:1px solid var(--line);background:linear-gradient(135deg,var(--p2),var(--p5));color:var(--ink);
-  padding:10px 14px;border-radius:14px;font-weight:700;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.25)}
-.catalog{position: fixed;left: 16px;top: 120px;z-index: 1000;max-width:420px;width:calc(100vw - 32px);
-  max-height: calc(100vh - 140px);overflow: auto;background:rgba(255,255,255,.10);backdrop-filter:blur(10px);
-  border:1px solid rgba(255,255,255,.14);border-radius:18px;box-shadow:0 14px 60px rgba(0,0,0,.45);
-  opacity:0;transform:translateY(-8px) scale(.98);pointer-events:none;transition:opacity .18s ease, transform .18s ease;}
+.katalog-btn{
+  appearance:none; cursor:pointer;
+  padding:10px 14px; border-radius:14px; font-weight:800;
+  color:#0d0f16;
+  border:1px solid rgba(255,255,255,.18);
+  background:
+    linear-gradient(180deg, #fdf2ff, #e9e6ff);
+  box-shadow: 0 10px 28px rgba(167,139,250,.35), 0 2px 0 rgba(255,255,255,.25) inset;
+}
+.catalog{
+  position: fixed;left: 16px;top: 120px;z-index: 1000;max-width:420px;width:calc(100vw - 32px);
+  max-height: calc(100vh - 140px);overflow: auto;
+  background:rgba(14,17,27,.78);backdrop-filter: blur(12px);
+  border:1px solid rgba(255,255,255,.14);border-radius:18px;box-shadow:0 18px 60px rgba(0,0,0,.55);
+  opacity:0;transform:translateY(-8px) scale(.98);pointer-events:none;transition:opacity .18s ease, transform .18s ease;
+}
 .catalog.open{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
-.cat-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:linear-gradient(180deg,rgba(255,255,255,.1),transparent)}
-.cat-title{font-family:'Playfair Display',serif;font-size:20px}
-.cat-close{background:transparent;border:1px solid var(--line);color:var(--text);padding:8px 12px;border-radius:12px;cursor:pointer}
+.cat-head{
+  display:flex;align-items:center;justify-content:space-between;padding:14px 16px;
+  background:linear-gradient(180deg, rgba(167,139,250,.18), transparent);
+  border-bottom:1px solid rgba(255,255,255,.12)
+}
+.cat-title{font-family:"Kaushan Script", cursive;font-size:22px}
+.cat-close{
+  background:transparent;border:1px solid rgba(255,255,255,.22);color:var(--text);
+  padding:8px 12px;border-radius:12px;cursor:pointer
+}
 .cat-list{padding:12px 12px 16px;display:grid;gap:10px}
-.cat-link{display:block;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:12px 14px;color:var(--text);text-decoration:none;font-weight:600}
-.cat-link:hover{background:rgba(255,255,255,.12)}
+.cat-link{
+  display:block; text-decoration:none; font-weight:700;
+  background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12);
+  border-radius:14px; padding:12px 14px; color:var(--text);
+}
+.cat-link:hover{
+  background:rgba(167,139,250,.12); border-color:rgba(167,139,250,.38);
+  text-shadow:0 1px 0 rgba(0,0,0,.2)
+}
+/* explizit die Farbe der Dropdown-Texte */
+#catalog .cat-title,#catalog .cat-link,#catalog .cat-close,
+.catalog .cat-title,.catalog .cat-link,.catalog .cat-close{ color: var(--neon-violet) !important; opacity:1 !important }
+#catalog .cat-link > *, .catalog .cat-link > *{ color: inherit !important }
 
-/* Layout */
+/* =========================
+   LAYOUT
+   ========================= */
 .container{max-width:1280px;margin:0 auto;padding:24px}
-.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:28px;align-items:center;padding:42px 0}
-.hero h1{font-family:'Playfair Display',serif;font-size:46px;line-height:1.15;margin:0 0 14px}
-.tag{display:inline-block;font-family:'Great Vibes', cursive;font-size:24px;line-height:1.1;color:#0d0f16;background:rgba(255,255,255,.72);border:0;padding:8px 12px;border-radius:12px;box-shadow:0 6px 14px rgba(0,0,0,.08);margin-bottom:14px}
-.hero p{color:var(--muted);margin:0 0 18px}
-.hero img{width:100%;height:480px;object-fit:cover;border-radius:22px;border:1px solid var(--line)}
 .section{padding:8px 0 48px}
-.h2{font-family:'Playfair Display',serif;font-size:28px;margin:0 0 18px}
 .footer{border-top:1px solid var(--line);padding:26px 0;color:var(--muted);text-align:center}
 
-/* Leistungen – Strips */
+/* Hero */
+.hero{
+  display:grid;grid-template-columns:1.05fr .95fr;gap:28px;align-items:center;padding:42px 0;
+}
+.tag{
+  display:inline-block;
+  font-family:'Great Vibes', cursive;
+  font-size:28px; line-height:1.1;
+  color:#0d0f16;
+  background:linear-gradient(90deg, #fff7ff, #eaf7ff);
+  padding:8px 14px;border-radius:12px;border:0;
+  box-shadow:0 8px 18px rgba(167,139,250,.22);
+  margin-bottom:14px
+}
+.hero h1{
+  font-family:"Kaushan Script", cursive;
+  font-size: clamp(40px, 5vw, 56px);
+  line-height:1.1;margin:0 0 14px;
+  text-shadow: 0 2px 0 #000, 0 0 28px rgba(34,211,238,.18);
+}
+.hero h1 span{
+  background: linear-gradient(90deg, var(--neon-cyan), var(--neon-pink));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.hero p{color:var(--muted);margin:0 0 18px; font-size:1.02rem}
+.hero img{
+  width:100%;height:480px;object-fit:cover;border-radius:22px;border:1px solid var(--line);
+  box-shadow: 0 18px 60px rgba(0,0,0,.45);
+  transform: perspective(800px) rotateX(0deg) rotateY(-2deg);
+  transition: transform .35s ease, box-shadow .35s ease;
+}
+.hero img:hover{
+  transform: perspective(800px) rotateX(2deg) rotateY(2deg);
+  box-shadow: 0 28px 90px rgba(167,139,250,.25);
+}
+
+/* Headlines */
+.h2{
+  font-family:"Kaushan Script", cursive;
+  font-size:32px;margin:0 0 18px;
+  text-shadow:0 2px 0 #000, 0 0 18px rgba(167,139,250,.25);
+}
+
+/* =========================
+   LEISTUNGEN – Strips (Glass Cards)
+   ========================= */
 #leistungen{ scroll-margin-top: 96px; }
 .services-stack{display:flex;flex-direction:column;gap:28px;max-width:1100px;margin:0 auto;padding-inline:8px}
-.service{--acc:#7cc3ff;display:grid;grid-template-columns:min(40vw,420px) 1fr;align-items:center;gap:24px;scroll-margin-top:110px}
-.service .pic{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:16/11;min-height:200px;border:1px solid rgba(255,255,255,.18);box-shadow:0 10px 26px rgba(0,0,0,.22)}
+
+.service{
+  --acc: var(--neon-cyan);
+  display:grid;grid-template-columns:min(40vw,420px) 1fr;align-items:center;gap:24px;scroll-margin-top:110px;
+  position:relative;
+}
+.service .pic{
+  position:relative;border-radius:18px;overflow:hidden;aspect-ratio:16/11;min-height:200px;
+  border:1px solid rgba(255,255,255,.18);
+  box-shadow:0 10px 26px rgba(0,0,0,.5);
+  background: rgba(255,255,255,.03);
+}
 .service .pic img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(1.05) contrast(1.02)}
-.service .pic::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(15,18,32,.28))}
-.service .title{display:inline-block;margin:0 0 8px 0;font-weight:900;font-size:1.2rem;letter-spacing:.2px;color:#fff;padding:4px 12px;border-radius:10px;background:color-mix(in srgb,var(--acc) 45%,rgba(21,26,44,.55));box-shadow:0 8px 22px rgba(0,0,0,.22)}
-.service .desc{margin:0;color:#eef2ff;font-size:1rem;line-height:1.55;text-shadow:0 1px 0 rgba(0,0,0,.18)}
+.service .pic::after{
+  content:"";position:absolute;inset:0;
+  background:
+    linear-gradient(180deg,transparent 55%,rgba(10,12,20,.55)),
+    radial-gradient(400px 140px at 70% -20%, color-mix(in srgb, var(--acc) 22%, transparent) 0%, transparent 70%);
+}
+
+.service .title{
+  display:inline-block;margin:0 0 8px 0;font-weight:900;font-size:1.35rem;letter-spacing:.2px;color:#fff;
+  padding:6px 14px;border-radius:12px;
+  background:color-mix(in srgb,var(--acc) 38%, rgba(18,22,35,.6));
+  box-shadow:0 8px 22px rgba(0,0,0,.35);
+  border:1px solid rgba(255,255,255,.12);
+  font-family:"Kaushan Script", cursive;
+}
+.service .desc{margin:0;color:#e9ecff;font-size:1.02rem;line-height:1.6;text-shadow:0 1px 0 rgba(0,0,0,.25)}
 .service .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
-.service .chip{font-size:.82rem;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18)}
+.service .chip{
+  font-size:.85rem;padding:6px 10px;border-radius:999px;
+  background:var(--chip-bg);border:1px solid var(--chip-bd)
+}
 .service:nth-child(even){grid-template-columns:1fr min(40vw,420px)}
 .service:nth-child(even) .text{order:1}
 .service:nth-child(even) .pic{order:2}
 .service + .service{ position:relative }
-.service + .service::before{content:""; position:absolute; left:0; right:0; top:-14px; height:1px; background:linear-gradient(90deg, rgba(255,255,255,.15), rgba(255,255,255,.04))}
-
-/* Dropdown-Farbe */
-#catalog .cat-title,#catalog .cat-link,#catalog .cat-close,
-.catalog .cat-title,.catalog .cat-link,.catalog .cat-close{ color: var(--dropBlue) !important; opacity:1 !important }
-#catalog .cat-link > *, .catalog .cat-link > *{ color: inherit !important }
-#catalog .cat-link:hover, .catalog .cat-link:hover{ background: rgba(107,126,217,.14); border-color: rgba(107,126,217,.28); text-shadow: 0 1px 0 rgba(0,0,0,.15)}
+.service + .service::before{
+  content:""; position:absolute; left:0; right:0; top:-14px; height:1px;
+  background:linear-gradient(90deg, rgba(255,255,255,.12), rgba(255,255,255,.04), rgba(255,255,255,.12))
+}
 
 /* Mobile */
-.nav-links{ overflow-x:auto; white-space:nowrap; -webkit-overflow-scrolling:touch; }
-.nav-links a, .katalog-btn, .chip { min-height:44px; line-height:1.2; }
 @media (max-width: 820px){
   .container{ padding:16px; }
   .hero{ grid-template-columns:1fr; gap:16px; padding:24px 0; }
-  .hero h1{ font-size: clamp(28px, 7vw, 46px); }
+  .hero h1{ font-size: clamp(30px, 8vw, 48px); }
   .hero p, .service .desc { font-size: clamp(14px, 2.8vw, 16px); }
   .hero img{ height:auto; max-height:52vh; }
   .services-stack{ gap:22px; }
@@ -105,6 +265,11 @@ body::before{
 @media (max-width: 480px){
   .nav-links{ gap:8px; }
   .nav-links a{ padding:8px 8px; }
+}
+
+/* Motion Safe */
+@media (prefers-reduced-motion: reduce){
+  *{ animation:none !important; transition:none !important }
 }
 </style>
 </head>
@@ -159,7 +324,7 @@ body::before{
   <section class="hero" id="start">
     <div>
       <span class="tag">Schuh- & Lederwerkstatt</span>
-      <h1>Reparaturen, Pflege & Maßarbeit – <span style="color:#7cc3ff">mit Liebe zum Detail</span>.</h1>
+      <h1>Reparaturen, Pflege & Maßarbeit – <span>einzigartig & rockig</span>.</h1>
       <p>Lieblingsschuhe und Lederwaren wieder in Form bringen: Sohlenwechsel, Absätze, Nähte, Färbungen & Pflege – fair, präzise, nachhaltig.</p>
     </div>
     <div>
@@ -173,7 +338,7 @@ body::before{
 
     <div class="services-stack">
       <!-- Reparatur -->
-      <div id="repair" class="service" style="--acc:#86efac">
+      <div id="repair" class="service" style="--acc:var(--neon-cyan)">
         <div class="pic">
           <img id="img-repair" alt="Werkstatt mit Schuhreparatur; Schuhmacher grob in Bleistift skizziert">
         </div>
@@ -185,7 +350,7 @@ body::before{
       </div>
 
       <!-- Bequem -->
-      <div id="bequem" class="service" style="--acc:#93c5fd">
+      <div id="bequem" class="service" style="--acc:var(--neon-violet)">
         <div class="text">
           <h3 class="title">Bequemschuheinlagen</h3>
           <p class="desc">Sanfte Dämpfung für lange Tage – ideal bei viel Stehen oder Gehen. Leicht, flexibel und spürbar komfortabel, damit der Fuß entspannen kann, ohne an Halt zu verlieren.</p>
@@ -197,7 +362,7 @@ body::before{
       </div>
 
       <!-- Komfort -->
-      <div id="komfort" class="service" style="--acc:#fca5a5">
+      <div id="komfort" class="service" style="--acc:var(--neon-pink)">
         <div class="pic">
           <img id="img-komfort" alt="Komforteinlagen – Gewölbeunterstützung & Druckverteilung">
         </div>
@@ -237,7 +402,7 @@ body::before{
         <div class="text">
           <h3 class="title">Lasergravuren</h3>
           <p class="desc">Präzise Personalisierung auf Holz, Leder, Glas u. v. m. Vom Monogramm bis zum Firmenlogo – sauber graviert und dauerhaft haltbar.</p>
-          <div class="chips"><span class="chip">Feine Details</span><span class="chip">Einzelstücke & Serien</span><span class="chip">Geschenke & Branding</span></div>
+        <div class="chips"><span class="chip">Feine Details</span><span class="chip">Einzelstücke & Serien</span><span class="chip">Geschenke & Branding</span></div>
         </div>
         <div class="pic">
           <img id="img-laser" alt="Lasergravur auf Leder-Patch in Nahaufnahme">
@@ -284,20 +449,24 @@ body::before{
 
   <section id="contact" class="section">
     <h2 class="h2">Kontakt & Öffnungszeiten</h2>
-    <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(320px,1fr))">
-      <div class="card"><div class="pad">
-        <p><strong>Adresse</strong><br>Sandwerkstrasse 2, 63636 Brachttal</p>
-        <p style="margin-top:10px"><strong>E-Mail</strong><br>
-          <a href="mailto:werkstatt@myshoester.de">werkstatt@myshoester.de</a></p>
-      </div></div>
-      <div class="card"><div class="pad">
-        <p><strong>Öffnungszeiten</strong></p>
-        <ul style="margin:8px 0 0 16px; color:var(--muted)">
-          <li>Montag – Dienstag: 16:30 – 18:00 Uhr</li>
-          <li>Donnerstag: 14:00 – 18:00 Uhr</li>
-          <li>Freitag: 08:00 – 18:00 Uhr</li>
-        </ul>
-      </div></div>
+    <div class="grid" style="display:grid; gap:18px; grid-template-columns:repeat(auto-fill,minmax(320px,1fr))">
+      <div class="card" style="background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.12); border-radius:16px;">
+        <div class="pad" style="padding:16px 18px;">
+          <p><strong>Adresse</strong><br>Sandwerkstrasse 2, 63636 Brachttal</p>
+          <p style="margin-top:10px"><strong>E-Mail</strong><br>
+            <a href="mailto:werkstatt@myshoester.de">werkstatt@myshoester.de</a></p>
+        </div>
+      </div>
+      <div class="card" style="background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.12); border-radius:16px;">
+        <div class="pad" style="padding:16px 18px;">
+          <p><strong>Öffnungszeiten</strong></p>
+          <ul style="margin:8px 0 0 16px; color:var(--muted)">
+            <li>Montag – Dienstag: 16:30 – 18:00 Uhr</li>
+            <li>Donnerstag: 14:00 – 18:00 Uhr</li>
+            <li>Freitag: 08:00 – 18:00 Uhr</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </section>
 </main>
@@ -318,8 +487,7 @@ body::before{
   document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') toggle(false); });
   document.addEventListener('click',(e)=>{ if(panel.classList.contains('open') && !panel.contains(e.target) && e.target!==openBtn){ toggle(false);} });
 
-  // ---------- Lokale Bild-Suche (kein Fremdbild mehr) ----------
-  // Leg die Dateien in /img/ ab, z.B. hero-werkstatt.webp oder hero-werkstatt-1200.jpg
+  // ---------- Lokale Bild-Suche (unverändert) ----------
   const IMG_MAP = {
     'heroImg'     : ['img/hero-werkstatt','img/hero-werkstatt-1200'],
     'img-repair'  : ['img/repair-werkstatt-skizze','img/repair-werkstatt-skizze-1200'],
@@ -341,7 +509,7 @@ body::before{
       if(j >= EXTS.length){ i++; j = 0; return tryNext(); }
       const url = `${bases[i]}.${EXTS[j]}?v=${Date.now()}`;
       const test = new Image();
-      test.onload  = () => imgEl.src = url.split('?')[0];  // tatsächliche Datei ohne Cachebuster
+      test.onload  = () => imgEl.src = url.split('?')[0];
       test.onerror = () => { j++; tryNext(); };
       test.src = url;
     }
@@ -352,13 +520,13 @@ body::before{
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
         <defs>
           <linearGradient id="g" x1="0" x2="0" y1="0" y2="1">
-            <stop offset="0%" stop-color="#d9e6ff"/><stop offset="100%" stop-color="#ffd9cc"/>
+            <stop offset="0%" stop-color="#1f2937"/><stop offset="100%" stop-color="#0b1020"/>
           </linearGradient>
         </defs>
         <rect width="800" height="500" fill="url(#g)"/>
-        <text x="32" y="80" fill="#0d0f16" font-family="Poppins" font-size="26" font-weight="600">Bild nicht gefunden</text>
-        <text x="32" y="120" fill="#334155" font-family="Poppins" font-size="16">Erwartet in /img/: ${expectedBase}.webp|jpg|jpeg|png</text>
-        <text x="32" y="160" fill="#475569" font-family="Poppins" font-size="14">Dateiname & Groß/Kleinschreibung prüfen</text>
+        <text x="32" y="80" fill="#e5e7eb" font-family="Montserrat" font-size="26" font-weight="600">Bild nicht gefunden</text>
+        <text x="32" y="120" fill="#cbd5e1" font-family="Montserrat" font-size="16">Erwartet in /img/: ${expectedBase}.webp|jpg|jpeg|png</text>
+        <text x="32" y="160" fill="#94a3b8" font-family="Montserrat" font-size="14">Dateiname & Groß/Kleinschreibung prüfen</text>
       </svg>`;
     imgEl.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
   }
