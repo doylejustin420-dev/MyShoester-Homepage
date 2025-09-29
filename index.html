@@ -8,7 +8,7 @@
 
 <style>
 /* =========================
-   ROCK THEME – MyShoester
+   DARK THEME – MyShoester
    ========================= */
 
 /* Fonts: elegante Script + moderne Sans */
@@ -16,22 +16,22 @@
 
 :root{
   /* Core */
-  --bg0:#0a0b10;
-  --bg1:#0f1118;
-  --panel:#121623;
-  --line:#2a2f45;
-  --text:#eef2ff;
-  --muted:#a8b0c2;
-  --ink:#07080d;
+  --bg0:#07090f;
+  --bg1:#0b0f17;
+  --panel:#0e1420;
+  --line:#1d2536;
+  --text:#e7ebf5;
+  --muted:#a3adbf;
+  --ink:#06080c;
 
-  /* Neon Accents */
-  --neon-pink:#ff3d81;
-  --neon-cyan:#22d3ee;
-  --neon-violet:#a78bfa;
+  /* Desaturated Accents (düster) */
+  --acc-steel:#3f4a5a;
+  --acc-slate:#2b3443;
+  --acc-ash:#596375;
 
   /* Chips/Badges */
-  --chip-bg: rgba(255,255,255,.06);
-  --chip-bd: rgba(255,255,255,.18);
+  --chip-bg: rgba(255,255,255,.05);
+  --chip-bd: rgba(255,255,255,.14);
 }
 
 /* Reset / Base */
@@ -41,9 +41,9 @@ body{
   color:var(--text);
   font-family:Montserrat,system-ui,-apple-system,Segoe UI,Roboto,Inter,"Helvetica Neue",Arial,sans-serif;
   background:
-    radial-gradient(1200px 800px at 10% 10%, #14182a 0%, transparent 60%),
-    radial-gradient(900px 700px at 90% 15%, #1a0f23 0%, transparent 55%),
-    radial-gradient(1200px 800px at 90% 85%, #0f1b2a 0%, transparent 60%),
+    radial-gradient(1200px 800px at 12% 10%, #121725 0%, transparent 60%),
+    radial-gradient(900px 700px at 88% 12%, #0e1420 0%, transparent 55%),
+    radial-gradient(1100px 750px at 85% 85%, #0b111c 0%, transparent 60%),
     linear-gradient(180deg, var(--bg1), var(--bg0));
   min-height:100%;
   overflow-x:hidden;
@@ -52,8 +52,8 @@ body{
 body::after{
   content:"";
   position:fixed; inset:0; pointer-events:none; z-index:-1;
-  opacity:.20;
-  background-image:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2240%22 height=%2240%22 viewBox=%220 0 40 40%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence baseFrequency=%220.9%22 numOctaves=%222%22 seed=%222%22 type=%22fractalNoise%22/%3E%3CfeColorMatrix type=%22saturate%22 values=%220%22/%3E%3CfeComponentTransfer%3E%3CfeFuncA type=%22linear%22 slope=%220.12%22/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width=%2240%22 height=%2240%22 filter=%22url(%23n)%22/%3E%3C/svg%3E');
+  opacity:.18;
+  background-image:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2240%22 height=%2240%22 viewBox=%220 0 40 40%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence baseFrequency=%220.9%22 numOctaves=%222%22 seed=%222%22 type=%22fractalNoise%22/%3E%3CfeColorMatrix type=%22saturate%22 values=%220%22/%3E%3CfeComponentTransfer%3E%3CfeFuncA type=%22linear%22 slope=%220.10%22/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width=%2240%22 height=%2240%22 filter=%22url(%23n)%22/%3E%3C/svg%3E');
   mix-blend-mode:overlay;
 }
 
@@ -65,7 +65,7 @@ a{color:var(--text)}
    ========================= */
 .nav{
   position:sticky; top:0; z-index:50;
-  background:linear-gradient(180deg, rgba(18,22,35,.85), rgba(18,22,35,.62));
+  background:linear-gradient(180deg, rgba(12,16,26,.9), rgba(12,16,26,.7));
   backdrop-filter: blur(10px);
   border-bottom:1px solid var(--line);
 }
@@ -76,18 +76,18 @@ a{color:var(--text)}
 }
 .logo{display:flex;align-items:center;gap:12px}
 
-/* Guitar-Pick Badge */
+/* Guitar-Pick Badge (gedämpft) */
 .logo-badge{
   width:38px;height:38px; border-radius:50%;
-  background: conic-gradient(from 210deg, var(--neon-violet), var(--neon-cyan), var(--neon-pink), var(--neon-violet));
-  display:grid; place-items:center; font-weight:800; color:#0f1118;
-  box-shadow: 0 8px 24px rgba(167,139,250,.35), inset 0 1px 0 rgba(255,255,255,.35);
+  background: conic-gradient(from 210deg, var(--acc-steel), var(--acc-ash), var(--acc-slate), var(--acc-steel));
+  display:grid; place-items:center; font-weight:800; color:#cbd5e1;
+  box-shadow: 0 8px 24px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.15);
   clip-path: path("M19 2 C29 2,36 10,35 19 C34 31,24 38,19 38 C14 38,5 31,3 19 C1 10,9 2,19 2 Z");
 }
 .logo-title{
   font-family:"Kaushan Script", cursive;
   font-size:28px; letter-spacing:.3px;
-  text-shadow: 0 1px 0 #000, 0 0 22px rgba(255,61,129,.25);
+  text-shadow: 0 1px 0 #000, 0 0 10px rgba(0,0,0,.45);
 }
 
 .nav-links{
@@ -97,12 +97,12 @@ a{color:var(--text)}
   text-decoration:none;
   padding:8px 12px; border-radius:12px;
   font-weight:700; letter-spacing:.4px; text-transform:uppercase;
-  border:1px solid transparent;
-  background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+  border:1px solid rgba(255,255,255,.06);
+  background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
 }
 .nav-links a:hover{
-  border-color: rgba(255,255,255,.18);
-  box-shadow: 0 0 0 2px rgba(167,139,250,.18) inset, 0 6px 18px rgba(0,0,0,.4);
+  border-color: rgba(255,255,255,.16);
+  box-shadow: 0 0 0 2px rgba(99,102,112,.22) inset, 0 6px 18px rgba(0,0,0,.4);
 }
 
 /* =========================
@@ -112,44 +112,39 @@ a{color:var(--text)}
 .katalog-btn{
   appearance:none; cursor:pointer;
   padding:10px 14px; border-radius:14px; font-weight:800;
-  color:#0d0f16;
-  border:1px solid rgba(255,255,255,.18);
-  background:
-    linear-gradient(180deg, #fdf2ff, #e9e6ff);
-  box-shadow: 0 10px 28px rgba(167,139,250,.35), 0 2px 0 rgba(255,255,255,.25) inset;
+  color:#e2e8f0;
+  border:1px solid rgba(255,255,255,.12);
+  background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+  box-shadow: 0 10px 28px rgba(0,0,0,.45), 0 2px 0 rgba(255,255,255,.08) inset;
 }
 .catalog{
   position: fixed;left: 16px;top: 120px;z-index: 1000;max-width:420px;width:calc(100vw - 32px);
   max-height: calc(100vh - 140px);overflow: auto;
-  background:rgba(14,17,27,.78);backdrop-filter: blur(12px);
-  border:1px solid rgba(255,255,255,.14);border-radius:18px;box-shadow:0 18px 60px rgba(0,0,0,.55);
+  background:rgba(10,14,22,.82);backdrop-filter: blur(12px);
+  border:1px solid rgba(255,255,255,.12);border-radius:18px;box-shadow:0 18px 60px rgba(0,0,0,.55);
   opacity:0;transform:translateY(-8px) scale(.98);pointer-events:none;transition:opacity .18s ease, transform .18s ease;
 }
 .catalog.open{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
 .cat-head{
   display:flex;align-items:center;justify-content:space-between;padding:14px 16px;
-  background:linear-gradient(180deg, rgba(167,139,250,.18), transparent);
-  border-bottom:1px solid rgba(255,255,255,.12)
+  background:linear-gradient(180deg, rgba(63,74,90,.18), transparent);
+  border-bottom:1px solid rgba(255,255,255,.08)
 }
-.cat-title{font-family:"Kaushan Script", cursive;font-size:22px}
+.cat-title{font-family:"Kaushan Script", cursive;font-size:22px;color:#cbd5e1}
 .cat-close{
-  background:transparent;border:1px solid rgba(255,255,255,.22);color:var(--text);
+  background:transparent;border:1px solid rgba(255,255,255,.18);color:var(--text);
   padding:8px 12px;border-radius:12px;cursor:pointer
 }
 .cat-list{padding:12px 12px 16px;display:grid;gap:10px}
 .cat-link{
   display:block; text-decoration:none; font-weight:700;
-  background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.10);
   border-radius:14px; padding:12px 14px; color:var(--text);
 }
 .cat-link:hover{
-  background:rgba(167,139,250,.12); border-color:rgba(167,139,250,.38);
+  background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.22);
   text-shadow:0 1px 0 rgba(0,0,0,.2)
 }
-/* explizit die Farbe der Dropdown-Texte */
-#catalog .cat-title,#catalog .cat-link,#catalog .cat-close,
-.catalog .cat-title,.catalog .cat-link,.catalog .cat-close{ color: var(--neon-violet) !important; opacity:1 !important }
-#catalog .cat-link > *, .catalog .cat-link > *{ color: inherit !important }
 
 /* =========================
    LAYOUT
@@ -162,25 +157,32 @@ a{color:var(--text)}
 .hero{
   display:grid;grid-template-columns:1.05fr .95fr;gap:28px;align-items:center;padding:42px 0;
 }
+/* Badge: kein weißer Hintergrund mehr */
 .tag{
   display:inline-block;
   font-family:'Great Vibes', cursive;
   font-size:28px; line-height:1.1;
-  color:#0d0f16;
-  background:linear-gradient(90deg, #fff7ff, #eaf7ff);
-  padding:8px 14px;border-radius:12px;border:0;
-  box-shadow:0 8px 18px rgba(167,139,250,.22);
-  margin-bottom:14px
+  color:#dbe2f0;
+  padding:0; border:0; background:transparent; box-shadow:none;
+  text-shadow: 0 1px 0 #000, 0 0 10px rgba(0,0,0,.45);
 }
+.tag::after{
+  content:""; display:block; height:1px; margin-top:6px;
+  background: linear-gradient(90deg, transparent, rgba(148,163,184,.7), transparent);
+}
+
 .hero h1{
   font-family:"Kaushan Script", cursive;
   font-size: clamp(40px, 5vw, 56px);
   line-height:1.1;margin:0 0 14px;
-  text-shadow: 0 2px 0 #000, 0 0 28px rgba(34,211,238,.18);
+  color:#e7ebf5;
+  text-shadow: 0 1px 0 #000, 0 10px 28px rgba(0,0,0,.45);
 }
+/* Düstere Metall-Anmutung für das betonte Wort */
 .hero h1 span{
-  background: linear-gradient(90deg, var(--neon-cyan), var(--neon-pink));
+  background: linear-gradient(180deg, #cbd5e1 0%, #737f92 45%, #0b0f17 100%);
   -webkit-background-clip:text; background-clip:text; color:transparent;
+  text-shadow: 0 1px 0 #000, 0 12px 28px rgba(0,0,0,.55);
 }
 .hero p{color:var(--muted);margin:0 0 18px; font-size:1.02rem}
 .hero img{
@@ -191,14 +193,14 @@ a{color:var(--text)}
 }
 .hero img:hover{
   transform: perspective(800px) rotateX(2deg) rotateY(2deg);
-  box-shadow: 0 28px 90px rgba(167,139,250,.25);
+  box-shadow: 0 28px 90px rgba(0,0,0,.55);
 }
 
 /* Headlines */
 .h2{
   font-family:"Kaushan Script", cursive;
   font-size:32px;margin:0 0 18px;
-  text-shadow:0 2px 0 #000, 0 0 18px rgba(167,139,250,.25);
+  text-shadow:0 2px 0 #000, 0 0 14px rgba(0,0,0,.45);
 }
 
 /* =========================
@@ -208,33 +210,33 @@ a{color:var(--text)}
 .services-stack{display:flex;flex-direction:column;gap:28px;max-width:1100px;margin:0 auto;padding-inline:8px}
 
 .service{
-  --acc: var(--neon-cyan);
+  --acc: var(--acc-steel);
   display:grid;grid-template-columns:min(40vw,420px) 1fr;align-items:center;gap:24px;scroll-margin-top:110px;
   position:relative;
 }
 .service .pic{
   position:relative;border-radius:18px;overflow:hidden;aspect-ratio:16/11;min-height:200px;
-  border:1px solid rgba(255,255,255,.18);
+  border:1px solid rgba(255,255,255,.12);
   box-shadow:0 10px 26px rgba(0,0,0,.5);
   background: rgba(255,255,255,.03);
 }
-.service .pic img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(1.05) contrast(1.02)}
+.service .pic img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.95) contrast(1.02)}
 .service .pic::after{
   content:"";position:absolute;inset:0;
   background:
     linear-gradient(180deg,transparent 55%,rgba(10,12,20,.55)),
-    radial-gradient(400px 140px at 70% -20%, color-mix(in srgb, var(--acc) 22%, transparent) 0%, transparent 70%);
+    radial-gradient(400px 140px at 70% -20%, color-mix(in srgb, var(--acc) 20%, transparent) 0%, transparent 70%);
 }
 
 .service .title{
   display:inline-block;margin:0 0 8px 0;font-weight:900;font-size:1.35rem;letter-spacing:.2px;color:#fff;
   padding:6px 14px;border-radius:12px;
-  background:color-mix(in srgb,var(--acc) 38%, rgba(18,22,35,.6));
+  background:color-mix(in srgb,var(--acc) 40%, rgba(12,16,26,.6));
   box-shadow:0 8px 22px rgba(0,0,0,.35);
-  border:1px solid rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.10);
   font-family:"Kaushan Script", cursive;
 }
-.service .desc{margin:0;color:#e9ecff;font-size:1.02rem;line-height:1.6;text-shadow:0 1px 0 rgba(0,0,0,.25)}
+.service .desc{margin:0;color:#e1e6f2;font-size:1.02rem;line-height:1.6;text-shadow:0 1px 0 rgba(0,0,0,.25)}
 .service .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
 .service .chip{
   font-size:.85rem;padding:6px 10px;border-radius:999px;
@@ -246,7 +248,7 @@ a{color:var(--text)}
 .service + .service{ position:relative }
 .service + .service::before{
   content:""; position:absolute; left:0; right:0; top:-14px; height:1px;
-  background:linear-gradient(90deg, rgba(255,255,255,.12), rgba(255,255,255,.04), rgba(255,255,255,.12))
+  background:linear-gradient(90deg, rgba(255,255,255,.10), rgba(255,255,255,.04), rgba(255,255,255,.10))
 }
 
 /* Mobile */
@@ -324,7 +326,7 @@ a{color:var(--text)}
   <section class="hero" id="start">
     <div>
       <span class="tag">Schuh- & Lederwerkstatt</span>
-      <h1>Reparaturen, Pflege & Maßarbeit – <span>einzigartig & rockig</span>.</h1>
+      <h1>Reparaturen, Pflege & Maßarbeit – <span>einzigartig & authentisch</span>.</h1>
       <p>Lieblingsschuhe und Lederwaren wieder in Form bringen: Sohlenwechsel, Absätze, Nähte, Färbungen & Pflege – fair, präzise, nachhaltig.</p>
     </div>
     <div>
@@ -338,7 +340,7 @@ a{color:var(--text)}
 
     <div class="services-stack">
       <!-- Reparatur -->
-      <div id="repair" class="service" style="--acc:var(--neon-cyan)">
+      <div id="repair" class="service">
         <div class="pic">
           <img id="img-repair" alt="Werkstatt mit Schuhreparatur; Schuhmacher grob in Bleistift skizziert">
         </div>
@@ -350,7 +352,7 @@ a{color:var(--text)}
       </div>
 
       <!-- Bequem -->
-      <div id="bequem" class="service" style="--acc:var(--neon-violet)">
+      <div id="bequem" class="service">
         <div class="text">
           <h3 class="title">Bequemschuheinlagen</h3>
           <p class="desc">Sanfte Dämpfung für lange Tage – ideal bei viel Stehen oder Gehen. Leicht, flexibel und spürbar komfortabel, damit der Fuß entspannen kann, ohne an Halt zu verlieren.</p>
@@ -362,7 +364,7 @@ a{color:var(--text)}
       </div>
 
       <!-- Komfort -->
-      <div id="komfort" class="service" style="--acc:var(--neon-pink)">
+      <div id="komfort" class="service">
         <div class="pic">
           <img id="img-komfort" alt="Komforteinlagen – Gewölbeunterstützung & Druckverteilung">
         </div>
@@ -374,7 +376,7 @@ a{color:var(--text)}
       </div>
 
       <!-- Alltag -->
-      <div id="alltag" class="service" style="--acc:#fcd34d">
+      <div id="alltag" class="service">
         <div class="text">
           <h3 class="title">Alltagseinlagen</h3>
           <p class="desc">Pflegeleichte, leichte Einlagen für jeden Tag – robust, bequem und unkompliziert. Ideal als verlässliche Begleiter in Freizeit und Job.</p>
@@ -386,7 +388,7 @@ a{color:var(--text)}
       </div>
 
       <!-- Maßgürtel -->
-      <div id="belts" class="service" style="--acc:#c4b5fd">
+      <div id="belts" class="service">
         <div class="pic">
           <img id="img-belts" alt="Maßgürtel aus Vollleder – Zuschnitt und Kantenbearbeitung">
         </div>
@@ -398,7 +400,7 @@ a{color:var(--text)}
       </div>
 
       <!-- Lasergravuren -->
-      <div id="laser" class="service" style="--acc:#67e8f9">
+      <div id="laser" class="service">
         <div class="text">
           <h3 class="title">Lasergravuren</h3>
           <p class="desc">Präzise Personalisierung auf Holz, Leder, Glas u. v. m. Vom Monogramm bis zum Firmenlogo – sauber graviert und dauerhaft haltbar.</p>
@@ -410,7 +412,7 @@ a{color:var(--text)}
       </div>
 
       <!-- Zuschnitte -->
-      <div id="cutting" class="service" style="--acc:#a7f3d0">
+      <div id="cutting" class="service">
         <div class="pic">
           <img id="img-cutting" alt="Laserzuschnitt von Leder-Schablonen">
         </div>
@@ -422,7 +424,7 @@ a{color:var(--text)}
       </div>
 
       <!-- Streetwear -->
-      <div id="streetwear" class="service" style="--acc:#f9a8d4">
+      <div id="streetwear" class="service">
         <div class="text">
           <h3 class="title">Streetwear</h3>
           <p class="desc">Caps, Shirts & Accessoires – inspiriert vom Werkstatt-Look. Wertige Basics, die zu deinem Alltag passen und lange Freude machen.</p>
@@ -434,7 +436,7 @@ a{color:var(--text)}
       </div>
 
       <!-- Sandstrahlung -->
-      <div id="sand" class="service" style="--acc:#f59e0b">
+      <div id="sand" class="service">
         <div class="pic">
           <img id="img-sand" alt="Sandstrahlung von Metallschnallen und Beschlägen">
         </div>
@@ -450,14 +452,14 @@ a{color:var(--text)}
   <section id="contact" class="section">
     <h2 class="h2">Kontakt & Öffnungszeiten</h2>
     <div class="grid" style="display:grid; gap:18px; grid-template-columns:repeat(auto-fill,minmax(320px,1fr))">
-      <div class="card" style="background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.12); border-radius:16px;">
+      <div class="card" style="background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.10); border-radius:16px;">
         <div class="pad" style="padding:16px 18px;">
           <p><strong>Adresse</strong><br>Sandwerkstrasse 2, 63636 Brachttal</p>
           <p style="margin-top:10px"><strong>E-Mail</strong><br>
             <a href="mailto:werkstatt@myshoester.de">werkstatt@myshoester.de</a></p>
         </div>
       </div>
-      <div class="card" style="background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.12); border-radius:16px;">
+      <div class="card" style="background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.10); border-radius:16px;">
         <div class="pad" style="padding:16px 18px;">
           <p><strong>Öffnungszeiten</strong></p>
           <ul style="margin:8px 0 0 16px; color:var(--muted)">
