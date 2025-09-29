@@ -239,6 +239,35 @@ header.nav, .container, footer.footer, .katalog-wrap{ position:relative; z-index
 .paylogo-svg{width:140px;height:34px;display:block}
 @media (max-width:640px){.paylogo-svg{width:120px;height:28px}}
 
+
+/* === Brand Chips (modern alternative) === */
+.brandchips{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:12px 0 18px}
+.brandchip{
+  --ring: rgba(255,255,255,.10);
+  --bg: rgba(255,255,255,.04);
+  --fg: #cfd6e4;
+  appearance:none;border:1px solid var(--ring);background:var(--bg);color:var(--fg);
+  border-radius:16px;padding:12px 14px;font:800 14px/1.2 var(--font-head);
+  letter-spacing:.3px;text-transform:uppercase;display:flex;align-items:center;justify-content:center;gap:10px;
+  box-shadow:0 8px 20px rgba(0,0,0,.35) inset, 0 8px 26px rgba(0,0,0,.35);
+  position:relative; overflow:hidden;
+}
+.brandchip::after{
+  content:""; position:absolute; inset:-1px;
+  background: var(--grad, linear-gradient(90deg, rgba(255,255,255,.12), rgba(255,255,255,.06)));
+  opacity:0; transition: opacity .25s ease; border-radius:16px; z-index:0;
+}
+.brandchip:hover,.brandchip:focus-visible{ border-color: rgba(255,255,255,.22) }
+.brandchip:hover::after,.brandchip:focus-visible::after{ opacity:.35 }
+.brandchip span{ position:relative; z-index:1 }
+/* Tiny glyph (stylized, not official logos) */
+.brandchip .dot{ width:10px; height:10px; border-radius:999px; background:currentColor; opacity:.85 }
+.brand-pp{ --grad: linear-gradient(90deg,#003087,#009cde); }
+.brand-visa{ --grad: linear-gradient(90deg,#1A1F71,#2f3aa4); }
+.brand-mc{ --grad: linear-gradient(90deg,#EB001B,#F79E1B); }
+.brand-giro{ --grad: linear-gradient(90deg,#0a56a3,#3b82f6); }
+.brand-sumup{ --grad: linear-gradient(90deg,#000,#333); }
+
 </style>
 </head>
 <body>
@@ -420,60 +449,15 @@ header.nav, .container, footer.footer, .katalog-wrap{ position:relative; z-index
   <p style="color:var(--muted)">Vor Ort & online akzeptieren wir die folgenden Zahlarten. Versand ist möglich – Details siehe unten.</p>
   
   
-  <div class="paystrip" aria-label="Akzeptierte Zahlungsarten">
-    <!-- PayPal -->
-    <div class="paycard" aria-label="PayPal">
-      <svg class="paylogo-svg" viewBox="0 0 160 40" role="img" aria-label="PayPal">
-        <defs>
-          <linearGradient id="ppg" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0" stop-color="#003087"/><stop offset="1" stop-color="#009cde"/>
-          </linearGradient>
-        </defs>
-        <rect width="160" height="40" rx="8" fill="url(#ppg)" opacity="0.85"/>
-        <text x="80" y="26" text-anchor="middle" font-family="Inter, Arial, Helvetica, sans-serif" font-weight="800" font-size="18" fill="#ffffff">PayPal</text>
-      </svg>
-      <span class="sr-only">PayPal</span>
-    </div>
-    <!-- VISA -->
-    <div class="paycard" aria-label="Visa">
-      <svg class="paylogo-svg" viewBox="0 0 160 40" role="img" aria-label="Visa">
-        <rect width="160" height="40" rx="8" fill="#1A1F71" opacity="0.92"/>
-        <text x="80" y="26" text-anchor="middle" font-family="Inter, Arial, Helvetica, sans-serif" font-weight="900" font-size="20" fill="#ffffff">VISA</text>
-      </svg>
-      <span class="sr-only">Visa</span>
-    </div>
-    <!-- Mastercard (Symbol) -->
-    <div class="paycard" aria-label="Mastercard">
-      <svg class="paylogo-svg" viewBox="0 0 160 40" role="img" aria-label="Mastercard">
-        <rect width="160" height="40" rx="8" fill="#ffffff" opacity="0"/>
-        <circle cx="70" cy="20" r="16" fill="#EB001B"/>
-        <rect x="70" y="6" width="20" height="28" fill="#FF5F00"/>
-        <circle cx="90" cy="20" r="16" fill="#F79E1B"/>
-      </svg>
-      <span class="sr-only">Mastercard</span>
-    </div>
-    <!-- girocard -->
-    <div class="paycard" aria-label="girocard">
-      <svg class="paylogo-svg" viewBox="0 0 160 40" role="img" aria-label="girocard">
-        <rect width="160" height="40" rx="8" fill="#ffffff" opacity="0"/>
-        <rect x="30" y="8" width="24" height="24" fill="#0a56a3" rx="3"/>
-        <rect x="36" y="12" width="12" height="4" fill="#ffffff"/>
-        <rect x="36" y="18" width="12" height="4" fill="#ffffff"/>
-        <rect x="36" y="24" width="12" height="4" fill="#ffffff"/>
-        <text x="105" y="25" text-anchor="middle" font-family="Inter, Arial, Helvetica, sans-serif" font-weight="800" font-size="15" fill="#0a56a3">girocard</text>
-      </svg>
-      <span class="sr-only">girocard</span>
-    </div>
-    <!-- SumUp -->
-    <div class="paycard" aria-label="SumUp">
-      <svg class="paylogo-svg" viewBox="0 0 160 40" role="img" aria-label="SumUp">
-        <rect width="160" height="40" rx="8" fill="#ffffff" opacity="0"/>
-        <rect x="30" y="8" width="24" height="24" rx="6" fill="#000000"/>
-        <path d="M40 14 h8 v4 h-8 v4 h8 v4 h-8" stroke="#ffffff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-        <text x="105" y="25" text-anchor="middle" font-family="Inter, Arial, Helvetica, sans-serif" font-weight="800" font-size="15" fill="#000000">sumup</text>
-      </svg>
-      <span class="sr-only">SumUp</span>
-    </div>
+  
+  <div class="brandchips" aria-label="Akzeptierte Zahlungsarten (modern)">
+    <div class="brandchip brand-pp"><span class="dot"></span><span>PayPal</span></div>
+    <div class="brandchip brand-visa"><span class="dot"></span><span>Visa</span></div>
+    <div class="brandchip brand-mc"><span class="dot"></span><span>Mastercard</span></div>
+    <div class="brandchip brand-giro"><span class="dot"></span><span>girocard</span></div>
+    <div class="brandchip brand-sumup"><span class="dot"></span><span>SumUp</span></div>
+  </div>
+
   </div>
 
   </div>
