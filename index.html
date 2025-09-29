@@ -81,12 +81,6 @@ body::before{
 .service + .service{ position:relative }
 .service + .service::before{content:""; position:absolute; left:0; right:0; top:-14px; height:1px; background:linear-gradient(90deg, rgba(255,255,255,.15), rgba(255,255,255,.04))}
 
-/* Dropdown-Farbe */
-#catalog .cat-title,#catalog .cat-link,#catalog .cat-close,
-.catalog .cat-title,.catalog .cat-link,.catalog .cat-close{ color: var(--dropBlue) !important; opacity:1 !important }
-#catalog .cat-link > *, .catalog .cat-link > *{ color: inherit !important }
-#catalog .cat-link:hover, .catalog .cat-link:hover{ background: rgba(107,126,217,.14); border-color: rgba(107,126,217,.28); text-shadow: 0 1px 0 rgba(0,0,0,.15)}
-
 /* Mobile */
 .nav-links{ overflow-x:auto; white-space:nowrap; -webkit-overflow-scrolling:touch; }
 .nav-links a, .katalog-btn, .chip { min-height:44px; line-height:1.2; }
@@ -163,7 +157,9 @@ body::before{
       <p>Lieblingsschuhe und Lederwaren wieder in Form bringen: Sohlenwechsel, Absätze, Nähte, Färbungen & Pflege – fair, präzise, nachhaltig.</p>
     </div>
     <div>
-      <img id="heroImg" alt="Schuhmacher-Werkstatt – Blick in die Werkbank">
+      <img id="heroImg" data-name="hero-werkstatt"
+           src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'><defs><linearGradient id='g' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='%23d9e6ff'/><stop offset='100%' stop-color='%23ffd9cc'/></linearGradient></defs><rect width='1200' height='800' fill='url(%23g)'/><text x='60' y='120' fill='%230d0f16' font-family='Poppins' font-size='44' font-weight='700'>Hero-Platzhalter</text><text x='60' y='172' fill='%23334155' font-family='Poppins' font-size='22'>Datei in /img/hero-werkstatt.(webp|jpg|jpeg|png)</text></svg>"
+           alt="Schuhmacher-Werkstatt – Blick in die Werkbank">
     </div>
   </section>
 
@@ -175,7 +171,9 @@ body::before{
       <!-- Reparatur -->
       <div id="repair" class="service" style="--acc:#86efac">
         <div class="pic">
-          <img id="img-repair" alt="Werkstatt mit Schuhreparatur; Schuhmacher grob in Bleistift skizziert">
+          <img id="img-repair" data-name="repair-werkstatt-skizze"
+               src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'><defs><linearGradient id='g' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='%23d9e6ff'/><stop offset='100%' stop-color='%23ffd9cc'/></linearGradient></defs><rect width='1200' height='800' fill='url(%23g)'/><text x='60' y='120' fill='%230d0f16' font-family='Poppins' font-size='36' font-weight='700'>Reparatur – Platzhalter</text><text x='60' y='168' fill='%23334155' font-family='Poppins' font-size='20'>/img/repair-werkstatt-skizze.(webp|jpg|jpeg|png)</text></svg>"
+               alt="Werkstatt mit Schuhreparatur; Schuhmacher grob in Bleistift skizziert">
         </div>
         <div class="text">
           <h3 class="title">Schuh- & Lederwarenreparatur</h3>
@@ -192,14 +190,18 @@ body::before{
           <div class="chips"><span class="chip">Weiche Polsterung</span><span class="chip">Alltag & Beruf</span><span class="chip">Atmungsaktive Materialien</span></div>
         </div>
         <div class="pic">
-          <img id="img-bequem" alt="Weiche Einlagen – Zuschnitt und Schliff am Werktisch">
+          <img id="img-bequem" data-name="bequem-einlagen"
+               src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'><rect width='1200' height='800' fill='%23e6ecff'/><text x='60' y='120' fill='%230d0f16' font-family='Poppins' font-size='30' font-weight='700'>Bequem – Platzhalter</text><text x='60' y='162' fill='%23334155' font-family='Poppins' font-size='18'>/img/bequem-einlagen.(webp|jpg|jpeg|png)</text></svg>"
+               alt="Weiche Einlagen – Zuschnitt und Schliff am Werktisch">
         </div>
       </div>
 
       <!-- Komfort -->
       <div id="komfort" class="service" style="--acc:#fca5a5">
         <div class="pic">
-          <img id="img-komfort" alt="Komforteinlagen – Gewölbeunterstützung & Druckverteilung">
+          <img id="img-komfort" data-name="komfort-einlagen"
+               src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'><rect width='1200' height='800' fill='%23ffe6e6'/><text x='60' y='120' fill='%230d0f16' font-family='Poppins' font-size='30' font-weight='700'>Komfort – Platzhalter</text><text x='60' y='162' fill='%23334155' font-family='Poppins' font-size='18'>/img/komfort-einlagen.(webp|jpg|jpeg|png)</text></svg>"
+               alt="Komforteinlagen – Gewölbeunterstützung & Druckverteilung">
         </div>
         <div class="text">
           <h3 class="title">Komforteinlagen</h3>
@@ -216,14 +218,18 @@ body::before{
           <div class="chips"><span class="chip">Leicht & pflegeleicht</span><span class="chip">Dauertragekomfort</span><span class="chip">Preis-/Leistung</span></div>
         </div>
         <div class="pic">
-          <img id="img-alltag" alt="Alltagseinlagen neben Freizeitschuhen">
+          <img id="img-alltag" data-name="alltag-einlagen"
+               src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'><rect width='1200' height='800' fill='%23fff1cc'/><text x='60' y='120' fill='%230d0f16' font-family='Poppins' font-size='30' font-weight='700'>Alltag – Platzhalter</text><text x='60' y='162' fill='%23334155' font-family='Poppins' font-size='18'>/img/alltag-einlagen.(webp|jpg|jpeg|png)</text></svg>"
+               alt="Alltagseinlagen neben Freizeitschuhen">
         </div>
       </div>
 
       <!-- Maßgürtel -->
       <div id="belts" class="service" style="--acc:#c4b5fd">
         <div class="pic">
-          <img id="img-belts" alt="Maßgürtel aus Vollleder – Zuschnitt und Kantenbearbeitung">
+          <img id="img-belts" data-name="massguertel-leder"
+               src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'><rect width='1200' height='800' fill='%23efe6ff'/><text x='60' y='120' fill='%230d0f16' font-family='Poppins' font-size='30' font-weight='700'>Ma%25C3%259Fg%25C3%25BCrtel – Platzhalter</text><text x='60' y='162' fill='%23334155' font-family='Poppins' font-size='18'>/img/massguertel-leder.(webp|jpg|jpeg|png)</text></svg>"
+               alt="Maßgürtel aus Vollleder – Zuschnitt und Kantenbearbeitung">
         </div>
         <div class="text">
           <h3 class="title">Maßgürtel</h3>
@@ -240,14 +246,18 @@ body::before{
           <div class="chips"><span class="chip">Feine Details</span><span class="chip">Einzelstücke & Serien</span><span class="chip">Geschenke & Branding</span></div>
         </div>
         <div class="pic">
-          <img id="img-laser" alt="Lasergravur auf Leder-Patch in Nahaufnahme">
+          <img id="img-laser" data-name="laser-gravur-leder"
+               src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'><rect width='1200' height='800' fill='%23e5fbff'/><text x='60' y='120' fill='%230d0f16' font-family='Poppins' font-size='30' font-weight='700'>Lasergravur – Platzhalter</text><text x='60' y='162' fill='%23334155' font-family='Poppins' font-size='18'>/img/laser-gravur-leder.(webp|jpg|jpeg|png)</text></svg>"
+               alt="Lasergravur auf Leder-Patch in Nahaufnahme">
         </div>
       </div>
 
       <!-- Zuschnitte -->
       <div id="cutting" class="service" style="--acc:#a7f3d0">
         <div class="pic">
-          <img id="img-cutting" alt="Laserzuschnitt von Leder-Schablonen">
+          <img id="img-cutting" data-name="laser-zuschnitte-leder"
+               src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'><rect width='1200' height='800' fill='%23e6fff6'/><text x='60' y='120' fill='%230d0f16' font-family='Poppins' font-size='30' font-weight='700'>Laserzuschnitt – Platzhalter</text><text x='60' y='162' fill='%23334155' font-family='Poppins' font-size='18'>/img/laser-zuschnitte-leder.(webp|jpg|jpeg|png)</text></svg>"
+               alt="Laserzuschnitt von Leder-Schablonen">
         </div>
         <div class="text">
           <h3 class="title">Laserzuschnitte</h3>
@@ -264,14 +274,18 @@ body::before{
           <div class="chips"><span class="chip">Caps & Shirts</span><span class="chip">Kleine Auflagen</span><span class="chip">Stimmiges Design</span></div>
         </div>
         <div class="pic">
-          <img id="img-streetwear" alt="Streetwear-Cap/Shirt mit gelasertem Leder-Patch">
+          <img id="img-streetwear" data-name="streetwear-lederpatch"
+               src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'><rect width='1200' height='800' fill='%23ffe6f3'/><text x='60' y='120' fill='%230d0f16' font-family='Poppins' font-size='30' font-weight='700'>Streetwear – Platzhalter</text><text x='60' y='162' fill='%23334155' font-family='Poppins' font-size='18'>/img/streetwear-lederpatch.(webp|jpg|jpeg|png)</text></svg>"
+               alt="Streetwear-Cap/Shirt mit gelasertem Leder-Patch">
         </div>
       </div>
 
       <!-- Sandstrahlung -->
       <div id="sand" class="service" style="--acc:#f59e0b">
         <div class="pic">
-          <img id="img-sand" alt="Sandstrahlung von Metallschnallen und Beschlägen">
+          <img id="img-sand" data-name="sandstrahlung-beschlaege"
+               src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'><rect width='1200' height='800' fill='%23fff2db'/><text x='60' y='120' fill='%230d0f16' font-family='Poppins' font-size='30' font-weight='700'>Sandstrahlung – Platzhalter</text><text x='60' y='162' fill='%23334155' font-family='Poppins' font-size='18'>/img/sandstrahlung-beschlaege.(webp|jpg|jpeg|png)</text></svg>"
+               alt="Sandstrahlung von Metallschnallen und Beschlägen">
         </div>
         <div class="text">
           <h3 class="title">Sandstrahlung</h3>
@@ -305,7 +319,6 @@ body::before{
 <footer class="footer">© <span id="year"></span> MyShoester • Alle Preise sind Ab-Preise inkl. MwSt., abhängig von Material & Aufwand.</footer>
 
 <script>
-  // Jahr
   document.getElementById('year').textContent = new Date().getFullYear();
 
   // Katalog
@@ -318,53 +331,25 @@ body::before{
   document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') toggle(false); });
   document.addEventListener('click',(e)=>{ if(panel.classList.contains('open') && !panel.contains(e.target) && e.target!==openBtn){ toggle(false);} });
 
-  // ---------- Lokale Bild-Suche (kein Fremdbild mehr) ----------
-  // Leg die Dateien in /img/ ab, z.B. hero-werkstatt.webp oder hero-werkstatt-1200.jpg
-  const IMG_MAP = {
-    'heroImg'     : ['img/hero-werkstatt','img/hero-werkstatt-1200'],
-    'img-repair'  : ['img/repair-werkstatt-skizze','img/repair-werkstatt-skizze-1200'],
-    'img-bequem'  : ['img/bequem-einlagen','img/bequem-einlagen-1200'],
-    'img-komfort' : ['img/komfort-einlagen','img/komfort-einlagen-1200'],
-    'img-alltag'  : ['img/alltag-einlagen','img/alltag-einlagen-1200'],
-    'img-belts'   : ['img/massguertel-leder','img/massguertel-leder-1200'],
-    'img-laser'   : ['img/laser-gravur-leder','img/laser-gravur-leder-1200'],
-    'img-cutting' : ['img/laser-zuschnitte-leder','img/laser-zuschnitte-leder-1200'],
-    'img-streetwear': ['img/streetwear-lederpatch','img/streetwear-lederpatch-1200'],
-    'img-sand'    : ['img/sandstrahlung-beschlaege','img/sandstrahlung-beschlaege-1200'],
-  };
-  const EXTS = ['webp','jpg','jpeg','png'];
-
-  function setLocalImage(imgEl, bases){
-    let i = 0, j = 0;
-    function tryNext(){
-      if(i >= bases.length){ showPlaceholder(imgEl, bases[0]); return; }
-      if(j >= EXTS.length){ i++; j = 0; return tryNext(); }
-      const url = `${bases[i]}.${EXTS[j]}?v=${Date.now()}`;
-      const test = new Image();
-      test.onload  = () => imgEl.src = url.split('?')[0];  // tatsächliche Datei ohne Cachebuster
-      test.onerror = () => { j++; tryNext(); };
-      test.src = url;
+  // ---------- Lokale Bildsuche: findet .webp/.jpg/.jpeg/.png, mit/ohne "-1200" ----------
+  const exts = ['webp','jpg','jpeg','png'];
+  function tryLoad(img, base){
+    let i=0, withSize=true;
+    function next(){
+      if(i>=exts.length){
+        if(withSize){ withSize=false; i=0; next(); return; }
+        return; // bleibt Platzhalter
+      }
+      const url = `img/${base}${withSize?'-1200':''}.${exts[i]}?v=${Date.now()}`;
+      const t = new Image();
+      t.onload = ()=> img.src = url.split('?')[0];
+      t.onerror = ()=>{ i++; next(); };
+      t.src = url;
     }
-    tryNext();
+    next();
   }
-  function showPlaceholder(imgEl, expectedBase){
-    const svg = `
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
-        <defs>
-          <linearGradient id="g" x1="0" x2="0" y1="0" y2="1">
-            <stop offset="0%" stop-color="#d9e6ff"/><stop offset="100%" stop-color="#ffd9cc"/>
-          </linearGradient>
-        </defs>
-        <rect width="800" height="500" fill="url(#g)"/>
-        <text x="32" y="80" fill="#0d0f16" font-family="Poppins" font-size="26" font-weight="600">Bild nicht gefunden</text>
-        <text x="32" y="120" fill="#334155" font-family="Poppins" font-size="16">Erwartet in /img/: ${expectedBase}.webp|jpg|jpeg|png</text>
-        <text x="32" y="160" fill="#475569" font-family="Poppins" font-size="14">Dateiname & Groß/Kleinschreibung prüfen</text>
-      </svg>`;
-    imgEl.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
-  }
-  Object.entries(IMG_MAP).forEach(([id,bases])=>{
-    const el = document.getElementById(id);
-    if(el) setLocalImage(el, bases);
+  document.querySelectorAll('img[data-name]').forEach(img=>{
+    tryLoad(img, img.dataset.name);
   });
 </script>
 </body>
