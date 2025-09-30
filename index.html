@@ -65,25 +65,40 @@ body::after{opacity:.14;background-image:url('data:image/svg+xml,%3Csvg xmlns=%2
    =============================== */
 .nav{
   position:sticky; top:0; z-index:50;
-  /* dezente Carbon-Optik */
+  /* **verbesserte Carbon-Optik** (kleines Twill-Muster) */
   background:
-    repeating-linear-gradient(45deg, rgba(255,255,255,.045) 0 2px, rgba(0,0,0,0) 2px 4px),
-    repeating-linear-gradient(-45deg, rgba(255,255,255,.035) 0 2px, rgba(0,0,0,0) 2px 4px),
-    linear-gradient(180deg, rgba(15,20,32,.92), rgba(15,20,32,.68));
+    linear-gradient(45deg, rgba(255,255,255,.04) 25%, transparent 25%) -2px 0/6px 6px,
+    linear-gradient(-45deg, rgba(255,255,255,.04) 25%, transparent 25%) -2px 0/6px 6px,
+    linear-gradient(45deg, transparent 75%, rgba(0,0,0,.35) 75%) -2px 0/6px 6px,
+    linear-gradient(-45deg, transparent 75%, rgba(0,0,0,.35) 75%) -2px 0/6px 6px,
+    linear-gradient(180deg, rgba(15,20,32,.96), rgba(15,20,32,.72));
   backdrop-filter: blur(10px);
   border-bottom:1px solid var(--line);
   transition: box-shadow .25s ease, border-color .25s ease;
 }
 .nav.is-scrolled{ border-bottom-color: rgba(255,255,255,.18); box-shadow:0 10px 28px rgba(0,0,0,.4) }
-.nav-inner{ max-width:1280px; margin:0 auto; display:flex; align-items:center; gap:14px; padding:12px 20px; position:relative; padding-left:120px }
-.nav.is-scrolled .nav-inner{ padding:8px 20px; padding-left:120px }
+.nav-inner{ max-width:1280px; margin:0 auto; display:flex; align-items:center; gap:14px; padding:12px 20px; position:relative; padding-left:96px }
+.nav.is-scrolled .nav-inner{ padding:8px 20px; padding-left:96px }
 
 .logo{display:flex;align-items:center;gap:12px}
-.logo-badge{ width:38px;height:38px;border-radius:10px; display:grid;place-items:center;font-weight:900; letter-spacing:.5px; color:#cfd6e4;background:linear-gradient(135deg,#2a3242,#49566a); box-shadow: 0 8px 24px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.12) }
-.logo-title{font-family:var(--font-head);font-weight:800;font-size:24px;letter-spacing:.2px}
+/* Badge und Firmenname auffälliger */
+.logo-badge{ width:44px;height:44px;border-radius:12px; display:grid;place-items:center;
+  font-weight:900; letter-spacing:.5px; color:#eaf2ff;
+  background:radial-gradient(60% 60% at 30% 30%, #5a6b85, #2b3446);
+  box-shadow: 0 10px 28px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.14)
+}
+.logo-title{
+  font-family:var(--font-head);
+  font-weight:900;
+  font-size:32px; /* größer gemacht */
+  letter-spacing:.4px;
+  background:linear-gradient(90deg,#e6f0ff 0%, #9dd7ff 35%, #7dd3fc 60%, #60a5fa 85%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  text-shadow: 0 0 18px rgba(96,165,250,.35), 0 1px 0 rgba(0,0,0,.65);
+}
 
-/* Katalog-Button absolut links */
-.katalog-anchor{ position:absolute; left:12px; top:50%; transform:translateY(-50%); z-index:1010; display:flex; align-items:center }
+/* Katalog-Button absolut links – etwas näher an den Rand */
+.katalog-anchor{ position:absolute; left:8px; top:50%; transform:translateY(-50%); z-index:1010; display:flex; align-items:center }
 .katalog-btn{
   appearance:none; cursor:pointer; padding:8px 12px; border-radius:12px; font-weight:900; letter-spacing:.3px;
   color:#e2e8f0; border:1px solid rgba(255,255,255,.14);
@@ -92,9 +107,8 @@ body::after{opacity:.14;background-image:url('data:image/svg+xml,%3Csvg xmlns=%2
 }
 
 /* Dropdown: fix links; top wird per JS passend zur Header-Höhe gesetzt */
-/* Zusätzlich eigene Scrollbar-Optik am Panel */
 .catalog{
-  position:fixed; left:12px; top:84px; /* fallback; JS korrigiert */
+  position:fixed; left:8px; top:92px; /* Fallback – JS korrigiert exakt */
   width:min(420px, 92vw); max-height:min(72vh, 560px); overflow:auto;
   background:rgba(10,14,22,.97); backdrop-filter: blur(12px);
   border:1px solid rgba(255,255,255,.14); border-radius:18px;
@@ -120,7 +134,7 @@ body::after{opacity:.14;background-image:url('data:image/svg+xml,%3Csvg xmlns=%2
 /* Inhalt freiräumen, wenn Panel offen (Breite wird per JS gesetzt) */
 body.panel-open main{ margin-left:var(--panelShift, 0px); transition:margin .18s ease }
 @media (max-width: 1100px){
-  .nav-inner{ padding-left:108px }
+  .nav-inner{ padding-left:88px }
   body.panel-open main{ margin-left:0 } /* mobil & tablet overlay */
 }
 
@@ -138,8 +152,17 @@ body.panel-open main{ margin-left:var(--panelShift, 0px); transition:margin .18s
 .hero{ display:grid;grid-template-columns:1.05fr .95fr;gap:28px;align-items:center;padding:42px 0 }
 .tag{ display:inline-block; font-family:var(--font-head); font-weight:800; letter-spacing:.4px; font-size:18px; line-height:1.2; color:#dbe2f0; text-transform:uppercase; text-shadow: 0 1px 0 #000, 0 0 10px rgba(0,0,0,.35) }
 .tag::after{ content:""; display:block; height:1px; margin-top:8px; background: linear-gradient(90deg, transparent, rgba(148,163,184,.65), transparent) }
+/* H1 */
 .hero h1{ font-family:var(--font-head); font-weight:900; letter-spacing:.3px; font-size: clamp(38px, 4.8vw, 58px); line-height:1.05;margin:4px 0 14px; color:#eef2fb; text-shadow: 0 1px 0 #000, 0 8px 22px rgba(0,0,0,.45) }
-.hero h1 span{ background: linear-gradient(180deg, #e5e9f2 0%, #8c98ad 50%, #0a0c12 100%); -webkit-background-clip:text; background-clip:text; color:transparent; text-shadow: 0 1px 0 #000, 0 10px 24px rgba(0,0,0,.55) }
+/* Akzent-Span neu: andere Schriftart + frische Farbwelt */
+.hero h1 span{
+  font-family: "Inter", system-ui; /* Schriftart geändert */
+  background:linear-gradient(90deg, #7dd3fc 0%, #60a5fa 45%, #a78bfa 100%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  text-shadow: 0 0 18px rgba(96,165,250,.35), 0 1px 0 #000;
+  letter-spacing:.6px;
+}
+
 .hero p{color:var(--muted);margin:0 0 18px; font-size:1.02rem}
 
 /* Headlines */
@@ -405,12 +428,11 @@ body.panel-open main{ margin-left:var(--panelShift, 0px); transition:margin .18s
   // Panel-Metriken berechnen: Abstand nach unten + Inhaltsschub
   function setPanelMetrics(){
     const navH = nav.getBoundingClientRect().height || 64;
-    const top  = Math.round(navH + 12); // << Button + Luft, damit nichts überlappt
+    const top  = Math.round(navH + 12); // Button + Luft
     panel.style.top = top + 'px';
 
     // Nur auf großen Screens Inhalt verschieben
     if (window.innerWidth > 1100){
-      // Panelbreite + Luft
       const shift = Math.min(panel.offsetWidth || 420, 460) + 24;
       root.style.setProperty('--panelShift', shift + 'px');
     } else {
