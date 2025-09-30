@@ -220,15 +220,15 @@ body.panel-open main{ margin-left:var(--panelShift, 0px); transition:margin .18s
       <button id="btnClose" class="cat-close">Schließen ✕</button>
     </div>
     <div class="cat-list">
-      <a class="cat-link" href="#repair">Schuh- & Lederwarenreparatur</a>
-      <a class="cat-link" href="#bequem">Bequemschuheinlagen</a>
-      <a class="cat-link" href="#komfort">Komforteinlagen</a>
-      <a class="cat-link" href="#alltag">Alltagseinlagen</a>
-      <a class="cat-link" href="#belts">Maßgürtel</a>
-      <a class="cat-link" href="#laser">Lasergravuren</a>
-      <a class="cat-link" href="#cutting">Laserzuschnitte</a>
-      <a class="cat-link" href="#streetwear">Streetwear</a>
-      <a class="cat-link" href="#sand">Sandstrahlung</a>
+      <a class="cat-link" href="preise-reparatur.html">Schuh- & Lederwarenreparatur</a>
+      <a class="cat-link" href="preise-bequemseinlagen.html">Bequemschuheinlagen</a>
+      <a class="cat-link" href="preise-komforteinlagen.html">Komforteinlagen</a>
+      <a class="cat-link" href="preise-alltagseinlagen.html">Alltagseinlagen</a>
+      <a class="cat-link" href="preise-massguertel.html">Maßgürtel</a>
+      <a class="cat-link" href="preise-lasergravur.html">Lasergravuren</a>
+      <a class="cat-link" href="preise-laserzuschnitte.html">Laserzuschnitte</a>
+      <a class="cat-link" href="preise-streetwear.html">Streetwear</a>
+      <a class="cat-link" href="preise-sandstrahlung.html">Sandstrahlung</a>
     </div>
   </aside>
 
@@ -240,16 +240,18 @@ body.panel-open main{ margin-left:var(--panelShift, 0px); transition:margin .18s
     </div>
 
     <nav class="nav-links">
-      <a href="#repair">Schuh- & Lederwarenreparatur</a>
-      <a href="#bequem">Bequemschuheinlagen</a>
-      <a href="#komfort">Komforteinlagen</a>
-      <a href="#alltag">Alltagseinlagen</a>
-      <a href="#belts">Maßgürtel</a>
-      <a href="#laser">Lasergravuren</a>
-      <a href="#cutting">Laserzuschnitte</a>
-      <a href="#streetwear">Streetwear</a>
-      <a href="#sand">Sandstrahlung</a>
-      <a href="#contact">Kontakt</a>
+      <a href="preise-reparatur.html">Schuh- & Lederwarenreparatur</a>
+      <a href="preise-bequemseinlagen.html">Bequemschuheinlagen</a>
+      <a href="preise-komforteinlagen.html">Komforteinlagen</a>
+      <a href="preise-alltagseinlagen.html">Alltagseinlagen</a>
+      <a href="preise-massguertel.html">Maßgürtel</a>
+      <a href="preise-lasergravur.html">Lasergravuren</a>
+      <a href="preise-laserzuschnitte.html">Laserzuschnitte</a>
+      <a href="preise-streetwear.html">Streetwear</a>
+      <a href="preise-sandstrahlung.html">Sandstrahlung</a>
+      
+      <a href="warenkorb.html" id="cartLink">🛒 Warenkorb (<span id="cartQty">0</span>)</a>
+<a href="#contact">Kontakt</a>
     </nav>
   </div>
 </header>
@@ -481,5 +483,14 @@ body.panel-open main{ margin-left:var(--panelShift, 0px); transition:margin .18s
   const io=new IntersectionObserver((ents)=>{ents.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in'); io.unobserve(e.target);}})},{rootMargin:'-10% 0px -5% 0px',threshold:.1});
   document.querySelectorAll('.service, .card, .hero img').forEach(el=>{el.classList.add('reveal'); io.observe(el);});
 </script>
+
+<!-- MyShoester Cart Bootstrap -->
+<script src="cart.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function(){
+    if (window.MSCart && MSCart.updateBadge) MSCart.updateBadge();
+  });
+</script>
+
 </body>
 </html>
