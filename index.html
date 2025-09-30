@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>MyShoester – Schuh- & Lederwerkstatt</title>
-<meta name="description" content="Reparaturen, Pflege, Einlagen, Maßgürtel, Lasergravur & -zuschnitt, Streetwear, Sandstrahlung.">
+<meta name="description" content="Reparaturen, Pflege, Maßgürtel, Einlagen, Lasergravur & -zuschnitt, Streetwear, Sandstrahlung.">
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&family=Manrope:wght@300;400;600;700;800&display=swap');
@@ -34,7 +34,7 @@ body::after{opacity:.14;background-image:url('data:image/svg+xml,%3Csvg xmlns=%2
 
 a{color:var(--text); text-decoration:none}
 
-/* Background overlay that parallax-shifts */
+/* Parallax Hintergrund */
 .bgfx{ position:fixed; inset:-12vmax; z-index:-1; pointer-events:none;
   background:
     radial-gradient(800px 520px at 20% 14%, rgba(120,140,170,.10), transparent 60%),
@@ -44,55 +44,46 @@ a{color:var(--text); text-decoration:none}
   transform:translateY(calc(var(--s) * -60px)); transition:transform .2s linear;
 }
 
-/* Progress bar */
+/* Scrollbar */
 .scrollbar{ position:fixed; top:0; left:0; height:3px; width:100%;
   transform-origin:0 50%; transform:scaleX(0);
   background:linear-gradient(90deg,#7b8797,#cfd6e4); opacity:.65; z-index:60}
 
-/* ==========================================
-   HEADER: Katalog left + Carbon sichtbar
-   ========================================== */
+/* ===============================
+   HEADER (Carbon) + KATALOG LEFT
+   =============================== */
 .nav{
   position:sticky; top:0; z-index:50;
-  /* Carbon direkt im Hintergrund (volle Breite sichtbar) */
   background:
-    /* Carbon-Gitter */
     repeating-linear-gradient(45deg, rgba(255,255,255,.045) 0 2px, rgba(0,0,0,0) 2px 4px),
     repeating-linear-gradient(-45deg, rgba(255,255,255,.035) 0 2px, rgba(0,0,0,0) 2px 4px),
-    /* dunkler Verlauf */
     linear-gradient(180deg, rgba(15,20,32,.92), rgba(15,20,32,.68));
   backdrop-filter: blur(10px);
   border-bottom:1px solid var(--line);
   transition: box-shadow .25s ease, border-color .25s ease;
 }
 .nav.is-scrolled{ border-bottom-color: rgba(255,255,255,.18); box-shadow:0 10px 28px rgba(0,0,0,.4) }
-.nav-inner{ max-width:1280px; margin:0 auto; display:flex; align-items:center; gap:14px; padding:12px 20px; position:relative;
-  /* Platz links schaffen, weil der Katalog absolut links sitzt */
-  padding-left:120px;
-}
+.nav-inner{ max-width:1280px; margin:0 auto; display:flex; align-items:center; gap:14px; padding:12px 20px; position:relative; padding-left:120px }
 .nav.is-scrolled .nav-inner{ padding:8px 20px; padding-left:120px }
 
 .logo{display:flex;align-items:center;gap:12px}
 .logo-badge{ width:38px;height:38px;border-radius:10px; display:grid;place-items:center;font-weight:900; letter-spacing:.5px; color:#cfd6e4;background:linear-gradient(135deg,#2a3242,#49566a); box-shadow: 0 8px 24px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.12) }
 .logo-title{font-family:var(--font-head);font-weight:800;font-size:24px;letter-spacing:.2px}
 
-/* Katalog: ganz links am Rand */
-.katalog-anchor{
-  position:absolute; left:12px; top:50%; transform:translateY(-50%);
-  z-index:1010; display:flex; align-items:center;
-}
+/* Katalog: fix am linken Rand */
+.katalog-anchor{ position:absolute; left:12px; top:50%; transform:translateY(-50%); z-index:1010; display:flex; align-items:center }
 .katalog-btn{
-  appearance:none; cursor:pointer;
-  padding:8px 12px; border-radius:12px; font-weight:900; letter-spacing:.3px;
+  appearance:none; cursor:pointer; padding:8px 12px; border-radius:12px; font-weight:900; letter-spacing:.3px;
   color:#e2e8f0; border:1px solid rgba(255,255,255,.14);
   background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
   box-shadow: 0 8px 20px rgba(0,0,0,.35), 0 2px 0 rgba(255,255,255,.08) inset;
 }
-/* Dropdown hängt sauber direkt darunter, bündig links */
+
+/* Dropdown: links unter Header; auf Desktop verschieben wir den Inhalt, damit nichts überlappt */
 .catalog{
-  position:absolute; left:0; top:calc(100% + 8px);
+  position:fixed; left:12px; top:calc(64px + 8px); /* Header-Höhe + Abstand */
   width:min(420px, 92vw); max-height:min(72vh, 560px); overflow:auto;
-  background:rgba(10,14,22,.95); backdrop-filter: blur(12px);
+  background:rgba(10,14,22,.97); backdrop-filter: blur(12px);
   border:1px solid rgba(255,255,255,.14); border-radius:18px;
   box-shadow:0 18px 60px rgba(0,0,0,.55);
   opacity:0; transform:translateY(-8px) scale(.98); pointer-events:none;
@@ -106,6 +97,13 @@ a{color:var(--text); text-decoration:none}
 .cat-link{display:block;font-weight:800;background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.12);border-radius:14px; padding:12px 14px; color:var(--text)}
 .cat-link:hover{background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.22); text-shadow:0 1px 0 rgba(0,0,0,.2)}
 
+/* Wenn Panel offen: Inhalt rechts freiräumen (nur Desktop) */
+body.panel-open main{ margin-left:440px; transition:margin .18s ease }
+@media (max-width: 980px){
+  .nav-inner{ padding-left:108px }
+  body.panel-open main{ margin-left:0 } /* auf Mobil kein Shift – Overlay reicht */
+}
+
 /* Navi-Links */
 .nav-links{ display:flex;flex-wrap:wrap;gap:10px;margin-left:auto;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch }
 .nav-links a{ padding:8px 12px;border-radius:12px;font-weight:800;letter-spacing:.3px;text-transform:uppercase; border:1px solid rgba(255,255,255,.06); background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)) }
@@ -116,56 +114,43 @@ a{color:var(--text); text-decoration:none}
 .section{padding:8px 0 48px}
 .footer{border-top:1px solid var(--line);padding:26px 0;color:var(--muted);text-align:center;font-family:var(--font-body)}
 
-/* Hero etc. (unverändert) */
+/* Hero */
 .hero{ display:grid;grid-template-columns:1.05fr .95fr;gap:28px;align-items:center;padding:42px 0 }
 .tag{ display:inline-block; font-family:var(--font-head); font-weight:800; letter-spacing:.4px; font-size:18px; line-height:1.2; color:#dbe2f0; text-transform:uppercase; text-shadow: 0 1px 0 #000, 0 0 10px rgba(0,0,0,.35) }
 .tag::after{ content:""; display:block; height:1px; margin-top:8px; background: linear-gradient(90deg, transparent, rgba(148,163,184,.65), transparent) }
-.hero h1{ font-family:var(--font-head); font-weight:900; letter-spacing:.3px; font-size: clamp(38px, 4.8vw, 58px); line-height:1.05;margin:4px 0 14px; color:#eef2fb; text-shadow: 0 1px 0 #000, 0 8px 22px rgba(0,0,0,.45); transform: translateY(calc(var(--s) * -6px)) }
+.hero h1{ font-family:var(--font-head); font-weight:900; letter-spacing:.3px; font-size: clamp(38px, 4.8vw, 58px); line-height:1.05;margin:4px 0 14px; color:#eef2fb; text-shadow: 0 1px 0 #000, 0 8px 22px rgba(0,0,0,.45) }
 .hero h1 span{ background: linear-gradient(180deg, #e5e9f2 0%, #8c98ad 50%, #0a0c12 100%); -webkit-background-clip:text; background-clip:text; color:transparent; text-shadow: 0 1px 0 #000, 0 10px 24px rgba(0,0,0,.55) }
-.hero p{color:var(--muted);margin:0 0 18px; font-size:1.02rem; transform: translateY(calc(var(--s) * -4px)) }
-.hero img{ width:100%;height:460px;object-fit:cover;border-radius:22px;border:1px solid var(--line); box-shadow: 0 18px 60px rgba(0,0,0,.45); transform: translateY(calc(var(--s) * 10px)); transition: transform .15s linear }
+.hero p{color:var(--muted);margin:0 0 18px; font-size:1.02rem}
 
 /* Headlines */
 .h2{ font-family:var(--font-head); font-weight:800; font-size:32px;margin:0 0 18px; text-shadow:0 2px 0 #000, 0 0 14px rgba(0,0,0,.35) }
 
-/* Leistungen */
+/* Leistungen – wiederhergestellt */
 #leistungen{ scroll-margin-top: 96px }
 .services-stack{display:flex;flex-direction:column;gap:28px;max-width:1100px;margin:0 auto;padding-inline:8px}
-.service{ --acc: var(--steel); display:grid;grid-template-columns:min(40vw,420px) 1fr;align-items:center;gap:24px;scroll-margin-top:110px; position:relative }
+.service{ --acc: var(--steel); display:grid;grid-template-columns:min(40vw,420px) 1fr;align-items:center;gap:24px; position:relative }
 .service .pic{ position:relative;border-radius:18px;overflow:hidden;aspect-ratio:16/11;min-height:200px; border:1px solid rgba(255,255,255,.12); box-shadow:0 10px 26px rgba(0,0,0,.5); background: rgba(255,255,255,.03) }
 .service .pic img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.95) contrast(1.02)}
-.service .pic::after{ content:"";position:absolute;inset:0; background: linear-gradient(180deg,transparent 55%,rgba(10,12,20,.55)), radial-gradient(400px 140px at 70% -20%, color-mix(in srgb, var(--acc) 20%, transparent) 0%, transparent 70%) }
-.service .title{ display:inline-block;margin:0 0 8px 0;font-weight:900;font-size:1.3rem;letter-spacing:.2px;color:#fff; padding:6px 14px;border-radius:12px; background:color-mix(in srgb,var(--acc) 40%, rgba(12,16,26,.6)); box-shadow:0 8px 22px rgba(0,0,0,.35); border:1px solid rgba(255,255,255,.10); font-family:var(--font-head) }
-.service .desc{margin:0;color:#e1e6f2;font-size:1.02rem;line-height:1.6;text-shadow:0 1px 0 rgba(0,0,0,.25)}
+.service .title{ display:inline-block;margin:0 0 8px 0;font-weight:900;font-size:1.1rem;letter-spacing:.2px;color:#fff; padding:6px 12px;border-radius:12px; background:color-mix(in srgb,var(--acc) 40%, rgba(12,16,26,.6)); border:1px solid rgba(255,255,255,.10); font-family:var(--font-head) }
+.service .desc{margin:0;color:#e1e6f2;font-size:1rem;line-height:1.6}
 .service .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
 .service .chip{ font-size:.85rem;padding:6px 10px;border-radius:999px; background:var(--chip-bg);border:1px solid var(--chip-bd) }
 .service:nth-child(even){grid-template-columns:1fr min(40vw,420px)}
 .service:nth-child(even) .text{order:1}
 .service:nth-child(even) .pic{order:2}
-.service + .service{ position:relative }
-.service + .service::before{ content:""; position:absolute; left:0; right:0; top:-14px; height:1px; background:linear-gradient(90deg, rgba(255,255,255,.10), rgba(255,255,255,.04), rgba(255,255,255,.10)) }
 
 /* Reveal */
 .reveal{ opacity:0; transform: translateY(14px) scale(.98); filter: blur(6px); transition: opacity .6s ease, transform .6s ease, filter .6s ease; will-change: opacity, transform, filter }
 .reveal.in{ opacity:1; transform: none; filter: none }
 
-/* Kontakt/cards */
+/* Karten/Grids */
 .grid{display:grid; gap:18px; grid-template-columns:repeat(auto-fill,minmax(320px,1fr))}
 .card{background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.10); border-radius:16px;}
 .pad{padding:16px 18px}
 
 /* Mobile Tweaks */
 @media (max-width:980px){
-  .nav-inner{ gap:10px; padding-left:108px }
-  .katalog-btn{ padding:8px 10px }
-}
-@media (max-width:820px){
-  .container{ padding:16px }
   .hero{ grid-template-columns:1fr; gap:16px; padding:24px 0 }
-  .hero img{ height:auto; max-height:52vh }
-  .services-stack{ gap:22px }
-  .service, .service:nth-child(even){ grid-template-columns:1fr }
-  .service .pic{ min-height:180px }
 }
 @media (max-width:480px){
   .nav-links{ gap:8px }
@@ -174,92 +159,48 @@ a{color:var(--text); text-decoration:none}
 
 /* Side edges */
 .edge{position:fixed; top:-12vh; bottom:-12vh; width:88px; pointer-events:none; z-index:0}
-.edge--left{left:-2px; transform: translateY(calc(var(--s) * 90px))}
-.edge--right{right:-2px; transform: translateY(calc(var(--s) * -90px))}
-.edge::before{
-  content:""; position:absolute; inset:0;
-  background:
-    radial-gradient(60px 46% at 60% 50%, rgba(190,200,215,.08), transparent 60%),
-    repeating-linear-gradient(0deg, rgba(255,255,255,.04) 0 1px, rgba(0,0,0,0) 1px 5px),
-    linear-gradient(90deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-  border-left:1px solid rgba(255,255,255,.10);
-  border-right:1px solid rgba(255,255,255,.06);
-  filter: contrast(1.05) saturate(.95);
-  -webkit-mask: linear-gradient(180deg, transparent 0%, #000 10%, #000 90%, transparent 100%);
-          mask: linear-gradient(180deg, transparent 0%, #000 10%, #000 90%, transparent 100%);
-  box-shadow: inset 0 0 40px rgba(0,0,0,.45), 0 0 32px rgba(0,0,0,.35);
-}
-.edge--right::before{
-  background:
-    radial-gradient(60px 46% at 40% 50%, rgba(190,200,215,.08), transparent 60%),
-    repeating-linear-gradient(0deg, rgba(255,255,255,.04) 0 1px, rgba(0,0,0,0) 1px 5px),
-    linear-gradient(90deg, rgba(255,255,255,.02), rgba(255,255,255,.06));
-  border-left:1px solid rgba(255,255,255,.06);
-  border-right:1px solid rgba(255,255,255,.10);
-}
-.edge::after{
-  content:""; position:absolute; inset:0;
-  background: linear-gradient(180deg, transparent 0%, rgba(255,255,255,.04) 48%, transparent 52%, transparent 100%);
-  background-position-y: calc(var(--s) * 120px); background-repeat:no-repeat; mix-blend-mode:screen; opacity:.6;
-  -webkit-mask: linear-gradient(180deg, transparent 0%, #000 12%, #000 88%, transparent 100%); mask: linear-gradient(180deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
-}
+.edge--left{left:-2px} .edge--right{right:-2px}
 header.nav, .container, footer.footer{ position:relative; z-index:1 }
-
-/* Logos (unverändert) */
-.paystrip{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:12px 0 18px}
-.paycard{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.10);border-radius:14px; padding:14px;display:flex;align-items:center;justify-content:center;min-height:66px}
-.paylogo{max-height:34px;max-width:140px;filter: drop-shadow(0 0 1px rgba(0,0,0,.25)); object-fit:contain}
-@media (max-width:640px){.paylogo{max-height:28px}}
-.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-.paylogo-svg{width:140px;height:34px;display:block}
-@media (max-width:640px){.paylogo-svg{width:120px;height:28px}}
-.brandlogos{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:12px 0 18px}
-.brandcard{position:relative;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.10); border-radius:16px;min-height:72px;display:flex;align-items:center;justify-content:center; box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 8px 26px rgba(0,0,0,.35)}
-.brandcard::after{content:"";position:absolute;inset:-1px;border-radius:16px;background:linear-gradient(145deg,rgba(255,255,255,.12),rgba(255,255,255,.04));opacity:.0;transition:opacity .25s ease}
-.brandcard:hover::after{opacity:.3}
-.brandcard img{height:34px;max-width:140px;object-fit:contain;display:block;filter: drop-shadow(0 0 1px rgba(0,0,0,.35))}
-@media (max-width:640px){.brandcard img{height:28px}}
 </style>
 </head>
 <body>
 
 <!-- Preloader -->
 <div id="preloader" style="position:fixed;inset:0;background:#05070b;display:grid;place-items:center;z-index:9999">
-  <img src="hologram_shoe_loader_12s.gif" alt="Holographic shoe loading"
+  <img src="hologram_shoe_loader_12s.gif" alt="Hologramm-Schuh lädt"
        style="width:min(92vw,960px);height:auto;image-rendering:-webkit-optimize-contrast">
 </div>
 <script>
-  (function(){ const close=()=>document.getElementById('preloader')?.remove(); setTimeout(close,7500); window.addEventListener('load',()=>{});})();
+  (function(){ const close=()=>document.getElementById('preloader')?.remove(); setTimeout(close,7500);})();
 </script>
-
-<div class="edge edge--left" aria-hidden="true"></div>
-<div class="edge edge--right" aria-hidden="true"></div>
 
 <div class="scrollbar" id="scrollbar"></div>
 <div class="bgfx" aria-hidden="true"></div>
 
-<header class="nav">
-  <!-- Katalog-Button ganz links, bündig -->
+<header class="nav" id="topnav">
+  <!-- Katalog-Button links, bündig -->
   <div class="katalog-anchor">
     <button id="btnKatalog" class="katalog-btn">Katalog ▾</button>
-    <aside id="catalog" class="catalog" aria-hidden="true">
-      <div class="cat-head">
-        <div class="cat-title">Kategorien</div>
-        <button id="btnClose" class="cat-close">Schließen ✕</button>
-      </div>
-      <div class="cat-list">
-        <a class="cat-link" href="kategorie.html?cat=schuh">Schuh- & Lederwarenreparatur</a>
-        <a class="cat-link" href="kategorie.html?cat=bequem">Bequemschuheinlagen</a>
-        <a class="cat-link" href="kategorie.html?cat=komfort">Komforteinlagen</a>
-        <a class="cat-link" href="kategorie.html?cat=alltag">Alltagseinlagen</a>
-        <a class="cat-link" href="kategorie.html?cat=belts">Maßgürtel</a>
-        <a class="cat-link" href="kategorie.html?cat=laser">Lasergravuren</a>
-        <a class="cat-link" href="kategorie.html?cat=cutting">Laserzuschnitte</a>
-        <a class="cat-link" href="kategorie.html?cat=streetwear">Streetwear</a>
-        <a class="cat-link" href="kategorie.html?cat=sand">Sandstrahlung</a>
-      </div>
-    </aside>
   </div>
+
+  <!-- Panel fix links unter Header -->
+  <aside id="catalog" class="catalog" aria-hidden="true">
+    <div class="cat-head">
+      <div class="cat-title">Kategorien</div>
+      <button id="btnClose" class="cat-close">Schließen ✕</button>
+    </div>
+    <div class="cat-list">
+      <a class="cat-link" href="#repair">Schuh- & Lederwarenreparatur</a>
+      <a class="cat-link" href="#bequem">Bequemschuheinlagen</a>
+      <a class="cat-link" href="#komfort">Komforteinlagen</a>
+      <a class="cat-link" href="#alltag">Alltagseinlagen</a>
+      <a class="cat-link" href="#belts">Maßgürtel</a>
+      <a class="cat-link" href="#laser">Lasergravuren</a>
+      <a class="cat-link" href="#cutting">Laserzuschnitte</a>
+      <a class="cat-link" href="#streetwear">Streetwear</a>
+      <a class="cat-link" href="#sand">Sandstrahlung</a>
+    </div>
+  </aside>
 
   <div class="nav-inner">
     <div class="logo">
@@ -268,7 +209,7 @@ header.nav, .container, footer.footer{ position:relative; z-index:1 }
     </div>
 
     <nav class="nav-links">
-      <!-- "Leistungen" entfernt wie gewünscht -->
+      <!-- „Leistungen“ Link bleibt entfernt, wie gewünscht -->
       <a href="#repair">Schuh- & Lederwarenreparatur</a>
       <a href="#bequem">Bequemschuheinlagen</a>
       <a href="#komfort">Komforteinlagen</a>
@@ -284,37 +225,112 @@ header.nav, .container, footer.footer{ position:relative; z-index:1 }
 </header>
 
 <main class="container">
+  <!-- Hero -->
   <section class="hero" id="start">
     <div>
-      <span class="tag">Orthopädieschuhmacher & Lederwerkstatt</span>
+      <span class="tag">Schuhmacher & Lederwerkstatt</span>
       <h1>Reparaturen, Pflege & Maßarbeit – <span>einzigartig & authentisch</span>.</h1>
       <p>Lieblingsschuhe und Lederwaren wieder in Form bringen: Sohlenwechsel, Absätze, Nähte, Färbungen & Pflege – fair, präzise, nachhaltig.</p>
     </div>
-    <div><img id="heroImg" alt="Schuhmacher-Werkstatt – Blick in die Werkbank"></div>
+    <div>
+      <img id="heroImg" alt="Schuhmacher-Werkstatt – Blick in die Werkbank" src="img/hero-werkstatt.jpg">
+    </div>
   </section>
 
+  <!-- Leistungen (sichtbar & sauber strukturiert) -->
   <section id="leistungen" class="section">
     <h2 class="h2">Unsere Leistungen</h2>
-    <div class="services-stack"><!-- … dein Inhalt … --></div>
+
+    <div class="services-stack">
+      <!-- 1 -->
+      <article class="service reveal" id="repair">
+        <div class="pic"><img src="img/repair-werkstatt-skizze.jpg" alt="Reparatur von Schuhen & Lederwaren"></div>
+        <div class="text">
+          <span class="title">Schuh- & Lederwarenreparatur</span>
+          <p class="desc">Sohlenwechsel, Absätze, Nähte, Färbungen & Pflege – langlebig, präzise und hochwertig.</p>
+          <div class="chips"><span class="chip">Sohle/Absatz</span><span class="chip">Nähte</span><span class="chip">Pflege</span></div>
+        </div>
+      </article>
+      <!-- 2 -->
+      <article class="service reveal" id="bequem">
+        <div class="pic"><img src="img/bequem-einlagen.jpg" alt="Bequemschuheinlagen"></div>
+        <div class="text">
+          <span class="title">Bequemschuheinlagen</span>
+          <p class="desc">Komfort für den Alltag – individuell angepasst an deine Schuhe und Bedürfnisse.</p>
+          <div class="chips"><span class="chip">Alltag</span><span class="chip">Komfort</span></div>
+        </div>
+      </article>
+      <!-- 3 -->
+      <article class="service reveal" id="komfort">
+        <div class="pic"><img src="img/komfort-einlagen.jpg" alt="Komforteinlagen"></div>
+        <div class="text">
+          <span class="title">Komforteinlagen</span>
+          <p class="desc">Mehr Dämpfung & Halt – hochwertige Materialien, sauber verarbeitet.</p>
+          <div class="chips"><span class="chip">Dämpfung</span><span class="chip">Halt</span></div>
+        </div>
+      </article>
+      <!-- 4 -->
+      <article class="service reveal" id="alltag">
+        <div class="pic"><img src="img/alltag-einlagen.jpg" alt="Alltagseinlagen"></div>
+        <div class="text">
+          <span class="title">Alltagseinlagen</span>
+          <p class="desc">Solide Einlagen für den täglichen Einsatz – bequem & robust.</p>
+          <div class="chips"><span class="chip">Robust</span><span class="chip">Bequem</span></div>
+        </div>
+      </article>
+      <!-- 5 -->
+      <article class="service reveal" id="belts">
+        <div class="pic"><img src="img/massguertel-leder.jpg" alt="Maßgürtel"></div>
+        <div class="text">
+          <span class="title">Maßgürtel</span>
+          <p class="desc">Handgemachte Gürtel aus Vollleder – Länge, Farbe & Kante nach Wunsch.</p>
+          <div class="chips"><span class="chip">Vollleder</span><span class="chip">Handarbeit</span></div>
+        </div>
+      </article>
+      <!-- 6 -->
+      <article class="service reveal" id="laser">
+        <div class="pic"><img src="img/laser-gravur-leder.jpg" alt="Lasergravuren"></div>
+        <div class="text">
+          <span class="title">Lasergravuren</span>
+          <p class="desc">Logos, Namen oder Motive – präzise Gravuren auf Leder & Metall.</p>
+          <div class="chips"><span class="chip">Fein</span><span class="chip">Präzise</span></div>
+        </div>
+      </article>
+      <!-- 7 -->
+      <article class="service reveal" id="cutting">
+        <div class="pic"><img src="img/laser-zuschnitte-leder.jpg" alt="Laserzuschnitte"></div>
+        <div class="text">
+          <span class="title">Laserzuschnitte</span>
+          <p class="desc">Exakte Zuschnitte für Hausnummern, Schilder, Patches und mehr.</p>
+          <div class="chips"><span class="chip">Exakt</span><span class="chip">Saubere Kanten</span></div>
+        </div>
+      </article>
+      <!-- 8 -->
+      <article class="service reveal" id="streetwear">
+        <div class="pic"><img src="img/streetwear-lederpatch.jpg" alt="Streetwear"></div>
+        <div class="text">
+          <span class="title">Streetwear</span>
+          <p class="desc">Eigene Designs, Patches & Veredelung – dein Style, dein Statement.</p>
+          <div class="chips"><span class="chip">Individuell</span><span class="chip">Patch</span></div>
+        </div>
+      </article>
+      <!-- 9 -->
+      <article class="service reveal" id="sand">
+        <div class="pic"><img src="img/sandstrahlung-beschlaege.jpg" alt="Sandstrahlung"></div>
+        <div class="text">
+          <span class="title">Sandstrahlung</span>
+          <p class="desc">Schonendes Strahlen (bis 70×70 cm) – z. B. für Beschläge, Klingen & Teile.</p>
+          <div class="chips"><span class="chip">70×70 cm</span><span class="chip">Saubere Oberfläche</span></div>
+        </div>
+      </article>
+    </div>
   </section>
 
+  <!-- (Beispiel) Zahlung & Versand / Kontakt – wie gehabt -->
   <section id="zahlungversand" class="section">
     <h2 class="h2">Zahlung & Versand</h2>
-    <p style="color:var(--muted)">Vor Ort & online akzeptieren wir die folgenden Zahlarten. Versand ist möglich – Details siehe unten.</p>
-    <div class="brandlogos" aria-label="Akzeptierte Zahlungsarten – lokale SVGs">
-      <div class="brandcard"><img src="img/brands/paypal.svg" alt="PayPal"></div>
-      <div class="brandcard"><img src="img/brands/visa.svg" alt="Visa"></div>
-      <div class="brandcard"><img src="img/brands/mastercard.svg" alt="Mastercard"></div>
-      <div class="brandcard"><img src="img/brands/girocard.svg" alt="girocard"></div>
-      <div class="brandcard"><img src="img/brands/sumup.svg" alt="SumUp"></div>
-    </div>
     <div class="card"><div class="pad">
-      <p><strong>Versand (DE)</strong> – Pauschal 6,90 € versichert (DHL). Ab 100 € Bestellwert versandkostenfrei. Rückversand 6,90 €.</p>
-      <ul style="margin:8px 0 0 16px; color:var(--muted)">
-        <li>Deutschlandweit per versichertem Paket (z. B. DHL) – Versandkosten je nach Gewicht/Größe.</li>
-        <li>Rückversand von Reparaturen möglich.</li>
-        <li>Bitte <a href="#contact">Kontakt</a> aufnehmen für Kostenvoranschlag & Abwicklung.</li>
-      </ul>
+      <p>Vor Ort & online akzeptieren wir gängige Zahlungsarten. Versand von Reparaturen möglich – schreib uns einfach kurz.</p>
     </div></div>
   </section>
 
@@ -323,52 +339,47 @@ header.nav, .container, footer.footer{ position:relative; z-index:1 }
     <div class="grid">
       <div class="card"><div class="pad">
         <p><strong>Adresse</strong><br>Sandwerkstrasse 2, 63636 Brachttal</p>
-        <p style="margin-top:10px"><strong>E-Mail</strong><br>
-          <a href="mailto:werkstatt@myshoester.de">werkstatt@myshoester.de</a></p>
+        <p style="margin-top:10px"><strong>E-Mail</strong><br><a href="mailto:werkstatt@myshoester.de">werkstatt@myshoester.de</a></p>
       </div></div>
       <div class="card"><div class="pad">
         <p><strong>Öffnungszeiten</strong></p>
         <ul style="margin:8px 0 0 16px; color:var(--muted)">
-          <li>Montag – Dienstag: 16:30 – 18:00 Uhr</li>
-          <li>Donnerstag: 14:00 – 18:00 Uhr</li>
-          <li>Freitag: 08:00 – 18:00 Uhr</li>
+          <li>Mo – Di: 16:30 – 18:00 Uhr</li>
+          <li>Do: 14:00 – 18:00 Uhr</li>
+          <li>Fr: 08:00 – 18:00 Uhr</li>
         </ul>
       </div></div>
     </div>
   </section>
 </main>
 
-<footer class="footer">© <span id="year"></span> MyShoester • Alle Preise sind Ab-Preise inkl. MwSt., abhängig von Material & Aufwand.
-  <br>
-  <a href="impressum.html">Impressum</a> ·
-  <a href="datenschutz.html">Datenschutz</a> ·
-  <a href="agb.html">AGB</a> ·
-  <a href="widerruf.html">Widerruf</a> ·
-  <a href="versand-zahlung.html">Versand & Zahlung</a> ·
-  <a href="unbedenklichkeit.html">Unbedenklichkeit</a> ·
-  <a href="konformitaet.html">Konformität</a> ·
-  <a href="#" onclick="alert('Bitte Ihren Cookie-Dialog/CMP integrieren.');return false;">Cookie-Einstellungen</a>
-</footer>
+<footer class="footer">© <span id="year"></span> MyShoester • Alle Preise sind Ab-Preise inkl. MwSt., abhängig von Material & Aufwand.</footer>
 
 <script>
+  // Jahr
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Katalog
+  // Katalog – Panel öffnen/schließen + Body verschieben (Desktop)
   const panel  = document.getElementById('catalog');
   const openBtn= document.getElementById('btnKatalog');
   const closeBtn=document.getElementById('btnClose');
-  const toggle = (show) => { panel.classList.toggle('open', show);
+  const toggle = (show) => {
+    panel.classList.toggle('open', show);
     panel.setAttribute('aria-hidden', show ? 'false' : 'true');
     openBtn.textContent = show ? 'Katalog ▴' : 'Katalog ▾';
+    if (window.innerWidth > 980) {
+      document.body.classList.toggle('panel-open', show);
+    }
   };
   openBtn.addEventListener('click', () => toggle(!panel.classList.contains('open')));
   closeBtn.addEventListener('click', () => toggle(false));
+  window.addEventListener('resize', ()=>{ if (window.innerWidth <= 980) document.body.classList.remove('panel-open'); });
   document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') toggle(false); });
   document.addEventListener('click',(e)=>{
     if(panel.classList.contains('open') && !panel.contains(e.target) && !openBtn.contains(e.target)){ toggle(false);}
   });
 
-  // Scroll FX
+  // Scroll FX (Parallax + Scrollbar)
   const root=document.documentElement, bar=document.getElementById('scrollbar'), nav=document.querySelector('.nav');
   let y=0,ticking=false;
   function onScroll(){ y=window.scrollY||window.pageYOffset;
@@ -378,15 +389,8 @@ header.nav, .container, footer.footer{ position:relative; z-index:1 }
   window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
 
   // Reveal
-  const io=new IntersectionObserver((ents)=>{ents.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in'); io.unobserve(e.target);}})}, {rootMargin:'-10% 0px -5% 0px',threshold:.1});
+  const io=new IntersectionObserver((ents)=>{ents.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in'); io.unobserve(e.target);}})},{rootMargin:'-10% 0px -5% 0px',threshold:.1});
   document.querySelectorAll('.service, .card, .hero img').forEach(el=>{el.classList.add('reveal'); io.observe(el);});
-
-  // Lokale Bildersuche (wie gehabt)
-  const IMG_MAP={'heroImg':['img/hero-werkstatt','img/hero-werkstatt-1200']};
-  const EXTS=['webp','jpg','jpeg','png'];
-  function setLocalImage(imgEl,bases){let i=0,j=0;function tryNext(){if(i>=bases.length){showPlaceholder(imgEl,bases[0]);return} if(j>=EXTS.length){i++;j=0;return tryNext()} const url=`${bases[i]}.${EXTS[j]}?v=${Date.now()}`; const test=new Image(); test.onload=()=>imgEl.src=url.split('?')[0]; test.onerror=()=>{j++;tryNext()}; test.src=url} tryNext()}
-  function showPlaceholder(imgEl,base){const svg=`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 500'><defs><linearGradient id='g' x1='0' x2='0' y1='0' y2='1'><stop offset='0%' stop-color='#1f2937'/><stop offset='100%' stop-color='#0b1020'/></linearGradient></defs><rect width='800' height='500' fill='url(%23g)'/><text x='32' y='80' fill='#e5e7eb' font-family='Inter' font-size='26' font-weight='700'>Bild nicht gefunden</text><text x='32' y='120' fill='#cbd5e1' font-family='Inter' font-size='16'>Erwartet in /img/: ${base}.webp|jpg|jpeg|png</text><text x='32' y='160' fill='#94a3b8' font-family='Inter' font-size='14'>Dateiname & Groß/Kleinschreibung prüfen</text></svg>`; imgEl.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg)}
-  const el=document.getElementById('heroImg'); if(el) setLocalImage(el, IMG_MAP.heroImg);
 </script>
 </body>
 </html>
