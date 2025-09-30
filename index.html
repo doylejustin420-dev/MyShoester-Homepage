@@ -90,8 +90,13 @@ header.nav{position:sticky; top:0; z-index:70; background:linear-gradient(180deg
 /* HERO */
 .hero{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:32px;align-items:center;padding:60px 0 40px}
 .hero__eyebrow{font-family:var(--head);font-weight:800;letter-spacing:.4px;text-transform:uppercase;color:#d8e0ef}
-.hero__title{font-family:var(--head);font-size: clamp(40px,5.6vw,72px);line-height:1.02;margin:.1em 0 .4em;letter-spacing:.2px;text-shadow:0 1px 0 #000, 0 14px 36px rgba(0,0,0,.55)}
-.hero__title .accent{background: linear-gradient(90deg,var(--brand),var(--brand-2),var(--brand-3)); -webkit-background-clip:text; background-clip:text; color:transparent}
+.hero__title{font-family:var(--head);font-size: clamp(40px,5.6vw,72px);line-height:1.02;margin:.1em 0 .4em;letter-spacing:.2px;text-shadow:0 1px 0 #000, 0 14px 36px rgba(0,0,0,.55) font-weight:800;}
+.hero__title .accent{
+  background: linear-gradient(90deg, var(--brand), var(--brand-2));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  text-shadow: 0 0 14px rgba(34,211,238,.36), 0 0 28px rgba(167,139,250,.28), 0 2px 0 rgba(0,0,0,.55);
+  letter-spacing:.3px;
+}
 .hero__lead{color:var(--muted);max-width:60ch}
 .hero__media{position:relative;height:520px;border-radius:22px;overflow:hidden;border:1px solid var(--line);box-shadow:0 20px 60px rgba(0,0,0,.55)}
 .hero__media::before{content:"";position:absolute;inset:-10%;background:
@@ -229,7 +234,7 @@ footer.footer{border-top:1px solid var(--line);padding:30px 0;color:var(--muted)
   <section class="section hero container">
     <div>
       <div class="hero__eyebrow">Werkstatt • Atelier</div>
-      <h1 class="hero__title">Reparaturen, Pflege & Maßarbeit – <span class="accent">einzigartig & authentisch</span>.</h1>
+      <h1 class="hero__title">Reparaturen, Pflege & Maßarbeit – <span class="accent">handgemacht & präzise</span>.</h1>
       <p class="hero__lead">Schuhe & Lederwaren in Bestform: Sohlenwechsel, Nähte, Färbungen, Pflege – sorgfältig von Hand. Zusätzlich Maßgürtel, Einlagen & präzise Laserarbeiten.</p>
       <div class="hero__cta">
         <a class="btn" href="#contact">Angebot anfragen</a>
