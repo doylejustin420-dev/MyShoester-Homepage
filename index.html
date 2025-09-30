@@ -10,21 +10,21 @@
 /* ====================================
    MODERN ROCK THEME + SCROLL EFFECTS
    ==================================== */
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=Sora:wght@400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=Work+Sans:wght@300;400;500;600;700&display=swap');
 
 :root{
-  --bg0:#0a1014;
-  --bg1:#0c1218;
-  --panel:#0c1520;
-  --line:#203042;
-  --text:#e9edf7;
-  --muted:#a6afc2;
-  --steel:#79ccb9;
-  --slate:#253241;
+  --bg0:#0b0d12;
+  --bg1:#0f1118;
+  --panel:#111527;
+  --line:#2a2f4a;
+  --text:#eef2f8;
+  --muted:#b7c3d6;
+  --steel:#76e4c1;
+  --slate:#2b2f43;
   --chip-bg: rgba(255,255,255,.05);
   --chip-bd: rgba(255,255,255,.14);
-  --font-head: "Sora", system-ui, -apple-system, Segoe UI, Inter, Arial, sans-serif;
-  --font-body: "Plus Jakarta Sans", system-ui, -apple-system, Segoe UI, Inter, Arial, sans-serif;
+  --font-head: "Outfit", system-ui, -apple-system, Segoe UI, Inter, Arial, sans-serif;
+  --font-body: "Work Sans", system-ui, -apple-system, Segoe UI, Inter, Arial, sans-serif;
   /* scroll progress 0..1 */
   --s: 0;
 }
@@ -35,11 +35,11 @@ body{
   color:var(--text);
   font-family:var(--font-body);
   background:
-    radial-gradient(1200px 800px at 8% 8%, #151b26 0%, transparent 60%),
-    radial-gradient(1100px 760px at 92% 10%, #0f1b26 0%, transparent 55%),
-    radial-gradient(1400px 900px at 85% 92%, #0c1420 0%, transparent 62%),
-    linear-gradient(115deg, rgba(56,189,248,.04), rgba(16,185,129,.04)),
-    repeating-linear-gradient(135deg, rgba(255,255,255,.02) 0 2px, rgba(0,0,0,0) 2px 6px),
+    radial-gradient(1200px 800px at 12% 12%, #121628 0%, transparent 60%),
+    radial-gradient(1200px 820px at 88% 18%, #0f1a2a 0%, transparent 58%),
+    conic-gradient(from 210deg at 80% 12%, rgba(99,102,241,.08), rgba(20,184,166,.06), rgba(56,189,248,.06), transparent 60%),
+    linear-gradient(120deg, rgba(99,102,241,.05), rgba(20,184,166,.05)),
+    repeating-linear-gradient(135deg, rgba(255,255,255,.02) 0 2px, transparent 2px 7px),
     linear-gradient(180deg, var(--bg1), var(--bg0));
   min-height:100%;
   overflow-x:hidden;
@@ -83,11 +83,11 @@ a{color:var(--text); text-decoration:none}
 .nav-inner{ max-width:1280px; margin:0 auto; display:flex; align-items:center; gap:18px; padding:12px 20px; transition: padding .25s ease }
 .nav.is-scrolled .nav-inner{ padding:8px 20px }
 .logo{display:flex;align-items:center;gap:12px}
-.logo-badge{ width:38px;height:38px;border-radius:10px; display:grid;place-items:center;font-weight:900; letter-spacing:.5px; color:#cfd6e4;background:linear-gradient(135deg,#2a3242,#49566a); box-shadow: 0 8px 24px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.12) }
+.logo-badge{ width:38px;height:38px;border-radius:12px; display:grid;place-items:center;font-weight:900; letter-spacing:.5px; color:#cfd6e4;background:linear-gradient(135deg,#2a3242,#49566a); box-shadow: 0 8px 24px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.12) }
 .logo-title{font-family:var(--font-head);font-weight:800;font-size:24px;letter-spacing:.2px}
 .nav-links{ display:flex;flex-wrap:wrap;gap:10px;margin-left:auto;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch }
 .nav-links a{ padding:8px 12px;border-radius:12px;font-weight:800;letter-spacing:.3px;text-transform:uppercase; border:1px solid rgba(255,255,255,.06); background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); box-shadow:0 0 0 0 rgba(56,189,248,0); transition: box-shadow .2s ease, border-color .2s ease }
-.nav-links a:hover{ border-color: rgba(56,189,248,.45); box-shadow: 0 0 24px rgba(56,189,248,.15), 0 6px 18px rgba(0,0,0,.4) }
+.nav-links a:hover{ border-color: rgba(167,139,250,.45); box-shadow: 0 0 24px rgba(167,139,250,.18), 0 6px 18px rgba(0,0,0,.4) }
 
 /* Dropdown */
 .katalog-wrap{position: fixed;left: 16px;top: 72px;z-index: 1001;}
@@ -108,35 +108,36 @@ a{color:var(--text); text-decoration:none}
 
 /* Hero + Parallax */
 .hero{ display:grid;grid-template-columns:1.05fr .95fr;gap:28px;align-items:center;padding:42px 0 }
-.tag{ display:inline-flex;align-items:center;gap:8px;
-  padding:8px 12px;border-radius:999px;
-  color:#d6f5ff;background:linear-gradient(180deg, rgba(45,212,191,.10), rgba(59,130,246,.06));
-  border:1px solid rgba(99,102,241,.28);
-  font-family:var(--font-body); font-weight:700; letter-spacing:.2px; font-size:16px; text-transform:none;
+.tag{
+  display:inline-flex;align-items:center;gap:10px;padding:8px 14px;border-radius:999px;
+  color:#e7fff7;background:linear-gradient(180deg, rgba(16,185,129,.12), rgba(56,189,248,.10));
+  border:1px solid rgba(129,140,248,.28);
+  font-family:var(--font-body);font-weight:700;letter-spacing:.25px;font-size:15.5px;text-transform:none;
 }
 .tag::after{ display:none }
 
 .hero h1{
   font-family:var(--font-head);
-  font-weight:700;
-  letter-spacing:.1px;
-  font-size: clamp(40px, 5vw, 62px);
-  line-height:1.04;
-  margin:6px 0 14px;
-  color:#e8f6ff;
-  text-shadow: 0 10px 40px rgba(0,0,0,.45);
-  transform: translateY(calc(var(--s) * -5px));
+  font-weight:800;
+  letter-spacing:.15px;
+  font-size: clamp(40px, 5.2vw, 64px);
+  line-height:1.02;
+  margin:8px 0 16px;
+  color:#f3f6fb;
+  text-shadow: 0 1px 0 rgba(0,0,0,.55), 0 18px 50px rgba(0,0,0,.45);
+  transform: translateY(calc(var(--s) * -6px));
 }
 .hero h1 span{
-  background: linear-gradient(90deg, #34d399, #22d3ee 50%, #a78bfa);
+  background: linear-gradient(90deg, #22d3ee, #10b981 45%, #a78bfa 90%);
   -webkit-background-clip:text; background-clip:text; color:transparent;
 }
+
 
 .hero p{color:var(--muted);margin:0 0 18px; font-size:1.02rem; transform: translateY(calc(var(--s) * -4px)) }
 .hero img{ width:100%;height:460px;object-fit:cover;border-radius:22px;border:1px solid var(--line); box-shadow: 0 18px 60px rgba(0,0,0,.45); transform: translateY(calc(var(--s) * 10px)); transition: transform .15s linear }
 
 /* Headlines */
-.h2{ font-family:var(--font-head); font-weight:700; font-size:30px;margin:0 0 16px; letter-spacing:.3px; color:#eaf2f8; text-shadow: 0 8px 28px rgba(0,0,0,.45) }
+.h2{ font-family:var(--font-head); font-weight:800; font-size:28px;margin:0 0 14px; letter-spacing:.4px; color:#eef2f8; text-shadow: 0 10px 36px rgba(0,0,0,.5) }
 
 /* Leistungen (wie zuvor) */
 #leistungen{ scroll-margin-top: 96px }
@@ -145,7 +146,7 @@ a{color:var(--text); text-decoration:none}
 .service .pic{ position:relative;border-radius:18px;overflow:hidden;aspect-ratio:16/11;min-height:200px; border:1px solid rgba(255,255,255,.12); box-shadow:0 10px 26px rgba(0,0,0,.5); background: rgba(255,255,255,.03) }
 .service .pic img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.95) contrast(1.02)}
 .service .pic::after{ content:"";position:absolute;inset:0; background: linear-gradient(180deg,transparent 55%,rgba(10,12,20,.55)), radial-gradient(400px 140px at 70% -20%, color-mix(in srgb, var(--acc) 20%, transparent) 0%, transparent 70%) }
-.service .title{ display:inline-block;margin:0 0 8px 0;font-weight:900;font-size:1.3rem;letter-spacing:.2px;color:#fff; padding:6px 14px;border-radius:12px; background:color-mix(in srgb,var(--acc) 40%, rgba(12,16,26,.6)); box-shadow:0 8px 22px rgba(0,0,0,.35); border:1px solid rgba(255,255,255,.10); font-family:var(--font-head) }
+.service .title{ display:inline-block;margin:0 0 8px 0;font-weight:900;font-size:1.3rem;letter-spacing:.2px;color:#fff; padding:6px 14px;border-radius:12px; background: linear-gradient(180deg, color-mix(in srgb,var(--acc) 55%, rgba(14,18,26,.2)), rgba(14,18,26,.6)); box-shadow:0 8px 22px rgba(0,0,0,.35); border:1px solid rgba(255,255,255,.10); font-family:var(--font-head) }
 .service .desc{margin:0;color:#e1e6f2;font-size:1.02rem;line-height:1.6;text-shadow:0 1px 0 rgba(0,0,0,.25)}
 .service .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
 .service .chip{ font-size:.85rem;padding:6px 10px;border-radius:999px; background:var(--chip-bg);border:1px solid var(--chip-bd) }
@@ -259,7 +260,7 @@ header.nav, .container, footer.footer, .katalog-wrap{ position:relative; z-index
 
 /* --- Payment logos strip --- */
 .paystrip{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:12px 0 18px}
-.paycard{background:rgba(255,255,255,.05);border:1px solid rgba(56,189,248,.18);border-radius:14px;
+.paycard{background:rgba(255,255,255,.05);border:1px solid rgba(167,139,250,.24);border-radius:14px;
   padding:14px;display:flex;align-items:center;justify-content:center;min-height:66px}
 .paylogo{max-height:34px;max-width:140px;filter: drop-shadow(0 0 1px rgba(0,0,0,.25));
   object-fit:contain}
@@ -274,7 +275,7 @@ header.nav, .container, footer.footer, .katalog-wrap{ position:relative; z-index
 
 /* === Brand Cards (local SVGs) === */
 .brandlogos{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:12px 0 18px}
-.brandcard{position:relative;background:rgba(255,255,255,.05);border:1px solid rgba(56,189,248,.18);
+.brandcard{position:relative;background:rgba(255,255,255,.05);border:1px solid rgba(167,139,250,.24);
   border-radius:16px;min-height:72px;display:flex;align-items:center;justify-content:center;
   box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 8px 26px rgba(0,0,0,.35)}
 .brandcard::after{content:"";position:absolute;inset:-1px;border-radius:16px;
