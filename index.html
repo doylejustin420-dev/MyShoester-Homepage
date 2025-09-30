@@ -251,6 +251,12 @@ header.nav, .container, footer.footer, .katalog-wrap{ position:relative; z-index
 .brandcard img{height:34px;max-width:140px;object-fit:contain;display:block;filter: drop-shadow(0 0 1px rgba(0,0,0,.35))}
 @media (max-width:640px){.brandcard img{height:28px}}
 
+
+/* Hero badges (small highlights under the intro) */
+.hero-badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.hero .badge{font-size:.9rem;padding:6px 12px;border-radius:12px;
+  background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.16);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
 </style>
 </head>
 <body>
@@ -310,10 +316,16 @@ header.nav, .container, footer.footer, .katalog-wrap{ position:relative; z-index
   <!-- Hero -->
   <section class="hero" id="start">
     <div>
-      <span class="tag">Orthopädieschuhmacher & Lederwerkstatt</span>
-      <h1>Reparaturen, Pflege & Maßarbeit – <span>einzigartig & authentisch</span>.</h1>
-      <p>Lieblingsschuhe und Lederwaren wieder in Form bringen: Sohlenwechsel, Absätze, Nähte, Färbungen & Pflege – fair, präzise, nachhaltig.</p>
-    </div>
+      <span class="tag">Orthopädieschuhmacher × Lederwerkstatt</span>
+      <h1>Schuhe. Leder. Handwerk – <span>präzise & langlebig</span>.</h1>
+      <p>Reparaturen & Veredelung: Sohlenwechsel, Absätze, Nähte, Färbungen & Pflege. 
+      Maßgürtel, Lasergravuren & Zuschnitte – schnell, sorgfältig, nachhaltig.</p>
+      <div class="hero-badges">
+        <span class="badge">Fair kalkuliert</span>
+        <span class="badge">Schnelle Abwicklung</span>
+        <span class="badge">Upcycling statt Wegwerfen</span>
+      </div>
+</div>
     <div>
       <img id="heroImg" alt="Schuhmacher-Werkstatt – Blick in die Werkbank">
     </div>
