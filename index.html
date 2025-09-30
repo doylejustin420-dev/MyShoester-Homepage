@@ -192,14 +192,6 @@ body.panel-open main{ margin-left:var(--panelShift, 0px); transition:margin .18s
 .paylogo{width:140px;height:34px;display:block}
 @media (max-width:640px){.paylogo{width:120px;height:28px}}
 </style>
-
-<!-- MS-BRANDS-CSS -->
-<style id="ms-brands-css">
-  .ms-brand-logos{display:flex;gap:18px;flex-wrap:wrap;align-items:center;margin:14px 0 8px}
-  .ms-brand-logos img{height:44px;max-width:180px;object-fit:contain;display:block}
-  @media (max-width:640px){ .ms-brand-logos img{height:36px} }
-</style>
-
 </head>
 <body>
 
@@ -366,16 +358,6 @@ body.panel-open main{ margin-left:var(--panelShift, 0px); transition:margin .18s
   <!-- Zahlung & Versand: Logos als Inline-SVG (ohne Dateien) -->
   <section id="zahlungversand" class="section">
     <h2 class="h2">Zahlung & Versand</h2>
-<!-- MS-BRANDS-ROW (keine Strukturänderung, nur ergänzend) -->
-<div class="ms-brand-logos" aria-label="Akzeptierte Zahlungsarten">
-  <img src="img/brands/paypal.svg" alt="PayPal">
-  <img src="img/brands/visa.svg" alt="VISA">
-  <img src="img/brands/mastercard.svg" alt="Mastercard">
-  <img src="img/brands/girocard.svg" alt="girocard">
-  <img src="img/brands/sumup.svg" alt="SumUp">
-</div>
-<!-- /MS-BRANDS-ROW -->
-
     <div class="paygrid" aria-label="Akzeptierte Zahlungsarten">
       <div class="paycard" title="PayPal">
         <svg class="paylogo" viewBox="0 0 120 30" role="img" aria-label="PayPal">
@@ -499,34 +481,5 @@ body.panel-open main{ margin-left:var(--panelShift, 0px); transition:margin .18s
   const io=new IntersectionObserver((ents)=>{ents.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in'); io.unobserve(e.target);}})},{rootMargin:'-10% 0px -5% 0px',threshold:.1});
   document.querySelectorAll('.service, .card, .hero img').forEach(el=>{el.classList.add('reveal'); io.observe(el);});
 </script>
-
-<!-- MS-CATALOG-LINK-PATCH -->
-<script>
-(function(){
-  function isCatalog(el){
-    return el && (el.id === 'catalog' || el.id === 'msCatalog' ||
-                  el.classList.contains('catalog') || el.classList.contains('ms-catalog'));
-  }
-  function withinCatalog(node){
-    while(node){
-      if(isCatalog(node)) return true;
-      node = node.parentElement;
-    }
-    return false;
-  }
-  document.addEventListener('click', function(e){
-    const a = e.target.closest('a');
-    if(!a) return;
-    const href = a.getAttribute('href') || '';
-    // Only handle in-catalog links that currently point to hashes or internal anchors
-    if(withinCatalog(a) && (href === '' || href[0] === '#' || href === '/' || href === './' )){
-      e.preventDefault();
-      const hash = href && href[0] === '#' ? href : '';
-      window.location.href = 'kategorie.html' + hash;
-    }
-  }, true);
-})();
-</script>
-
 </body>
 </html>
