@@ -356,55 +356,42 @@ body.panel-open main{ margin-left:var(--panelShift, 0px); transition:margin .18s
   </section>
 
   <!-- Zahlung & Versand: Logos als Inline-SVG (ohne Dateien) -->
-  
-  <!-- Zahlung & Versand: Logos als Inline-SVG (sichtbar & skalierbar) -->
-  
-  <!-- Zahlung & Versand: Logos aus repo img/brand/ -->
   <section id="zahlungversand" class="section">
     <h2 class="h2">Zahlung & Versand</h2>
     <div class="paygrid" aria-label="Akzeptierte Zahlungsarten">
-      
       <div class="paycard" title="PayPal">
-        <picture>
-          <source srcset="img/brand/paypal.svg" type="image/svg+xml">
-          <source srcset="img/brand/paypal.png" type="image/png">
-          <img class="paylogo" src="img/brand/paypal.png" alt="PayPal Logo" loading="lazy" decoding="async">
-        </picture>
+        <svg class="paylogo" viewBox="0 0 120 30" role="img" aria-label="PayPal">
+          <rect rx="6" ry="6" x="0" y="0" width="120" height="30" fill="rgba(255,255,255,.06)"/>
+          <text x="60" y="20" text-anchor="middle" font-family="Inter" font-size="14" font-weight="800" fill="#cfe5ff">PayPal</text>
+        </svg>
       </div>
       <div class="paycard" title="VISA">
-        <picture>
-          <source srcset="img/brand/visa.svg" type="image/svg+xml">
-          <source srcset="img/brand/visa.png" type="image/png">
-          <img class="paylogo" src="img/brand/visa.png" alt="VISA Logo" loading="lazy" decoding="async">
-        </picture>
+        <svg class="paylogo" viewBox="0 0 120 30" role="img" aria-label="VISA">
+          <rect rx="6" ry="6" x="0" y="0" width="120" height="30" fill="rgba(255,255,255,.06)"/>
+          <text x="60" y="20" text-anchor="middle" font-family="Inter" font-size="14" font-weight="800" fill="#e0e7ff">VISA</text>
+        </svg>
       </div>
       <div class="paycard" title="Mastercard">
-        <picture>
-          <source srcset="img/brand/mastercard.svg" type="image/svg+xml">
-          <source srcset="img/brand/mastercard.png" type="image/png">
-          <img class="paylogo" src="img/brand/mastercard.png" alt="Mastercard Logo" loading="lazy" decoding="async">
-        </picture>
+        <svg class="paylogo" viewBox="0 0 120 30" role="img" aria-label="Mastercard">
+          <rect rx="6" ry="6" x="0" y="0" width="120" height="30" fill="rgba(255,255,255,.06)"/>
+          <text x="60" y="20" text-anchor="middle" font-family="Inter" font-size="14" font-weight="800" fill="#ffe4cc">Mastercard</text>
+        </svg>
       </div>
       <div class="paycard" title="girocard">
-        <picture>
-          <source srcset="img/brand/girocard.svg" type="image/svg+xml">
-          <source srcset="img/brand/girocard.png" type="image/png">
-          <img class="paylogo" src="img/brand/girocard.png" alt="girocard Logo" loading="lazy" decoding="async">
-        </picture>
+        <svg class="paylogo" viewBox="0 0 120 30" role="img" aria-label="girocard">
+          <rect rx="6" ry="6" x="0" y="0" width="120" height="30" fill="rgba(255,255,255,.06)"/>
+          <text x="60" y="20" text-anchor="middle" font-family="Inter" font-size="14" font-weight="800" fill="#d1fae5">girocard</text>
+        </svg>
       </div>
       <div class="paycard" title="SumUp">
-        <picture>
-          <source srcset="img/brand/sumup.svg" type="image/svg+xml">
-          <source srcset="img/brand/sumup.png" type="image/png">
-          <img class="paylogo" src="img/brand/sumup.png" alt="SumUp Logo" loading="lazy" decoding="async">
-        </picture>
+        <svg class="paylogo" viewBox="0 0 120 30" role="img" aria-label="SumUp">
+          <rect rx="6" ry="6" x="0" y="0" width="120" height="30" fill="rgba(255,255,255,.06)"/>
+          <text x="60" y="20" text-anchor="middle" font-family="Inter" font-size="14" font-weight="800" fill="#e2e8f0">SumUp</text>
+        </svg>
       </div>
     </div>
-    <p style="opacity:.8;margin-top:10px">Wenn ein Logo fehlt, bitte Datei in <code>img/brand/</code> hinterlegen (svg oder png, Dateiname klein: paypal, visa, mastercard, girocard, sumup).</p>
+    <p style="color:var(--muted);margin-top:10px">Versand von Reparaturen möglich – schreib uns für den Ablauf & eine grobe Kostenschätzung.</p>
   </section>
-  <!-- /Zahlung & Versand -->
-
-
 
   <section id="contact" class="section">
     <h2 class="h2">Kontakt & Öffnungszeiten</h2>
