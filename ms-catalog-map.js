@@ -2,7 +2,7 @@
 /*! MyShoester: Catalog anchor -> price page router */
 (function(){
   var map = {
-    "#repair": "preise-reparatur.html",
+    "#repair": "reparatur-anfrage.html",
     "#bequem": "preise-bequemseinlagen.html",
     "#komfort": "preise-komforteinlagen.html",
     "#alltag": "preise-alltagseinlagen.html",
