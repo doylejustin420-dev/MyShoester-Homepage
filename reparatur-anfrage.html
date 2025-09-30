@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Reparatur-Anfrage – MyShoester</title>
+<title>Reparatur‑Anfrage – MyShoester</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{ --bg:#0a0c12; --panel:#0f1420; --line:#20283a; --text:#e9edf7; --muted:#a6afc2; }
@@ -15,37 +15,37 @@ h1{font-family:Manrope,system-ui;font-weight:900;margin:0 0 12px}
 input,textarea{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);color:var(--text);padding:10px;border-radius:10px}
 label{font-weight:800;font-family:Manrope}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.btn{appearance:none;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05);color:var(--text);padding:10px 14px;border-radius:10px;font-weight:800;cursor:pointer}
+.btn{appearance:none;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05);color:var(--text);padding:10px 14px;border-radius:10px;font-weight:800;cursor:pointer;text-decoration:none;display:inline-block}
 .btn:hover{border-color:rgba(255,255,255,.24)}
 .notice{color:var(--muted)}
 </style>
 </head>
 <body>
 <div class="container">
-  <h1>Reparatur-Anfrage</h1>
-  <p class="notice">Lade bitte 3–6 Fotos hoch (Gesamt, Sohle/Absatz, Schadstelle nah) und beantworte kurz die Fragen. Wir geben dir eine unverbindliche Vorab-Einschätzung.</p>
+  <h1>Reparatur‑Anfrage</h1>
+  <p class="notice">Lade bitte 3–6 Fotos hoch (Gesamt, Sohle/Absatz, Schadstelle nah) und beantworte kurz die Fragen. Wir geben dir eine unverbindliche Vorab‑Einschätzung.</p>
 
   <form id="reqForm">
     <div class="row">
       <div class="field"><label for="name">Name</label><input id="name" required></div>
-      <div class="field"><label for="email">E-Mail</label><input id="email" type="email" required></div>
+      <div class="field"><label for="email">E‑Mail</label><input id="email" type="email" required></div>
     </div>
     <div class="row">
       <div class="field"><label for="phone">Telefon (für Rückfragen)</label><input id="phone" type="tel"></div>
-      <div class="field"><label for="service">Geplante Leistung (optional)</label><input id="service" placeholder="z. B. Absätze erneuern"></div>
+      <div class="field"><label for="service">Geplante Leistung (optional)</label><input id="service" placeholder="z. B. Absätze erneuern"></div>
     </div>
     <div class="field"><label for="desc">Was ist passiert / Wunsch?</label><textarea id="desc" rows="4" required></textarea></div>
     <div class="field"><label for="budget">Max. Budget (optional)</label><input id="budget" type="number" min="0" step="1" placeholder="€"></div>
     <div class="field"><label for="files">Fotos (3–6 Bilder)</label><input id="files" type="file" accept="image/*" multiple required></div>
     <div class="field"><label><input id="ds" type="checkbox" required> Ich stimme der Verarbeitung meiner Angaben gemäß <a href="datenschutz.html">Datenschutz</a> zu.</label></div>
     <div class="row">
-      <button type="button" class="btn" id="btnWA">Per WhatsApp senden</button>
-      <button type="button" class="btn" id="btnMail">Per E-Mail senden</button>
+      <a class="btn" id="btnWA">Per WhatsApp senden</a>
+      <a class="btn" id="btnMail">Per E‑Mail senden</a>
     </div>
   </form>
 
   <p class="notice">Nach deiner Freigabe nennen wir dir den finalen Fixpreis. Nicht reparabel? Rückversand kostenfrei oder Entsorgung nach Absprache.</p>
-  <p><a class="btn" href="sendung-hinweise.html">📦 Versand-Anleitung</a> &nbsp; <a class="btn" href="index.html">← Zurück</a></p>
+  <p><a class="btn" href="sendung-hinweise.html">📦 Versand‑Anleitung</a> &nbsp; <a class="btn" href="index.html">← Zurück</a></p>
 </div>
 
 <script>
@@ -65,13 +65,15 @@ label{font-weight:800;font-family:Manrope}
     ];
     return { id, text: lines.join('\n') };
   }
-  document.getElementById('btnWA').addEventListener('click', function(){
+  document.getElementById('btnWA').addEventListener('click', function(ev){
+    ev.preventDefault();
     const m = msg();
-    const number = '491701234567'; // <- HIER DEINE Nummer mit Ländercode einsetzen
+    const number = '491701234567'; // <- HIER deine WhatsApp-Nummer (mit Ländercode) eintragen
     const url = 'https://wa.me/'+number+'?text='+encodeURIComponent(m.text);
     window.location.href = url;
   });
-  document.getElementById('btnMail').addEventListener('click', function(){
+  document.getElementById('btnMail').addEventListener('click', function(ev){
+    ev.preventDefault();
     const m = msg();
     const to = 'werkstatt@myshoester.de';
     const subject = 'Reparatur-Anfrage '+m.id;
