@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fußabdruck‑Vorlage – A4</title>
+<style>
+  @page { size: A4; margin: 12mm; }
+  html, body { height: 100%; margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+  .page { width: 190mm; margin: 0 auto; }
+  h1 { font-size: 18pt; margin: 0 0 8mm; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10mm; }
+  .box { border: 1px solid #000; height: 220mm; position: relative; padding: 6mm; }
+  .label { position:absolute; top: 4mm; left: 6mm; font-weight: 700; }
+  .calib { position:absolute; bottom: 6mm; right: 6mm; border:1px solid #000; width: 50mm; height: 50mm; display:flex; align-items:center; justify-content:center; font-size:10pt }
+  .fields { margin-top: 4mm; font-size: 11pt; }
+  .fields div { margin-bottom: 3mm; }
+  .muted { font-size: 9pt; color: #333; margin-top: 6mm; }
+  .ruler { position:absolute; top: 30mm; left: 6mm; width: 170mm; height:1px; border-top:1px dashed #000; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1>Fußabdruck‑Vorlage (A4) · Bitte 100 % Skalierung beim Drucken verwenden</h1>
+  <div class="grid">
+    <div class="box">
+      <div class="label">Linker Fuß</div>
+      <div class="ruler"></div>
+      <div class="calib">5 cm</div>
+      <div class="fields">
+        <div>Länge: ______ cm &nbsp;&nbsp; Breite: ______ cm</div>
+        <div>Besonderheiten / Druckpunkte: __________________________</div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="label">Rechter Fuß</div>
+      <div class="ruler"></div>
+      <div class="calib">5 cm</div>
+      <div class="fields">
+        <div>Länge: ______ cm &nbsp;&nbsp; Breite: ______ cm</div>
+        <div>Besonderheiten / Druckpunkte: __________________________</div>
+      </div>
+    </div>
+  </div>
+  <div class="muted">Tipp: Füße im Stand (gleichmäßig belastet) nachzeichnen. Danach fotografieren – bitte die 5‑cm‑Kalibrierung mit im Bild lassen.</div>
+</div>
+</body>
+</html>
