@@ -65,24 +65,27 @@ body::after{opacity:.14;background-image:url('data:image/svg+xml,%3Csvg xmlns=%2
    =============================== */
 .nav{
   position:sticky; top:0; z-index:50;
-  /* **verbesserte Carbon-Optik** (kleines Twill-Muster) */
+  /* kräftigere Carbon-Optik (Twill) */
   background:
-    linear-gradient(45deg, rgba(255,255,255,.04) 25%, transparent 25%) -2px 0/6px 6px,
-    linear-gradient(-45deg, rgba(255,255,255,.04) 25%, transparent 25%) -2px 0/6px 6px,
-    linear-gradient(45deg, transparent 75%, rgba(0,0,0,.35) 75%) -2px 0/6px 6px,
-    linear-gradient(-45deg, transparent 75%, rgba(0,0,0,.35) 75%) -2px 0/6px 6px,
-    linear-gradient(180deg, rgba(15,20,32,.96), rgba(15,20,32,.72));
+    linear-gradient(45deg, rgba(255,255,255,.08) 25%, transparent 25%) 0 0/8px 8px,
+    linear-gradient(-45deg, rgba(255,255,255,.06) 25%, transparent 25%) 0 0/8px 8px,
+    linear-gradient(45deg, transparent 75%, rgba(0,0,0,.55) 75%) 0 0/8px 8px,
+    linear-gradient(-45deg, transparent 75%, rgba(0,0,0,.55) 75%) 0 0/8px 8px,
+    linear-gradient(180deg, rgba(12,16,26,.98), rgba(15,20,32,.78));
+  /* leichte „Öl“-Schimmerlinie */
+  box-shadow: inset 0 -1px 0 rgba(255,255,255,.08);
   backdrop-filter: blur(10px);
   border-bottom:1px solid var(--line);
   transition: box-shadow .25s ease, border-color .25s ease;
 }
 .nav.is-scrolled{ border-bottom-color: rgba(255,255,255,.18); box-shadow:0 10px 28px rgba(0,0,0,.4) }
-.nav-inner{ max-width:1280px; margin:0 auto; display:flex; align-items:center; gap:14px; padding:12px 20px; position:relative; padding-left:96px }
-.nav.is-scrolled .nav-inner{ padding:8px 20px; padding-left:96px }
+/* Header jetzt volle Breite -> Logo deutlich weiter links */
+.nav-inner{ max-width:100%; margin:0; display:flex; align-items:center; gap:14px; padding:12px 20px; position:relative; padding-left:140px }
+.nav.is-scrolled .nav-inner{ padding:8px 20px; padding-left:140px }
 
 .logo{display:flex;align-items:center;gap:12px}
-/* Badge und Firmenname auffälliger */
-.logo-badge{ width:44px;height:44px;border-radius:12px; display:grid;place-items:center;
+/* Badge + Firmenname auffällig */
+.logo-badge{ width:46px;height:46px;border-radius:12px; display:grid;place-items:center;
   font-weight:900; letter-spacing:.5px; color:#eaf2ff;
   background:radial-gradient(60% 60% at 30% 30%, #5a6b85, #2b3446);
   box-shadow: 0 10px 28px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.14)
@@ -90,15 +93,15 @@ body::after{opacity:.14;background-image:url('data:image/svg+xml,%3Csvg xmlns=%2
 .logo-title{
   font-family:var(--font-head);
   font-weight:900;
-  font-size:32px; /* größer gemacht */
+  font-size:34px; /* größer */
   letter-spacing:.4px;
   background:linear-gradient(90deg,#e6f0ff 0%, #9dd7ff 35%, #7dd3fc 60%, #60a5fa 85%);
   -webkit-background-clip:text; background-clip:text; color:transparent;
-  text-shadow: 0 0 18px rgba(96,165,250,.35), 0 1px 0 rgba(0,0,0,.65);
+  text-shadow: 0 0 20px rgba(96,165,250,.4), 0 1px 0 rgba(0,0,0,.7);
 }
 
-/* Katalog-Button absolut links – etwas näher an den Rand */
-.katalog-anchor{ position:absolute; left:8px; top:50%; transform:translateY(-50%); z-index:1010; display:flex; align-items:center }
+/* Katalog-Button links */
+.katalog-anchor{ position:absolute; left:10px; top:50%; transform:translateY(-50%); z-index:1010; display:flex; align-items:center }
 .katalog-btn{
   appearance:none; cursor:pointer; padding:8px 12px; border-radius:12px; font-weight:900; letter-spacing:.3px;
   color:#e2e8f0; border:1px solid rgba(255,255,255,.14);
@@ -106,9 +109,9 @@ body::after{opacity:.14;background-image:url('data:image/svg+xml,%3Csvg xmlns=%2
   box-shadow: 0 8px 20px rgba(0,0,0,.35), 0 2px 0 rgba(255,255,255,.08) inset;
 }
 
-/* Dropdown: fix links; top wird per JS passend zur Header-Höhe gesetzt */
+/* Dropdown fix links */
 .catalog{
-  position:fixed; left:8px; top:92px; /* Fallback – JS korrigiert exakt */
+  position:fixed; left:10px; top:92px; /* wird durch JS exakter gesetzt */
   width:min(420px, 92vw); max-height:min(72vh, 560px); overflow:auto;
   background:rgba(10,14,22,.97); backdrop-filter: blur(12px);
   border:1px solid rgba(255,255,255,.14); border-radius:18px;
@@ -131,10 +134,10 @@ body::after{opacity:.14;background-image:url('data:image/svg+xml,%3Csvg xmlns=%2
 .cat-link{display:block;font-weight:800;background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.12);border-radius:14px; padding:12px 14px; color:var(--text)}
 .cat-link:hover{background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.22); text-shadow:0 1px 0 rgba(0,0,0,.2)}
 
-/* Inhalt freiräumen, wenn Panel offen (Breite wird per JS gesetzt) */
+/* Inhalt freiräumen, wenn Panel offen */
 body.panel-open main{ margin-left:var(--panelShift, 0px); transition:margin .18s ease }
 @media (max-width: 1100px){
-  .nav-inner{ padding-left:88px }
+  .nav-inner{ padding-left:120px }
   body.panel-open main{ margin-left:0 } /* mobil & tablet overlay */
 }
 
@@ -152,11 +155,10 @@ body.panel-open main{ margin-left:var(--panelShift, 0px); transition:margin .18s
 .hero{ display:grid;grid-template-columns:1.05fr .95fr;gap:28px;align-items:center;padding:42px 0 }
 .tag{ display:inline-block; font-family:var(--font-head); font-weight:800; letter-spacing:.4px; font-size:18px; line-height:1.2; color:#dbe2f0; text-transform:uppercase; text-shadow: 0 1px 0 #000, 0 0 10px rgba(0,0,0,.35) }
 .tag::after{ content:""; display:block; height:1px; margin-top:8px; background: linear-gradient(90deg, transparent, rgba(148,163,184,.65), transparent) }
-/* H1 */
+/* H1 + Akzent */
 .hero h1{ font-family:var(--font-head); font-weight:900; letter-spacing:.3px; font-size: clamp(38px, 4.8vw, 58px); line-height:1.05;margin:4px 0 14px; color:#eef2fb; text-shadow: 0 1px 0 #000, 0 8px 22px rgba(0,0,0,.45) }
-/* Akzent-Span neu: andere Schriftart + frische Farbwelt */
 .hero h1 span{
-  font-family: "Inter", system-ui; /* Schriftart geändert */
+  font-family: "Inter", system-ui;
   background:linear-gradient(90deg, #7dd3fc 0%, #60a5fa 45%, #a78bfa 100%);
   -webkit-background-clip:text; background-clip:text; color:transparent;
   text-shadow: 0 0 18px rgba(96,165,250,.35), 0 1px 0 #000;
@@ -188,7 +190,7 @@ body.panel-open main{ margin-left:var(--panelShift, 0px); transition:margin .18s
 
 /* Zahlungs-Logos (immer sichtbar, da inline-SVG) */
 .paygrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:14px 0 2px}
-.paycard{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.10);border-radius:14px; padding:14px;display:flex;align-items:center;justify-content:center;min-height:72px}
+.paycard{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:14px; padding:14px;display:flex;align-items:center;justify-content:center;min-height:72px}
 .paylogo{width:140px;height:34px;display:block}
 @media (max-width:640px){.paylogo{width:120px;height:28px}}
 </style>
@@ -361,31 +363,31 @@ body.panel-open main{ margin-left:var(--panelShift, 0px); transition:margin .18s
     <div class="paygrid" aria-label="Akzeptierte Zahlungsarten">
       <div class="paycard" title="PayPal">
         <svg class="paylogo" viewBox="0 0 120 30" role="img" aria-label="PayPal">
-          <rect rx="6" ry="6" x="0" y="0" width="120" height="30" fill="rgba(255,255,255,.06)"/>
+          <rect rx="6" ry="6" x="0" y="0" width="120" height="30" fill="rgba(255,255,255,.10)"/>
           <text x="60" y="20" text-anchor="middle" font-family="Inter" font-size="14" font-weight="800" fill="#cfe5ff">PayPal</text>
         </svg>
       </div>
       <div class="paycard" title="VISA">
         <svg class="paylogo" viewBox="0 0 120 30" role="img" aria-label="VISA">
-          <rect rx="6" ry="6" x="0" y="0" width="120" height="30" fill="rgba(255,255,255,.06)"/>
+          <rect rx="6" ry="6" x="0" y="0" width="120" height="30" fill="rgba(255,255,255,.10)"/>
           <text x="60" y="20" text-anchor="middle" font-family="Inter" font-size="14" font-weight="800" fill="#e0e7ff">VISA</text>
         </svg>
       </div>
       <div class="paycard" title="Mastercard">
         <svg class="paylogo" viewBox="0 0 120 30" role="img" aria-label="Mastercard">
-          <rect rx="6" ry="6" x="0" y="0" width="120" height="30" fill="rgba(255,255,255,.06)"/>
+          <rect rx="6" ry="6" x="0" y="0" width="120" height="30" fill="rgba(255,255,255,.10)"/>
           <text x="60" y="20" text-anchor="middle" font-family="Inter" font-size="14" font-weight="800" fill="#ffe4cc">Mastercard</text>
         </svg>
       </div>
       <div class="paycard" title="girocard">
         <svg class="paylogo" viewBox="0 0 120 30" role="img" aria-label="girocard">
-          <rect rx="6" ry="6" x="0" y="0" width="120" height="30" fill="rgba(255,255,255,.06)"/>
+          <rect rx="6" ry="6" x="0" y="0" width="120" height="30" fill="rgba(255,255,255,.10)"/>
           <text x="60" y="20" text-anchor="middle" font-family="Inter" font-size="14" font-weight="800" fill="#d1fae5">girocard</text>
         </svg>
       </div>
       <div class="paycard" title="SumUp">
         <svg class="paylogo" viewBox="0 0 120 30" role="img" aria-label="SumUp">
-          <rect rx="6" ry="6" x="0" y="0" width="120" height="30" fill="rgba(255,255,255,.06)"/>
+          <rect rx="6" ry="6" x="0" y="0" width="120" height="30" fill="rgba(255,255,255,.10)"/>
           <text x="60" y="20" text-anchor="middle" font-family="Inter" font-size="14" font-weight="800" fill="#e2e8f0">SumUp</text>
         </svg>
       </div>
@@ -428,10 +430,9 @@ body.panel-open main{ margin-left:var(--panelShift, 0px); transition:margin .18s
   // Panel-Metriken berechnen: Abstand nach unten + Inhaltsschub
   function setPanelMetrics(){
     const navH = nav.getBoundingClientRect().height || 64;
-    const top  = Math.round(navH + 12); // Button + Luft
+    const top  = Math.round(navH + 12);
     panel.style.top = top + 'px';
 
-    // Nur auf großen Screens Inhalt verschieben
     if (window.innerWidth > 1100){
       const shift = Math.min(panel.offsetWidth || 420, 460) + 24;
       root.style.setProperty('--panelShift', shift + 'px');
@@ -442,7 +443,7 @@ body.panel-open main{ margin-left:var(--panelShift, 0px); transition:margin .18s
 
   // Toggle
   function toggle(show){
-    setPanelMetrics(); // erst korrekt positionieren
+    setPanelMetrics();
     panel.classList.toggle('open', show);
     panel.setAttribute('aria-hidden', show ? 'false' : 'true');
     openBtn.textContent = show ? 'Katalog ▴' : 'Katalog ▾';
