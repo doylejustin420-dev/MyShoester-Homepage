@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 128">
-  <rect width="96" height="96" rx="16" x="120" y="16" fill="#000"/>
-  <path d="M168 40 h28 v12 h-28 v12 h28 v12 h-28" stroke="#fff" stroke-width="6" fill="none"
-        stroke-linecap="round" stroke-linejoin="round"/>
-  <text x="72%" y="56%" text-anchor="middle" font-family="Inter, Arial, Helvetica, sans-serif"
-        font-weight="800" font-size="44" fill="#000">sumup</text>
-</svg>
