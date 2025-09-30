@@ -253,18 +253,19 @@ header.nav, .container, footer.footer, .katalog-wrap{ position:relative; z-index
 
 </style>
 </head>
-<body\1>
+<body>
 
-  <!-- Futuristischer Preloader -->
+  <!-- Futuristischer Preloader (12s GIF, Schuh-Rotation) -->
   <div id="preloader" style="position:fixed;inset:0;background:#05070b;display:grid;place-items:center;z-index:9999">
-    <img src="hologram_shoe_loader.gif" alt="Holographic shoe loading"
-         style="width:min(90vw,1280px);height:auto;image-rendering:-webkit-optimize-contrast">
+    <img src="hologram_shoe_loader_12s.gif" alt="Holographic shoe loading"
+         style="width:min(92vw,960px);height:auto;image-rendering:-webkit-optimize-contrast">
   </div>
   <script>
     (function () {
       const close = () => document.getElementById('preloader')?.remove();
-      window.addEventListener('load', close);
-      setTimeout(close, 3500);
+      // Lässt die Animation etwas länger laufen (7.5s) – passe die Zahl für länger/kürzer an.
+      setTimeout(close, 7500);
+      window.addEventListener('load', ()=>{ /* optional: nichts, damit er die 7.5s ausspielt */ });
     })();
   </script>
 
