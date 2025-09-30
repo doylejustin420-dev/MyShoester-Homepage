@@ -16,8 +16,12 @@
   --font-head:"Manrope",system-ui; --font-body:"Inter",system-ui; --s:0;
 }
 
+/* Reset */
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
+a{color:var(--text); text-decoration:none}
+
+/* Page background */
 body{
   color:var(--text); font-family:var(--font-body);
   background:
@@ -32,9 +36,16 @@ body::before, body::after{content:""; position:fixed; inset:0; pointer-events:no
 body::before{background: radial-gradient(60% 60% at 50% 50%, transparent 60%, rgba(0,0,0,.35) 100%); mix-blend-mode:multiply}
 body::after{opacity:.14;background-image:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2240%22 height=%2240%22 viewBox=%220 0 40 40%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence baseFrequency=%220.9%22 numOctaves=%222%22 seed=%222%22 type=%22fractalNoise%22/%3E%3CfeColorMatrix type=%22saturate%22 values=%220%22/%3E%3CfeComponentTransfer%3E%3CfeFuncA type=%22linear%22 slope=%220.10%22/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width=%2240%22 height=%2240%22 filter=%22url(%23n)%22/%3E%3C/svg%3E'); mix-blend-mode:overlay}
 
-a{color:var(--text); text-decoration:none}
+/* Global scrollbar styling (dezente Optik) */
+*{ scrollbar-width: thin; scrollbar-color: #4b5563 transparent; }
+*::-webkit-scrollbar{ width:10px; height:10px }
+*::-webkit-scrollbar-track{ background:rgba(255,255,255,.03); border-radius:12px }
+*::-webkit-scrollbar-thumb{
+  background:linear-gradient(#6b7280,#4b5563);
+  border-radius:12px; border:2px solid rgba(0,0,0,.25)
+}
 
-/* Parallax Hintergrund */
+/* Parallax overlay */
 .bgfx{ position:fixed; inset:-12vmax; z-index:-1; pointer-events:none;
   background:
     radial-gradient(800px 520px at 20% 14%, rgba(120,140,170,.10), transparent 60%),
@@ -44,7 +55,7 @@ a{color:var(--text); text-decoration:none}
   transform:translateY(calc(var(--s) * -60px)); transition:transform .2s linear;
 }
 
-/* Scrollbar */
+/* Thin progress bar on top */
 .scrollbar{ position:fixed; top:0; left:0; height:3px; width:100%;
   transform-origin:0 50%; transform:scaleX(0);
   background:linear-gradient(90deg,#7b8797,#cfd6e4); opacity:.65; z-index:60}
@@ -54,6 +65,7 @@ a{color:var(--text); text-decoration:none}
    =============================== */
 .nav{
   position:sticky; top:0; z-index:50;
+  /* dezente Carbon-Optik */
   background:
     repeating-linear-gradient(45deg, rgba(255,255,255,.045) 0 2px, rgba(0,0,0,0) 2px 4px),
     repeating-linear-gradient(-45deg, rgba(255,255,255,.035) 0 2px, rgba(0,0,0,0) 2px 4px),
@@ -70,7 +82,7 @@ a{color:var(--text); text-decoration:none}
 .logo-badge{ width:38px;height:38px;border-radius:10px; display:grid;place-items:center;font-weight:900; letter-spacing:.5px; color:#cfd6e4;background:linear-gradient(135deg,#2a3242,#49566a); box-shadow: 0 8px 24px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.12) }
 .logo-title{font-family:var(--font-head);font-weight:800;font-size:24px;letter-spacing:.2px}
 
-/* Katalog: fix am linken Rand */
+/* Katalog-Button absolut links */
 .katalog-anchor{ position:absolute; left:12px; top:50%; transform:translateY(-50%); z-index:1010; display:flex; align-items:center }
 .katalog-btn{
   appearance:none; cursor:pointer; padding:8px 12px; border-radius:12px; font-weight:900; letter-spacing:.3px;
@@ -79,15 +91,23 @@ a{color:var(--text); text-decoration:none}
   box-shadow: 0 8px 20px rgba(0,0,0,.35), 0 2px 0 rgba(255,255,255,.08) inset;
 }
 
-/* Dropdown: links unter Header; auf Desktop verschieben wir den Inhalt, damit nichts überlappt */
+/* Dropdown: fix links; top wird per JS passend zur Header-Höhe gesetzt */
+/* Zusätzlich eigene Scrollbar-Optik am Panel */
 .catalog{
-  position:fixed; left:12px; top:calc(64px + 8px); /* Header-Höhe + Abstand */
+  position:fixed; left:12px; top:84px; /* fallback; JS korrigiert */
   width:min(420px, 92vw); max-height:min(72vh, 560px); overflow:auto;
   background:rgba(10,14,22,.97); backdrop-filter: blur(12px);
   border:1px solid rgba(255,255,255,.14); border-radius:18px;
   box-shadow:0 18px 60px rgba(0,0,0,.55);
   opacity:0; transform:translateY(-8px) scale(.98); pointer-events:none;
   transition:opacity .18s ease, transform .18s ease; z-index:1015;
+  scrollbar-width: thin; scrollbar-color: #64748b rgba(255,255,255,.04);
+}
+.catalog::-webkit-scrollbar{ width:10px }
+.catalog::-webkit-scrollbar-track{ background:rgba(255,255,255,.04); border-radius:12px }
+.catalog::-webkit-scrollbar-thumb{
+  background:linear-gradient(#94a3b8,#64748b);
+  border-radius:12px; border:2px solid rgba(0,0,0,.25)
 }
 .catalog.open{ opacity:1; transform:translateY(0) scale(1); pointer-events:auto }
 .cat-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.10)}
@@ -97,11 +117,11 @@ a{color:var(--text); text-decoration:none}
 .cat-link{display:block;font-weight:800;background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.12);border-radius:14px; padding:12px 14px; color:var(--text)}
 .cat-link:hover{background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.22); text-shadow:0 1px 0 rgba(0,0,0,.2)}
 
-/* Wenn Panel offen: Inhalt rechts freiräumen (nur Desktop) */
-body.panel-open main{ margin-left:440px; transition:margin .18s ease }
-@media (max-width: 980px){
+/* Inhalt freiräumen, wenn Panel offen (Breite wird per JS gesetzt) */
+body.panel-open main{ margin-left:var(--panelShift, 0px); transition:margin .18s ease }
+@media (max-width: 1100px){
   .nav-inner{ padding-left:108px }
-  body.panel-open main{ margin-left:0 } /* auf Mobil kein Shift – Overlay reicht */
+  body.panel-open main{ margin-left:0 } /* mobil & tablet overlay */
 }
 
 /* Navi-Links */
@@ -125,7 +145,7 @@ body.panel-open main{ margin-left:440px; transition:margin .18s ease }
 /* Headlines */
 .h2{ font-family:var(--font-head); font-weight:800; font-size:32px;margin:0 0 18px; text-shadow:0 2px 0 #000, 0 0 14px rgba(0,0,0,.35) }
 
-/* Leistungen – wiederhergestellt */
+/* Leistungen */
 #leistungen{ scroll-margin-top: 96px }
 .services-stack{display:flex;flex-direction:column;gap:28px;max-width:1100px;margin:0 auto;padding-inline:8px}
 .service{ --acc: var(--steel); display:grid;grid-template-columns:min(40vw,420px) 1fr;align-items:center;gap:24px; position:relative }
@@ -139,28 +159,15 @@ body.panel-open main{ margin-left:440px; transition:margin .18s ease }
 .service:nth-child(even) .text{order:1}
 .service:nth-child(even) .pic{order:2}
 
-/* Reveal */
+/* Reveal animation */
 .reveal{ opacity:0; transform: translateY(14px) scale(.98); filter: blur(6px); transition: opacity .6s ease, transform .6s ease, filter .6s ease; will-change: opacity, transform, filter }
 .reveal.in{ opacity:1; transform: none; filter: none }
 
-/* Karten/Grids */
-.grid{display:grid; gap:18px; grid-template-columns:repeat(auto-fill,minmax(320px,1fr))}
-.card{background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.10); border-radius:16px;}
-.pad{padding:16px 18px}
-
-/* Mobile Tweaks */
-@media (max-width:980px){
-  .hero{ grid-template-columns:1fr; gap:16px; padding:24px 0 }
-}
-@media (max-width:480px){
-  .nav-links{ gap:8px }
-  .nav-links a{ padding:8px 8px }
-}
-
-/* Side edges */
-.edge{position:fixed; top:-12vh; bottom:-12vh; width:88px; pointer-events:none; z-index:0}
-.edge--left{left:-2px} .edge--right{right:-2px}
-header.nav, .container, footer.footer{ position:relative; z-index:1 }
+/* Zahlungs-Logos (immer sichtbar, da inline-SVG) */
+.paygrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:14px 0 2px}
+.paycard{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.10);border-radius:14px; padding:14px;display:flex;align-items:center;justify-content:center;min-height:72px}
+.paylogo{width:140px;height:34px;display:block}
+@media (max-width:640px){.paylogo{width:120px;height:28px}}
 </style>
 </head>
 <body>
@@ -178,12 +185,12 @@ header.nav, .container, footer.footer{ position:relative; z-index:1 }
 <div class="bgfx" aria-hidden="true"></div>
 
 <header class="nav" id="topnav">
-  <!-- Katalog-Button links, bündig -->
+  <!-- Katalog-Button links -->
   <div class="katalog-anchor">
     <button id="btnKatalog" class="katalog-btn">Katalog ▾</button>
   </div>
 
-  <!-- Panel fix links unter Header -->
+  <!-- Panel fix links: Top wird dynamisch gesetzt -->
   <aside id="catalog" class="catalog" aria-hidden="true">
     <div class="cat-head">
       <div class="cat-title">Kategorien</div>
@@ -202,6 +209,7 @@ header.nav, .container, footer.footer{ position:relative; z-index:1 }
     </div>
   </aside>
 
+  <!-- Header-Inhalt -->
   <div class="nav-inner">
     <div class="logo">
       <div class="logo-badge">MS</div>
@@ -209,7 +217,6 @@ header.nav, .container, footer.footer{ position:relative; z-index:1 }
     </div>
 
     <nav class="nav-links">
-      <!-- „Leistungen“ Link bleibt entfernt, wie gewünscht -->
       <a href="#repair">Schuh- & Lederwarenreparatur</a>
       <a href="#bequem">Bequemschuheinlagen</a>
       <a href="#komfort">Komforteinlagen</a>
@@ -237,12 +244,11 @@ header.nav, .container, footer.footer{ position:relative; z-index:1 }
     </div>
   </section>
 
-  <!-- Leistungen (sichtbar & sauber strukturiert) -->
+  <!-- Leistungen -->
   <section id="leistungen" class="section">
     <h2 class="h2">Unsere Leistungen</h2>
 
     <div class="services-stack">
-      <!-- 1 -->
       <article class="service reveal" id="repair">
         <div class="pic"><img src="img/repair-werkstatt-skizze.jpg" alt="Reparatur von Schuhen & Lederwaren"></div>
         <div class="text">
@@ -251,7 +257,7 @@ header.nav, .container, footer.footer{ position:relative; z-index:1 }
           <div class="chips"><span class="chip">Sohle/Absatz</span><span class="chip">Nähte</span><span class="chip">Pflege</span></div>
         </div>
       </article>
-      <!-- 2 -->
+
       <article class="service reveal" id="bequem">
         <div class="pic"><img src="img/bequem-einlagen.jpg" alt="Bequemschuheinlagen"></div>
         <div class="text">
@@ -260,7 +266,7 @@ header.nav, .container, footer.footer{ position:relative; z-index:1 }
           <div class="chips"><span class="chip">Alltag</span><span class="chip">Komfort</span></div>
         </div>
       </article>
-      <!-- 3 -->
+
       <article class="service reveal" id="komfort">
         <div class="pic"><img src="img/komfort-einlagen.jpg" alt="Komforteinlagen"></div>
         <div class="text">
@@ -269,7 +275,7 @@ header.nav, .container, footer.footer{ position:relative; z-index:1 }
           <div class="chips"><span class="chip">Dämpfung</span><span class="chip">Halt</span></div>
         </div>
       </article>
-      <!-- 4 -->
+
       <article class="service reveal" id="alltag">
         <div class="pic"><img src="img/alltag-einlagen.jpg" alt="Alltagseinlagen"></div>
         <div class="text">
@@ -278,7 +284,7 @@ header.nav, .container, footer.footer{ position:relative; z-index:1 }
           <div class="chips"><span class="chip">Robust</span><span class="chip">Bequem</span></div>
         </div>
       </article>
-      <!-- 5 -->
+
       <article class="service reveal" id="belts">
         <div class="pic"><img src="img/massguertel-leder.jpg" alt="Maßgürtel"></div>
         <div class="text">
@@ -287,7 +293,7 @@ header.nav, .container, footer.footer{ position:relative; z-index:1 }
           <div class="chips"><span class="chip">Vollleder</span><span class="chip">Handarbeit</span></div>
         </div>
       </article>
-      <!-- 6 -->
+
       <article class="service reveal" id="laser">
         <div class="pic"><img src="img/laser-gravur-leder.jpg" alt="Lasergravuren"></div>
         <div class="text">
@@ -296,7 +302,7 @@ header.nav, .container, footer.footer{ position:relative; z-index:1 }
           <div class="chips"><span class="chip">Fein</span><span class="chip">Präzise</span></div>
         </div>
       </article>
-      <!-- 7 -->
+
       <article class="service reveal" id="cutting">
         <div class="pic"><img src="img/laser-zuschnitte-leder.jpg" alt="Laserzuschnitte"></div>
         <div class="text">
@@ -305,7 +311,7 @@ header.nav, .container, footer.footer{ position:relative; z-index:1 }
           <div class="chips"><span class="chip">Exakt</span><span class="chip">Saubere Kanten</span></div>
         </div>
       </article>
-      <!-- 8 -->
+
       <article class="service reveal" id="streetwear">
         <div class="pic"><img src="img/streetwear-lederpatch.jpg" alt="Streetwear"></div>
         <div class="text">
@@ -314,7 +320,7 @@ header.nav, .container, footer.footer{ position:relative; z-index:1 }
           <div class="chips"><span class="chip">Individuell</span><span class="chip">Patch</span></div>
         </div>
       </article>
-      <!-- 9 -->
+
       <article class="service reveal" id="sand">
         <div class="pic"><img src="img/sandstrahlung-beschlaege.jpg" alt="Sandstrahlung"></div>
         <div class="text">
@@ -326,12 +332,42 @@ header.nav, .container, footer.footer{ position:relative; z-index:1 }
     </div>
   </section>
 
-  <!-- (Beispiel) Zahlung & Versand / Kontakt – wie gehabt -->
+  <!-- Zahlung & Versand: Logos als Inline-SVG (ohne Dateien) -->
   <section id="zahlungversand" class="section">
     <h2 class="h2">Zahlung & Versand</h2>
-    <div class="card"><div class="pad">
-      <p>Vor Ort & online akzeptieren wir gängige Zahlungsarten. Versand von Reparaturen möglich – schreib uns einfach kurz.</p>
-    </div></div>
+    <div class="paygrid" aria-label="Akzeptierte Zahlungsarten">
+      <div class="paycard" title="PayPal">
+        <svg class="paylogo" viewBox="0 0 120 30" role="img" aria-label="PayPal">
+          <rect rx="6" ry="6" x="0" y="0" width="120" height="30" fill="rgba(255,255,255,.06)"/>
+          <text x="60" y="20" text-anchor="middle" font-family="Inter" font-size="14" font-weight="800" fill="#cfe5ff">PayPal</text>
+        </svg>
+      </div>
+      <div class="paycard" title="VISA">
+        <svg class="paylogo" viewBox="0 0 120 30" role="img" aria-label="VISA">
+          <rect rx="6" ry="6" x="0" y="0" width="120" height="30" fill="rgba(255,255,255,.06)"/>
+          <text x="60" y="20" text-anchor="middle" font-family="Inter" font-size="14" font-weight="800" fill="#e0e7ff">VISA</text>
+        </svg>
+      </div>
+      <div class="paycard" title="Mastercard">
+        <svg class="paylogo" viewBox="0 0 120 30" role="img" aria-label="Mastercard">
+          <rect rx="6" ry="6" x="0" y="0" width="120" height="30" fill="rgba(255,255,255,.06)"/>
+          <text x="60" y="20" text-anchor="middle" font-family="Inter" font-size="14" font-weight="800" fill="#ffe4cc">Mastercard</text>
+        </svg>
+      </div>
+      <div class="paycard" title="girocard">
+        <svg class="paylogo" viewBox="0 0 120 30" role="img" aria-label="girocard">
+          <rect rx="6" ry="6" x="0" y="0" width="120" height="30" fill="rgba(255,255,255,.06)"/>
+          <text x="60" y="20" text-anchor="middle" font-family="Inter" font-size="14" font-weight="800" fill="#d1fae5">girocard</text>
+        </svg>
+      </div>
+      <div class="paycard" title="SumUp">
+        <svg class="paylogo" viewBox="0 0 120 30" role="img" aria-label="SumUp">
+          <rect rx="6" ry="6" x="0" y="0" width="120" height="30" fill="rgba(255,255,255,.06)"/>
+          <text x="60" y="20" text-anchor="middle" font-family="Inter" font-size="14" font-weight="800" fill="#e2e8f0">SumUp</text>
+        </svg>
+      </div>
+    </div>
+    <p style="color:var(--muted);margin-top:10px">Versand von Reparaturen möglich – schreib uns für den Ablauf & eine grobe Kostenschätzung.</p>
   </section>
 
   <section id="contact" class="section">
@@ -359,33 +395,64 @@ header.nav, .container, footer.footer{ position:relative; z-index:1 }
   // Jahr
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Katalog – Panel öffnen/schließen + Body verschieben (Desktop)
-  const panel  = document.getElementById('catalog');
-  const openBtn= document.getElementById('btnKatalog');
-  const closeBtn=document.getElementById('btnClose');
-  const toggle = (show) => {
+  // Elemente
+  const panel   = document.getElementById('catalog');
+  const openBtn = document.getElementById('btnKatalog');
+  const closeBtn= document.getElementById('btnClose');
+  const nav     = document.getElementById('topnav');
+  const root    = document.documentElement;
+
+  // Panel-Metriken berechnen: Abstand nach unten + Inhaltsschub
+  function setPanelMetrics(){
+    const navH = nav.getBoundingClientRect().height || 64;
+    const top  = Math.round(navH + 12); // << Button + Luft, damit nichts überlappt
+    panel.style.top = top + 'px';
+
+    // Nur auf großen Screens Inhalt verschieben
+    if (window.innerWidth > 1100){
+      // Panelbreite + Luft
+      const shift = Math.min(panel.offsetWidth || 420, 460) + 24;
+      root.style.setProperty('--panelShift', shift + 'px');
+    } else {
+      root.style.removeProperty('--panelShift');
+    }
+  }
+
+  // Toggle
+  function toggle(show){
+    setPanelMetrics(); // erst korrekt positionieren
     panel.classList.toggle('open', show);
     panel.setAttribute('aria-hidden', show ? 'false' : 'true');
     openBtn.textContent = show ? 'Katalog ▴' : 'Katalog ▾';
-    if (window.innerWidth > 980) {
+    if (window.innerWidth > 1100) {
       document.body.classList.toggle('panel-open', show);
+    } else {
+      document.body.classList.remove('panel-open');
     }
-  };
+  }
+
   openBtn.addEventListener('click', () => toggle(!panel.classList.contains('open')));
   closeBtn.addEventListener('click', () => toggle(false));
-  window.addEventListener('resize', ()=>{ if (window.innerWidth <= 980) document.body.classList.remove('panel-open'); });
+  window.addEventListener('resize', setPanelMetrics);
+  window.addEventListener('load', setPanelMetrics);
+
+  // Close on outside / ESC
   document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') toggle(false); });
   document.addEventListener('click',(e)=>{
     if(panel.classList.contains('open') && !panel.contains(e.target) && !openBtn.contains(e.target)){ toggle(false);}
   });
 
-  // Scroll FX (Parallax + Scrollbar)
-  const root=document.documentElement, bar=document.getElementById('scrollbar'), nav=document.querySelector('.nav');
+  // Scroll FX (Parallax + Progress)
+  const bar=document.getElementById('scrollbar');
   let y=0,ticking=false;
   function onScroll(){ y=window.scrollY||window.pageYOffset;
-    if(!ticking){ requestAnimationFrame(()=>{ const max=(document.documentElement.scrollHeight-window.innerHeight)||1;
+    if(!ticking){ requestAnimationFrame(()=>{
+      const max=(document.documentElement.scrollHeight-window.innerHeight)||1;
       const p=Math.min(1,Math.max(0,y/max)); root.style.setProperty('--s',p.toFixed(4));
-      if(bar){ bar.style.transform='scaleX('+p+')'; } nav.classList.toggle('is-scrolled',y>10); ticking=false;}); ticking=true;}}
+      if(bar){ bar.style.transform='scaleX('+p+')'; }
+      document.querySelector('.nav').classList.toggle('is-scrolled',y>10);
+      ticking=false;
+    }); ticking=true;}}
   window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
 
   // Reveal
