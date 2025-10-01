@@ -67,14 +67,27 @@ body::after{opacity:.14;background-image:url('data:image/svg+xml,%3Csvg xmlns=%2
   position:sticky; top:0; z-index:50;
   /* **verbesserte Carbon-Optik** (kleines Twill-Muster) */
   background:
-    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><defs><pattern id="tw" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="skewX(-20)"><rect width="8" height="8" fill="black"/><path d="M0 6h8v2H0z M-2 4h8v2H-2z M-4 2h8v2H-4z M-6 0h8v2H-6z" fill="white" fill-opacity="0.08"/></pattern></defs><rect width="100%" height="100%" fill="url(%23tw)"/></svg>'),
-    linear-gradient(180deg, rgba(8,10,16,.96), rgba(8,10,16,.72));
+    /* realistic carbon twill + subtle gloss */
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><defs>
+      <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="%23262626"/>
+        <stop offset=".5" stop-color="%23101010"/>
+        <stop offset="1" stop-color="%23262626"/>
+      </linearGradient>
+      <pattern id="twill" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="skewX(-20)">
+        <rect width="8" height="8" fill="%23000000"/>
+        <path d="M0 6H8V8H0z M-2 4H6V6H-2z M-4 2H4V4H-4z M-6 0H2V2H-6z" fill="url(%23g)" opacity=".9"/>
+        <path d="M0 6H8V6.5H0z M-2 4H6V4.5H-2z M-4 2H4V2.5H-4z M-6 0H2V.5H-6z" fill="white" opacity=".06"/>
+      </pattern></defs><rect width="100%" height="100%" fill="url(%23twill)"/></svg>'),
+    linear-gradient(180deg, rgba(12,14,18,.98), rgba(12,14,18,.80)),
+    radial-gradient(120% 120% at 50% 0%, rgba(255,255,255,.12) 0%, rgba(255,255,255,0) 45%),
+    radial-gradient(120% 120% at 50% 120%, rgba(0,0,0,.55) 0%, rgba(0,0,0,0) 55%);
   backdrop-filter: blur(10px);
   border-bottom:1px solid var(--line);
   transition: box-shadow .25s ease, border-color .25s ease;
 }
 .nav.is-scrolled{ border-bottom-color: rgba(255,255,255,.18); box-shadow:0 10px 28px rgba(0,0,0,.4) }
-.nav-inner{ max-width:1280px; margin:0 auto; display:flex; align-items:center; gap:14px; padding:12px 20px; position:relative; padding-left:96px }
+.nav-inner{ max-width: 1440px; margin:0 auto; display:flex; align-items:center; gap:14px; padding:12px 20px; position:relative; padding-left:96px }
 .nav.is-scrolled .nav-inner{ padding:8px 20px; padding-left:96px }
 
 .logo{display:flex;align-items:center;gap:12px}
@@ -136,8 +149,8 @@ body.panel-open main{ margin-left:var(--panelShift, 0px); transition:margin .18s
 }
 
 /* Navi-Links */
-.nav-links{ display:flex;flex-wrap:wrap;gap:10px;margin-left:auto;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch }
-.nav-links a{ padding:8px 12px;border-radius:12px;font-weight:800;letter-spacing:.3px;text-transform:uppercase; border:1px solid rgba(255,255,255,.06); background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)) }
+.nav-links{ display:flex; flex:1 1 auto; flex-wrap:wrap; gap:8px 12px; margin-left:auto; overflow:visible; white-space:normal }
+.nav-links a{ padding:8px 10px; border-radius:12px; font-weight:800; letter-spacing:.25px; text-transform:uppercase; font-size:.92rem; border:1px solid rgba(255,255,255,.06); background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)) }
 .nav-links a:hover{ border-color: rgba(255,255,255,.16); box-shadow: 0 0 0 2px rgba(99,102,112,.22) inset, 0 6px 18px rgba(0,0,0,.4) }
 
 /* Layout */
@@ -190,8 +203,8 @@ body.panel-open main{ margin-left:var(--panelShift, 0px); transition:margin .18s
 @media (max-width:640px){.paylogo{width:120px;height:28px}}
 
 /* === Cart to far right + emphasis === */
-.nav-links{ display:flex; flex-wrap:nowrap; gap:10px; overflow-x:auto; white-space:nowrap; }
-.nav-links a{ order:0; }
+.nav-links{ display:flex; flex:1 1 auto; flex-wrap:wrap; gap:8px 12px; margin-left:auto; overflow:visible; white-space:normal }
+.nav-links a{ padding:8px 10px; border-radius:12px; font-weight:800; letter-spacing:.25px; text-transform:uppercase; font-size:.92rem; border:1px solid rgba(255,255,255,.06); background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)) }
 .nav-links a[href="reparatur-anfrage.html"]{ order:998; }
 .nav-links a[href="#contact"]{ order:999; }
 #cartLink{
@@ -207,6 +220,29 @@ body.panel-open main{ margin-left:var(--panelShift, 0px); transition:margin .18s
 #cartLink:hover{
   transform:translateY(-1px);
   box-shadow:0 10px 28px rgba(30,64,175,.45), 0 0 0 2px rgba(147,197,253,.35) inset;
+  border-color:rgba(191,219,254,.9);
+}
+#cartQty{ display:inline-block; min-width:18px; padding:2px 6px; margin-left:2px;
+  border-radius:999px; font-size:.85em; line-height:1.1;
+  background:#0b1220; border:1px solid rgba(147,197,253,.8);
+}
+
+.nav-links a:hover{ border-color: rgba(255,255,255,.16); box-shadow: 0 0 0 2px rgba(99,102,112,.22) inset, 0 6px 18px rgba(0,0,0,.4) }
+
+/* Cart pinned right & highlighted */
+#cartLink{
+  order:9999; margin-left:auto;
+  display:inline-flex; align-items:center; gap:8px;
+  padding:10px 14px; border-radius:14px;
+  font-weight:900; letter-spacing:.3px; font-size:.95rem;
+  border:1px solid rgba(147,197,253,.55);
+  background:linear-gradient(180deg, rgba(96,165,250,.30), rgba(15,23,42,.36));
+  box-shadow:0 8px 22px rgba(30,64,175,.35), inset 0 1px 0 rgba(255,255,255,.10);
+  text-shadow:0 1px 0 rgba(0,0,0,.65);
+}
+#cartLink:hover{
+  transform:translateY(-1px);
+  box-shadow:0 10px 30px rgba(30,64,175,.45), 0 0 0 2px rgba(147,197,253,.35) inset;
   border-color:rgba(191,219,254,.9);
 }
 #cartQty{ display:inline-block; min-width:18px; padding:2px 6px; margin-left:2px;
