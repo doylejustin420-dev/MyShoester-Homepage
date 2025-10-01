@@ -192,67 +192,67 @@ body.panel-open main{ margin-left:var(--panelShift, 0px); transition:margin .18s
 .paylogo{width:140px;height:34px;display:block}
 @media (max-width:640px){.paylogo{width:120px;height:28px}}
 
-/* ===== MyShoester Patch v6 (wider header, one-line nav) ===== */
-/* Make nav container wider so all categories fit in one row on large screens */
-.nav-inner{ max-width: 2100px !important; }
-/* Ensure stacking for carbon overlay is safe */
+/* ===== MyShoester Patch v7 (wrap categories, cart right, carbon tidy) ===== */
 .nav{ position:sticky; top:0; z-index:50; isolation:isolate; }
-/* Keep nav items on a single line and visible */
-.nav-links{ 
-  display:flex !important; 
-  flex-wrap:nowrap !important; 
-  align-items:center !important; 
-  gap:8px 10px !important; 
-  white-space:nowrap !important; 
+.nav-inner{ max-width: 1600px !important; }
+
+/* Categories can wrap into 2-3 rows, no horizontal scroll */
+.nav-links{
+  display:flex !important;
+  flex-wrap:wrap !important;
+  align-items:center !important;
+  gap:10px 12px !important;
+  white-space:normal !important;
   overflow:visible !important;
 }
-/* Slightly compact pills so everything fits without feeling cramped */
 .nav-links a{
-  padding:6px 10px !important;
-  font-size: clamp(0.78rem, 0.7rem + 0.3vw, 0.95rem) !important;
-  letter-spacing:.25px !important;
+  padding:8px 12px !important;
+  font-size: clamp(0.80rem, 0.72rem + 0.28vw, 0.98rem) !important;
+  letter-spacing:.24px !important;
+  border-radius:12px !important;
 }
 
-/* Cart pinned right + emphasis */
+/* Cart: always to the right on its row and slightly highlighted */
 #cartLink{
-  order:999 !important; 
+  order:999 !important;
   margin-left:auto !important;
   display:inline-flex; align-items:center; gap:8px;
-  padding:8px 12px !important; border-radius:14px;
+  padding:10px 14px !important; border-radius:14px !important;
   font-weight:900; text-shadow:0 1px 0 rgba(0,0,0,.6);
   border:1px solid rgba(147,197,253,.55);
   background:linear-gradient(180deg, rgba(96,165,250,.28), rgba(15,23,42,.36));
   box-shadow:0 8px 20px rgba(30,64,175,.35), inset 0 1px 0 rgba(255,255,255,.10);
 }
+#cartLink:hover{
+  transform:translateY(-1px);
+  box-shadow:0 10px 28px rgba(30,64,175,.45), 0 0 0 2px rgba(147,197,253,.35) inset;
+  border-color:rgba(191,219,254,.9);
+}
 
-/* Catalog panel: show fully without inner scrollbar */
-.catalog{ max-height:none !important; overflow:visible !important; }
-.catalog::-webkit-scrollbar{ width:0 !important; height:0 !important; display:none !important; }
-
-/* Carbon overlay (kept subtle but realistic) */
+/* Carbon: realistic twill, slightly more contrast but clean */
 .nav::before{
   content:""; position:absolute; inset:0; z-index:-1;
   background:
-    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><defs>\
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"><defs>\
       <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">\
-        <stop offset="0" stop-color="%23282828"/>\
-        <stop offset=".5" stop-color="%23101010"/>\
-        <stop offset="1" stop-color="%23282828"/>\
+        <stop offset="0" stop-color="%23323232"/>\
+        <stop offset=".5" stop-color="%230d0d0d"/>\
+        <stop offset="1" stop-color="%23323232"/>\
       </linearGradient>\
-      <pattern id="t" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="skewX(-20)">\
-        <rect width="10" height="10" fill="%23000000"/>\
-        <path d="M0 7H10V10H0z M-3 4H7V7H-3z M-6 1H4V4H-6z" fill="url(%23g)" opacity=".95"/>\
-        <path d="M0 7H10V7.5H0z M-3 4H7V4.5H-3z M-6 1H4V1.5H-6z" fill="white" opacity=".06"/>\
+      <pattern id="t" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="skewX(-20)">\
+        <rect width="9" height="9" fill="%23000000"/>\
+        <path d="M0 6H9V9H0z M-3 3H6V6H-3z M-6 0H3V3H-6z" fill="url(%23g)" opacity=".95"/>\
+        <path d="M0 6H9V6.6H0z M-3 3H6V3.6H-3z M-6 0H3V0.6H-6z" fill="white" opacity=".065"/>\
       </pattern></defs><rect width="100%" height="100%" fill="url(%23t)"/></svg>') center/auto repeat,
-    linear-gradient(180deg, rgba(10,12,16,.98), rgba(10,12,16,.82));
+    linear-gradient(180deg, rgba(12,14,18,.98), rgba(12,14,18,.82));
   border-bottom:1px solid rgba(255,255,255,.08);
   box-shadow: 0 6px 14px rgba(0,0,0,.45) inset, 0 10px 22px rgba(0,0,0,.35);
 }
 .nav::after{
-  content:""; position:absolute; left:0; right:0; top:0; height:18px; pointer-events:none;
-  background:linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,0));
+  content:""; position:absolute; left:0; right:0; top:0; height:16px; pointer-events:none;
+  background:linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,0));
 }
-/* ===== End Patch v6 ===== */
+/* ===== End Patch v7 ===== */
 
 </style>
 </head>
