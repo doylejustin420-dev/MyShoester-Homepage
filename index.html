@@ -309,7 +309,22 @@ body.panel-open main{ margin-left:var(--panelShift, 0px); transition:margin .18s
 #cartLink{ order:999 !important; margin-left:auto !important; }
 /* ===== End Patch v11 ===== */
 
+
+/* === Override: Leather header background (uploaded image) === */
+header.nav{
+  background:
+    linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.25)),
+    url('img/leather-header.jpg') center top / auto 92px repeat-x !important;
+  border-bottom: 1px solid rgba(255,255,255,.10) !important;
+  box-shadow: inset 0 -2px 0 rgba(0,0,0,.25) !important;
+}
+header.nav::after{
+  content:""; position:absolute; left:0; right:0; top:0; height:14px; pointer-events:none;
+  background:linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,0));
+}
+
 </style>
+<!-- Leather header override applied 2025-10-14 14:30:52 -->
 </head>
 <body>
 
@@ -325,7 +340,7 @@ body.panel-open main{ margin-left:var(--panelShift, 0px); transition:margin .18s
 <div class="scrollbar" id="scrollbar"></div>
 <div class="bgfx" aria-hidden="true"></div>
 
-<header class="nav" id="topnav">
+<header class="nav" id="topnav" style="min-height:92px;">
   <!-- Katalog-Button links -->
   <div class="katalog-anchor">
     <button id="btnKatalog" class="katalog-btn">Katalog ▾</button>
