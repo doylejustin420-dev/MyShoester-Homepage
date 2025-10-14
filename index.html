@@ -3,25 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
-<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<meta property="og:title" content="MyShoester – Schuh- & Lederwerkstatt">
-<meta property="og:description" content="Reparaturen, Pflege, Maßgürtel, Einlagen, Lasergravur & -zuschnitt, Streetwear, Sandstrahlung.">
-<meta property="og:type" content="website">
-<meta property="og:locale" content="de_DE">
-<meta property="og:image" content="img/hero-werkstatt.jpg">
-<meta name="twitter:card" content="summary_large_image">
 <title>MyShoester – Schuh- & Lederwerkstatt</title>
 <meta name="description" content="Reparaturen, Pflege, Maßgürtel, Einlagen, Lasergravur & -zuschnitt, Streetwear, Sandstrahlung.">
 
 <style>
-
-<style>
-.skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
-.skip-link:focus{position:fixed;left:12px;top:8px;width:auto;height:auto;padding:8px 12px;border-radius:8px;
-background:#0b1220;color:#fff;border:1px solid rgba(255,255,255,.25);z-index:2000}
-</style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&family=Manrope:wght@300;400;600;700;800&display=swap');
 
 :root{
@@ -79,7 +64,6 @@ body::after{opacity:.14;background-image:url('data:image/svg+xml,%3Csvg xmlns=%2
    HEADER (Carbon) + KATALOG LEFT
    =============================== */
 .nav{
-  box-shadow: inset 0 -2px 0 rgba(0,0,0,.25);
   position:sticky; top:0; z-index:50;
   /* **verbesserte Carbon-Optik** (kleines Twill-Muster) */
   background:
@@ -275,14 +259,43 @@ body.panel-open main{ margin-left:var(--panelShift, 0px); transition:margin .18s
 
 /* ===== MyShoester Patch v11 (Leder hellbraun/cognac) ===== */
 .nav{
-  color:#fff;
   position:sticky; top:0; z-index:1000; isolation:isolate;
   background:
-    linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.25)) , 
-    url('img/leather-header.jpg');
-  background-size: auto 92px, auto 92px;
-  background-repeat: repeat-x, repeat-x;
-  background-position: center top, center top;border-bottom:1px solid rgba(255,255,255,.12);
+    url('data:image/svg+xml;utf8,\
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64">\
+  <defs>\
+    <filter id="n" x="-20%" y="-20%" width="140%" height="140%">\
+      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" seed="13" stitchTiles="stitch"/>\
+      <feColorMatrix type="saturate" values="0"/>\
+      <feComponentTransfer>\
+        <feFuncR type="gamma" exponent="1.5" amplitude=".09"/>\
+        <feFuncG type="gamma" exponent="1.5" amplitude=".08"/>\
+        <feFuncB type="gamma" exponent="1.5" amplitude=".07"/>\
+      </feComponentTransfer>\
+    </filter>\
+    <pattern id="p" width="16" height="16" patternUnits="userSpaceOnUse">\
+      <g fill="%2354381f">\
+        <circle cx="3" cy="4" r="2.2"/>\
+        <circle cx="12" cy="3" r="1.8"/>\
+        <circle cx="8" cy="8" r="2.4"/>\
+        <circle cx="4" cy="12" r="1.9"/>\
+        <circle cx="14" cy="10" r="2.3"/>\
+        <circle cx="9" cy="14" r="1.7"/>\
+      </g>\
+    </pattern>\
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">\
+      <stop offset="0" stop-color="%2383593a"/>\
+      <stop offset=".5" stop-color="%23a86a3e"/>\
+      <stop offset="1" stop-color="%23624129"/>\
+    </linearGradient>\
+  </defs>\
+  <rect width="100%" height="100%" fill="url(%23g)"/>\
+  <rect width="100%" height="100%" fill="url(%23p)" opacity=".55"/>\
+  <rect width="100%" height="100%" filter="url(%23n)" opacity=".30"/>\
+</svg>') center/420px repeat,
+    radial-gradient(120% 160% at 50% -20%, rgba(255,238,214,.18), rgba(255,255,255,0) 45%),
+    linear-gradient(180deg, rgba(35,22,12,.98), rgba(35,22,12,.86)) !important;
+  border-bottom:1px solid rgba(255,255,255,.12);
   box-shadow: 0 8px 18px rgba(0,0,0,.45) inset, 0 12px 26px rgba(0,0,0,.30);
 }
 /* leichte Glanzkante */
@@ -297,105 +310,12 @@ body.panel-open main{ margin-left:var(--panelShift, 0px); transition:margin .18s
 /* ===== End Patch v11 ===== */
 
 </style>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "ShoeStore",
-  "name": "MyShoester – Schuh- & Lederwerkstatt",
-  "image": "img/hero-werkstatt.jpg",
-  "url": "https://myshoester.de",
-  "email": "werkstatt@myshoester.de",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Sandwerkstrasse 2",
-    "postalCode": "63636",
-    "addressLocality": "Brachttal",
-    "addressCountry": "DE"
-  },
-  "openingHours": [
-    "Mo-Tu 16:30-18:00",
-    "Th 14:00-18:00",
-    "Fr 08:00-18:00"
-  ],
-  "priceRange": "€€",
-  "areaServed": "Germany",
-  "makesOffer": [
-    {
-      "@type": "Offer",
-      "itemOffered": {
-        "@type": "Service",
-        "name": "Schuh- & Lederwarenreparatur"
-      }
-    },
-    {
-      "@type": "Offer",
-      "itemOffered": {
-        "@type": "Service",
-        "name": "Bequemschuheinlagen"
-      }
-    },
-    {
-      "@type": "Offer",
-      "itemOffered": {
-        "@type": "Service",
-        "name": "Komforteinlagen"
-      }
-    },
-    {
-      "@type": "Offer",
-      "itemOffered": {
-        "@type": "Service",
-        "name": "Alltagseinlagen"
-      }
-    },
-    {
-      "@type": "Offer",
-      "itemOffered": {
-        "@type": "Service",
-        "name": "Maßgürtel"
-      }
-    },
-    {
-      "@type": "Offer",
-      "itemOffered": {
-        "@type": "Service",
-        "name": "Lasergravuren"
-      }
-    },
-    {
-      "@type": "Offer",
-      "itemOffered": {
-        "@type": "Service",
-        "name": "Laserzuschnitte"
-      }
-    },
-    {
-      "@type": "Offer",
-      "itemOffered": {
-        "@type": "Service",
-        "name": "Streetwear"
-      }
-    },
-    {
-      "@type": "Offer",
-      "itemOffered": {
-        "@type": "Service",
-        "name": "Sandstrahlung"
-      }
-    }
-  ]
-}
-</script>
-<!-- MyShoester v11.1 maintenance • 2025-10-14 13:11:21 -->
-<!-- Leather header applied • 2025-10-14 13:15:32 -->
 </head>
 <body>
-<a class="skip-link" href="#start">Zum Inhalt springen</a>
 
 <!-- Preloader -->
 <div id="preloader" style="position:fixed;inset:0;background:#05070b;display:grid;place-items:center;z-index:9999">
-  <img loading="lazy" src="hologram_shoe_loader_12s.gif" alt="Hologramm-Schuh lädt"
+  <img src="hologram_shoe_loader_12s.gif" alt="Hologramm-Schuh lädt"
        style="width:min(92vw,960px);height:auto;image-rendering:-webkit-optimize-contrast">
 </div>
 <script>
@@ -408,7 +328,7 @@ body.panel-open main{ margin-left:var(--panelShift, 0px); transition:margin .18s
 <header class="nav" id="topnav">
   <!-- Katalog-Button links -->
   <div class="katalog-anchor">
-    <button id="btnKatalog" class="katalog-btn" aria-controls="catalog" aria-expanded="false">Katalog ▾</button>
+    <button id="btnKatalog" class="katalog-btn">Katalog ▾</button>
   </div>
 
   <!-- Panel fix links: Top wird dynamisch gesetzt -->
@@ -463,7 +383,7 @@ body.panel-open main{ margin-left:var(--panelShift, 0px); transition:margin .18s
       <p>Lieblingsschuhe und Lederwaren wieder in Form bringen: Sohlenwechsel, Absätze, Nähte, Färbungen & Pflege – fair, präzise, nachhaltig.</p>
     </div>
     <div>
-      <img id="heroImg" alt="Schuhmacher-Werkstatt – Blick in die Werkbank" src="img/hero-werkstatt.jpg" width="1200" height="900">
+      <img id="heroImg" alt="Schuhmacher-Werkstatt – Blick in die Werkbank" src="img/hero-werkstatt.jpg">
     </div>
   </section>
 
@@ -473,7 +393,7 @@ body.panel-open main{ margin-left:var(--panelShift, 0px); transition:margin .18s
 
     <div class="services-stack">
       <article class="service reveal" id="repair">
-        <div class="pic"><img loading="lazy" src="img/repair-werkstatt-skizze.jpg" alt="Reparatur von Schuhen & Lederwaren"></div>
+        <div class="pic"><img src="img/repair-werkstatt-skizze.jpg" alt="Reparatur von Schuhen & Lederwaren"></div>
         <div class="text">
           <span class="title">Schuh- & Lederwarenreparatur</span>
           <p class="desc">Sohlenwechsel, Absätze, Nähte, Färbungen & Pflege – langlebig, präzise und hochwertig.</p>
@@ -482,7 +402,7 @@ body.panel-open main{ margin-left:var(--panelShift, 0px); transition:margin .18s
       </article>
 
       <article class="service reveal" id="bequem">
-        <div class="pic"><img loading="lazy" src="img/bequem-einlagen.jpg" alt="Bequemschuheinlagen"></div>
+        <div class="pic"><img src="img/bequem-einlagen.jpg" alt="Bequemschuheinlagen"></div>
         <div class="text">
           <span class="title">Bequemschuheinlagen</span>
           <p class="desc">Komfort für den Alltag – individuell angepasst an deine Schuhe und Bedürfnisse.</p>
@@ -491,7 +411,7 @@ body.panel-open main{ margin-left:var(--panelShift, 0px); transition:margin .18s
       </article>
 
       <article class="service reveal" id="komfort">
-        <div class="pic"><img loading="lazy" src="img/komfort-einlagen.jpg" alt="Komforteinlagen"></div>
+        <div class="pic"><img src="img/komfort-einlagen.jpg" alt="Komforteinlagen"></div>
         <div class="text">
           <span class="title">Komforteinlagen</span>
           <p class="desc">Mehr Dämpfung & Halt – hochwertige Materialien, sauber verarbeitet.</p>
@@ -500,7 +420,7 @@ body.panel-open main{ margin-left:var(--panelShift, 0px); transition:margin .18s
       </article>
 
       <article class="service reveal" id="alltag">
-        <div class="pic"><img loading="lazy" src="img/alltag-einlagen.jpg" alt="Alltagseinlagen"></div>
+        <div class="pic"><img src="img/alltag-einlagen.jpg" alt="Alltagseinlagen"></div>
         <div class="text">
           <span class="title">Alltagseinlagen</span>
           <p class="desc">Solide Einlagen für den täglichen Einsatz – bequem & robust.</p>
@@ -509,7 +429,7 @@ body.panel-open main{ margin-left:var(--panelShift, 0px); transition:margin .18s
       </article>
 
       <article class="service reveal" id="belts">
-        <div class="pic"><img loading="lazy" src="img/massguertel-leder.jpg" alt="Maßgürtel"></div>
+        <div class="pic"><img src="img/massguertel-leder.jpg" alt="Maßgürtel"></div>
         <div class="text">
           <span class="title">Maßgürtel</span>
           <p class="desc">Handgemachte Gürtel aus Vollleder – Länge, Farbe & Kante nach Wunsch.</p>
@@ -518,7 +438,7 @@ body.panel-open main{ margin-left:var(--panelShift, 0px); transition:margin .18s
       </article>
 
       <article class="service reveal" id="laser">
-        <div class="pic"><img loading="lazy" src="img/laser-gravur-leder.jpg" alt="Lasergravuren"></div>
+        <div class="pic"><img src="img/laser-gravur-leder.jpg" alt="Lasergravuren"></div>
         <div class="text">
           <span class="title">Lasergravuren</span>
           <p class="desc">Logos, Namen oder Motive – präzise Gravuren auf Leder & Metall.</p>
@@ -527,7 +447,7 @@ body.panel-open main{ margin-left:var(--panelShift, 0px); transition:margin .18s
       </article>
 
       <article class="service reveal" id="cutting">
-        <div class="pic"><img loading="lazy" src="img/laser-zuschnitte-leder.jpg" alt="Laserzuschnitte"></div>
+        <div class="pic"><img src="img/laser-zuschnitte-leder.jpg" alt="Laserzuschnitte"></div>
         <div class="text">
           <span class="title">Laserzuschnitte</span>
           <p class="desc">Exakte Zuschnitte für Hausnummern, Schilder, Patches und mehr.</p>
@@ -536,7 +456,7 @@ body.panel-open main{ margin-left:var(--panelShift, 0px); transition:margin .18s
       </article>
 
       <article class="service reveal" id="streetwear">
-        <div class="pic"><img loading="lazy" src="img/streetwear-lederpatch.jpg" alt="Streetwear"></div>
+        <div class="pic"><img src="img/streetwear-lederpatch.jpg" alt="Streetwear"></div>
         <div class="text">
           <span class="title">Streetwear</span>
           <p class="desc">Eigene Designs, Patches & Veredelung – dein Style, dein Statement.</p>
@@ -545,7 +465,7 @@ body.panel-open main{ margin-left:var(--panelShift, 0px); transition:margin .18s
       </article>
 
       <article class="service reveal" id="sand">
-        <div class="pic"><img loading="lazy" src="img/sandstrahlung-beschlaege.jpg" alt="Sandstrahlung"></div>
+        <div class="pic"><img src="img/sandstrahlung-beschlaege.jpg" alt="Sandstrahlung"></div>
         <div class="text">
           <span class="title">Sandstrahlung</span>
           <p class="desc">Schonendes Strahlen (bis 70×70 cm) – z. B. für Beschläge, Klingen & Teile.</p>
@@ -695,7 +615,6 @@ body.panel-open main{ margin-left:var(--panelShift, 0px); transition:margin .18s
     panel.classList.toggle('open', show);
     panel.setAttribute('aria-hidden', show ? 'false' : 'true');
     openBtn.textContent = show ? 'Katalog ▴' : 'Katalog ▾';
-    openBtn.setAttribute('aria-expanded', show ? 'true' : 'false');
     if (window.innerWidth > 1100) {
       document.body.classList.toggle('panel-open', show);
     } else {
@@ -740,6 +659,5 @@ body.panel-open main{ margin-left:var(--panelShift, 0px); transition:margin .18s
   });
 </script>
 
-<noscript><style>#preloader{display:none!important}</style></noscript>
 </body>
 </html>
