@@ -3,109 +3,54 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Komforteinlagen – Konfigurator – MyShoester</title>
+<title>Komforteinlagen – Preise – MyShoester</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{ --bg:#0a0c12; --panel:#0f1420; --line:#20283a; --text:#e9edf7; --muted:#a6afc2; }
 *{box-sizing:border-box} html,body{margin:0;padding:0}
 body{font-family:Inter,system-ui;background:linear-gradient(180deg,#0e121b,#0a0c12);color:var(--text)}
 .container{max-width:1100px;margin:0 auto;padding:24px}
-h1{font-family:Manrope,system-ui;font-weight:900;letter-spacing:.3px;margin:0 0 10px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
-.card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.10);border-radius:12px;padding:14px}
-.card h3{margin:6px 0 8px}
-.price,.sum{margin:8px 0}
+h1{font-family:Manrope,system-ui;font-weight:900;letter-spacing:.3px;margin:0 0 16px}
+.table{width:100%;border-collapse:collapse;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.10);border-radius:12px;overflow:hidden}
+.table th,.table td{padding:12px 14px;border-bottom:1px solid rgba(255,255,255,.08);text-align:left}
+.table th{font-weight:800;font-family:Manrope}
 .btn{appearance:none;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05);color:var(--text);
   padding:8px 12px;border-radius:10px;font-weight:800;cursor:pointer}
 .btn:hover{border-color:rgba(255,255,255,.24)}
-.notice{color:var(--muted)}
-a{color:var(--text);text-decoration:none}
 .header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
-.qty input{width:80px}
-.addons label{font-weight:600}
+a{color:var(--text);text-decoration:none}
+.notice{color:var(--muted);margin:8px 0 18px}
 </style>
+<link rel="stylesheet" href="theme.css">
 </head>
 <body>
 <div class="container">
   <div class="header">
-    <h1>Komforteinlagen – Konfigurator</h1>
+    <h1>Komforteinlagen – Preise</h1>
     <div>
-      <a href="index.html">← Start</a> &nbsp; | &nbsp;
+      <a href="index.html">← Start</a> &nbsp; | &nbsp; 
       <a href="warenkorb.html">🛒 Warenkorb (<span id="cartQty">0</span>)</a>
     </div>
   </div>
-
-  <p class="notice">Diese Einlagen werden <strong>nach Maß</strong> gefertigt. Nach dem Kauf senden wir dir automatisch ein <strong>Fußabdruck‑Set</strong> zu. Du machst die Abdrücke zuhause und schickst sie zurück – danach fertigen wir deine Einlagen.</p>
-  <p><a class="btn" href="fussabdruck-vorlage.html" target="_blank">🖨️ Fußabdruck‑Vorlage (A4) drucken</a></p>
-
-  <div class="grid">
-
-    <div class="card" data-baseid="komfort-basic" data-basename="Komforteinlagen Basic (Paar)" data-baseprice="34.00">
-      <h3>Komforteinlagen Basic (Paar)</h3>
-      <div class="price">ab 34.00 €</div>
-      <div class="addons">
-        <p><strong>Zusätze (optional):</strong></p>
-        <label><input type="checkbox" class="addon" data-label="Vorfußpolster" data-price="5"> Vorfußpolster (+5,00 €)</label><br>
-        <label><input type="checkbox" class="addon" data-label="Fersenpolster" data-price="5"> Fersenpolster (+5,00 €)</label><br>
-        <label><input type="checkbox" class="addon" data-label="Fersenschale" data-price="9"> Fersenschale (+9,00 €)</label><br>
-        <label><input type="checkbox" class="addon" data-label="Decksohle Leder" data-price="9"> Decksohle Leder (+9,00 €)</label><br>
-        <label><input type="checkbox" class="addon" data-label="Extra-Dämpfung" data-price="10"> Extra-Dämpfung (+10,00 €)</label>
-      </div>
-      <div class="qty"><label>Menge: <input type="number" min="1" value="1" class="q"></label></div>
-      <div class="sum">Zwischensumme: <span class="sumval">34.00 €</span></div>
-      <button class="btn add">In den Warenkorb</button>
-    </div>
-        
-
-    <div class="card" data-baseid="komfort-prem" data-basename="Komforteinlagen Premium (Paar)" data-baseprice="49.00">
-      <h3>Komforteinlagen Premium (Paar)</h3>
-      <div class="price">ab 49.00 €</div>
-      <div class="addons">
-        <p><strong>Zusätze (optional):</strong></p>
-        <label><input type="checkbox" class="addon" data-label="Vorfußpolster" data-price="5"> Vorfußpolster (+5,00 €)</label><br>
-        <label><input type="checkbox" class="addon" data-label="Fersenpolster" data-price="5"> Fersenpolster (+5,00 €)</label><br>
-        <label><input type="checkbox" class="addon" data-label="Fersenschale" data-price="9"> Fersenschale (+9,00 €)</label><br>
-        <label><input type="checkbox" class="addon" data-label="Decksohle Leder" data-price="9"> Decksohle Leder (+9,00 €)</label><br>
-        <label><input type="checkbox" class="addon" data-label="Extra-Dämpfung" data-price="10"> Extra-Dämpfung (+10,00 €)</label>
-      </div>
-      <div class="qty"><label>Menge: <input type="number" min="1" value="1" class="q"></label></div>
-      <div class="sum">Zwischensumme: <span class="sumval">49.00 €</span></div>
-      <button class="btn add">In den Warenkorb</button>
-    </div>
-        
-  </div>
+  <p class="notice">Alle Preise sind Ab-Preise inkl. MwSt. – abhängig von Material & Aufwand.</p>
+  <table class="table">
+    <thead><tr><th>Leistung</th><th>Preis</th><th>Aktion</th></tr></thead>
+    <tbody>
+      <tr>
+  <td>Komforteinlagen Basic (Paar)</td>
+  <td>34.00 €</td>
+  <td><button class="btn" data-add-to-cart data-id="komforteinlagen-1" data-name="Komforteinlagen Basic (Paar)" data-price="34.0">In den Warenkorb</button></td>
+</tr>
+<tr>
+  <td>Komforteinlagen Premium (Paar)</td>
+  <td>49.00 €</td>
+  <td><button class="btn" data-add-to-cart data-id="komforteinlagen-2" data-name="Komforteinlagen Premium (Paar)" data-price="49.0">In den Warenkorb</button></td>
+</tr>
+    </tbody>
+  </table>
 </div>
 
 <script src="cart.js"></script>
-<script>
-(function(){
-  function fmt(n){ return (n).toFixed(2).replace('.', ',') + ' €'; }
-  function recalc(card){ 
-    const base = parseFloat(card.dataset.baseprice);
-    let unit = base;
-    card.querySelectorAll('.addon:checked').forEach(ch=>{ unit += parseFloat(ch.dataset.price); });
-    const qty = parseInt(card.querySelector('.q').value||'1',10);
-    card.querySelector('.sumval').textContent = fmt(unit * qty);
-    return { unit: unit, qty: qty };
-  }
-  document.querySelectorAll('.card').forEach(card=>{
-    card.addEventListener('change', ()=> recalc(card));
-    const btn = card.querySelector('.add');
-    btn.addEventListener('click', function(){
-      const baseId = card.getAttribute('data-baseid');
-      const baseName = card.getAttribute('data-basename');
-      const conf = Array.from(card.querySelectorAll('.addon:checked')).map(ch=> ch.dataset.label);
-      const r = recalc(card);
-      const name = baseName + (conf.length ? ' – Zusätze: ' + conf.join(', ') : '');
-      const id = 'einlagen-' + baseId + (conf.length ? '-' + conf.join('-').toLowerCase().replace(/[^a-z0-9]+/g,'-') : '');
-      const qty = r.qty;
-      const price = r.unit;
-      MSCart.add({ id: id, name: name, price: price, qty: qty });
-    });
-    recalc(card);
-  });
-  if(window.MSCart && MSCart.updateBadge) MSCart.updateBadge();
-})();
-</script>
+<script>document.addEventListener('DOMContentLoaded',()=>{ if(window.MSCart) { MSCart.updateBadge(); MSCart.bindAddButtons(); } });</script>
 </body>
 </html>
